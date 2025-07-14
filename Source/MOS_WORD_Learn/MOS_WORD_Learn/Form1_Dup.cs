@@ -11,6 +11,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApplication1.Base;
 using Point = System.Drawing.Point;
 
 namespace WindowsFormsApplication1
@@ -268,8 +269,8 @@ namespace WindowsFormsApplication1
                     enviroment.quesion = cauUser - num1;
                     enviroment.section = index;
                     enviroment.dirPath = Path.Combine(System.Windows.Forms.Application.StartupPath, "data\\sec_" + index.ToString());
-                    enviroment.Source_de_En = Path.Combine(enviroment.dirPath, "hinh\\E\\" + enviroment.quesion.ToString());
-                    enviroment.Source_de_Vn = Path.Combine(enviroment.dirPath, "hinh\\V\\" + enviroment.quesion.ToString());
+                    enviroment.Source_de_En = ClsListQuestion.GetEngQuestion(cauUser);
+                    enviroment.Source_de_Vn = ClsListQuestion.GetVNQuestion(cauUser);
                     enviroment.Source_file_word_path = Path.Combine(enviroment.dirPath, "file\\" + enviroment.quesion.ToString());
                     enviroment.Source_file_help_path = Path.Combine(enviroment.dirPath, "help\\" + enviroment.quesion.ToString());
                     enviroment.Source_file_help_video_path = Path.Combine(enviroment.dirPath, "Vhelp\\" + enviroment.quesion.ToString());
@@ -286,8 +287,8 @@ namespace WindowsFormsApplication1
             this.setDefalt(this.paramater);
             this.paramater.Dest_file_Word_Name = (object)Path.Combine(System.Windows.Forms.Application.StartupPath, "Word\\" + this.paramater.section.ToString() + "_" + this.paramater.quesion.ToString());
             ////TODO: sua doi thanh text
-            this.paramater.DeTiengAnh = File.ReadAllText(this.paramater.Source_de_En);
-            this.paramater.DeTiengViet = File.ReadAllText(this.paramater.Source_de_Vn);
+            this.paramater.DeTiengAnh = this.paramater.Source_de_En;
+            this.paramater.DeTiengViet = this.paramater.Source_de_Vn;
             this.paramater.Dest_file_help_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, "tam\\help");
             this.paramater.Dest_file_help_video_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, "tam\\Vhelp");
             Home.DecryptFile(this.paramater.Source_file_word_path, this.paramater.Dest_file_Word_Name.ToString());

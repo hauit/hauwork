@@ -50,6 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\ClsBaseObject.cs" />
+    <Compile Include="Base\ClsQuestion.cs" />
+    <Compile Include="Base\ClsSession.cs" />
     <Compile Include="CheckWord.cs" />
     <Compile Include="Copy_Question.cs" />
     <Compile Include="Design.cs" />

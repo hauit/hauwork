@@ -79,7 +79,7 @@ namespace WindowsFormsApplication1
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 3;
-            this.buttonOK.Text = "&OK";
+            this.buttonOK.Text = "Đăng nhập";
             this.buttonOK.UseVisualStyleBackColor = true;
             this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
@@ -90,9 +90,9 @@ namespace WindowsFormsApplication1
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(8, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 19);
+            this.label1.Size = new System.Drawing.Size(81, 19);
             this.label1.TabIndex = 5;
-            this.label1.Text = "User";
+            this.label1.Text = "Tài khoản:";
             // 
             // label2
             // 
@@ -101,9 +101,9 @@ namespace WindowsFormsApplication1
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(8, 49);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 19);
+            this.label2.Size = new System.Drawing.Size(75, 19);
             this.label2.TabIndex = 6;
-            this.label2.Text = "PassWord";
+            this.label2.Text = "Mật khẩu";
             // 
             // label3
             // 
@@ -183,7 +183,7 @@ namespace WindowsFormsApplication1
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 12;
-            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Text = "Hủy";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -210,7 +210,7 @@ namespace WindowsFormsApplication1
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(250, 118);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Login";
+            this.tabPage1.Text = "Đăng nhập";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
@@ -221,7 +221,7 @@ namespace WindowsFormsApplication1
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(250, 118);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "GetID";
+            this.tabPage2.Text = "Thông tin tài khoản";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // richTextBox1

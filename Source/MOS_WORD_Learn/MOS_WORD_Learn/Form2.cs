@@ -13,6 +13,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApplication1.Base;
 
 namespace WindowsFormsApplication1
 {
@@ -55,6 +56,7 @@ namespace WindowsFormsApplication1
                     System.IO.File.Delete(Path.Combine(Application.StartupPath, "zip\\c"));
                     string str = "C:\\MOS\\GOC HO TRO\\NHAC HOC.lnk";
                     string destFileName = Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\nhac hoc.lnk";
+                    ClsSession.Language = radioTV.Checked ? Language.Vietnamese : Language.English;
                     if (System.IO.File.Exists(str))
                         System.IO.File.Copy(str, destFileName, true);
                     this.Close();
