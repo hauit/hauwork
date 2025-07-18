@@ -2,3 +2,13 @@
 *.zip
 *.mp4
 .vs/
+/Source/MOS_WORD_Learn/MOS_WORD_Learn/bin/Debug/data
+/Source/MOS_WORD_Learn/MOS_WORD_Learn/bin/Debug/help
+/Source/MOS_WORD_Learn/MOS_WORD_Learn/bin/Debug/ICon
+/Source/MOS_WORD_Learn/MOS_WORD_Learn/bin/Debug/Zip
+/Source/MOS_WORD_Learn/MOS_WORD_Learn/obj/Release
+/Source/MOS_WORD_Learn/MOS_WORD_Learn/obj/Debug
+/Source/MOS_WORD_Learn/MOS_WORD_Learn/bin/Debug
+/Source/Excel_thi/MOS_EXCEL_TEST/bin
+/Source/Excel_thi/MOS_EXCEL_TEST
+/Source/MOS_WORD_Learn/MOS_WORD_Learn/bin

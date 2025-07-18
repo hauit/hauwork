@@ -390,7 +390,7 @@ namespace WindowsFormsApplication1
             }
             catch (Exception ex)
             {
-                int num = (int)MessageBox.Show("Đống tất cả các hộp thoại đang mở trước");
+                int num = (int)MessageBox.Show("Đóng tất cả các hộp thoại đang mở trước");
             }
             return str;
         }
@@ -421,7 +421,7 @@ namespace WindowsFormsApplication1
             }
             catch (Exception ex)
             {
-                int num2 = (int)MessageBox.Show("close các hộp thoại trước khi reset");
+                int num2 = (int)MessageBox.Show("Đóng các hộp thoại trước khi reset");
                 num1 = 1;
             }
             if (num1 == 1)

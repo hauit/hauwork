@@ -89,12 +89,17 @@ namespace WindowsFormsApplication1
             // 
             // buttonEV
             // 
+            this.buttonEV.BackColor = System.Drawing.Color.Transparent;
+            this.buttonEV.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonEV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonEV.Location = new System.Drawing.Point(235, 130);
             this.buttonEV.Name = "buttonEV";
             this.buttonEV.Size = new System.Drawing.Size(75, 23);
             this.buttonEV.TabIndex = 3;
             this.buttonEV.Text = "Tiếng Việt";
-            this.buttonEV.UseVisualStyleBackColor = true;
+            this.buttonEV.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonEV.UseVisualStyleBackColor = false;
+            this.buttonEV.Visible = false;
             this.buttonEV.Click += new System.EventHandler(this.buttonEV_Click);
             // 
             // buttonRefresh

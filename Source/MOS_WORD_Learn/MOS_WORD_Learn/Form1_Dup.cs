@@ -378,7 +378,7 @@ namespace WindowsFormsApplication1
             }
             catch (Exception ex)
             {
-                int num = (int)MessageBox.Show("Đống tất cả các hộp thoại đang mở trước");
+                int num = (int)MessageBox.Show("Đóng tất cả các hộp thoại đang mở trước");
             }
             return str;
         }
@@ -409,7 +409,7 @@ namespace WindowsFormsApplication1
             }
             catch (Exception ex)
             {
-                int num2 = (int)MessageBox.Show("close các hộp thoại trước khi reset");
+                int num2 = (int)MessageBox.Show("Đóng các hộp thoại trước khi reset");
                 num1 = 1;
             }
             if (num1 == 1)
@@ -419,28 +419,22 @@ namespace WindowsFormsApplication1
 
         private void buttonEV_Click(object sender, EventArgs e)
         {
-            if (this.buttonEV.Text == "Tiếng Việt")
+            if (this.buttonEV.Text == "V")
             {
-                this.buttonEV.Text = "Tiếng Anh";
+                this.buttonEV.Text = "E";
+                this.buttonEV.BackgroundImage = WindowsFormsApplication1.Properties.Resources.en;
                 this.richTextQuestion.Text = this.paramater.DeTiengAnh;
                 //this.pictureBox1.Image.Dispose();
                 //this.pictureBox1.Image = Image.FromFile(this.paramater.DeTiengViet);
             }
             else
             {
-                this.buttonEV.Text = "Tiếng Việt";
+                this.buttonEV.Text = "V";
+                this.buttonEV.BackgroundImage = WindowsFormsApplication1.Properties.Resources.vi;
                 this.richTextQuestion.Text = this.paramater.DeTiengViet;
                 //this.pictureBox1.Image.Dispose();
                 //this.pictureBox1.Image = Image.FromFile(this.paramater.DeTiengAnh);
             }
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void pictureBox1_MouseHover(object sender, EventArgs e)
-        {
         }
 
         private void buttonHelp_Click(object sender, EventArgs e) => this.h.Show();
@@ -462,7 +456,7 @@ namespace WindowsFormsApplication1
 
         private void buttonVideoHelp_Click(object sender, EventArgs e)
         {
-            if (this.buttonVideoHelp.Text == "HDSD phần mềm")
+            if (this.buttonVideoHelp.Text == "Hướng dẫn phần mềm")
             {
                 this.buttonVideoHelp.Text = "Về chế độ làm bài";
                 this.TopMost = false;
@@ -477,7 +471,7 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                this.buttonVideoHelp.Text = "HDSD phần mềm";
+                this.buttonVideoHelp.Text = "Hướng dẫn phần mềm";
                 this.TopMost = true;
             }
         }
@@ -493,7 +487,7 @@ namespace WindowsFormsApplication1
             else
             {
                 this.TopMost = true;
-                this.button2.Text = "Gọi Thầy";
+                this.button2.Text = "Gọi Cô";
             }
         }
 
@@ -503,12 +497,13 @@ namespace WindowsFormsApplication1
             string fileHelpVideoPath = this.paramater.Source_file_help_video_path;
             try
             {
-                Home.DecryptFile(fileHelpVideoPath, str);
+                //Home.DecryptFile(fileHelpVideoPath, str);
+                str = "https://www.youtube.com/watch?v=fT_3Bsb9hbA";
                 Process.Start(str);
             }
             catch (Exception ex)
             {
-                int num = (int)MessageBox.Show("Tắt Video help trước khi mở help mới");
+                int num = (int)MessageBox.Show("Tắt Video hướng dẫn làm bài trước khi mở hướng dẫn mới");
             }
         }
 
@@ -544,7 +539,7 @@ namespace WindowsFormsApplication1
                 this.comboBoxCauNext.Text = "1";
             this.labelKQ.Text = "";
             this.check = true;
-            this.buttonEV.Text = "Tiếng Việt";
+            this.buttonEV.Text = "V";
         }
     }
 }
