@@ -57,49 +57,64 @@ namespace WindowsFormsApplication1
             // 
             // buttonExit
             // 
+            this.buttonExit.BackColor = System.Drawing.Color.Red;
             this.buttonExit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonExit.Location = new System.Drawing.Point(80, 248);
+            this.buttonExit.FlatAppearance.BorderSize = 2;
+            this.buttonExit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.buttonExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.buttonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonExit.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonExit.ForeColor = System.Drawing.Color.White;
+            this.buttonExit.Location = new System.Drawing.Point(74, 265);
             this.buttonExit.Name = "buttonExit";
-            this.buttonExit.Size = new System.Drawing.Size(75, 25);
+            this.buttonExit.Size = new System.Drawing.Size(40, 35);
             this.buttonExit.TabIndex = 0;
-            this.buttonExit.Text = "Thoát";
-            this.buttonExit.UseVisualStyleBackColor = true;
+            this.buttonExit.Text = "X";
+            this.buttonExit.UseVisualStyleBackColor = false;
             this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
             // 
             // buttonNext
             // 
             this.buttonNext.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.buttonNext.Location = new System.Drawing.Point(716, 324);
+            this.buttonNext.FlatAppearance.BorderSize = 2;
+            this.buttonNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonNext.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonNext.ForeColor = System.Drawing.Color.White;
+            this.buttonNext.Location = new System.Drawing.Point(513, 327);
             this.buttonNext.Name = "buttonNext";
-            this.buttonNext.Size = new System.Drawing.Size(75, 25);
+            this.buttonNext.Size = new System.Drawing.Size(100, 35);
             this.buttonNext.TabIndex = 1;
-            this.buttonNext.Text = "Câu tiếp";
+            this.buttonNext.Text = "Chọn câu";
             this.buttonNext.UseVisualStyleBackColor = true;
             this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
             // 
             // buttonReset
             // 
             this.buttonReset.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.buttonReset.Location = new System.Drawing.Point(629, 324);
+            this.buttonReset.FlatAppearance.BorderSize = 2;
+            this.buttonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonReset.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonReset.ForeColor = System.Drawing.Color.White;
+            this.buttonReset.Location = new System.Drawing.Point(397, 327);
             this.buttonReset.Name = "buttonReset";
-            this.buttonReset.Size = new System.Drawing.Size(75, 25);
+            this.buttonReset.Size = new System.Drawing.Size(110, 35);
             this.buttonReset.TabIndex = 2;
-            this.buttonReset.Text = "Reset";
+            this.buttonReset.Text = "Làm lại câu";
             this.buttonReset.UseVisualStyleBackColor = true;
             this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 
             // buttonRefresh
             // 
             this.buttonRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.buttonRefresh.Location = new System.Drawing.Point(161, 248);
+            this.buttonRefresh.FlatAppearance.BorderSize = 2;
+            this.buttonRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRefresh.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonRefresh.ForeColor = System.Drawing.Color.White;
+            this.buttonRefresh.Location = new System.Drawing.Point(286, 265);
             this.buttonRefresh.Name = "buttonRefresh";
-            this.buttonRefresh.Size = new System.Drawing.Size(120, 25);
+            this.buttonRefresh.Size = new System.Drawing.Size(150, 35);
             this.buttonRefresh.TabIndex = 5;
-            this.buttonRefresh.Text = "Phục hồi Word";
+            this.buttonRefresh.Text = "Hiện/Ẩn Word";
             this.buttonRefresh.UseVisualStyleBackColor = true;
             this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
@@ -115,14 +130,17 @@ namespace WindowsFormsApplication1
             // 
             // buttonCheck
             // 
-            this.buttonCheck.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.buttonCheck.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
             this.buttonCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.buttonCheck.Location = new System.Drawing.Point(574, 248);
+            this.buttonCheck.FlatAppearance.BorderSize = 2;
+            this.buttonCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCheck.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonCheck.ForeColor = System.Drawing.Color.White;
+            this.buttonCheck.Location = new System.Drawing.Point(739, 265);
             this.buttonCheck.Name = "buttonCheck";
-            this.buttonCheck.Size = new System.Drawing.Size(120, 25);
+            this.buttonCheck.Size = new System.Drawing.Size(100, 35);
             this.buttonCheck.TabIndex = 7;
-            this.buttonCheck.Text = "Xem đúng/sai";
+            this.buttonCheck.Text = "Đúng/Sai";
             this.buttonCheck.UseVisualStyleBackColor = false;
             this.buttonCheck.Click += new System.EventHandler(this.buttonCheck_Click);
             // 
@@ -138,25 +156,29 @@ namespace WindowsFormsApplication1
             // 
             // labelCauHienTai
             // 
-            this.labelCauHienTai.AutoSize = true;
-            this.labelCauHienTai.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCauHienTai.ForeColor = System.Drawing.Color.Yellow;
-            this.labelCauHienTai.Location = new System.Drawing.Point(529, 325);
+            this.labelCauHienTai.BackColor = System.Drawing.Color.Red;
+            this.labelCauHienTai.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.labelCauHienTai.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelCauHienTai.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
+            this.labelCauHienTai.ForeColor = System.Drawing.Color.White;
+            this.labelCauHienTai.Location = new System.Drawing.Point(307, 327);
+            this.labelCauHienTai.Margin = new System.Windows.Forms.Padding(0);
             this.labelCauHienTai.Name = "labelCauHienTai";
-            this.labelCauHienTai.Size = new System.Drawing.Size(86, 24);
+            this.labelCauHienTai.Padding = new System.Windows.Forms.Padding(7);
+            this.labelCauHienTai.Size = new System.Drawing.Size(84, 35);
             this.labelCauHienTai.TabIndex = 12;
             this.labelCauHienTai.Text = "Câu 150";
             // 
             // comboBoxCauNext
             // 
-            this.comboBoxCauNext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.comboBoxCauNext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
             this.comboBoxCauNext.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBoxCauNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.comboBoxCauNext.Font = new System.Drawing.Font("Roboto", 17F, System.Drawing.FontStyle.Bold);
             this.comboBoxCauNext.ForeColor = System.Drawing.Color.Red;
             this.comboBoxCauNext.FormattingEnabled = true;
-            this.comboBoxCauNext.Location = new System.Drawing.Point(410, 322);
+            this.comboBoxCauNext.Location = new System.Drawing.Point(619, 327);
             this.comboBoxCauNext.Name = "comboBoxCauNext";
-            this.comboBoxCauNext.Size = new System.Drawing.Size(62, 28);
+            this.comboBoxCauNext.Size = new System.Drawing.Size(65, 36);
             this.comboBoxCauNext.TabIndex = 13;
             // 
             // panel1
@@ -183,10 +205,13 @@ namespace WindowsFormsApplication1
             // buttonSummary
             // 
             this.buttonSummary.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonSummary.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.buttonSummary.Location = new System.Drawing.Point(478, 324);
+            this.buttonSummary.FlatAppearance.BorderSize = 2;
+            this.buttonSummary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSummary.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonSummary.ForeColor = System.Drawing.Color.White;
+            this.buttonSummary.Location = new System.Drawing.Point(251, 327);
             this.buttonSummary.Name = "buttonSummary";
-            this.buttonSummary.Size = new System.Drawing.Size(45, 25);
+            this.buttonSummary.Size = new System.Drawing.Size(50, 35);
             this.buttonSummary.TabIndex = 17;
             this.buttonSummary.Text = "Xóa";
             this.buttonSummary.UseVisualStyleBackColor = true;
@@ -194,28 +219,33 @@ namespace WindowsFormsApplication1
             // 
             // buttonZoom
             // 
-            this.buttonZoom.BackColor = System.Drawing.Color.Cyan;
+            this.buttonZoom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
             this.buttonZoom.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonZoom.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.buttonZoom.ForeColor = System.Drawing.Color.Black;
-            this.buttonZoom.Location = new System.Drawing.Point(326, 324);
+            this.buttonZoom.FlatAppearance.BorderSize = 2;
+            this.buttonZoom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonZoom.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonZoom.ForeColor = System.Drawing.Color.White;
+            this.buttonZoom.Location = new System.Drawing.Point(74, 327);
             this.buttonZoom.Name = "buttonZoom";
-            this.buttonZoom.Size = new System.Drawing.Size(78, 25);
+            this.buttonZoom.Size = new System.Drawing.Size(100, 35);
             this.buttonZoom.TabIndex = 20;
-            this.buttonZoom.Text = "Đánh dấu";
+            this.buttonZoom.Text = "Câu dễ sai";
             this.buttonZoom.UseVisualStyleBackColor = false;
             this.buttonZoom.Click += new System.EventHandler(this.buttonZoom_Click);
             // 
             // buttonVideoHelp
             // 
-            this.buttonVideoHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.buttonVideoHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
             this.buttonVideoHelp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonVideoHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.buttonVideoHelp.Location = new System.Drawing.Point(80, 324);
+            this.buttonVideoHelp.FlatAppearance.BorderSize = 2;
+            this.buttonVideoHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonVideoHelp.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonVideoHelp.ForeColor = System.Drawing.Color.White;
+            this.buttonVideoHelp.Location = new System.Drawing.Point(120, 265);
             this.buttonVideoHelp.Name = "buttonVideoHelp";
-            this.buttonVideoHelp.Size = new System.Drawing.Size(160, 25);
+            this.buttonVideoHelp.Size = new System.Drawing.Size(160, 35);
             this.buttonVideoHelp.TabIndex = 24;
-            this.buttonVideoHelp.Text = "Hướng dẫn phần mềm";
+            this.buttonVideoHelp.Text = "HDSD Phần mềm";
             this.buttonVideoHelp.UseVisualStyleBackColor = false;
             this.buttonVideoHelp.Click += new System.EventHandler(this.buttonVideoHelp_Click);
             // 
@@ -223,7 +253,7 @@ namespace WindowsFormsApplication1
             // 
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button2.Location = new System.Drawing.Point(246, 324);
+            this.button2.Location = new System.Drawing.Point(848, 150);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(74, 25);
             this.button2.TabIndex = 25;
@@ -233,56 +263,62 @@ namespace WindowsFormsApplication1
             // 
             // comboBoxCauDaDanhDau
             // 
-            this.comboBoxCauDaDanhDau.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.comboBoxCauDaDanhDau.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
             this.comboBoxCauDaDanhDau.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBoxCauDaDanhDau.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.comboBoxCauDaDanhDau.ForeColor = System.Drawing.Color.Blue;
+            this.comboBoxCauDaDanhDau.Font = new System.Drawing.Font("Roboto", 17F, System.Drawing.FontStyle.Bold);
+            this.comboBoxCauDaDanhDau.ForeColor = System.Drawing.Color.Red;
             this.comboBoxCauDaDanhDau.FormattingEnabled = true;
-            this.comboBoxCauDaDanhDau.ItemHeight = 20;
-            this.comboBoxCauDaDanhDau.Location = new System.Drawing.Point(797, 322);
+            this.comboBoxCauDaDanhDau.ItemHeight = 28;
+            this.comboBoxCauDaDanhDau.Location = new System.Drawing.Point(180, 328);
             this.comboBoxCauDaDanhDau.Name = "comboBoxCauDaDanhDau";
-            this.comboBoxCauDaDanhDau.Size = new System.Drawing.Size(62, 28);
+            this.comboBoxCauDaDanhDau.Size = new System.Drawing.Size(62, 36);
             this.comboBoxCauDaDanhDau.TabIndex = 27;
             // 
             // buttonHelpVideo
             // 
-            this.buttonHelpVideo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.buttonHelpVideo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
             this.buttonHelpVideo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonHelpVideo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonHelpVideo.Location = new System.Drawing.Point(428, 248);
+            this.buttonHelpVideo.FlatAppearance.BorderSize = 2;
+            this.buttonHelpVideo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonHelpVideo.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonHelpVideo.ForeColor = System.Drawing.Color.White;
+            this.buttonHelpVideo.Location = new System.Drawing.Point(593, 265);
             this.buttonHelpVideo.Name = "buttonHelpVideo";
-            this.buttonHelpVideo.Size = new System.Drawing.Size(140, 25);
+            this.buttonHelpVideo.Size = new System.Drawing.Size(140, 35);
             this.buttonHelpVideo.TabIndex = 29;
-            this.buttonHelpVideo.Text = "Hướng dẫn làm bài";
+            this.buttonHelpVideo.Text = "Video chữa đề";
             this.buttonHelpVideo.UseVisualStyleBackColor = false;
             this.buttonHelpVideo.Click += new System.EventHandler(this.buttonHelpVideo_Click);
             // 
             // buttonHelp
             // 
             this.buttonHelp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.buttonHelp.Location = new System.Drawing.Point(287, 248);
+            this.buttonHelp.FlatAppearance.BorderSize = 2;
+            this.buttonHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonHelp.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonHelp.ForeColor = System.Drawing.Color.White;
+            this.buttonHelp.Location = new System.Drawing.Point(442, 265);
             this.buttonHelp.Name = "buttonHelp";
-            this.buttonHelp.Size = new System.Drawing.Size(135, 25);
+            this.buttonHelp.Size = new System.Drawing.Size(145, 35);
             this.buttonHelp.TabIndex = 30;
-            this.buttonHelp.Text = "Về chế độ thường";
+            this.buttonHelp.Text = "Hiện Taskbar";
             this.buttonHelp.UseVisualStyleBackColor = true;
             this.buttonHelp.Click += new System.EventHandler(this.buttonHelp_Click_1);
             // 
             // buttonEV
             // 
-            this.buttonEV.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.vi;
+            this.buttonEV.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.en;
             this.buttonEV.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.buttonEV.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonEV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonEV.Font = new System.Drawing.Font("Microsoft Sans Serif", 0.001F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonEV.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(153)))));
-            this.buttonEV.Location = new System.Drawing.Point(855, 326);
+            this.buttonEV.Location = new System.Drawing.Point(684, 326);
             this.buttonEV.Margin = new System.Windows.Forms.Padding(0);
             this.buttonEV.Name = "buttonEV";
-            this.buttonEV.Size = new System.Drawing.Size(53, 25);
+            this.buttonEV.Size = new System.Drawing.Size(53, 35);
             this.buttonEV.TabIndex = 3;
-            this.buttonEV.Text = "V";
+            this.buttonEV.Text = "E";
             this.buttonEV.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             this.buttonEV.UseVisualStyleBackColor = true;
             this.buttonEV.Click += new System.EventHandler(this.buttonEV_Click);
@@ -291,13 +327,12 @@ namespace WindowsFormsApplication1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(153)))));
-            this.ClientSize = new System.Drawing.Size(1075, 422);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.ClientSize = new System.Drawing.Size(1075, 396);
             this.Controls.Add(this.buttonHelp);
             this.Controls.Add(this.buttonHelpVideo);
             this.Controls.Add(this.labelKQ);
             this.Controls.Add(this.comboBoxCauDaDanhDau);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.buttonVideoHelp);
             this.Controls.Add(this.buttonZoom);
             this.Controls.Add(this.panel1);

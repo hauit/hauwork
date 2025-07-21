@@ -66,27 +66,32 @@ namespace WindowsFormsApplication1
                 this.Height = this.screen_height / 5;
                 this.Location = new Point(0, this.screen_height * 4 / 5);
                 this.buttonExit.Location = new Point(0, y);
-                this.buttonRefresh.Location = new Point(this.buttonExit.Width, y);
-                this.buttonHelp.Location = new Point(this.buttonExit.Width + this.buttonRefresh.Width, y);
-                this.buttonHelpVideo.Location = new Point(this.buttonExit.Width + this.buttonRefresh.Width + this.buttonHelp.Width, y);
-                this.buttonCheck.Location = new Point(this.buttonExit.Width + this.buttonRefresh.Width + this.buttonHelp.Width + this.buttonHelpVideo.Width, y);
-                this.labelKQ.Location = new Point(this.buttonExit.Width + this.buttonRefresh.Width + this.buttonHelp.Width + this.buttonHelpVideo.Width + this.buttonCheck.Width, y);
+                this.buttonVideoHelp.Location = new Point(this.buttonExit.Width + 5, y);
+                this.buttonRefresh.Location = new Point(this.buttonExit.Width + this.buttonVideoHelp.Width + 10, y);
+
+                this.buttonHelp.Location = new Point(this.buttonExit.Width + this.buttonVideoHelp.Width + this.buttonRefresh.Width + 15, y);
+                this.buttonHelpVideo.Location = new Point(this.buttonExit.Width + this.buttonVideoHelp.Width + this.buttonRefresh.Width + this.buttonHelp.Width + 20, y);
+                this.buttonCheck.Location = new Point(this.buttonExit.Width + this.buttonVideoHelp.Width + this.buttonRefresh.Width + this.buttonHelp.Width + this.buttonHelpVideo.Width + 25, y);
+                this.labelKQ.Location = new Point(this.buttonExit.Width + this.buttonVideoHelp.Width + this.buttonRefresh.Width + this.buttonHelp.Width + this.buttonHelpVideo.Width + this.buttonCheck.Width + 30, y);
+
+
                 this.buttonEV.Location = new Point(this.Width - this.buttonEV.Width, y);
-                this.comboBoxCauNext.Location = new Point(this.Width - this.buttonEV.Width - this.comboBoxCauNext.Width, 0);
-                this.buttonNext.Location = new Point(this.Width - this.buttonEV.Width - this.comboBoxCauNext.Width - this.buttonNext.Width, y);
-                this.buttonReset.Location = new Point(this.buttonNext.Location.X - this.buttonReset.Width, y);
-                this.labelCauHienTai.Location = new Point(this.buttonReset.Location.X - this.labelCauHienTai.Width, y);
-                this.buttonSummary.Location = new Point(this.labelCauHienTai.Location.X - this.buttonSummary.Width, y);
-                this.comboBoxCauDaDanhDau.Location = new Point(this.buttonSummary.Location.X - this.comboBoxCauDaDanhDau.Width, 0);
-                this.buttonZoom.Location = new Point(this.comboBoxCauDaDanhDau.Location.X - this.buttonZoom.Width, y);
-                this.button2.Location = new Point(this.buttonZoom.Location.X - this.button2.Width, y);
-                this.buttonVideoHelp.Location = new Point(this.button2.Location.X - this.buttonVideoHelp.Width, y);
-                this.richTextBox1.Location = new Point(0, this.comboBoxCauNext.Height);
+                this.comboBoxCauNext.Location = new Point(this.Width - this.buttonEV.Width - this.comboBoxCauNext.Width - 5, 0);
+                this.buttonNext.Location = new Point(this.Width - this.buttonEV.Width - this.comboBoxCauNext.Width - this.buttonNext.Width - 10, y);
+                this.buttonReset.Location = new Point(this.buttonNext.Location.X - this.buttonReset.Width - 5, y);
+                this.labelCauHienTai.Location = new Point(this.buttonReset.Location.X - this.labelCauHienTai.Width - 5, y);
+                this.buttonSummary.Location = new Point(this.labelCauHienTai.Location.X - this.buttonSummary.Width - 5, y);
+                this.comboBoxCauDaDanhDau.Location = new Point(this.buttonSummary.Location.X - this.comboBoxCauDaDanhDau.Width - 5, 0);
+                this.buttonZoom.Location = new Point(this.comboBoxCauDaDanhDau.Location.X - this.buttonZoom.Width - 5, y);
+
+                //this.button2.Location = new Point(this.buttonZoom.Location.X - this.button2.Width, y); //Gọi cô
+
+                this.richTextBox1.Location = new Point(0, this.buttonExit.Height);
                 this.richTextBox1.Width = this.Width;
-                this.richTextBox1.Height = this.Height - this.comboBoxCauNext.Height;
-                this.panel1.Location = new Point(0, this.comboBoxCauNext.Height);
+                this.richTextBox1.Height = this.Height - this.buttonExit.Height;
+                this.panel1.Location = new Point(0, this.buttonExit.Height);
                 this.panel1.Width = this.Width;
-                this.panel1.Height = this.Height - this.comboBoxCauNext.Height;
+                this.panel1.Height = this.Height + 10 - this.buttonExit.Height;
                 //this.pictureBox1.Location = new Point(0, 0);
                 //this.pictureBox1.Width = this.Width - this.buttonEV.Width / 3;
                 this.richTextQuestion.Location = new Point(0, 0);
@@ -456,9 +461,9 @@ namespace WindowsFormsApplication1
 
         private void buttonVideoHelp_Click(object sender, EventArgs e)
         {
-            if (this.buttonVideoHelp.Text == "Hướng dẫn phần mềm")
+            if (this.buttonVideoHelp.Text == "HDSD phần mềm")
             {
-                this.buttonVideoHelp.Text = "Về chế độ làm bài";
+                this.buttonVideoHelp.Text = "Ẩn Taskbar";
                 this.TopMost = false;
                 try
                 {
@@ -471,7 +476,7 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                this.buttonVideoHelp.Text = "Hướng dẫn phần mềm";
+                this.buttonVideoHelp.Text = "HDSD phần mềm";
                 this.TopMost = true;
             }
         }
@@ -511,12 +516,14 @@ namespace WindowsFormsApplication1
         {
             if (this.TopMost)
             {
-                this.buttonHelp.Text = "Về chế độ làm bài";
+                //this.buttonHelp.Text = "Về chế độ làm bài";
+                this.buttonHelp.Text = "Ẩn Taskbar";
                 this.TopMost = false;
             }
             else
             {
-                this.buttonHelp.Text = "Về chế độ thường";
+                //this.buttonHelp.Text = "Về chế độ thường";
+                this.buttonHelp.Text = "Hiện Taskbar";
                 this.TopMost = true;
             }
         }
