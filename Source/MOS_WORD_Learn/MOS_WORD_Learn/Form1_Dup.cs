@@ -28,7 +28,7 @@ namespace WindowsFormsApplication1
         private Microsoft.Office.Interop.Word.Application a;
         private Microsoft.Office.Interop.Word._Document d;
         private _Document d1;
-        private int tong_so_cau = School.Tong();
+        private int tong_so_cau = ClsListQuestion.GetQuestionNumber();
         private int cau_User = 1;
         private bool chotat = false;
         public object readOnly = (object)false;
@@ -43,6 +43,7 @@ namespace WindowsFormsApplication1
             InitializeComponent();
             this.FormClosed += new FormClosedEventHandler(this.Form1_Dup_FormClosed);
             this.a = (Microsoft.Office.Interop.Word.Application)Activator.CreateInstance(System.Type.GetTypeFromCLSID(new Guid("000209FF-0000-0000-C000-000000000046")));
+            this.loadTongSoCau();
             this.load_cau_hoi(this.cau_User);
             // ISSUE: method pointer
             // ISSUE: object of a compiler-generated type is created
@@ -55,8 +56,7 @@ namespace WindowsFormsApplication1
             this.loadDanhDau();
             try
             {
-                this.loadTongSoCau();
-                this.tong_so_cau = School.Tong();
+                //this.tong_so_cau = School.Tong();
                 this.Diem = new int[this.tong_so_cau];
                 //int y = this.comboBoxCauNext.Height <= this.buttonExit.Height ? (this.buttonExit.Height - this.comboBoxCauNext.Height) / 2 : (this.comboBoxCauNext.Height - this.buttonExit.Height) / 2;
                 int y = 5;
@@ -291,6 +291,7 @@ namespace WindowsFormsApplication1
 
         private void load_cau_hoi(int cau_hoi_so)
         {
+            cau_hoi_so = ClsListQuestion.GetCorrectIndex(cau_hoi_so);
             this.paramater = this.Getparmater(cau_hoi_so);
             this.setDefalt(this.paramater);
             this.paramater.Dest_file_Word_Name = (object)Path.Combine(System.Windows.Forms.Application.StartupPath, "Word\\" + this.paramater.section.ToString() + "_" + this.paramater.quesion.ToString());

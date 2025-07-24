@@ -22,5 +22,29 @@ namespace WindowsFormsApplication1.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PASS {
+            get {
+                return ((string)(this["PASS"]));
+            }
+            set {
+                this["PASS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DATE {
+            get {
+                return ((string)(this["DATE"]));
+            }
+            set {
+                this["DATE"] = value;
+            }
+        }
     }
 }

@@ -10,6 +10,7 @@ using System.Net;
 using System.Net.Cache;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -34,37 +35,36 @@ namespace WindowsFormsApplication1
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
-            if (this.textBoxUser.Text.ToUpper() != "ON LUYEN MOS")
+            try
             {
-                int num = (int)MessageBox.Show("sai user name");
-                this.textBoxUser.Focus();
-            }
-            else if (this.textBoxPass.Text == "")
-            {
-                int num = (int)MessageBox.Show("Nhập Pass");
-                this.textBoxPass.Focus();
-            }
-            else
-            {
+                if (this.textBoxUser.Text.ToUpper() != "ON LUYEN MOS")
+                {
+                    int num = (int)MessageBox.Show("sai user name");
+                    this.textBoxUser.Focus();
+                    return;
+                }
+
+                if (this.textBoxPass.Text == "")
+                {
+                    int num = (int)MessageBox.Show("Nhập Pass");
+                    this.textBoxPass.Focus();
+                    return;
+                }
+                
                 Program.user = "271565";
                 Program.pass = this.textBoxPass.Text;
-                if (this.check1())
+                if (!this.check1())
                 {
-                    Program.status = 1;
-                    this.WritrMac(this.mac, this.ngayhethang, Path.Combine(Application.StartupPath, "zip\\a"));
-                    Home.EncryptFileT(Path.Combine(Application.StartupPath, "zip\\a"), Path.Combine(Application.StartupPath, "zip\\b"));
-                    System.IO.File.Delete(Path.Combine(Application.StartupPath, "zip\\c"));
-                    string str = "C:\\MOS\\GOC HO TRO\\NHAC HOC.lnk";
-                    string destFileName = Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\nhac hoc.lnk";
-                    ClsSession.Language = radioTV.Checked ? Language.Vietnamese : Language.English;
-                    if (System.IO.File.Exists(str))
-                        System.IO.File.Copy(str, destFileName, true);
-                    this.Close();
+                    return;
                 }
-                else
-                {
-                    int num = (int)MessageBox.Show("Sai Pass, liên hệ google meet để lấy pass đúng");
-                }
+
+                Program.status = 1;
+                ClsSession.Language = radioTV.Checked ? Language.Vietnamese : Language.English;
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -77,7 +77,18 @@ namespace WindowsFormsApplication1
             textWriter.Close();
         }
 
-        private void Form2_Load(object sender, EventArgs e) => this.check();
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                this.check();
+            }
+            catch (Exception ex)
+            {
+                int num = (int)MessageBox.Show("không kết nói được với server vào google meet để tìm hổ trợ|" + ex.Message);
+                this.Close();
+            }
+        }
 
         public static DateTime GetDateFromeInternet()
         {
@@ -176,75 +187,60 @@ namespace WindowsFormsApplication1
         private void check()
         {
             ////TODO:
-            return;
-            try
+            //return;
+            this.dt = Form2.GetDateFromeInternet();
+            if (this.dt < new DateTime(2022, 1, 20))
             {
-                this.dt = Form2.GetDateFromeInternet();
-                if (this.dt < new DateTime(2022, 1, 20))
-                {
-                    int num = (int)MessageBox.Show("Chưa kết nối mạng");
-                    this.Close();
-                }
-                else if (System.IO.File.Exists(Path.Combine(Application.StartupPath, "zip\\b")))
-                {
-                    try
-                    {
-                        Home.DecryptFileT(Path.Combine(Application.StartupPath, "zip\\b"), Path.Combine(Application.StartupPath, "zip\\a"));
-                        TextReader textReader = (TextReader)new StreamReader(Path.Combine(Application.StartupPath, "zip\\a"));
-                        string mac = textReader.ReadLine();
-                        string[] strArray = textReader.ReadLine().Split('|');
-                        DateTime dateTime = new DateTime(int.Parse(strArray[0]), int.Parse(strArray[1]), int.Parse(strArray[2]));
-                        textReader.Close();
-                        this.mac = this.getMac();
-                        if (this.GetMacAddress(mac))
-                        {
-                            if (this.dt < dateTime)
-                            {
-                                Program.status = 1;
-                                this.Close();
-                            }
-                            else
-                            {
-                                int num = (int)MessageBox.Show("Phần mềm hết hạng");
-                                System.IO.File.Delete(Path.Combine(Application.StartupPath, "zip\\b"));
-                                System.IO.File.Delete(Path.Combine(Application.StartupPath, "zip\\c"));
-                                this.Close();
-                            }
-                        }
-                        else
-                        {
-                            int num = (int)MessageBox.Show("sai key");
-                            this.Close();
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        int num = (int)MessageBox.Show("Sai key" + ex.Message);
-                        this.Close();
-                    }
-                }
-                else
-                {
-                    this.mac = this.getMac();
-                    if (this.mac.Length < 10)
-                    {
-                        int num = (int)MessageBox.Show("Địa chỉ MAC có vấn đề");
-                        this.Close();
-                    }
-                    else
-                    {
-                        this.ngayhethang = this.dt.AddDays(30.0);
-                        this.dt = this.randomday(this.dt);
-                        this.textBoxPassSo.Text = this.dt.ToShortDateString();
-                        this.WritrMac(this.mac, this.dt, Path.Combine(Application.StartupPath, "zip\\a"));
-                        Home.EncryptFileT(Path.Combine(Application.StartupPath, "zip\\a"), Path.Combine(Application.StartupPath, "zip\\c"));
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                int num = (int)MessageBox.Show("không kết nói được với server vào google meet để tìm hổ trợ|" + ex.Message);
+                int num = (int)MessageBox.Show("Chưa kết nối mạng");
                 this.Close();
+                return;
+            }
+            this.mac = this.getMac();
+            if (this.mac.Length < 10)
+            {
+                int num = (int)MessageBox.Show("Tạo randomID bị lỗi");
+                this.Close();
+                return;
+            }
+            this.ngayhethang = this.dt.AddDays(30.0);
+            string randomID = Base64Encode(this.mac + this.dt.ToString("yyyyMMdd"));
+            this.richTextBox1.Text = $"Nếu bạn chưa có MK đăng nhập thì vui lòng gửi ID này \"{randomID}\" cho admin để lấy mật khẩu";
+            //var a = Properties.Settings.Default.PASS;
+            //var b = Properties.Settings.Default.DATE;
+            //var c = Convert.ToInt32(b, 16);
+            //this.ngayhethang = this.dt.AddDays(30.0);
+            //Properties.Settings.Default.PASS = ToMD5(this.mac + this.ngayhethang.ToString("yyyyMMdd"));
+            //Properties.Settings.Default.DATE = int.Parse(this.ngayhethang.ToString("yyyMMdd")).ToString("X");
+            //Properties.Settings.Default.Save();
+            //this.dt = this.randomday(this.dt);
+            //this.textBoxPassSo.Text = this.dt.ToShortDateString();
+            //this.WritrMac(this.mac, this.dt, Path.Combine(Application.StartupPath, "zip\\a"));
+            //Home.EncryptFileT(Path.Combine(Application.StartupPath, "zip\\a"), Path.Combine(Application.StartupPath, "zip\\c"));
+        }
+
+        private string Base64Encode(string data)
+        {
+            byte[] textBytes = Encoding.UTF8.GetBytes(data);
+            var result = Convert.ToBase64String(textBytes);
+
+            return result;
+        }
+
+        public string ToMD5(string input)
+        {
+            input += "FJKSFxnEO7EUKIK9KFWT";
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+                StringBuilder sb = new StringBuilder();
+                foreach (byte b in hashBytes)
+                {
+                    sb.Append(b.ToString("x2"));
+                }
+
+                string result = sb.ToString();
+                return result.Substring(result.Length - 10);
             }
         }
 
@@ -283,24 +279,44 @@ namespace WindowsFormsApplication1
         private bool check1()
         {
             ////TODO:
-            return true;
-            string s = "";
-            double num1 = ((double)(int)(this.dt - new DateTime(1900, 1, 1)).TotalDays + 2.0) * 271565.0;
-            try
+            //return true;
+            string expire = GetExpireDate();
+            if (!string.IsNullOrEmpty(expire))
             {
-                for (int startIndex = 0; startIndex < Program.user.Length; ++startIndex)
-                {
-                    int num2 = ((startIndex + 1) * (this.dt.Month + this.dt.Day + this.dt.Year) - int.Parse(Program.user.Substring(startIndex, 1)) - (startIndex + 1)) % 10;
-                    s = s + num2.ToString() + (((this.dt.Day + this.dt.Month + this.dt.Year) * int.Parse(Program.user.Substring(startIndex, 1)) + (startIndex + 1) + int.Parse(Program.user.Substring(startIndex, 1))) % 10).ToString();
-                }
-                if ((double.Parse(s) + num1).ToString() != Program.pass)
-                    return false;
+                DateTime.TryParseExact(expire, "yyyyMMdd", null, DateTimeStyles.None, out this.ngayhethang);
             }
-            catch (Exception ex)
+            if (this.ngayhethang < this.dt)
             {
+                MessageBox.Show("Phần mềm hết hạn");
+                return false;
+            }
+
+            string pass = ToMD5(this.mac + this.ngayhethang.ToString("yyyyMMdd"));
+            if (pass.ToLower() == textBoxPass.Text.ToLower())
+            {
+                Properties.Settings.Default.PASS = pass.ToLower();
+                Properties.Settings.Default.DATE = int.Parse(this.ngayhethang.ToString("yyyMMdd")).ToString("X");
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                Properties.Settings.Default.DATE = string.Empty;
+                Properties.Settings.Default.Save();
+                MessageBox.Show("Phần Sai mật khẩu. vui lòng liên hệ Admin để lấy lại");
                 return false;
             }
             return true;
+        }
+
+        private string GetExpireDate()
+        {
+            string data = Properties.Settings.Default.DATE;
+            if (!string.IsNullOrEmpty(data))
+            {
+                data = Convert.ToInt32(data, 16).ToString();
+            }
+
+            return data;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
