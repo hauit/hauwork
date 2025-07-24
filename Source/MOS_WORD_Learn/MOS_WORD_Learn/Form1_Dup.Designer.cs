@@ -148,7 +148,7 @@ namespace WindowsFormsApplication1
             this.buttonHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonHelp.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
             this.buttonHelp.ForeColor = System.Drawing.Color.White;
-            this.buttonHelp.Location = new System.Drawing.Point(442, 265);
+            this.buttonHelp.Location = new System.Drawing.Point(422, 265);
             this.buttonHelp.Name = "buttonHelp";
             this.buttonHelp.Size = new System.Drawing.Size(125, 35);
             this.buttonHelp.TabIndex = 30;
@@ -169,7 +169,7 @@ namespace WindowsFormsApplication1
             this.buttonHelpVideo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonHelpVideo.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
             this.buttonHelpVideo.ForeColor = System.Drawing.Color.White;
-            this.buttonHelpVideo.Location = new System.Drawing.Point(593, 265);
+            this.buttonHelpVideo.Location = new System.Drawing.Point(553, 265);
             this.buttonHelpVideo.Name = "buttonHelpVideo";
             this.buttonHelpVideo.Size = new System.Drawing.Size(140, 35);
             this.buttonHelpVideo.TabIndex = 29;
@@ -232,7 +232,7 @@ namespace WindowsFormsApplication1
             this.buttonCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCheck.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
             this.buttonCheck.ForeColor = System.Drawing.Color.White;
-            this.buttonCheck.Location = new System.Drawing.Point(739, 265);
+            this.buttonCheck.Location = new System.Drawing.Point(699, 265);
             this.buttonCheck.Name = "buttonCheck";
             this.buttonCheck.Size = new System.Drawing.Size(100, 35);
             this.buttonCheck.TabIndex = 7;
@@ -318,7 +318,7 @@ namespace WindowsFormsApplication1
             this.buttonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonExit.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
             this.buttonExit.ForeColor = System.Drawing.Color.White;
-            this.buttonExit.Location = new System.Drawing.Point(54, 265);
+            this.buttonExit.Location = new System.Drawing.Point(74, 265);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(40, 35);
             this.buttonExit.TabIndex = 0;

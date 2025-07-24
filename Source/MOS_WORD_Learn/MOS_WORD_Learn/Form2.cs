@@ -59,7 +59,7 @@ namespace WindowsFormsApplication1
                 }
 
                 Program.status = 1;
-                ClsSession.Language = radioTV.Checked ? Language.Vietnamese : Language.English;
+                //ClsSession.Language = radioTV.Checked ? Language.Vietnamese : Language.English;
                 this.Close();
             }
             catch (Exception ex)
@@ -133,16 +133,16 @@ namespace WindowsFormsApplication1
             DateTime fastestNistDate = DateTime.MinValue;
             string[] source = new string[10]
             {
-        "nist1-ny.ustiming.org",
-        "nist1-nj.ustiming.org",
-        "nist1-pa.ustiming.org",
-        "time-a.nist.gov",
-        "time-b.nist.gov",
-        "nist1.aol-va.symmetricom.com",
-        "nist1.columbiacountyga.gov",
-        "nist1-chi.ustiming.org",
-        "nist.expertsmi.com",
-        "nist.netservicesgroup.com"
+                "nist1-ny.ustiming.org",
+                "nist1-nj.ustiming.org",
+                "nist1-pa.ustiming.org",
+                "time-a.nist.gov",
+                "time-b.nist.gov",
+                "nist1.aol-va.symmetricom.com",
+                "nist1.columbiacountyga.gov",
+                "nist1-chi.ustiming.org",
+                "nist.expertsmi.com",
+                "nist.netservicesgroup.com"
             };
             Random rnd = new Random();
             foreach (string hostname in ((IEnumerable<string>)source).OrderBy<string, double>((Func<string, double>)(s => rnd.NextDouble())).Take<string>(5))
