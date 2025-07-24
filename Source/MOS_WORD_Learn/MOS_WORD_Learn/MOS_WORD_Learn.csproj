@@ -53,6 +53,9 @@
     <Compile Include="Base\ClsBaseObject.cs" />
     <Compile Include="Base\ClsQuestion.cs" />
     <Compile Include="Base\ClsSession.cs" />
+    <Compile Include="Base\RJButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CheckWord.cs" />
     <Compile Include="Copy_Question.cs" />
     <Compile Include="Design.cs" />
@@ -159,10 +162,13 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\en.png" />
+    <None Include="Resources\logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\vi.png" />
+    <None Include="Resources\btn-en.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn-vi.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -58,7 +58,10 @@ namespace WindowsFormsApplication1
                 this.loadTongSoCau();
                 this.tong_so_cau = School.Tong();
                 this.Diem = new int[this.tong_so_cau];
-                int y = this.comboBoxCauNext.Height <= this.buttonExit.Height ? (this.buttonExit.Height - this.comboBoxCauNext.Height) / 2 : (this.comboBoxCauNext.Height - this.buttonExit.Height) / 2;
+                //int y = this.comboBoxCauNext.Height <= this.buttonExit.Height ? (this.buttonExit.Height - this.comboBoxCauNext.Height) / 2 : (this.comboBoxCauNext.Height - this.buttonExit.Height) / 2;
+                int y = 5;
+                int leftPadRight = 5;
+                int rightPadLeft = 5;
                 this.screen_height = this.Height;
                 this.screen_width = this.Width;
                 this.WindowState = FormWindowState.Normal;
@@ -66,32 +69,32 @@ namespace WindowsFormsApplication1
                 this.Height = this.screen_height / 5;
                 this.Location = new Point(0, this.screen_height * 4 / 5);
                 this.buttonExit.Location = new Point(0, y);
-                this.buttonVideoHelp.Location = new Point(this.buttonExit.Width + 5, y);
-                this.buttonRefresh.Location = new Point(this.buttonExit.Width + this.buttonVideoHelp.Width + 10, y);
+                this.buttonVideoHelp.Location = new Point(this.buttonExit.Width + leftPadRight, y);
+                this.buttonRefresh.Location = new Point(this.buttonExit.Width + this.buttonVideoHelp.Width + leftPadRight + 5, y);
 
-                this.buttonHelp.Location = new Point(this.buttonExit.Width + this.buttonVideoHelp.Width + this.buttonRefresh.Width + 15, y);
-                this.buttonHelpVideo.Location = new Point(this.buttonExit.Width + this.buttonVideoHelp.Width + this.buttonRefresh.Width + this.buttonHelp.Width + 20, y);
-                this.buttonCheck.Location = new Point(this.buttonExit.Width + this.buttonVideoHelp.Width + this.buttonRefresh.Width + this.buttonHelp.Width + this.buttonHelpVideo.Width + 25, y);
-                this.labelKQ.Location = new Point(this.buttonExit.Width + this.buttonVideoHelp.Width + this.buttonRefresh.Width + this.buttonHelp.Width + this.buttonHelpVideo.Width + this.buttonCheck.Width + 30, y);
+                this.buttonHelp.Location = new Point(this.buttonExit.Width + this.buttonVideoHelp.Width + this.buttonRefresh.Width + leftPadRight + 10, y);
+                this.buttonHelpVideo.Location = new Point(this.buttonExit.Width + this.buttonVideoHelp.Width + this.buttonRefresh.Width + this.buttonHelp.Width + leftPadRight + 15, y);
+                this.buttonCheck.Location = new Point(this.buttonExit.Width + this.buttonVideoHelp.Width + this.buttonRefresh.Width + this.buttonHelp.Width + this.buttonHelpVideo.Width + leftPadRight + 20, y);
+                this.labelKQ.Location = new Point(this.buttonExit.Width + this.buttonVideoHelp.Width + this.buttonRefresh.Width + this.buttonHelp.Width + this.buttonHelpVideo.Width + this.buttonCheck.Width + leftPadRight + 25, y);
 
 
                 this.buttonEV.Location = new Point(this.Width - this.buttonEV.Width, y);
-                this.comboBoxCauNext.Location = new Point(this.Width - this.buttonEV.Width - this.comboBoxCauNext.Width - 5, 0);
-                this.buttonNext.Location = new Point(this.Width - this.buttonEV.Width - this.comboBoxCauNext.Width - this.buttonNext.Width - 10, y);
-                this.buttonReset.Location = new Point(this.buttonNext.Location.X - this.buttonReset.Width - 5, y);
-                this.labelCauHienTai.Location = new Point(this.buttonReset.Location.X - this.labelCauHienTai.Width - 5, y);
-                this.buttonSummary.Location = new Point(this.labelCauHienTai.Location.X - this.buttonSummary.Width - 5, y);
-                this.comboBoxCauDaDanhDau.Location = new Point(this.buttonSummary.Location.X - this.comboBoxCauDaDanhDau.Width - 5, 0);
-                this.buttonZoom.Location = new Point(this.comboBoxCauDaDanhDau.Location.X - this.buttonZoom.Width - 5, y);
+                this.comboBoxCauNext.Location = new Point(this.Width - this.buttonEV.Width - this.comboBoxCauNext.Width - rightPadLeft, y);
+                this.buttonNext.Location = new Point(this.Width - this.buttonEV.Width - this.comboBoxCauNext.Width - this.buttonNext.Width - rightPadLeft - 5, y);
+                this.buttonReset.Location = new Point(this.buttonNext.Location.X - this.buttonReset.Width - rightPadLeft, y);
+                this.labelCauHienTai.Location = new Point(this.buttonReset.Location.X - this.labelCauHienTai.Width - rightPadLeft, y);
+                this.buttonSummary.Location = new Point(this.labelCauHienTai.Location.X - this.buttonSummary.Width - rightPadLeft, y);
+                this.comboBoxCauDaDanhDau.Location = new Point(this.buttonSummary.Location.X - this.comboBoxCauDaDanhDau.Width - rightPadLeft, y);
+                this.buttonZoom.Location = new Point(this.comboBoxCauDaDanhDau.Location.X - this.buttonZoom.Width - rightPadLeft, y);
 
                 //this.button2.Location = new Point(this.buttonZoom.Location.X - this.button2.Width, y); //Gọi cô
 
-                this.richTextBox1.Location = new Point(0, this.buttonExit.Height);
+                this.richTextBox1.Location = new Point(0, this.buttonExit.Height + 10);
                 this.richTextBox1.Width = this.Width;
                 this.richTextBox1.Height = this.Height - this.buttonExit.Height;
-                this.panel1.Location = new Point(0, this.buttonExit.Height);
+                this.panel1.Location = new Point(0, this.buttonExit.Height + 10);
                 this.panel1.Width = this.Width;
-                this.panel1.Height = this.Height + 10 - this.buttonExit.Height;
+                this.panel1.Height = this.Height - this.buttonExit.Height;
                 //this.pictureBox1.Location = new Point(0, 0);
                 //this.pictureBox1.Width = this.Width - this.buttonEV.Width / 3;
                 this.richTextQuestion.Location = new Point(0, 0);
@@ -424,18 +427,18 @@ namespace WindowsFormsApplication1
 
         private void buttonEV_Click(object sender, EventArgs e)
         {
-            if (this.buttonEV.Text == "V")
+            if (this.buttonEV.Text == "Tiếng Anh")
             {
-                this.buttonEV.Text = "E";
-                this.buttonEV.BackgroundImage = WindowsFormsApplication1.Properties.Resources.en;
+                this.buttonEV.Text = "Tiếng Việt";
+                //this.buttonEV.BackgroundImage = WindowsFormsApplication1.Properties.Resources.btn_en;
                 this.richTextQuestion.Text = this.paramater.DeTiengAnh;
                 //this.pictureBox1.Image.Dispose();
                 //this.pictureBox1.Image = Image.FromFile(this.paramater.DeTiengViet);
             }
             else
             {
-                this.buttonEV.Text = "V";
-                this.buttonEV.BackgroundImage = WindowsFormsApplication1.Properties.Resources.vi;
+                this.buttonEV.Text = "Tiếng Anh";
+                //this.buttonEV.BackgroundImage = WindowsFormsApplication1.Properties.Resources.btn_vi;
                 this.richTextQuestion.Text = this.paramater.DeTiengViet;
                 //this.pictureBox1.Image.Dispose();
                 //this.pictureBox1.Image = Image.FromFile(this.paramater.DeTiengAnh);

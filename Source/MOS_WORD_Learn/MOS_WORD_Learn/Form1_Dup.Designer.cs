@@ -33,90 +33,27 @@ namespace WindowsFormsApplication1
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonExit = new System.Windows.Forms.Button();
-            this.buttonNext = new System.Windows.Forms.Button();
-            this.buttonReset = new System.Windows.Forms.Button();
-            this.buttonRefresh = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.buttonCheck = new System.Windows.Forms.Button();
             this.labelKQ = new System.Windows.Forms.Label();
             this.labelCauHienTai = new System.Windows.Forms.Label();
             this.comboBoxCauNext = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.richTextQuestion = new System.Windows.Forms.RichTextBox();
-            this.buttonSummary = new System.Windows.Forms.Button();
-            this.buttonZoom = new System.Windows.Forms.Button();
-            this.buttonVideoHelp = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.comboBoxCauDaDanhDau = new System.Windows.Forms.ComboBox();
-            this.buttonHelpVideo = new System.Windows.Forms.Button();
-            this.buttonHelp = new System.Windows.Forms.Button();
-            this.buttonEV = new System.Windows.Forms.Button();
+            this.buttonHelp = new WindowsFormsApplication1.Base.RJButton();
+            this.buttonHelpVideo = new WindowsFormsApplication1.Base.RJButton();
+            this.buttonVideoHelp = new WindowsFormsApplication1.Base.RJButton();
+            this.buttonZoom = new WindowsFormsApplication1.Base.RJButton();
+            this.buttonCheck = new WindowsFormsApplication1.Base.RJButton();
+            this.buttonRefresh = new WindowsFormsApplication1.Base.RJButton();
+            this.buttonReset = new WindowsFormsApplication1.Base.RJButton();
+            this.buttonNext = new WindowsFormsApplication1.Base.RJButton();
+            this.buttonExit = new WindowsFormsApplication1.Base.RJButton();
+            this.buttonSummary = new WindowsFormsApplication1.Base.RJButton();
+            this.button2 = new WindowsFormsApplication1.Base.RJButton();
+            this.buttonEV = new WindowsFormsApplication1.Base.RJButton();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // buttonExit
-            // 
-            this.buttonExit.BackColor = System.Drawing.Color.Red;
-            this.buttonExit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonExit.FlatAppearance.BorderSize = 2;
-            this.buttonExit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.buttonExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.buttonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonExit.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
-            this.buttonExit.ForeColor = System.Drawing.Color.White;
-            this.buttonExit.Location = new System.Drawing.Point(74, 265);
-            this.buttonExit.Name = "buttonExit";
-            this.buttonExit.Size = new System.Drawing.Size(40, 35);
-            this.buttonExit.TabIndex = 0;
-            this.buttonExit.Text = "X";
-            this.buttonExit.UseVisualStyleBackColor = false;
-            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
-            // 
-            // buttonNext
-            // 
-            this.buttonNext.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonNext.FlatAppearance.BorderSize = 2;
-            this.buttonNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonNext.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
-            this.buttonNext.ForeColor = System.Drawing.Color.White;
-            this.buttonNext.Location = new System.Drawing.Point(513, 327);
-            this.buttonNext.Name = "buttonNext";
-            this.buttonNext.Size = new System.Drawing.Size(100, 35);
-            this.buttonNext.TabIndex = 1;
-            this.buttonNext.Text = "Chọn câu";
-            this.buttonNext.UseVisualStyleBackColor = true;
-            this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
-            // 
-            // buttonReset
-            // 
-            this.buttonReset.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonReset.FlatAppearance.BorderSize = 2;
-            this.buttonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonReset.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
-            this.buttonReset.ForeColor = System.Drawing.Color.White;
-            this.buttonReset.Location = new System.Drawing.Point(397, 327);
-            this.buttonReset.Name = "buttonReset";
-            this.buttonReset.Size = new System.Drawing.Size(110, 35);
-            this.buttonReset.TabIndex = 2;
-            this.buttonReset.Text = "Làm lại câu";
-            this.buttonReset.UseVisualStyleBackColor = true;
-            this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
-            // 
-            // buttonRefresh
-            // 
-            this.buttonRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonRefresh.FlatAppearance.BorderSize = 2;
-            this.buttonRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonRefresh.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
-            this.buttonRefresh.ForeColor = System.Drawing.Color.White;
-            this.buttonRefresh.Location = new System.Drawing.Point(286, 265);
-            this.buttonRefresh.Name = "buttonRefresh";
-            this.buttonRefresh.Size = new System.Drawing.Size(150, 35);
-            this.buttonRefresh.TabIndex = 5;
-            this.buttonRefresh.Text = "Hiện/Ẩn Word";
-            this.buttonRefresh.UseVisualStyleBackColor = true;
-            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
             // richTextBox1
             // 
@@ -127,22 +64,6 @@ namespace WindowsFormsApplication1
             this.richTextBox1.Size = new System.Drawing.Size(103, 82);
             this.richTextBox1.TabIndex = 6;
             this.richTextBox1.Text = "";
-            // 
-            // buttonCheck
-            // 
-            this.buttonCheck.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
-            this.buttonCheck.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonCheck.FlatAppearance.BorderSize = 2;
-            this.buttonCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCheck.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
-            this.buttonCheck.ForeColor = System.Drawing.Color.White;
-            this.buttonCheck.Location = new System.Drawing.Point(739, 265);
-            this.buttonCheck.Name = "buttonCheck";
-            this.buttonCheck.Size = new System.Drawing.Size(100, 35);
-            this.buttonCheck.TabIndex = 7;
-            this.buttonCheck.Text = "Đúng/Sai";
-            this.buttonCheck.UseVisualStyleBackColor = false;
-            this.buttonCheck.Click += new System.EventHandler(this.buttonCheck_Click);
             // 
             // labelKQ
             // 
@@ -202,65 +123,6 @@ namespace WindowsFormsApplication1
             this.richTextQuestion.TabIndex = 0;
             this.richTextQuestion.Text = "";
             // 
-            // buttonSummary
-            // 
-            this.buttonSummary.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonSummary.FlatAppearance.BorderSize = 2;
-            this.buttonSummary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSummary.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
-            this.buttonSummary.ForeColor = System.Drawing.Color.White;
-            this.buttonSummary.Location = new System.Drawing.Point(251, 327);
-            this.buttonSummary.Name = "buttonSummary";
-            this.buttonSummary.Size = new System.Drawing.Size(50, 35);
-            this.buttonSummary.TabIndex = 17;
-            this.buttonSummary.Text = "Xóa";
-            this.buttonSummary.UseVisualStyleBackColor = true;
-            this.buttonSummary.Click += new System.EventHandler(this.buttonSummary_Click);
-            // 
-            // buttonZoom
-            // 
-            this.buttonZoom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
-            this.buttonZoom.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonZoom.FlatAppearance.BorderSize = 2;
-            this.buttonZoom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonZoom.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
-            this.buttonZoom.ForeColor = System.Drawing.Color.White;
-            this.buttonZoom.Location = new System.Drawing.Point(74, 327);
-            this.buttonZoom.Name = "buttonZoom";
-            this.buttonZoom.Size = new System.Drawing.Size(100, 35);
-            this.buttonZoom.TabIndex = 20;
-            this.buttonZoom.Text = "Câu dễ sai";
-            this.buttonZoom.UseVisualStyleBackColor = false;
-            this.buttonZoom.Click += new System.EventHandler(this.buttonZoom_Click);
-            // 
-            // buttonVideoHelp
-            // 
-            this.buttonVideoHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
-            this.buttonVideoHelp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonVideoHelp.FlatAppearance.BorderSize = 2;
-            this.buttonVideoHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonVideoHelp.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
-            this.buttonVideoHelp.ForeColor = System.Drawing.Color.White;
-            this.buttonVideoHelp.Location = new System.Drawing.Point(120, 265);
-            this.buttonVideoHelp.Name = "buttonVideoHelp";
-            this.buttonVideoHelp.Size = new System.Drawing.Size(160, 35);
-            this.buttonVideoHelp.TabIndex = 24;
-            this.buttonVideoHelp.Text = "HDSD Phần mềm";
-            this.buttonVideoHelp.UseVisualStyleBackColor = false;
-            this.buttonVideoHelp.Click += new System.EventHandler(this.buttonVideoHelp_Click);
-            // 
-            // button2
-            // 
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button2.Location = new System.Drawing.Point(848, 150);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(74, 25);
-            this.button2.TabIndex = 25;
-            this.button2.Text = "Gọi Cô";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.buttonTopMost_Click);
-            // 
             // comboBoxCauDaDanhDau
             // 
             this.comboBoxCauDaDanhDau.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
@@ -274,9 +136,34 @@ namespace WindowsFormsApplication1
             this.comboBoxCauDaDanhDau.Size = new System.Drawing.Size(62, 36);
             this.comboBoxCauDaDanhDau.TabIndex = 27;
             // 
+            // buttonHelp
+            // 
+            this.buttonHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonHelp.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonHelp.BorderColor = System.Drawing.Color.White;
+            this.buttonHelp.BorderRadius = 5;
+            this.buttonHelp.BorderSize = 2;
+            this.buttonHelp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonHelp.FlatAppearance.BorderSize = 2;
+            this.buttonHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonHelp.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonHelp.ForeColor = System.Drawing.Color.White;
+            this.buttonHelp.Location = new System.Drawing.Point(442, 265);
+            this.buttonHelp.Name = "buttonHelp";
+            this.buttonHelp.Size = new System.Drawing.Size(125, 35);
+            this.buttonHelp.TabIndex = 30;
+            this.buttonHelp.Text = "Hiện Taskbar";
+            this.buttonHelp.TextColor = System.Drawing.Color.White;
+            this.buttonHelp.UseVisualStyleBackColor = false;
+            this.buttonHelp.Click += new System.EventHandler(this.buttonHelp_Click_1);
+            // 
             // buttonHelpVideo
             // 
             this.buttonHelpVideo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonHelpVideo.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonHelpVideo.BorderColor = System.Drawing.Color.White;
+            this.buttonHelpVideo.BorderRadius = 5;
+            this.buttonHelpVideo.BorderSize = 2;
             this.buttonHelpVideo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonHelpVideo.FlatAppearance.BorderSize = 2;
             this.buttonHelpVideo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -287,40 +174,220 @@ namespace WindowsFormsApplication1
             this.buttonHelpVideo.Size = new System.Drawing.Size(140, 35);
             this.buttonHelpVideo.TabIndex = 29;
             this.buttonHelpVideo.Text = "Video chữa đề";
+            this.buttonHelpVideo.TextColor = System.Drawing.Color.White;
             this.buttonHelpVideo.UseVisualStyleBackColor = false;
             this.buttonHelpVideo.Click += new System.EventHandler(this.buttonHelpVideo_Click);
             // 
-            // buttonHelp
+            // buttonVideoHelp
             // 
-            this.buttonHelp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonHelp.FlatAppearance.BorderSize = 2;
-            this.buttonHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonHelp.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
-            this.buttonHelp.ForeColor = System.Drawing.Color.White;
-            this.buttonHelp.Location = new System.Drawing.Point(442, 265);
-            this.buttonHelp.Name = "buttonHelp";
-            this.buttonHelp.Size = new System.Drawing.Size(145, 35);
-            this.buttonHelp.TabIndex = 30;
-            this.buttonHelp.Text = "Hiện Taskbar";
-            this.buttonHelp.UseVisualStyleBackColor = true;
-            this.buttonHelp.Click += new System.EventHandler(this.buttonHelp_Click_1);
+            this.buttonVideoHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonVideoHelp.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonVideoHelp.BorderColor = System.Drawing.Color.White;
+            this.buttonVideoHelp.BorderRadius = 5;
+            this.buttonVideoHelp.BorderSize = 2;
+            this.buttonVideoHelp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonVideoHelp.FlatAppearance.BorderSize = 2;
+            this.buttonVideoHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonVideoHelp.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonVideoHelp.ForeColor = System.Drawing.Color.White;
+            this.buttonVideoHelp.Location = new System.Drawing.Point(120, 265);
+            this.buttonVideoHelp.Name = "buttonVideoHelp";
+            this.buttonVideoHelp.Size = new System.Drawing.Size(155, 35);
+            this.buttonVideoHelp.TabIndex = 24;
+            this.buttonVideoHelp.Text = "HDSD Phần mềm";
+            this.buttonVideoHelp.TextColor = System.Drawing.Color.White;
+            this.buttonVideoHelp.UseVisualStyleBackColor = false;
+            this.buttonVideoHelp.Click += new System.EventHandler(this.buttonVideoHelp_Click);
+            // 
+            // buttonZoom
+            // 
+            this.buttonZoom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonZoom.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonZoom.BorderColor = System.Drawing.Color.White;
+            this.buttonZoom.BorderRadius = 5;
+            this.buttonZoom.BorderSize = 2;
+            this.buttonZoom.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonZoom.FlatAppearance.BorderSize = 2;
+            this.buttonZoom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonZoom.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonZoom.ForeColor = System.Drawing.Color.White;
+            this.buttonZoom.Location = new System.Drawing.Point(74, 327);
+            this.buttonZoom.Name = "buttonZoom";
+            this.buttonZoom.Size = new System.Drawing.Size(100, 35);
+            this.buttonZoom.TabIndex = 20;
+            this.buttonZoom.Text = "Câu dễ sai";
+            this.buttonZoom.TextColor = System.Drawing.Color.White;
+            this.buttonZoom.UseVisualStyleBackColor = false;
+            this.buttonZoom.Click += new System.EventHandler(this.buttonZoom_Click);
+            // 
+            // buttonCheck
+            // 
+            this.buttonCheck.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonCheck.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonCheck.BorderColor = System.Drawing.Color.White;
+            this.buttonCheck.BorderRadius = 5;
+            this.buttonCheck.BorderSize = 2;
+            this.buttonCheck.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonCheck.FlatAppearance.BorderSize = 2;
+            this.buttonCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCheck.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonCheck.ForeColor = System.Drawing.Color.White;
+            this.buttonCheck.Location = new System.Drawing.Point(739, 265);
+            this.buttonCheck.Name = "buttonCheck";
+            this.buttonCheck.Size = new System.Drawing.Size(100, 35);
+            this.buttonCheck.TabIndex = 7;
+            this.buttonCheck.Text = "Đúng/Sai";
+            this.buttonCheck.TextColor = System.Drawing.Color.White;
+            this.buttonCheck.UseVisualStyleBackColor = false;
+            this.buttonCheck.Click += new System.EventHandler(this.buttonCheck_Click);
+            // 
+            // buttonRefresh
+            // 
+            this.buttonRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonRefresh.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonRefresh.BorderColor = System.Drawing.Color.White;
+            this.buttonRefresh.BorderRadius = 5;
+            this.buttonRefresh.BorderSize = 2;
+            this.buttonRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonRefresh.FlatAppearance.BorderSize = 2;
+            this.buttonRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRefresh.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonRefresh.ForeColor = System.Drawing.Color.White;
+            this.buttonRefresh.Location = new System.Drawing.Point(286, 265);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(130, 35);
+            this.buttonRefresh.TabIndex = 5;
+            this.buttonRefresh.Text = "Hiện/Ẩn Word";
+            this.buttonRefresh.TextColor = System.Drawing.Color.White;
+            this.buttonRefresh.UseVisualStyleBackColor = false;
+            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
+            // 
+            // buttonReset
+            // 
+            this.buttonReset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonReset.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonReset.BorderColor = System.Drawing.Color.White;
+            this.buttonReset.BorderRadius = 5;
+            this.buttonReset.BorderSize = 2;
+            this.buttonReset.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonReset.FlatAppearance.BorderSize = 2;
+            this.buttonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonReset.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonReset.ForeColor = System.Drawing.Color.White;
+            this.buttonReset.Location = new System.Drawing.Point(397, 327);
+            this.buttonReset.Name = "buttonReset";
+            this.buttonReset.Size = new System.Drawing.Size(110, 35);
+            this.buttonReset.TabIndex = 2;
+            this.buttonReset.Text = "Làm lại câu";
+            this.buttonReset.TextColor = System.Drawing.Color.White;
+            this.buttonReset.UseVisualStyleBackColor = false;
+            this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
+            // 
+            // buttonNext
+            // 
+            this.buttonNext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonNext.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonNext.BorderColor = System.Drawing.Color.White;
+            this.buttonNext.BorderRadius = 5;
+            this.buttonNext.BorderSize = 2;
+            this.buttonNext.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonNext.FlatAppearance.BorderSize = 2;
+            this.buttonNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonNext.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonNext.ForeColor = System.Drawing.Color.White;
+            this.buttonNext.Location = new System.Drawing.Point(513, 327);
+            this.buttonNext.Name = "buttonNext";
+            this.buttonNext.Size = new System.Drawing.Size(100, 35);
+            this.buttonNext.TabIndex = 1;
+            this.buttonNext.Text = "Chọn câu";
+            this.buttonNext.TextColor = System.Drawing.Color.White;
+            this.buttonNext.UseVisualStyleBackColor = false;
+            this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
+            // 
+            // buttonExit
+            // 
+            this.buttonExit.BackColor = System.Drawing.Color.Red;
+            this.buttonExit.BackgroundColor = System.Drawing.Color.Red;
+            this.buttonExit.BorderColor = System.Drawing.Color.White;
+            this.buttonExit.BorderRadius = 5;
+            this.buttonExit.BorderSize = 2;
+            this.buttonExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonExit.FlatAppearance.BorderSize = 0;
+            this.buttonExit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.buttonExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.buttonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonExit.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonExit.ForeColor = System.Drawing.Color.White;
+            this.buttonExit.Location = new System.Drawing.Point(54, 265);
+            this.buttonExit.Name = "buttonExit";
+            this.buttonExit.Size = new System.Drawing.Size(40, 35);
+            this.buttonExit.TabIndex = 0;
+            this.buttonExit.Text = "X";
+            this.buttonExit.TextColor = System.Drawing.Color.White;
+            this.buttonExit.UseVisualStyleBackColor = false;
+            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
+            // 
+            // buttonSummary
+            // 
+            this.buttonSummary.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonSummary.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonSummary.BorderColor = System.Drawing.Color.White;
+            this.buttonSummary.BorderRadius = 5;
+            this.buttonSummary.BorderSize = 2;
+            this.buttonSummary.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonSummary.FlatAppearance.BorderSize = 2;
+            this.buttonSummary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSummary.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonSummary.ForeColor = System.Drawing.Color.White;
+            this.buttonSummary.Location = new System.Drawing.Point(251, 327);
+            this.buttonSummary.Name = "buttonSummary";
+            this.buttonSummary.Size = new System.Drawing.Size(50, 35);
+            this.buttonSummary.TabIndex = 17;
+            this.buttonSummary.Text = "Xóa";
+            this.buttonSummary.TextColor = System.Drawing.Color.White;
+            this.buttonSummary.UseVisualStyleBackColor = false;
+            this.buttonSummary.Click += new System.EventHandler(this.buttonSummary_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.button2.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.button2.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.button2.BorderRadius = 0;
+            this.button2.BorderSize = 0;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(848, 150);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(74, 25);
+            this.button2.TabIndex = 25;
+            this.button2.Text = "Gọi Cô";
+            this.button2.TextColor = System.Drawing.Color.White;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.buttonTopMost_Click);
             // 
             // buttonEV
             // 
-            this.buttonEV.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.en;
+            this.buttonEV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonEV.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
             this.buttonEV.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.buttonEV.BorderColor = System.Drawing.Color.White;
+            this.buttonEV.BorderRadius = 5;
+            this.buttonEV.BorderSize = 2;
             this.buttonEV.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonEV.FlatAppearance.BorderSize = 0;
             this.buttonEV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonEV.Font = new System.Drawing.Font("Microsoft Sans Serif", 0.001F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEV.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(153)))));
-            this.buttonEV.Location = new System.Drawing.Point(684, 326);
-            this.buttonEV.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonEV.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonEV.ForeColor = System.Drawing.Color.White;
+            this.buttonEV.Location = new System.Drawing.Point(696, 326);
             this.buttonEV.Name = "buttonEV";
-            this.buttonEV.Size = new System.Drawing.Size(53, 35);
+            this.buttonEV.Size = new System.Drawing.Size(100, 35);
             this.buttonEV.TabIndex = 3;
-            this.buttonEV.Text = "E";
-            this.buttonEV.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.buttonEV.UseVisualStyleBackColor = true;
+            this.buttonEV.Text = "Tiếng Việt";
+            this.buttonEV.TextColor = System.Drawing.Color.White;
+            this.buttonEV.UseVisualStyleBackColor = false;
             this.buttonEV.Click += new System.EventHandler(this.buttonEV_Click);
             // 
             // Form1_Dup
@@ -359,24 +426,24 @@ namespace WindowsFormsApplication1
         }
 
         #endregion
-        private Button buttonExit;
-        private Button buttonNext;
-        private Button buttonReset;
-        private Button buttonEV;
-        private Button buttonRefresh;
         private RichTextBox richTextBox1;
-        private Button buttonCheck;
         private Label labelKQ;
         private Label labelCauHienTai;
         private ComboBox comboBoxCauNext;
         private Panel panel1;
-        private Button buttonSummary;
-        private Button buttonZoom;
-        private Button buttonVideoHelp;
-        private Button button2;
         private ComboBox comboBoxCauDaDanhDau;
-        private Button buttonHelpVideo;
-        private Button buttonHelp;
         private RichTextBox richTextQuestion;
+        private Base.RJButton buttonExit;
+        private Base.RJButton buttonVideoHelp;
+        private Base.RJButton buttonNext;
+        private Base.RJButton buttonReset;
+        private Base.RJButton buttonRefresh;
+        private Base.RJButton buttonCheck;
+        private Base.RJButton buttonSummary;
+        private Base.RJButton buttonZoom;
+        private Base.RJButton button2;
+        private Base.RJButton buttonHelpVideo;
+        private Base.RJButton buttonHelp;
+        private Base.RJButton buttonEV;
     }
 }
