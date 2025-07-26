@@ -1,0 +1,476 @@
+﻿// Decompiled with JetBrains decompiler
+// Type: WindowsFormsApplication1.CheckWork28
+// Assembly: WindowsFormsApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 59EF86EC-8F2D-419F-A3E8-5D9A0E352B91
+// Assembly location: E:\hau_Work\Git_HauWork\hauwork\WE_19\TEST_WORD_19\Chay File Nay.exe
+
+using Microsoft.CSharp.RuntimeBinder;
+using Microsoft.Office.Core;
+using Microsoft.Office.Interop.Word;
+using System;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+
+namespace WindowsFormsApplication1
+{
+  public static class CheckWork28
+  {
+    public static string Check(int cauLon, Application a, Document d)
+    {
+      switch (cauLon)
+      {
+        case 0:
+          return CheckWork28.Cau0(a, d);
+        case 1:
+          return CheckWork28.Cau1(a, d);
+        case 2:
+          return CheckWork28.Cau2(a, d);
+        case 3:
+          return CheckWork28.Cau3(a, d);
+        case 4:
+          return CheckWork28.Cau4(a, d);
+        case 5:
+          return CheckWork28.Cau5(a, d);
+        case 6:
+          return CheckWork28.Cau6(a, d);
+        case 7:
+          return CheckWork28.Cau7(a, d);
+        default:
+          return "";
+      }
+    }
+
+    private static string Cau0(Application a, Document d)
+    {
+      try
+      {
+        int Index1 = 1;
+        while (Index1 < d.Paragraphs.Count && !d.Paragraphs[Index1].Range.Text.Contains("Initial Seedling Purchase"))
+          ++Index1;
+        if (Index1 >= d.Paragraphs.Count)
+          return "False (khong tim thay du lieu)";
+        // ISSUE: reference to a compiler-generated field
+        if (CheckWork28.\u003CCau0\u003Eo__SiteContainer0.\u003C\u003Ep__Site1 == null)
+        {
+          // ISSUE: reference to a compiler-generated field
+          CheckWork28.\u003CCau0\u003Eo__SiteContainer0.\u003C\u003Ep__Site1 = CallSite<Func<CallSite, object, Style>>.Create(Microsoft.CSharp.RuntimeBinder.Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Style), typeof (CheckWork28)));
+        }
+        // ISSUE: reference to a compiler-generated field
+        // ISSUE: reference to a compiler-generated field
+        // ISSUE: variable of a compiler-generated type
+        Style style1 = CheckWork28.\u003CCau0\u003Eo__SiteContainer0.\u003C\u003Ep__Site1.Target((CallSite) CheckWork28.\u003CCau0\u003Eo__SiteContainer0.\u003C\u003Ep__Site1, d.Paragraphs[Index1].Range.Characters[1].Style);
+        if (style1.NameLocal != "Strong")
+          return "False(Strong style trang 1)";
+        for (int Index2 = Index1; Index2 < d.Paragraphs.Count; ++Index2)
+        {
+          if (d.Paragraphs[Index2].Range.Text.Contains("Proposed Purchases"))
+          {
+            Index1 = Index2;
+            break;
+          }
+        }
+        if (Index1 >= d.Paragraphs.Count)
+          return "False (khong tim thay du lieu)";
+        // ISSUE: reference to a compiler-generated field
+        if (CheckWork28.\u003CCau0\u003Eo__SiteContainer0.\u003C\u003Ep__Site2 == null)
+        {
+          // ISSUE: reference to a compiler-generated field
+          CheckWork28.\u003CCau0\u003Eo__SiteContainer0.\u003C\u003Ep__Site2 = CallSite<Func<CallSite, object, Style>>.Create(Microsoft.CSharp.RuntimeBinder.Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Style), typeof (CheckWork28)));
+        }
+        // ISSUE: reference to a compiler-generated field
+        // ISSUE: reference to a compiler-generated field
+        // ISSUE: variable of a compiler-generated type
+        Style style2 = CheckWork28.\u003CCau0\u003Eo__SiteContainer0.\u003C\u003Ep__Site2.Target((CallSite) CheckWork28.\u003CCau0\u003Eo__SiteContainer0.\u003C\u003Ep__Site2, d.Paragraphs[Index1].Range.Characters[1].Style);
+        if (style2.NameLocal != "Strong")
+          return "False(Strong style trang 2)";
+      }
+      catch (Exception ex)
+      {
+        return "False (Something not finish!)";
+      }
+      return "True";
+    }
+
+    private static string Cau1(Application a, Document d)
+    {
+      try
+      {
+        int Index = 1;
+        while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Program"))
+          ++Index;
+        if (Index >= d.Paragraphs.Count)
+          return "False (Program)";
+        if (!d.Paragraphs[Index + 1].Range.Text.Contains("Name\tQuality\tProfit\tTotal"))
+          return "False(chuyen ban thanh van ban)";
+      }
+      catch (Exception ex)
+      {
+        return "False (Something not finish!)";
+      }
+      return "True";
+    }
+
+    private static string Cau2(Application a, Document d)
+    {
+      try
+      {
+        int Index1 = 1;
+        while (Index1 < d.Paragraphs.Count && !d.Paragraphs[Index1].Range.Text.Contains("we anticipate purchasing."))
+          ++Index1;
+        if (Index1 >= d.Paragraphs.Count)
+          return "False (we anticipate purchasing.)";
+        if (!d.Paragraphs[Index1].Range.Text.Contains("Of course, these numbers are contingent"))
+          return "False(di chuyen no nam sau we anticipate purchasing.)";
+        if (d.Paragraphs[Index1].Range.Font.Italic != 0)
+          return "False(chon option value)";
+        int Index2 = Index1 + 1;
+        while (Index2 < d.Paragraphs.Count && !d.Paragraphs[Index2].Range.Text.Contains("It stands to reason that these numbers"))
+          ++Index2;
+        if (Index2 < d.Paragraphs.Count)
+          return "False (move not copy)";
+      }
+      catch (Exception ex)
+      {
+        return "False (Something not finish!)";
+      }
+      return "True";
+    }
+
+    private static string Cau3(Application a, Document d)
+    {
+      try
+      {
+        return d.InlineShapes[2].SmartArt.Color.Name != "Colorful Range - Accent Colors 2 to 3" ? "False(Colorful Range - Accent Colors 2 to 3)" : "True";
+      }
+      catch (Exception ex)
+      {
+        return "False(khong xoa smartArt hay thay doi WrapText)";
+      }
+    }
+
+    private static string Cau4(Application a, Document d)
+    {
+      string str = "True";
+      int Index = 1;
+      while (Index < 50 && !d.Paragraphs[Index].Range.Text.Contains("Boating Vacations"))
+        ++Index;
+      if (Index >= 50)
+        return "False";
+      // ISSUE: reference to a compiler-generated field
+      if (CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Site4 == null)
+      {
+        // ISSUE: reference to a compiler-generated field
+        CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Site4 = CallSite<Func<CallSite, object, Style>>.Create(Microsoft.CSharp.RuntimeBinder.Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Style), typeof (CheckWork28)));
+      }
+      // ISSUE: reference to a compiler-generated field
+      // ISSUE: reference to a compiler-generated field
+      // ISSUE: variable of a compiler-generated type
+      Style style1 = CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Site4.Target((CallSite) CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Site4, d.Paragraphs[Index].Style);
+      if (style1.NameLocal != "Title")
+        return "False";
+      while (Index < 50 && !d.Paragraphs[Index].Range.Text.Contains("Living and Dining Areas"))
+        ++Index;
+      if (Index >= 50)
+        return "False";
+      // ISSUE: reference to a compiler-generated field
+      if (CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Site5 == null)
+      {
+        // ISSUE: reference to a compiler-generated field
+        CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Site5 = CallSite<Func<CallSite, object, Style>>.Create(Microsoft.CSharp.RuntimeBinder.Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Style), typeof (CheckWork28)));
+      }
+      // ISSUE: reference to a compiler-generated field
+      // ISSUE: reference to a compiler-generated field
+      // ISSUE: variable of a compiler-generated type
+      Style style2 = CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Site5.Target((CallSite) CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Site5, d.Paragraphs[Index].Style);
+      if (style2.NameLocal != "Heading 1")
+        return "False";
+      while (Index < 50 && !d.Paragraphs[Index].Range.Text.Contains("Sleeping Areas"))
+        ++Index;
+      if (Index >= 50)
+        return "False";
+      // ISSUE: reference to a compiler-generated field
+      if (CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Site6 == null)
+      {
+        // ISSUE: reference to a compiler-generated field
+        CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Site6 = CallSite<Func<CallSite, object, Style>>.Create(Microsoft.CSharp.RuntimeBinder.Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Style), typeof (CheckWork28)));
+      }
+      // ISSUE: reference to a compiler-generated field
+      // ISSUE: reference to a compiler-generated field
+      // ISSUE: variable of a compiler-generated type
+      Style style3 = CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Site6.Target((CallSite) CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Site6, d.Paragraphs[Index].Style);
+      if (style3.NameLocal != "Heading 1")
+        return "False";
+      while (Index < 50 && !d.Paragraphs[Index].Range.Text.Contains("Outdoor Facilities"))
+        ++Index;
+      if (Index >= 50)
+        return "False";
+      // ISSUE: reference to a compiler-generated field
+      if (CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Site7 == null)
+      {
+        // ISSUE: reference to a compiler-generated field
+        CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Site7 = CallSite<Func<CallSite, object, Style>>.Create(Microsoft.CSharp.RuntimeBinder.Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Style), typeof (CheckWork28)));
+      }
+      // ISSUE: reference to a compiler-generated field
+      // ISSUE: reference to a compiler-generated field
+      // ISSUE: variable of a compiler-generated type
+      Style style4 = CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Site7.Target((CallSite) CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Site7, d.Paragraphs[Index].Style);
+      if (style4.NameLocal != "Heading 1")
+        return "False";
+      while (Index < 50 && !d.Paragraphs[Index].Range.Text.Contains("Good Weather All Year"))
+        ++Index;
+      if (Index >= 50)
+        return "False";
+      // ISSUE: reference to a compiler-generated field
+      if (CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Site8 == null)
+      {
+        // ISSUE: reference to a compiler-generated field
+        CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Site8 = CallSite<Func<CallSite, object, Style>>.Create(Microsoft.CSharp.RuntimeBinder.Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Style), typeof (CheckWork28)));
+      }
+      // ISSUE: reference to a compiler-generated field
+      // ISSUE: reference to a compiler-generated field
+      // ISSUE: variable of a compiler-generated type
+      Style style5 = CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Site8.Target((CallSite) CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Site8, d.Paragraphs[Index].Style);
+      if (style5.NameLocal != "Heading 1")
+        return "False";
+      while (Index < 150 && !d.Paragraphs[Index].Range.Text.Contains("Simple Planning"))
+        ++Index;
+      if (Index >= 150)
+        return "False";
+      // ISSUE: reference to a compiler-generated field
+      if (CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Site9 == null)
+      {
+        // ISSUE: reference to a compiler-generated field
+        CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Site9 = CallSite<Func<CallSite, object, Style>>.Create(Microsoft.CSharp.RuntimeBinder.Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Style), typeof (CheckWork28)));
+      }
+      // ISSUE: reference to a compiler-generated field
+      // ISSUE: reference to a compiler-generated field
+      // ISSUE: variable of a compiler-generated type
+      Style style6 = CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Site9.Target((CallSite) CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Site9, d.Paragraphs[Index].Style);
+      if (style6.NameLocal != "Heading 1")
+        return "False";
+      while (Index < 150 && !d.Paragraphs[Index].Range.Text.Contains("Contact Us"))
+        ++Index;
+      if (Index >= 150)
+        return "False";
+      // ISSUE: reference to a compiler-generated field
+      if (CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Sitea == null)
+      {
+        // ISSUE: reference to a compiler-generated field
+        CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Sitea = CallSite<Func<CallSite, object, Style>>.Create(Microsoft.CSharp.RuntimeBinder.Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Style), typeof (CheckWork28)));
+      }
+      // ISSUE: reference to a compiler-generated field
+      // ISSUE: reference to a compiler-generated field
+      // ISSUE: variable of a compiler-generated type
+      Style style7 = CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Sitea.Target((CallSite) CheckWork28.\u003CCau4\u003Eo__SiteContainer3.\u003C\u003Ep__Sitea, d.Paragraphs[Index].Style);
+      return style7.NameLocal != "Heading 1" ? "False" : str;
+    }
+
+    private static string Cau5(Application a, Document d)
+    {
+      string str = "True";
+      object Index = (object) "Heading 1";
+      return (double) d.Styles[ref Index].ParagraphFormat.SpaceBefore != 0.0 ? "False" : str;
+    }
+
+    private static string Cau6(Application a, Document d)
+    {
+      string str = "True";
+      // ISSUE: reference to a compiler-generated method
+      return d.Tables.Count == 3 || d.Tables.Count == 4 || d.Tables.Count == 0 || d.Tables[1].Cell(1, 1).Range.Text.Contains("Luxury") ? "False" : str;
+    }
+
+    private static string Cau7(Application a, Document d)
+    {
+      string str = "True";
+      int Index = 1;
+      while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Luxury lounge area with couches"))
+        ++Index;
+      return Index >= d.Paragraphs.Count || d.Paragraphs[Index].Range.ListFormat.ListString != "o" ? "False" : str;
+    }
+
+    private static string Cau9(Application a, Document d)
+    {
+      string str = "True";
+      int Index = 1;
+      while (Index < 50 && !d.Paragraphs[Index].Range.Text.Contains("Click Insert and then choose the elements"))
+        ++Index;
+      return Index >= 50 || !d.Paragraphs[Index].Range.Text.Contains("Anywhere you want.\f") ? "False" : str;
+    }
+
+    private static string Cau10(Application a, Document d)
+    {
+      string str = "True";
+      if (d.Sections.Count != 3)
+        return "False(number of section)";
+      if (d.Sections[2].PageSetup.TextColumns.Count != 2)
+        return "False(number of column)";
+      return d.Sections[2].PageSetup.TextColumns.Spacing.ToString() != "50.4" ? "False(Spacing)" : str;
+    }
+
+    private static string Cau11(Application a, Document d)
+    {
+      string str = "False";
+      foreach (Microsoft.Office.Interop.Word.Shape shape in d.Shapes)
+      {
+        if (shape.Name.Contains("Picture") && (double) shape.Height * 100.0 == 16775.0 && (double) shape.Width == 612.0 && shape.WrapFormat.Type == WdWrapType.wdWrapSquare && (double) shape.Left == -999998.0 && (double) shape.Top == -999999.0 && shape.RelativeHorizontalPosition == WdRelativeHorizontalPosition.wdRelativeHorizontalPositionPage && shape.RelativeVerticalPosition == WdRelativeVerticalPosition.wdRelativeVerticalPositionPage)
+          return "True";
+      }
+      return str;
+    }
+
+    private static string Cau12(Application a, Document d)
+    {
+      string str = "False";
+      foreach (Microsoft.Office.Interop.Word.Shape shape in d.Shapes)
+      {
+        if (shape.Name.Contains("Picture") && shape.SoftEdge.Type == MsoSoftEdgeType.msoSoftEdgeTypeMixed)
+          return "True";
+      }
+      return str;
+    }
+
+    private static string Cau13(Application a, Document d) => "True";
+
+    private static string Cau14(Application a, Document d)
+    {
+      string str = "False";
+      foreach (Microsoft.Office.Interop.Word.Shape shape in d.Shapes)
+      {
+        if (shape.Name.Contains("Picture") && shape.Rotation.ToString() == "90" && shape.WrapFormat.Type == WdWrapType.wdWrapTight && shape.RelativeHorizontalPosition == WdRelativeHorizontalPosition.wdRelativeHorizontalPositionColumn && shape.RelativeVerticalPosition == WdRelativeVerticalPosition.wdRelativeVerticalPositionParagraph)
+          return "True";
+      }
+      return str;
+    }
+
+    private static string Cau15(Application a, Document d)
+    {
+      string str = "False";
+      foreach (Hyperlink hyperlink in d.Hyperlinks)
+      {
+        if (hyperlink.Name == "http://wikipedia.org/wiki/Houseboat" && hyperlink.TextToDisplay == "houseboat")
+          return "True";
+      }
+      return str;
+    }
+
+    private static string Cau16(Application a, Document d)
+    {
+      string str = "False";
+      foreach (Microsoft.Office.Interop.Word.Table table in d.Tables)
+      {
+        // ISSUE: reference to a compiler-generated method
+        if (table.Cell(1, 1).Range.Text.Contains("Month") && table.Columns.Count == 4 && table.Rows.Count == 13 && table.AllowAutoFit && table.Borders[WdBorderType.wdBorderBottom].ColorIndex == WdColorIndex.wdWhite)
+          return "True";
+      }
+      return str;
+    }
+
+    private static string Cau17(Application a, Document d)
+    {
+      string str = "True";
+      int Index = 90;
+      while (Index < 100 && !d.Paragraphs[Index].Range.Text.Contains("Table 1 Average Temperatures"))
+        ++Index;
+      return Index >= 100 || !d.Paragraphs[Index - 2].Range.Text.Contains("53\r\a") ? "False" : str;
+    }
+
+    private static string Cau18(Application a, Document d)
+    {
+      string str = "False";
+      foreach (Bookmark bookmark in d.Bookmarks)
+      {
+        if (bookmark.Name == "goContact" && bookmark.Range.Text == "Contact Us")
+          return "True";
+      }
+      return str;
+    }
+
+    private static string Cau19(Application a, Document d)
+    {
+      string str = "True";
+      int Index = 50;
+      while (Index < 150 && !d.Paragraphs[Index].Range.Text.Contains("Houseboat Lake Vacations, Inc"))
+        ++Index;
+      return Index >= 150 || (double) d.Paragraphs[Index].SpaceAfter != 2.0 || (double) d.Paragraphs[Index + 1].SpaceAfter != 2.0 || (double) d.Paragraphs[Index + 2].SpaceAfter != 2.0 ? "False" : str;
+    }
+
+    private static string Cau20(Application a, Document d)
+    {
+      string str = "True";
+      // ISSUE: variable of a compiler-generated type
+      Microsoft.Office.Interop.Word.Shape shape1 = (Microsoft.Office.Interop.Word.Shape) null;
+      foreach (Microsoft.Office.Interop.Word.Shape shape2 in d.Shapes)
+      {
+        if (shape2.Name.Contains("Diagram"))
+          shape1 = shape2;
+      }
+      if (shape1 == null)
+        return "False";
+      SmartArt smartArt = shape1.SmartArt;
+      return smartArt.QuickStyle.Name != "Intense Effect" || smartArt.Layout.Name != "Basic Process" || smartArt.Nodes.Count != 3 || smartArt.Nodes[(object) 1].TextFrame2.TextRange.Text != "Book a houseboat" || smartArt.Nodes[(object) 2].TextFrame2.TextRange.Text != "Pack your bag" || smartArt.Nodes[(object) 3].TextFrame2.TextRange.Text != "Have fun" ? "False" : str;
+    }
+
+    private static string Cau21(Application a, Document d)
+    {
+      foreach (Microsoft.Office.Interop.Word.Shape shape in d.Shapes)
+      {
+        if (shape.Name.Contains("Text Box") && shape.TextFrame.TextRange.Text.Contains("My family spent a week on a houseboat this past summer. It was so much fun") && shape.WrapFormat.Type == WdWrapType.wdWrapTight && shape.TextFrame.TextRange.Font.TextColor.RGB == -738131969 && shape.RelativeVerticalPosition == WdRelativeVerticalPosition.wdRelativeVerticalPositionParagraph && shape.RelativeHorizontalPosition == WdRelativeHorizontalPosition.wdRelativeHorizontalPositionPage && (double) shape.Width == 252.0 && shape.Height.ToString() == "79.2")
+          return "True";
+      }
+      return "Fasle(My family spent a week on a houseboat this past summer. It was so much fun)";
+    }
+
+    private static string Cau22(Application a, Document d)
+    {
+      string str = "False";
+      foreach (Footnote footnote in d.Footnotes)
+      {
+        if (footnote.Range.Text.Contains("Fishing license required") && footnote.Reference.FootnoteOptions.NumberStyle == WdNoteNumberStyle.wdNoteNumberStyleSymbol && footnote.Reference.FootnoteOptions.StartingNumber == 2)
+          return "True";
+      }
+      return str;
+    }
+
+    private static string Cau23(Application a, Document d)
+    {
+      string str = "True";
+      return d.Sections[1].Footers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Shapes.Count != 0 || d.Sections[1].Footers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range.Font.TextColor.RGB != -738131969 ? "Fales" : str;
+    }
+
+    private static string Cau24(Application a, Document d) => "True";
+
+    private static string Cau25(Application a, Document d)
+    {
+      string str = "True";
+      return d.ActiveWindow.ActivePane.View.Zoom.PageRows != 1 || d.ActiveWindow.ActivePane.View.Zoom.PageColumns != 2 ? "False" : str;
+    }
+
+    private static string Cau26(Application a, Document d)
+    {
+      string str = "True";
+      object documentProperties = d.BuiltInDocumentProperties;
+      Type type = documentProperties.GetType();
+      object target1 = type.InvokeMember("Item", BindingFlags.GetProperty, (System.Reflection.Binder) null, documentProperties, new object[1]
+      {
+        (object) "Title"
+      });
+      if (target1.GetType().InvokeMember("Value", BindingFlags.GetProperty, (System.Reflection.Binder) null, target1, new object[0]).ToString() != "Boating Vacations")
+        return "False";
+      object target2 = type.InvokeMember("Item", BindingFlags.GetProperty, (System.Reflection.Binder) null, documentProperties, new object[1]
+      {
+        (object) "Comments"
+      });
+      return target2.GetType().InvokeMember("Value", BindingFlags.GetProperty, (System.Reflection.Binder) null, target2, new object[0]).ToString() != "Please review yearly" ? "False" : str;
+    }
+
+    private static string Cau27(Application a, Document d)
+    {
+      string str = "True";
+      return a.Options.SaveInterval != 8 || !d.EmbedTrueTypeFonts || !a.Options.PrintBackgrounds ? "False" : str;
+    }
+
+    private static string Cau28(Application a, Document d) => "";
+
+    private static string Cau29(Application a, Document d) => "";
+  }
+}
