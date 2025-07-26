@@ -550,7 +550,7 @@ namespace WindowsFormsApplication1
                 this.comboBoxCauNext.Text = "1";
             this.labelKQ.Text = "";
             this.check = true;
-            this.buttonEV.Text = "V";
+            this.buttonEV.Text = "Tiếng Việt";
         }
     }
 }

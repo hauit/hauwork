@@ -43,14 +43,15 @@ namespace WindowsFormsApplication1
             this.textBoxPassSo = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnCancel = new WindowsFormsApplication1.Base.RJButton();
-            this.buttonOK = new WindowsFormsApplication1.Base.RJButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnCancel = new WindowsFormsApplication1.Base.RJButton();
+            this.buttonOK = new WindowsFormsApplication1.Base.RJButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxUser
@@ -166,42 +167,6 @@ namespace WindowsFormsApplication1
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ĐĂNG NHẬP";
             // 
-            // btnCancel
-            // 
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
-            this.btnCancel.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
-            this.btnCancel.BorderColor = System.Drawing.Color.White;
-            this.btnCancel.BorderRadius = 5;
-            this.btnCancel.BorderSize = 1;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(195, 115);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(61, 36);
-            this.btnCancel.TabIndex = 12;
-            this.btnCancel.Text = "Thoát";
-            this.btnCancel.TextColor = System.Drawing.Color.White;
-            this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // buttonOK
-            // 
-            this.buttonOK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
-            this.buttonOK.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
-            this.buttonOK.BorderColor = System.Drawing.Color.White;
-            this.buttonOK.BorderRadius = 5;
-            this.buttonOK.BorderSize = 1;
-            this.buttonOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonOK.ForeColor = System.Drawing.Color.White;
-            this.buttonOK.Location = new System.Drawing.Point(90, 115);
-            this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Size = new System.Drawing.Size(99, 36);
-            this.buttonOK.TabIndex = 3;
-            this.buttonOK.Text = "Đăng nhập";
-            this.buttonOK.TextColor = System.Drawing.Color.White;
-            this.buttonOK.UseVisualStyleBackColor = false;
-            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
-            // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
@@ -239,6 +204,42 @@ namespace WindowsFormsApplication1
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
             // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.btnCancel.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.btnCancel.BorderColor = System.Drawing.Color.White;
+            this.btnCancel.BorderRadius = 5;
+            this.btnCancel.BorderSize = 1;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(195, 115);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(61, 36);
+            this.btnCancel.TabIndex = 12;
+            this.btnCancel.Text = "Thoát";
+            this.btnCancel.TextColor = System.Drawing.Color.White;
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // buttonOK
+            // 
+            this.buttonOK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonOK.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonOK.BorderColor = System.Drawing.Color.White;
+            this.buttonOK.BorderRadius = 5;
+            this.buttonOK.BorderSize = 1;
+            this.buttonOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonOK.ForeColor = System.Drawing.Color.White;
+            this.buttonOK.Location = new System.Drawing.Point(90, 115);
+            this.buttonOK.Name = "buttonOK";
+            this.buttonOK.Size = new System.Drawing.Size(99, 36);
+            this.buttonOK.TabIndex = 3;
+            this.buttonOK.Text = "Đăng nhập";
+            this.buttonOK.TextColor = System.Drawing.Color.White;
+            this.buttonOK.UseVisualStyleBackColor = false;
+            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -258,12 +259,13 @@ namespace WindowsFormsApplication1
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form2";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Form2_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
