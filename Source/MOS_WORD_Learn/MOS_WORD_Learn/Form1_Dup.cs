@@ -465,22 +465,23 @@ namespace WindowsFormsApplication1
 
         private void buttonVideoHelp_Click(object sender, EventArgs e)
         {
-            if (this.buttonVideoHelp.Text == "HDSD phần mềm")
+            if (this.buttonVideoHelp.Text == "HDSD Phần mềm")
             {
                 this.buttonVideoHelp.Text = "Ẩn Taskbar";
                 this.TopMost = false;
                 try
                 {
-                    Process.Start(Path.Combine(System.Windows.Forms.Application.StartupPath, "zip\\hdh.mp4"));
+                    //Process.Start(Path.Combine(System.Windows.Forms.Application.StartupPath, "zip\\hdh.mp4"));
+                    Process.Start("https://google.com");
                 }
                 catch (Exception ex)
                 {
-                    int num = (int)MessageBox.Show("đổi chương trinh mặt định xem Video khác" + ex.Message);
+                    int num = (int)MessageBox.Show("Vui lòng kết nối mạng để xem Hướng dẫn sử dụng phần mềm " + ex.Message);
                 }
             }
             else
             {
-                this.buttonVideoHelp.Text = "HDSD phần mềm";
+                this.buttonVideoHelp.Text = "HDSD Phần mềm";
                 this.TopMost = true;
             }
         }
@@ -491,7 +492,7 @@ namespace WindowsFormsApplication1
             {
                 this.TopMost = false;
                 this.button2.Text = "Tự Làm";
-                Process.Start("https://meet.google.com/uay-ywnp-xzs");
+                Process.Start("https://google.com");
             }
             else
             {
