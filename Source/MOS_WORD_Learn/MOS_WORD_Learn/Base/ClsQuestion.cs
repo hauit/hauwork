@@ -185,6 +185,16 @@ namespace WindowsFormsApplication1.Base
             return obj.CorrectIndex;
         }
 
+        public static ClsQuestion GetQuestion(int maskIndex)
+        {
+            var obj = listQuestion.Where(x => x.MaskIndex == maskIndex).FirstOrDefault();
+            if (obj == null)
+            {
+                throw new ArgumentException("Số câu hỏi không hợp lệ");
+            }
+            return obj;
+        }
+
         public static int GetQuestionNumber()
         {
             return listQuestion.Count;

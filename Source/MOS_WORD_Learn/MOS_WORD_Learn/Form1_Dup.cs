@@ -291,7 +291,12 @@ namespace WindowsFormsApplication1
 
         private void load_cau_hoi(int cau_hoi_so)
         {
-            cau_hoi_so = ClsListQuestion.GetCorrectIndex(cau_hoi_so);
+            var questionObj = ClsListQuestion.GetQuestion(cau_hoi_so);
+            cau_hoi_so = questionObj.CorrectIndex;
+            if (!questionObj.Status)
+            {
+                throw new ArgumentException("Câu hỏi chưa sẵn sàng để học");
+            }
             this.paramater = this.Getparmater(cau_hoi_so);
             this.setDefalt(this.paramater);
             this.paramater.Dest_file_Word_Name = (object)Path.Combine(System.Windows.Forms.Application.StartupPath, "Word\\" + this.paramater.section.ToString() + "_" + this.paramater.quesion.ToString());
@@ -410,20 +415,27 @@ namespace WindowsFormsApplication1
 
         private void buttonReset_Click(object sender, EventArgs e)
         {
-            this.labelKQ.Text = "";
-            int num1 = 0;
             try
             {
-                this.turnOff();
+                this.labelKQ.Text = "";
+                int num1 = 0;
+                try
+                {
+                    this.turnOff();
+                }
+                catch (Exception ex)
+                {
+                    int num2 = (int)MessageBox.Show("Đóng các hộp thoại trước khi reset");
+                    num1 = 1;
+                }
+                if (num1 == 1)
+                    return;
+                this.load_cau_hoi(this.cau_User);
             }
             catch (Exception ex)
             {
-                int num2 = (int)MessageBox.Show("Đóng các hộp thoại trước khi reset");
-                num1 = 1;
+                MessageBox.Show(ex.Message);
             }
-            if (num1 == 1)
-                return;
-            this.load_cau_hoi(this.cau_User);
         }
 
         private void buttonEV_Click(object sender, EventArgs e)
@@ -537,21 +549,28 @@ namespace WindowsFormsApplication1
         {
             try
             {
-                this.turnOff();
+                try
+                {
+                    this.turnOff();
+                }
+                catch (Exception ex)
+                {
+                }
+                this.cau_User = int.Parse(this.comboBoxCauNext.Text.Trim());
+                this.load_cau_hoi(this.cau_User);
+                this.labelCauHienTai.Text = "Câu: " + this.cau_User.ToString();
+                if (this.cau_User < this.tong_so_cau)
+                    this.comboBoxCauNext.Text = (this.cau_User + 1).ToString();
+                else
+                    this.comboBoxCauNext.Text = "1";
+                this.labelKQ.Text = "";
+                this.check = true;
+                this.buttonEV.Text = "Tiếng Việt";
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
             }
-            this.cau_User = int.Parse(this.comboBoxCauNext.Text.Trim());
-            this.load_cau_hoi(this.cau_User);
-            this.labelCauHienTai.Text = "Câu: " + this.cau_User.ToString();
-            if (this.cau_User < this.tong_so_cau)
-                this.comboBoxCauNext.Text = (this.cau_User + 1).ToString();
-            else
-                this.comboBoxCauNext.Text = "1";
-            this.labelKQ.Text = "";
-            this.check = true;
-            this.buttonEV.Text = "Tiếng Việt";
         }
     }
 }
