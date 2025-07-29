@@ -37,6 +37,7 @@ namespace WindowsFormsApplication1
         private enviroment paramater;
         private Help_cu h;
         private int[] Diem;
+        private ClsQuestion questionObj;
         public Form1_Dup()
         {
             this.h = new Help_cu();
@@ -291,7 +292,7 @@ namespace WindowsFormsApplication1
 
         private void load_cau_hoi(int cau_hoi_so)
         {
-            var questionObj = ClsListQuestion.GetQuestion(cau_hoi_so);
+            questionObj = ClsListQuestion.GetQuestion(cau_hoi_so);
             cau_hoi_so = questionObj.CorrectIndex;
             if (!questionObj.Status)
             {
@@ -515,17 +516,17 @@ namespace WindowsFormsApplication1
 
         private void buttonHelpVideo_Click(object sender, EventArgs e)
         {
-            string str = Path.Combine(System.Windows.Forms.Application.StartupPath, "zip\\1.avi");
-            string fileHelpVideoPath = this.paramater.Source_file_help_video_path;
             try
             {
-                //Home.DecryptFile(fileHelpVideoPath, str);
-                str = "https://www.youtube.com/watch?v=fT_3Bsb9hbA";
-                Process.Start(str);
+                if (!questionObj.Status)
+                {
+                    throw new ArgumentException("Câu hỏi chưa sẵn sàng để học");
+                }
+                Process.Start(questionObj.Url);
             }
             catch (Exception ex)
             {
-                int num = (int)MessageBox.Show("Tắt Video hướng dẫn làm bài trước khi mở hướng dẫn mới");
+                MessageBox.Show(ex.Message);
             }
         }
 

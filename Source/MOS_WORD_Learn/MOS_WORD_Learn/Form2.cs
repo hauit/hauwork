@@ -182,7 +182,18 @@ namespace WindowsFormsApplication1
             return false;
         }
 
-        public string getMac() => ((IEnumerable<NetworkInterface>)NetworkInterface.GetAllNetworkInterfaces()).Where<NetworkInterface>((Func<NetworkInterface, bool>)(nic => nic.OperationalStatus == OperationalStatus.Up)).Select<NetworkInterface, string>((Func<NetworkInterface, string>)(nic => nic.GetPhysicalAddress().ToString())).FirstOrDefault<string>().ToString();
+        public string getMac()
+        {
+            var allNics = NetworkInterface.GetAllNetworkInterfaces();
+
+            var mac = allNics
+                .Where(nic => nic.OperationalStatus == OperationalStatus.Up)
+                .Where(nic => nic.NetworkInterfaceType == NetworkInterfaceType.Ethernet || nic.NetworkInterfaceType == NetworkInterfaceType.Wireless80211)
+                .Select(nic => nic.GetPhysicalAddress().ToString())
+                .FirstOrDefault();
+
+            return mac ?? string.Empty;
+        }
 
         private void check()
         {
