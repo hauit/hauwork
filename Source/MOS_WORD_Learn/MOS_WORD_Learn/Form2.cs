@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Management;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -195,6 +196,18 @@ namespace WindowsFormsApplication1
             return mac ?? string.Empty;
         }
 
+        private string GetMotherboardID()
+        {
+            string motherboardID = string.Empty;
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT SerialNumber FROM Win32_BaseBoard");
+            foreach (ManagementObject obj in searcher.Get())
+            {
+                motherboardID = obj["SerialNumber"]?.ToString()?.Trim();
+                break;
+            }
+            return motherboardID;
+        }
+
         private void check()
         {
             ////TODO:
@@ -206,7 +219,7 @@ namespace WindowsFormsApplication1
                 this.Close();
                 return;
             }
-            this.mac = this.getMac();
+            this.mac = this.GetMotherboardID();
             if (this.mac.Length < 10)
             {
                 int num = (int)MessageBox.Show("Tạo randomID bị lỗi");
