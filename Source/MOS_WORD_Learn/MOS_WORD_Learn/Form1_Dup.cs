@@ -319,7 +319,7 @@ namespace WindowsFormsApplication1
             //    this.pictureBox1.Left = (this.panel1.Width - this.pictureBox1.Width) / 2;
             //else
             //    this.pictureBox1.Left = 0;
-            this.richTextQuestion.Text = this.paramater.DeTiengAnh;
+            this.richTextQuestion.Text = this.paramater.DeTiengViet;
             if (this.panel1.Width > this.richTextQuestion.Width)
                 this.richTextQuestion.Left = (this.panel1.Width - this.richTextQuestion.Width) / 2;
             else
