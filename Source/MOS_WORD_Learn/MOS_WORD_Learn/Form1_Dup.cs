@@ -282,7 +282,7 @@ namespace WindowsFormsApplication1
                     enviroment.Source_de_Vn = ClsListQuestion.GetVNQuestion(cauUser);
                     enviroment.Source_file_word_path = Path.Combine(enviroment.dirPath, "file\\" + enviroment.quesion.ToString());
                     enviroment.Source_file_help_path = Path.Combine(enviroment.dirPath, "help\\" + enviroment.quesion.ToString());
-                    enviroment.Source_file_help_video_path = Path.Combine(enviroment.dirPath, "Vhelp\\" + enviroment.quesion.ToString());
+                    //enviroment.Source_file_help_video_path = Path.Combine(enviroment.dirPath, "Vhelp\\" + enviroment.quesion.ToString());
                     break;
                 }
                 num1 = num2;
@@ -312,8 +312,8 @@ namespace WindowsFormsApplication1
             ///         Với file video thì tạm thời đề lại(file của họ là mã hóa. cũng cần thay đổi - bỏ mã hóa)
             //Home.DecryptFile(this.paramater.Source_de_En, this.paramater.DeTiengAnh);
             //Home.DecryptFile(this.paramater.Source_de_Vn, this.paramater.DeTiengViet);
-            if (File.Exists(this.paramater.Source_file_help_video_path))
-                Home.DecryptFile(this.paramater.Source_file_help_video_path, this.paramater.Dest_file_help_video_Name);
+            //if (File.Exists(this.paramater.Source_file_help_video_path))
+            //    Home.DecryptFile(this.paramater.Source_file_help_video_path, this.paramater.Dest_file_help_video_Name);
             //this.pictureBox1.Image = Image.FromFile(this.paramater.DeTiengAnh);
             //if (this.panel1.Width > this.pictureBox1.Width)
             //    this.pictureBox1.Left = (this.panel1.Width - this.pictureBox1.Width) / 2;
