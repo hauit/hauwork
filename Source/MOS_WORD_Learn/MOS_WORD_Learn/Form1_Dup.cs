@@ -478,9 +478,10 @@ namespace WindowsFormsApplication1
 
         private void buttonVideoHelp_Click(object sender, EventArgs e)
         {
-            if (this.buttonVideoHelp.Text == "HDSD Phần mềm")
+            if (this.buttonVideoHelp.Text == "HDSD")
             {
-                this.buttonVideoHelp.Text = "Ẩn Taskbar";
+                //this.buttonVideoHelp.Text = "Ẩn Taskbar";
+                this.buttonHelp.Text = "Ẩn Taskbar";
                 this.TopMost = false;
                 try
                 {
@@ -494,7 +495,7 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                this.buttonVideoHelp.Text = "HDSD Phần mềm";
+                this.buttonVideoHelp.Text = "HDSD";
                 this.TopMost = true;
             }
         }

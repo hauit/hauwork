@@ -228,7 +228,8 @@ namespace WindowsFormsApplication1
             }
             this.ngayhethang = this.dt.AddDays(30.0);
             string randomID = Base64Encode(this.mac + this.dt.ToString("yyyyMMdd"));
-            this.richTextBox1.Text = $"Nếu bạn chưa có MK đăng nhập thì vui lòng gửi ID này \"{randomID}\" cho admin để lấy mật khẩu";
+            //this.richTextBox1.Text = $"Nếu bạn chưa có MK đăng nhập thì vui lòng gửi ID này \"{randomID}\" cho admin để lấy mật khẩu";
+            this.richTextBox1.Text = $"Nếu bạn chưa có mật khẩu để đăng nhập vui lòng gửi ID bên dưới cho Admin để lấy:\n\n{randomID}";
             //var a = Properties.Settings.Default.PASS;
             //var b = Properties.Settings.Default.DATE;
             //var c = Convert.ToInt32(b, 16);
