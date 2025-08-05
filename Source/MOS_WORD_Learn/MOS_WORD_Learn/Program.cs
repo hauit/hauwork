@@ -29,8 +29,8 @@ namespace WindowsFormsApplication1
         private static void run()
         {
             ///TODO: test form, should be remove
-            //Application.Run((Form)new Form1_Dup());
-            //return;
+            Application.Run((Form)new Form1_Dup());
+            return;
             Application.Run((Form)new Form2());
             switch (Program.status)
             {

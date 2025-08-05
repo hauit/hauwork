@@ -49,14 +49,6 @@ namespace WindowsFormsApplication1
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -66,15 +58,7 @@ namespace WindowsFormsApplication1
             // textBoxUser
             // 
             this.textBoxUser.Cursor = System.Windows.Forms.Cursors.Hand;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            this.textBoxUser.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-=======
             this.textBoxUser.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
->>>>>>> Stashed changes
-=======
-            this.textBoxUser.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
->>>>>>> Stashed changes
             this.textBoxUser.Location = new System.Drawing.Point(90, 22);
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.Size = new System.Drawing.Size(166, 29);
@@ -84,15 +68,7 @@ namespace WindowsFormsApplication1
             // textBoxPass
             // 
             this.textBoxPass.Cursor = System.Windows.Forms.Cursors.Hand;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            this.textBoxPass.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-=======
             this.textBoxPass.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
->>>>>>> Stashed changes
-=======
-            this.textBoxPass.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
->>>>>>> Stashed changes
             this.textBoxPass.Location = new System.Drawing.Point(90, 72);
             this.textBoxPass.Name = "textBoxPass";
             this.textBoxPass.PasswordChar = '*';
@@ -103,27 +79,11 @@ namespace WindowsFormsApplication1
             // 
             this.label1.AutoSize = true;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            this.label1.Font = new System.Drawing.Font("Calibri", 12F);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(8, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 19);
-=======
             this.label1.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(8, 29);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(83, 22);
->>>>>>> Stashed changes
-=======
-            this.label1.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(8, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 22);
->>>>>>> Stashed changes
             this.label1.TabIndex = 5;
             this.label1.Text = "Tài khoản";
             // 
@@ -131,27 +91,11 @@ namespace WindowsFormsApplication1
             // 
             this.label2.AutoSize = true;
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            this.label2.Font = new System.Drawing.Font("Calibri", 12F);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(8, 80);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 19);
-=======
             this.label2.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(8, 80);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(83, 22);
->>>>>>> Stashed changes
-=======
-            this.label2.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(8, 80);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 22);
->>>>>>> Stashed changes
             this.label2.TabIndex = 6;
             this.label2.Text = "Mật khẩu";
             // 
@@ -172,15 +116,7 @@ namespace WindowsFormsApplication1
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.White;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            this.label4.Location = new System.Drawing.Point(36, 140);
-=======
             this.label4.Location = new System.Drawing.Point(40, 140);
->>>>>>> Stashed changes
-=======
-            this.label4.Location = new System.Drawing.Point(40, 140);
->>>>>>> Stashed changes
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(214, 33);
             this.label4.TabIndex = 8;
@@ -235,41 +171,20 @@ namespace WindowsFormsApplication1
             // 
             // btnCancel
             // 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
             this.btnCancel.AutoSize = true;
             this.btnCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
->>>>>>> Stashed changes
-=======
-            this.btnCancel.AutoSize = true;
-            this.btnCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
->>>>>>> Stashed changes
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
             this.btnCancel.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
             this.btnCancel.BorderColor = System.Drawing.Color.White;
             this.btnCancel.BorderRadius = 5;
             this.btnCancel.BorderSize = 1;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(195, 115);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(61, 36);
-=======
-=======
->>>>>>> Stashed changes
             this.btnCancel.Font = new System.Drawing.Font("Calibri", 12F);
             this.btnCancel.ForeColor = System.Drawing.Color.White;
             this.btnCancel.Location = new System.Drawing.Point(195, 115);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Padding = new System.Windows.Forms.Padding(2);
             this.btnCancel.Size = new System.Drawing.Size(62, 35);
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
             this.btnCancel.TabIndex = 12;
             this.btnCancel.Text = "Thoát";
             this.btnCancel.TextColor = System.Drawing.Color.White;
@@ -278,41 +193,20 @@ namespace WindowsFormsApplication1
             // 
             // buttonOK
             // 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
             this.buttonOK.AutoSize = true;
             this.buttonOK.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
->>>>>>> Stashed changes
-=======
-            this.buttonOK.AutoSize = true;
-            this.buttonOK.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
->>>>>>> Stashed changes
             this.buttonOK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
             this.buttonOK.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
             this.buttonOK.BorderColor = System.Drawing.Color.White;
             this.buttonOK.BorderRadius = 5;
             this.buttonOK.BorderSize = 1;
             this.buttonOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            this.buttonOK.ForeColor = System.Drawing.Color.White;
-            this.buttonOK.Location = new System.Drawing.Point(90, 115);
-            this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Size = new System.Drawing.Size(99, 36);
-=======
-=======
->>>>>>> Stashed changes
             this.buttonOK.Font = new System.Drawing.Font("Calibri", 12F);
             this.buttonOK.ForeColor = System.Drawing.Color.White;
             this.buttonOK.Location = new System.Drawing.Point(90, 115);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Padding = new System.Windows.Forms.Padding(2);
             this.buttonOK.Size = new System.Drawing.Size(95, 35);
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
             this.buttonOK.TabIndex = 3;
             this.buttonOK.Text = "Đăng nhập";
             this.buttonOK.TextColor = System.Drawing.Color.White;
@@ -324,15 +218,7 @@ namespace WindowsFormsApplication1
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
             this.tabPage2.Controls.Add(this.richTextBox1);
             this.tabPage2.Cursor = System.Windows.Forms.Cursors.Hand;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            this.tabPage2.Font = new System.Drawing.Font("Roboto", 10F);
-=======
             this.tabPage2.Font = new System.Drawing.Font("Calibri", 10F);
->>>>>>> Stashed changes
-=======
-            this.tabPage2.Font = new System.Drawing.Font("Calibri", 10F);
->>>>>>> Stashed changes
             this.tabPage2.ForeColor = System.Drawing.Color.Black;
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
@@ -364,30 +250,6 @@ namespace WindowsFormsApplication1
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
             // 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // richTextBox3
-            // 
-            this.richTextBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(69)))), ((int)(((byte)(136)))));
-            this.richTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox3.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Italic);
-            this.richTextBox3.ForeColor = System.Drawing.Color.White;
-            this.richTextBox3.Location = new System.Drawing.Point(12, 406);
-            this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.richTextBox3.Size = new System.Drawing.Size(273, 49);
-            this.richTextBox3.TabIndex = 18;
-            this.richTextBox3.Text = "Thành công không đến từ may mắn, mà bắt đầu từ từng giờ bạn ngồi học hôm nay.";
-            // 
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

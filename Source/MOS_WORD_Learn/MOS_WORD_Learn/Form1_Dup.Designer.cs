@@ -84,24 +84,10 @@ namespace WindowsFormsApplication1
             this.labelCauHienTai.ForeColor = System.Drawing.Color.White;
             this.labelCauHienTai.Location = new System.Drawing.Point(330, 329);
             this.labelCauHienTai.Margin = new System.Windows.Forms.Padding(0);
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            this.labelCauHienTai.MinimumSize = new System.Drawing.Size(74, 0);
-            this.labelCauHienTai.Name = "labelCauHienTai";
-            this.labelCauHienTai.Padding = new System.Windows.Forms.Padding(2, 6, 2, 7);
-            this.labelCauHienTai.Size = new System.Drawing.Size(74, 35);
-=======
             this.labelCauHienTai.MinimumSize = new System.Drawing.Size(80, 0);
             this.labelCauHienTai.Name = "labelCauHienTai";
             this.labelCauHienTai.Padding = new System.Windows.Forms.Padding(8, 8, 8, 7);
             this.labelCauHienTai.Size = new System.Drawing.Size(86, 37);
->>>>>>> Stashed changes
-=======
-            this.labelCauHienTai.MinimumSize = new System.Drawing.Size(80, 0);
-            this.labelCauHienTai.Name = "labelCauHienTai";
-            this.labelCauHienTai.Padding = new System.Windows.Forms.Padding(8, 8, 8, 7);
-            this.labelCauHienTai.Size = new System.Drawing.Size(86, 37);
->>>>>>> Stashed changes
             this.labelCauHienTai.TabIndex = 12;
             this.labelCauHienTai.Text = "Câu 150";
             this.labelCauHienTai.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -133,15 +119,7 @@ namespace WindowsFormsApplication1
             // 
             this.richTextQuestion.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            this.richTextQuestion.Font = new System.Drawing.Font("Calibri", 16F);
-=======
             this.richTextQuestion.Font = new System.Drawing.Font("Calibri", 20F);
->>>>>>> Stashed changes
-=======
-            this.richTextQuestion.Font = new System.Drawing.Font("Calibri", 20F);
->>>>>>> Stashed changes
             this.richTextQuestion.Location = new System.Drawing.Point(0, 0);
             this.richTextQuestion.Name = "richTextQuestion";
             this.richTextQuestion.ReadOnly = true;
@@ -177,24 +155,10 @@ namespace WindowsFormsApplication1
             this.buttonHelp.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.buttonHelp.ForeColor = System.Drawing.Color.White;
             this.buttonHelp.Location = new System.Drawing.Point(420, 265);
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            this.buttonHelp.MinimumSize = new System.Drawing.Size(112, 0);
-            this.buttonHelp.Name = "buttonHelp";
-            this.buttonHelp.Padding = new System.Windows.Forms.Padding(1);
-            this.buttonHelp.Size = new System.Drawing.Size(112, 35);
-=======
             this.buttonHelp.MinimumSize = new System.Drawing.Size(114, 0);
             this.buttonHelp.Name = "buttonHelp";
             this.buttonHelp.Padding = new System.Windows.Forms.Padding(2);
             this.buttonHelp.Size = new System.Drawing.Size(114, 37);
->>>>>>> Stashed changes
-=======
-            this.buttonHelp.MinimumSize = new System.Drawing.Size(114, 0);
-            this.buttonHelp.Name = "buttonHelp";
-            this.buttonHelp.Padding = new System.Windows.Forms.Padding(2);
-            this.buttonHelp.Size = new System.Drawing.Size(114, 37);
->>>>>>> Stashed changes
             this.buttonHelp.TabIndex = 30;
             this.buttonHelp.Text = "Hiện Taskbar";
             this.buttonHelp.TextColor = System.Drawing.Color.White;
@@ -217,18 +181,8 @@ namespace WindowsFormsApplication1
             this.buttonHelpVideo.ForeColor = System.Drawing.Color.White;
             this.buttonHelpVideo.Location = new System.Drawing.Point(546, 265);
             this.buttonHelpVideo.Name = "buttonHelpVideo";
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            this.buttonHelpVideo.Padding = new System.Windows.Forms.Padding(1);
-            this.buttonHelpVideo.Size = new System.Drawing.Size(123, 35);
-=======
             this.buttonHelpVideo.Padding = new System.Windows.Forms.Padding(2);
             this.buttonHelpVideo.Size = new System.Drawing.Size(125, 37);
->>>>>>> Stashed changes
-=======
-            this.buttonHelpVideo.Padding = new System.Windows.Forms.Padding(2);
-            this.buttonHelpVideo.Size = new System.Drawing.Size(125, 37);
->>>>>>> Stashed changes
             this.buttonHelpVideo.TabIndex = 29;
             this.buttonHelpVideo.Text = "Video chữa đề";
             this.buttonHelpVideo.TextColor = System.Drawing.Color.White;
@@ -252,18 +206,8 @@ namespace WindowsFormsApplication1
             this.buttonVideoHelp.Location = new System.Drawing.Point(120, 265);
             this.buttonVideoHelp.MinimumSize = new System.Drawing.Size(142, 0);
             this.buttonVideoHelp.Name = "buttonVideoHelp";
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            this.buttonVideoHelp.Padding = new System.Windows.Forms.Padding(1);
-            this.buttonVideoHelp.Size = new System.Drawing.Size(63, 35);
-=======
             this.buttonVideoHelp.Padding = new System.Windows.Forms.Padding(2);
             this.buttonVideoHelp.Size = new System.Drawing.Size(142, 37);
->>>>>>> Stashed changes
-=======
-            this.buttonVideoHelp.Padding = new System.Windows.Forms.Padding(2);
-            this.buttonVideoHelp.Size = new System.Drawing.Size(142, 37);
->>>>>>> Stashed changes
             this.buttonVideoHelp.TabIndex = 24;
             this.buttonVideoHelp.Text = "HDSD";
             this.buttonVideoHelp.TextColor = System.Drawing.Color.White;
@@ -286,18 +230,8 @@ namespace WindowsFormsApplication1
             this.buttonZoom.ForeColor = System.Drawing.Color.White;
             this.buttonZoom.Location = new System.Drawing.Point(64, 329);
             this.buttonZoom.Name = "buttonZoom";
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            this.buttonZoom.Padding = new System.Windows.Forms.Padding(1);
-            this.buttonZoom.Size = new System.Drawing.Size(91, 35);
-=======
             this.buttonZoom.Padding = new System.Windows.Forms.Padding(2);
             this.buttonZoom.Size = new System.Drawing.Size(95, 37);
->>>>>>> Stashed changes
-=======
-            this.buttonZoom.Padding = new System.Windows.Forms.Padding(2);
-            this.buttonZoom.Size = new System.Drawing.Size(95, 37);
->>>>>>> Stashed changes
             this.buttonZoom.TabIndex = 20;
             this.buttonZoom.Text = "Đánh dấu";
             this.buttonZoom.TextColor = System.Drawing.Color.White;
@@ -320,18 +254,8 @@ namespace WindowsFormsApplication1
             this.buttonCheck.ForeColor = System.Drawing.Color.White;
             this.buttonCheck.Location = new System.Drawing.Point(686, 265);
             this.buttonCheck.Name = "buttonCheck";
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            this.buttonCheck.Padding = new System.Windows.Forms.Padding(1);
-            this.buttonCheck.Size = new System.Drawing.Size(88, 35);
-=======
             this.buttonCheck.Padding = new System.Windows.Forms.Padding(2);
             this.buttonCheck.Size = new System.Drawing.Size(90, 37);
->>>>>>> Stashed changes
-=======
-            this.buttonCheck.Padding = new System.Windows.Forms.Padding(2);
-            this.buttonCheck.Size = new System.Drawing.Size(90, 37);
->>>>>>> Stashed changes
             this.buttonCheck.TabIndex = 7;
             this.buttonCheck.Text = "Đúng/Sai";
             this.buttonCheck.TextColor = System.Drawing.Color.White;
@@ -355,18 +279,8 @@ namespace WindowsFormsApplication1
             this.buttonRefresh.Location = new System.Drawing.Point(278, 265);
             this.buttonRefresh.MinimumSize = new System.Drawing.Size(125, 0);
             this.buttonRefresh.Name = "buttonRefresh";
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            this.buttonRefresh.Padding = new System.Windows.Forms.Padding(1);
-            this.buttonRefresh.Size = new System.Drawing.Size(123, 35);
-=======
             this.buttonRefresh.Padding = new System.Windows.Forms.Padding(2);
             this.buttonRefresh.Size = new System.Drawing.Size(125, 37);
->>>>>>> Stashed changes
-=======
-            this.buttonRefresh.Padding = new System.Windows.Forms.Padding(2);
-            this.buttonRefresh.Size = new System.Drawing.Size(125, 37);
->>>>>>> Stashed changes
             this.buttonRefresh.TabIndex = 5;
             this.buttonRefresh.Text = "Hiện/Ẩn Word";
             this.buttonRefresh.TextColor = System.Drawing.Color.White;
@@ -388,24 +302,10 @@ namespace WindowsFormsApplication1
             this.buttonEV.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.buttonEV.ForeColor = System.Drawing.Color.White;
             this.buttonEV.Location = new System.Drawing.Point(719, 328);
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            this.buttonEV.MinimumSize = new System.Drawing.Size(93, 0);
-            this.buttonEV.Name = "buttonEV";
-            this.buttonEV.Padding = new System.Windows.Forms.Padding(3);
-            this.buttonEV.Size = new System.Drawing.Size(93, 35);
-=======
             this.buttonEV.MinimumSize = new System.Drawing.Size(95, 0);
             this.buttonEV.Name = "buttonEV";
             this.buttonEV.Padding = new System.Windows.Forms.Padding(4);
             this.buttonEV.Size = new System.Drawing.Size(95, 37);
->>>>>>> Stashed changes
-=======
-            this.buttonEV.MinimumSize = new System.Drawing.Size(95, 0);
-            this.buttonEV.Name = "buttonEV";
-            this.buttonEV.Padding = new System.Windows.Forms.Padding(4);
-            this.buttonEV.Size = new System.Drawing.Size(95, 37);
->>>>>>> Stashed changes
             this.buttonEV.TabIndex = 3;
             this.buttonEV.Text = "Tiếng Việt";
             this.buttonEV.TextColor = System.Drawing.Color.White;
@@ -428,18 +328,8 @@ namespace WindowsFormsApplication1
             this.buttonReset.ForeColor = System.Drawing.Color.White;
             this.buttonReset.Location = new System.Drawing.Point(420, 329);
             this.buttonReset.Name = "buttonReset";
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            this.buttonReset.Padding = new System.Windows.Forms.Padding(1);
-            this.buttonReset.Size = new System.Drawing.Size(62, 35);
-=======
             this.buttonReset.Padding = new System.Windows.Forms.Padding(2);
             this.buttonReset.Size = new System.Drawing.Size(103, 37);
->>>>>>> Stashed changes
-=======
-            this.buttonReset.Padding = new System.Windows.Forms.Padding(2);
-            this.buttonReset.Size = new System.Drawing.Size(103, 37);
->>>>>>> Stashed changes
             this.buttonReset.TabIndex = 2;
             this.buttonReset.Text = "Reset";
             this.buttonReset.TextColor = System.Drawing.Color.White;
@@ -462,18 +352,8 @@ namespace WindowsFormsApplication1
             this.buttonNext.ForeColor = System.Drawing.Color.White;
             this.buttonNext.Location = new System.Drawing.Point(536, 329);
             this.buttonNext.Name = "buttonNext";
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            this.buttonNext.Padding = new System.Windows.Forms.Padding(1);
-            this.buttonNext.Size = new System.Drawing.Size(88, 35);
-=======
             this.buttonNext.Padding = new System.Windows.Forms.Padding(2);
             this.buttonNext.Size = new System.Drawing.Size(90, 37);
->>>>>>> Stashed changes
-=======
-            this.buttonNext.Padding = new System.Windows.Forms.Padding(2);
-            this.buttonNext.Size = new System.Drawing.Size(90, 37);
->>>>>>> Stashed changes
             this.buttonNext.TabIndex = 1;
             this.buttonNext.Text = "Chọn câu";
             this.buttonNext.TextColor = System.Drawing.Color.White;
@@ -498,18 +378,8 @@ namespace WindowsFormsApplication1
             this.buttonExit.ForeColor = System.Drawing.Color.White;
             this.buttonExit.Location = new System.Drawing.Point(74, 265);
             this.buttonExit.Name = "buttonExit";
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            this.buttonExit.Padding = new System.Windows.Forms.Padding(1, 1, 1, 2);
-            this.buttonExit.Size = new System.Drawing.Size(32, 35);
-=======
             this.buttonExit.Padding = new System.Windows.Forms.Padding(4);
             this.buttonExit.Size = new System.Drawing.Size(36, 37);
->>>>>>> Stashed changes
-=======
-            this.buttonExit.Padding = new System.Windows.Forms.Padding(4);
-            this.buttonExit.Size = new System.Drawing.Size(36, 37);
->>>>>>> Stashed changes
             this.buttonExit.TabIndex = 0;
             this.buttonExit.Text = "X";
             this.buttonExit.TextColor = System.Drawing.Color.White;
@@ -532,18 +402,8 @@ namespace WindowsFormsApplication1
             this.buttonSummary.ForeColor = System.Drawing.Color.White;
             this.buttonSummary.Location = new System.Drawing.Point(258, 329);
             this.buttonSummary.Name = "buttonSummary";
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            this.buttonSummary.Padding = new System.Windows.Forms.Padding(1);
-            this.buttonSummary.Size = new System.Drawing.Size(51, 35);
-=======
             this.buttonSummary.Padding = new System.Windows.Forms.Padding(2);
             this.buttonSummary.Size = new System.Drawing.Size(53, 37);
->>>>>>> Stashed changes
-=======
-            this.buttonSummary.Padding = new System.Windows.Forms.Padding(2);
-            this.buttonSummary.Size = new System.Drawing.Size(53, 37);
->>>>>>> Stashed changes
             this.buttonSummary.TabIndex = 17;
             this.buttonSummary.Text = "Xóa";
             this.buttonSummary.TextColor = System.Drawing.Color.White;
