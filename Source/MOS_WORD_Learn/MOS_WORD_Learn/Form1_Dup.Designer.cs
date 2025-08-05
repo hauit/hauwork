@@ -84,7 +84,7 @@ namespace WindowsFormsApplication1
             this.labelCauHienTai.ForeColor = System.Drawing.Color.White;
             this.labelCauHienTai.Location = new System.Drawing.Point(330, 329);
             this.labelCauHienTai.Margin = new System.Windows.Forms.Padding(0);
-            this.labelCauHienTai.MinimumSize = new System.Drawing.Size(80, 0);
+            this.labelCauHienTai.MinimumSize = new System.Drawing.Size(86, 0);
             this.labelCauHienTai.Name = "labelCauHienTai";
             this.labelCauHienTai.Padding = new System.Windows.Forms.Padding(8, 8, 8, 7);
             this.labelCauHienTai.Size = new System.Drawing.Size(86, 37);
@@ -204,10 +204,9 @@ namespace WindowsFormsApplication1
             this.buttonVideoHelp.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.buttonVideoHelp.ForeColor = System.Drawing.Color.White;
             this.buttonVideoHelp.Location = new System.Drawing.Point(120, 265);
-            this.buttonVideoHelp.MinimumSize = new System.Drawing.Size(142, 0);
             this.buttonVideoHelp.Name = "buttonVideoHelp";
             this.buttonVideoHelp.Padding = new System.Windows.Forms.Padding(2);
-            this.buttonVideoHelp.Size = new System.Drawing.Size(142, 37);
+            this.buttonVideoHelp.Size = new System.Drawing.Size(65, 37);
             this.buttonVideoHelp.TabIndex = 24;
             this.buttonVideoHelp.Text = "HDSD";
             this.buttonVideoHelp.TextColor = System.Drawing.Color.White;
@@ -231,7 +230,7 @@ namespace WindowsFormsApplication1
             this.buttonZoom.Location = new System.Drawing.Point(64, 329);
             this.buttonZoom.Name = "buttonZoom";
             this.buttonZoom.Padding = new System.Windows.Forms.Padding(2);
-            this.buttonZoom.Size = new System.Drawing.Size(95, 37);
+            this.buttonZoom.Size = new System.Drawing.Size(93, 37);
             this.buttonZoom.TabIndex = 20;
             this.buttonZoom.Text = "Đánh dấu";
             this.buttonZoom.TextColor = System.Drawing.Color.White;
@@ -305,9 +304,9 @@ namespace WindowsFormsApplication1
             this.buttonEV.MinimumSize = new System.Drawing.Size(95, 0);
             this.buttonEV.Name = "buttonEV";
             this.buttonEV.Padding = new System.Windows.Forms.Padding(4);
-            this.buttonEV.Size = new System.Drawing.Size(95, 37);
+            this.buttonEV.Size = new System.Drawing.Size(96, 37);
             this.buttonEV.TabIndex = 3;
-            this.buttonEV.Text = "Tiếng Việt";
+            this.buttonEV.Text = "Tiếng Anh";
             this.buttonEV.TextColor = System.Drawing.Color.White;
             this.buttonEV.UseVisualStyleBackColor = false;
             this.buttonEV.Click += new System.EventHandler(this.buttonEV_Click);
@@ -329,7 +328,7 @@ namespace WindowsFormsApplication1
             this.buttonReset.Location = new System.Drawing.Point(420, 329);
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Padding = new System.Windows.Forms.Padding(2);
-            this.buttonReset.Size = new System.Drawing.Size(103, 37);
+            this.buttonReset.Size = new System.Drawing.Size(64, 37);
             this.buttonReset.TabIndex = 2;
             this.buttonReset.Text = "Reset";
             this.buttonReset.TextColor = System.Drawing.Color.White;

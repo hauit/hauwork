@@ -32,7 +32,6 @@ namespace WindowsFormsApplication1
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.textBoxUser = new System.Windows.Forms.TextBox();
             this.textBoxPass = new System.Windows.Forms.TextBox();
@@ -49,6 +48,7 @@ namespace WindowsFormsApplication1
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -61,6 +61,7 @@ namespace WindowsFormsApplication1
             this.textBoxUser.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
             this.textBoxUser.Location = new System.Drawing.Point(90, 22);
             this.textBoxUser.Name = "textBoxUser";
+            this.textBoxUser.ReadOnly = true;
             this.textBoxUser.Size = new System.Drawing.Size(166, 29);
             this.textBoxUser.TabIndex = 1;
             this.textBoxUser.Text = "MOS training";
@@ -250,6 +251,18 @@ namespace WindowsFormsApplication1
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
             // 
+            // richTextBox2
+            // 
+            this.richTextBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(69)))), ((int)(((byte)(136)))));
+            this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox2.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Italic);
+            this.richTextBox2.ForeColor = System.Drawing.Color.White;
+            this.richTextBox2.Location = new System.Drawing.Point(12, 406);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.Size = new System.Drawing.Size(273, 42);
+            this.richTextBox2.TabIndex = 15;
+            this.richTextBox2.Text = "Thành công không đến từ may mắn, mà bắt đầu từ từng giờ bạn ngồi học hôm nay.";
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -257,9 +270,9 @@ namespace WindowsFormsApplication1
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(69)))), ((int)(((byte)(136)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(297, 455);
+            this.ClientSize = new System.Drawing.Size(297, 448);
             this.ControlBox = false;
-            this.Controls.Add(this.richTextBox3);
+            this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.textBoxPassSo);
@@ -300,5 +313,6 @@ namespace WindowsFormsApplication1
         private PictureBox pictureBox1;
         private ContextMenuStrip contextMenuStrip1;
         private RichTextBox richTextBox3;
+        private RichTextBox richTextBox2;
     }
 }

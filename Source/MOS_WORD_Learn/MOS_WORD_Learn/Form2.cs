@@ -38,16 +38,16 @@ namespace WindowsFormsApplication1
         {
             try
             {
-                if (this.textBoxUser.Text.ToUpper() != "ON LUYEN MOS")
+                if (this.textBoxUser.Text.ToUpper() != "MOS TRAINING")
                 {
-                    int num = (int)MessageBox.Show("sai user name");
+                    int num = (int)MessageBox.Show("Sai tên đăng nhập");
                     this.textBoxUser.Focus();
                     return;
                 }
 
                 if (this.textBoxPass.Text == "")
                 {
-                    int num = (int)MessageBox.Show("Nhập Pass");
+                    int num = (int)MessageBox.Show("Nhập mật khẩu");
                     this.textBoxPass.Focus();
                     return;
                 }
@@ -86,7 +86,7 @@ namespace WindowsFormsApplication1
             }
             catch (Exception ex)
             {
-                int num = (int)MessageBox.Show("không kết nói được với server vào google meet để tìm hổ trợ|" + ex.Message);
+                int num = (int)MessageBox.Show("Không kết nói được với server vào google meet để tìm hổ trợ|" + ex.Message);
                 this.Close();
             }
         }
@@ -311,7 +311,7 @@ namespace WindowsFormsApplication1
             }
             if (this.ngayhethang < this.dt)
             {
-                MessageBox.Show("Phần mềm hết hạn");
+                MessageBox.Show("Phần mềm đã hết hạn");
                 return false;
             }
 
@@ -326,7 +326,7 @@ namespace WindowsFormsApplication1
             {
                 Properties.Settings.Default.DATE = string.Empty;
                 Properties.Settings.Default.Save();
-                MessageBox.Show("Phần Sai mật khẩu. vui lòng liên hệ Admin để lấy lại");
+                MessageBox.Show("Mật khẩu không đúng. Vui lòng liên hệ Admin để cấp lại");
                 return false;
             }
             return true;
