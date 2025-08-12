@@ -104,6 +104,7 @@
     <Compile Include="Sec6.cs" />
     <Compile Include="Sec7.cs" />
     <Compile Include="Sec8.cs" />
+    <Compile Include="Sec9.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
