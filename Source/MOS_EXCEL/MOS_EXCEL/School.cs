@@ -1,6 +1,6 @@
 ﻿// Decompiled with JetBrains decompiler
-// Type: WindowsFormsApplication1.School
-// Assembly: WindowsFormsApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// Type: MOS_EXCEL_LEARN.School
+// Assembly: MOS_EXCEL_LEARN, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: A91AAF83-2707-4347-A301-00149AC4CDCE
 // Assembly location: C:\Users\Admin\Downloads\WE_19\HOC_EXCEL_19\Chay File Nay.exe
 

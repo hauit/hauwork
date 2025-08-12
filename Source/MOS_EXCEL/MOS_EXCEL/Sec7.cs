@@ -1,6 +1,6 @@
 ﻿// Decompiled with JetBrains decompiler
-// Type: WindowsFormsApplication1.Sec7
-// Assembly: WindowsFormsApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// Type: MOS_EXCEL_LEARN.Sec7
+// Assembly: MOS_EXCEL_LEARN, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: A91AAF83-2707-4347-A301-00149AC4CDCE
 // Assembly location: C:\Users\Admin\Downloads\WE_19\HOC_EXCEL_19\Chay File Nay.exe
 
@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
-namespace WindowsFormsApplication1
+namespace MOS_EXCEL_LEARN
 {
   internal class Sec7
   {
@@ -68,1291 +68,1015 @@ namespace WindowsFormsApplication1
       }
     }
 
-    private static string cau1(Application a, Workbook d)
-    {
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau1\u003Eo__SiteContainer0.\u003C\u003Ep__Site1 == null)
+        private static string cau1(Application a, Workbook d)
         {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau1\u003Eo__SiteContainer0.\u003C\u003Ep__Site1 = CallSite<Func<CallSite, object, Worksheet>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec7.\u003Ccau1\u003Eo__SiteContainer0.\u003C\u003Ep__Site1.Target((CallSite) Sec7.\u003Ccau1\u003Eo__SiteContainer0.\u003C\u003Ep__Site1, d.Worksheets[(object) "Key Applications"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (Ten trang tinh)";
-      }
-      try
-      {
-        // ISSUE: reference to a compiler-generated method
-        if (worksheet.get_Range((object) "J2", (object) "J2").SparklineGroups.Count != 1)
-          return "False(chen Sparkline)";
-        // ISSUE: reference to a compiler-generated method
-        if (worksheet.get_Range((object) "J2", (object) "J2").SparklineGroups[(object) 1].SourceData != "B2:G2")
-          return "False(B2:G2)";
-        // ISSUE: reference to a compiler-generated method
-        if (worksheet.get_Range((object) "J2", (object) "J2").SparklineGroups[(object) 1].Type != XlSparkType.xlSparkColumn)
-          return "False(Column)";
-      }
-      catch (Exception ex)
-      {
-        return "False (something wrong)";
-      }
-      return "True";
-    }
+            try
+            {
+                // Tìm worksheet "Key Applications"
+                Worksheet worksheet = null;
+                foreach (Worksheet ws in d.Worksheets)
+                {
+                    if (ws.Name == "Key Applications")
+                    {
+                        worksheet = ws;
+                        break;
+                    }
+                }
 
-    private static string cau2(Application a, Workbook d)
-    {
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau2\u003Eo__SiteContainer2.\u003C\u003Ep__Site3 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau2\u003Eo__SiteContainer2.\u003C\u003Ep__Site3 = CallSite<Func<CallSite, object, Worksheet>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec7.\u003Ccau2\u003Eo__SiteContainer2.\u003C\u003Ep__Site3.Target((CallSite) Sec7.\u003Ccau2\u003Eo__SiteContainer2.\u003C\u003Ep__Site3, d.Worksheets[(object) "Key Applications"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (Tên Trang Tính)";
-      }
-      if (worksheet.Shapes.Count != 1)
-        return "False (Number of shape)";
-      // ISSUE: variable of a compiler-generated type
-      Chart chart;
-      try
-      {
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        Shape shape = worksheet.Shapes.Item((object) 1);
-        chart = shape.Chart;
-      }
-      catch (Exception ex)
-      {
-        return "False (Not Chart)";
-      }
-      try
-      {
-        if (chart.Legend.Width < 100.0)
-          return "False (add series)";
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau2\u003Eo__SiteContainer2.\u003C\u003Ep__Site4 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau2\u003Eo__SiteContainer2.\u003C\u003Ep__Site4 = CallSite<Func<CallSite, object, SeriesCollection>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (SeriesCollection), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        SeriesCollection seriesCollection = Sec7.\u003Ccau2\u003Eo__SiteContainer2.\u003C\u003Ep__Site4.Target((CallSite) Sec7.\u003Ccau2\u003Eo__SiteContainer2.\u003C\u003Ep__Site4, chart.SeriesCollection(Type.Missing));
-        if (seriesCollection.Count != 3)
-          return "False(co 3 series)";
-        // ISSUE: reference to a compiler-generated method
-        if (!seriesCollection.Item((object) 3).FormulaR1C1.Contains("R32C2:R32C7"))
-          return "False(add series sai)";
-      }
-      catch (Exception ex)
-      {
-        return "False(Something wrong)";
-      }
-      return "True";
-    }
+                if (worksheet == null)
+                    return "False (Tên trang tính)";
 
-    private static string cau3(Application a, Workbook d)
-    {
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau3\u003Eo__SiteContainer5.\u003C\u003Ep__Site6 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau3\u003Eo__SiteContainer5.\u003C\u003Ep__Site6 = CallSite<Func<CallSite, object, Worksheet>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec7.\u003Ccau3\u003Eo__SiteContainer5.\u003C\u003Ep__Site6.Target((CallSite) Sec7.\u003Ccau3\u003Eo__SiteContainer5.\u003C\u003Ep__Site6, d.Worksheets[(object) "Q1 Sales"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (Ten trang tinh)";
-      }
-      try
-      {
-        // ISSUE: reference to a compiler-generated method
-        if (worksheet.get_Range((object) "H6", (object) "H36").SparklineGroups.Count != 1)
-          return "False(chen Sparkline)";
-        // ISSUE: reference to a compiler-generated method
-        if (worksheet.get_Range((object) "H6", (object) "H36").SparklineGroups[(object) 1].SourceData != "C6:E36")
-          return "False(C6:E6)";
-        // ISSUE: reference to a compiler-generated method
-        if (worksheet.get_Range((object) "H6", (object) "H36").SparklineGroups[(object) 1].Type != XlSparkType.xlSparkLine)
-          return "False(Column)";
-      }
-      catch (Exception ex)
-      {
-        return "False (something wrong)";
-      }
-      return "True";
-    }
+                // Lấy ô J2
+                Range cell = worksheet.Range["J2"];
 
-    private static string cau4(Application a, Workbook d)
-    {
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau4\u003Eo__SiteContainer7.\u003C\u003Ep__Site8 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau4\u003Eo__SiteContainer7.\u003C\u003Ep__Site8 = CallSite<Func<CallSite, object, Worksheet>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec7.\u003Ccau4\u003Eo__SiteContainer7.\u003C\u003Ep__Site8.Target((CallSite) Sec7.\u003Ccau4\u003Eo__SiteContainer7.\u003C\u003Ep__Site8, d.Worksheets[(object) "Q2 Sales"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (Tên Trang Tính)";
-      }
-      if (worksheet.Shapes.Count != 1)
-        return "False (Number of shape)";
-      // ISSUE: variable of a compiler-generated type
-      Chart chart;
-      try
-      {
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        Shape shape = worksheet.Shapes.Item((object) 1);
-        chart = shape.Chart;
-      }
-      catch (Exception ex)
-      {
-        return "False (Not Chart)";
-      }
-      try
-      {
-        if (chart.Legend.Width < 90.0)
-          return "False (add series)";
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau4\u003Eo__SiteContainer7.\u003C\u003Ep__Site9 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau4\u003Eo__SiteContainer7.\u003C\u003Ep__Site9 = CallSite<Func<CallSite, object, SeriesCollection>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (SeriesCollection), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        SeriesCollection seriesCollection = Sec7.\u003Ccau4\u003Eo__SiteContainer7.\u003C\u003Ep__Site9.Target((CallSite) Sec7.\u003Ccau4\u003Eo__SiteContainer7.\u003C\u003Ep__Site9, chart.SeriesCollection(Type.Missing));
-        if (seriesCollection.Count != 3)
-          return "False(co 3 series)";
-        // ISSUE: reference to a compiler-generated method
-        if (!seriesCollection.Item((object) 3).FormulaR1C1.Contains("'Q2 Sales'!R6C5:R36C5,3)"))
-          return "False(add series sai)";
-      }
-      catch (Exception ex)
-      {
-        return "False(Something wrong)";
-      }
-      return "True";
-    }
+                // Kiểm tra Sparkline
+                SparklineGroups sparkGroups = cell.SparklineGroups;
+                if (sparkGroups == null || sparkGroups.Count != 1)
+                    return "False(chen Sparkline)";
 
-    private static string cau5(Application a, Workbook d)
-    {
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        if (d.Sheets.Count != 5)
-          return "False(Duy chuyen chart qua trang tin moi)";
-        if (d.Worksheets.Count != 4)
-          return "False(dung Move chart, khong tao trang tinh moi roi cut qua)";
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau5\u003Eo__SiteContainera.\u003C\u003Ep__Siteb == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau5\u003Eo__SiteContainera.\u003C\u003Ep__Siteb = CallSite<Func<CallSite, object, Worksheet>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec7.\u003Ccau5\u003Eo__SiteContainera.\u003C\u003Ep__Siteb.Target((CallSite) Sec7.\u003Ccau5\u003Eo__SiteContainera.\u003C\u003Ep__Siteb, d.Worksheets[(object) "Outbound Calls"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (Outbound Calls)";
-      }
-      try
-      {
-        if (worksheet.Shapes.Count != 1)
-          return "False (Move not copy)";
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        Shape shape = worksheet.Shapes.Item((object) 1);
-        // ISSUE: variable of a compiler-generated type
-        Chart chart = shape.Chart;
-        if (chart.ChartType == XlChartType.xlLine)
-          return "False (Move line chart)";
-      }
-      catch (Exception ex)
-      {
-        return "False (Not Chart)";
-      }
-      try
-      {
-        object sheet = d.Sheets[(object) "Whale Tour Sales"];
-      }
-      catch (Exception ex)
-      {
-        return "False(Whale Tour Sales)";
-      }
-      return "True";
-    }
+                SparklineGroup sparkGroup = sparkGroups[1];
 
-    private static string cau6(Application a, Workbook d)
-    {
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau6\u003Eo__SiteContainerc.\u003C\u003Ep__Sited == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau6\u003Eo__SiteContainerc.\u003C\u003Ep__Sited = CallSite<Func<CallSite, object, Worksheet>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec7.\u003Ccau6\u003Eo__SiteContainerc.\u003C\u003Ep__Sited.Target((CallSite) Sec7.\u003Ccau6\u003Eo__SiteContainerc.\u003C\u003Ep__Sited, d.Worksheets[(object) "Inbound call"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (ten trang tinh)";
-      }
-      // ISSUE: variable of a compiler-generated type
-      Chart chart;
-      try
-      {
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        Shape shape = worksheet.Shapes.Item((object) "Chart 1");
-        chart = shape.Chart;
-      }
-      catch (Exception ex)
-      {
-        return "False (Not Chart)";
-      }
-      try
-      {
-        if (chart.Legend.Width < 200.0)
-          return "False (Swap colunms)";
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau6\u003Eo__SiteContainerc.\u003C\u003Ep__Sitee == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau6\u003Eo__SiteContainerc.\u003C\u003Ep__Sitee = CallSite<Func<CallSite, object, SeriesCollection>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (SeriesCollection), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        SeriesCollection seriesCollection = Sec7.\u003Ccau6\u003Eo__SiteContainerc.\u003C\u003Ep__Sitee.Target((CallSite) Sec7.\u003Ccau6\u003Eo__SiteContainerc.\u003C\u003Ep__Sitee, chart.SeriesCollection(Type.Missing));
-        if (seriesCollection.Count != 6)
-          return "False(co 6 series)";
-        // ISSUE: reference to a compiler-generated method
-        if (seriesCollection.Item((object) 3).FormulaR1C1 != "=SERIES('Inbound call'!R17C2,'Inbound call'!R2C3:R2C6,'Inbound call'!R17C3:R17C6,3)")
-          return "False(Swap colunms)";
-      }
-      catch (Exception ex)
-      {
-        return "False(Something wrong)";
-      }
-      return "True";
-    }
+                if (sparkGroup.SourceData != "B2:G2")
+                    return "False(B2:G2)";
 
-    private static string cau7(Application a, Workbook d)
-    {
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau7\u003Eo__SiteContainerf.\u003C\u003Ep__Site10 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau7\u003Eo__SiteContainerf.\u003C\u003Ep__Site10 = CallSite<Func<CallSite, object, Worksheet>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec7.\u003Ccau7\u003Eo__SiteContainerf.\u003C\u003Ep__Site10.Target((CallSite) Sec7.\u003Ccau7\u003Eo__SiteContainerf.\u003C\u003Ep__Site10, d.Worksheets[(object) "Demographics"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (ten trang tinh)";
-      }
-      // ISSUE: variable of a compiler-generated type
-      Chart chart;
-      try
-      {
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        Shape shape = worksheet.Shapes.Item((object) 1);
-        chart = shape.Chart;
-      }
-      catch (Exception ex)
-      {
-        return "False (insert a chart)";
-      }
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau7\u003Eo__SiteContainerf.\u003C\u003Ep__Site11 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau7\u003Eo__SiteContainerf.\u003C\u003Ep__Site11 = CallSite<Func<CallSite, object, SeriesCollection>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (SeriesCollection), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        SeriesCollection seriesCollection = Sec7.\u003Ccau7\u003Eo__SiteContainerf.\u003C\u003Ep__Site11.Target((CallSite) Sec7.\u003Ccau7\u003Eo__SiteContainerf.\u003C\u003Ep__Site11, chart.SeriesCollection(Type.Missing));
-        if (seriesCollection.Count != 1)
-          return "False(co 1 series)";
-        // ISSUE: reference to a compiler-generated method
-        if (seriesCollection.Item((object) 1).FormulaR1C1 != "=SERIES(Demographics!R3C8,Demographics!R4C7:R9C7,Demographics!R4C8:R9C8,1)")
-          return "False(series)";
-        if (chart.ChartTitle.Text != "Donations by Age Group")
-          return "False(Donations by Age Group)";
-        if (chart.ChartType != XlChartType.xl3DColumnClustered)
-          return "False(chartType)";
-      }
-      catch (Exception ex)
-      {
-        return "False(Something wrong)";
-      }
-      return "True";
-    }
+                if (sparkGroup.Type != XlSparkType.xlSparkColumn)
+                    return "False(Column)";
 
-    private static string cau8(Application a, Workbook d)
-    {
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau8\u003Eo__SiteContainer12.\u003C\u003Ep__Site13 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau8\u003Eo__SiteContainer12.\u003C\u003Ep__Site13 = CallSite<Func<CallSite, object, Worksheet>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec7)));
+                return "True";
+            }
+            catch (Exception)
+            {
+                return "False (something wrong)";
+            }
         }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec7.\u003Ccau8\u003Eo__SiteContainer12.\u003C\u003Ep__Site13.Target((CallSite) Sec7.\u003Ccau8\u003Eo__SiteContainer12.\u003C\u003Ep__Site13, d.Worksheets[(object) "New York City"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (New York City worksheet not found)";
-      }
-      if (worksheet.Shapes.Count != 1)
-        return "False (chèn chart)";
-      // ISSUE: variable of a compiler-generated type
-      Chart chart;
-      try
-      {
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        Shape shape = worksheet.Shapes.Item((object) 1);
-        chart = shape.Chart;
-      }
-      catch (Exception ex)
-      {
-        return "False (Not Chart)";
-      }
-      try
-      {
-        if (chart.ChartType != XlChartType.xlColumnClustered)
-          return "False (not 3DPie)";
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau8\u003Eo__SiteContainer12.\u003C\u003Ep__Site14 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau8\u003Eo__SiteContainer12.\u003C\u003Ep__Site14 = CallSite<Func<CallSite, object, SeriesCollection>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (SeriesCollection), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        SeriesCollection seriesCollection = Sec7.\u003Ccau8\u003Eo__SiteContainer12.\u003C\u003Ep__Site14.Target((CallSite) Sec7.\u003Ccau8\u003Eo__SiteContainer12.\u003C\u003Ep__Site14, chart.SeriesCollection(Type.Missing));
-        if (seriesCollection.Count != 1)
-          return "False(co 1 series)";
-        // ISSUE: reference to a compiler-generated method
-        if (seriesCollection.Item((object) 1).FormulaR1C1 != "=SERIES('New York City'!R4C4,'New York City'!R5C2:R21C2,'New York City'!R5C4:R21C4,1)")
-          return "False(series)";
-      }
-      catch (Exception ex)
-      {
-        return "False(khong xác định)";
-      }
-      return "True";
-    }
 
-    private static string cau9(Application a, Workbook d)
-    {
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau9\u003Eo__SiteContainer15.\u003C\u003Ep__Site16 == null)
+        private static string cau2(Application a, Workbook d)
         {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau9\u003Eo__SiteContainer15.\u003C\u003Ep__Site16 = CallSite<Func<CallSite, object, Worksheet>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec7.\u003Ccau9\u003Eo__SiteContainer15.\u003C\u003Ep__Site16.Target((CallSite) Sec7.\u003Ccau9\u003Eo__SiteContainer15.\u003C\u003Ep__Site16, d.Worksheets[(object) "London"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (London worksheet not found)";
-      }
-      if (worksheet.Shapes.Count != 2)
-        return "False (Number of shape)";
-      // ISSUE: variable of a compiler-generated type
-      Chart chart;
-      try
-      {
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        Shape shape = worksheet.Shapes.Item((object) 2);
-        chart = shape.Chart;
-      }
-      catch (Exception ex)
-      {
-        return "False (not Chart)";
-      }
-      try
-      {
-        if (chart.DataTable.ShowLegendKey)
-          return "False(không show LegendKey)";
-      }
-      catch (Exception ex)
-      {
-        return "Fasle(show dataTable)";
-      }
-      return "True";
-    }
+            try
+            {
+                // Lấy worksheet "Key Applications"
+                Worksheet worksheet = null;
+                foreach (Worksheet ws in d.Worksheets)
+                {
+                    if (ws.Name == "Key Applications")
+                    {
+                        worksheet = ws;
+                        break;
+                    }
+                }
 
-    private static string cau10(Application a, Workbook d)
-    {
-      string str = "True";
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau10\u003Eo__SiteContainer17.\u003C\u003Ep__Site18 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau10\u003Eo__SiteContainer17.\u003C\u003Ep__Site18 = CallSite<Func<CallSite, object, Worksheet>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec7.\u003Ccau10\u003Eo__SiteContainer17.\u003C\u003Ep__Site18.Target((CallSite) Sec7.\u003Ccau10\u003Eo__SiteContainer17.\u003C\u003Ep__Site18, d.Worksheets[(object) "New Accounts"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (New Accounts worksheet not found)";
-      }
-      if (worksheet.Shapes.Count != 1)
-        return "False (Number of shape)";
-      // ISSUE: variable of a compiler-generated type
-      Chart chart;
-      try
-      {
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        Shape shape = worksheet.Shapes.Item((object) 1);
-        chart = shape.Chart;
-      }
-      catch (Exception ex)
-      {
-        return "False (Not Chart)";
-      }
-      try
-      {
-        if (chart.PlotBy == XlRowCol.xlRows)
-          return "False (biểu đồ dòng)";
-      }
-      catch (Exception ex)
-      {
-        return "False (not add title)";
-      }
-      return str;
-    }
+                if (worksheet == null)
+                    return "False (Tên Trang Tính)";
 
-    private static string cau11(Application a, Workbook d)
-    {
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau11\u003Eo__SiteContainer19.\u003C\u003Ep__Site1a == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau11\u003Eo__SiteContainer19.\u003C\u003Ep__Site1a = CallSite<Func<CallSite, object, Worksheet>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec7.\u003Ccau11\u003Eo__SiteContainer19.\u003C\u003Ep__Site1a.Target((CallSite) Sec7.\u003Ccau11\u003Eo__SiteContainer19.\u003C\u003Ep__Site1a, d.Worksheets[(object) "Summary"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (Summary worksheet not found)";
-      }
-      if (worksheet.Shapes.Count != 1)
-        return "False (Number of shape)";
-      // ISSUE: variable of a compiler-generated type
-      Chart chart;
-      try
-      {
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        Shape shape = worksheet.Shapes.Item((object) 1);
-        chart = shape.Chart;
-      }
-      catch (Exception ex)
-      {
-        return "False (Not Chart)";
-      }
-      try
-      {
-        if (chart.ChartType != XlChartType.xlColumnClustered)
-          return "False (not 3DPie)";
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau11\u003Eo__SiteContainer19.\u003C\u003Ep__Site1b == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau11\u003Eo__SiteContainer19.\u003C\u003Ep__Site1b = CallSite<Func<CallSite, object, SeriesCollection>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (SeriesCollection), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        SeriesCollection seriesCollection = Sec7.\u003Ccau11\u003Eo__SiteContainer19.\u003C\u003Ep__Site1b.Target((CallSite) Sec7.\u003Ccau11\u003Eo__SiteContainer19.\u003C\u003Ep__Site1b, chart.SeriesCollection(Type.Missing));
-        if (seriesCollection.Count != 2)
-          return "False(co 2 series)";
-        // ISSUE: reference to a compiler-generated method
-        if (seriesCollection.Item((object) 2).FormulaR1C1 != "=SERIES(Summary!R5C3,Summary!R6C1:R12C1,Summary!R6C3:R12C3,2)")
-          return "False (=SERIES(Summary!R5C3,Summary!R6C1:R12C1,Summary!R6C3:R12C3,2))";
-      }
-      catch (Exception ex)
-      {
-        return "False (không xát định)";
-      }
-      return "True";
-    }
+                if (worksheet.Shapes.Count != 1)
+                    return "False (Number of shape)";
 
-    private static string cau12(Application a, Workbook d)
-    {
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau12\u003Eo__SiteContainer1c.\u003C\u003Ep__Site1d == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau12\u003Eo__SiteContainer1c.\u003C\u003Ep__Site1d = CallSite<Func<CallSite, object, Worksheet>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec7.\u003Ccau12\u003Eo__SiteContainer1c.\u003C\u003Ep__Site1d.Target((CallSite) Sec7.\u003Ccau12\u003Eo__SiteContainer1c.\u003C\u003Ep__Site1d, d.Worksheets[(object) "Enrollment"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (Enrollment worksheet not found)";
-      }
-      try
-      {
-        // ISSUE: reference to a compiler-generated method
-        if (worksheet.get_Range((object) "G5", (object) "G25").SparklineGroups.Count != 1)
-          return "False(chen Sparkline)";
-        // ISSUE: reference to a compiler-generated method
-        if (worksheet.get_Range((object) "G5", (object) "G25").SparklineGroups[(object) 1].SourceData != "D5:F25")
-          return "False(D5:F25)";
-        // ISSUE: reference to a compiler-generated method
-        if (worksheet.get_Range((object) "G5", (object) "G25").SparklineGroups[(object) 1].Type != XlSparkType.xlSparkColumn)
-          return "False(Column)";
-      }
-      catch (Exception ex)
-      {
-        return "False (Not Chart)";
-      }
-      try
-      {
-      }
-      catch (Exception ex)
-      {
-        return "False (không xát định)";
-      }
-      return "True";
-    }
+                // Lấy shape đầu tiên
+                Shape shape = worksheet.Shapes.Item(1);
 
-    private static string cau13(Application a, Workbook d)
-    {
-      string str = "True";
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau13\u003Eo__SiteContainer1e.\u003C\u003Ep__Site1f == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau13\u003Eo__SiteContainer1e.\u003C\u003Ep__Site1f = CallSite<Func<CallSite, object, Worksheet>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec7.\u003Ccau13\u003Eo__SiteContainer1e.\u003C\u003Ep__Site1f.Target((CallSite) Sec7.\u003Ccau13\u003Eo__SiteContainer1e.\u003C\u003Ep__Site1f, d.Worksheets[(object) "Graduation"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (Graduation worksheet not found)";
-      }
-      if (worksheet.Shapes.Count != 0)
-        return "False (Move Chart)";
-      try
-      {
-        if (d.Worksheets.Count != 5)
-          return "False(dùng chức năng move chart)";
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau13\u003Eo__SiteContainer1e.\u003C\u003Ep__Site20 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau13\u003Eo__SiteContainer1e.\u003C\u003Ep__Site20 = CallSite<Func<CallSite, object, string>>.Create(Binder.Convert(CSharpBinderFlags.None, typeof (string), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        Func<CallSite, object, string> target = Sec7.\u003Ccau13\u003Eo__SiteContainer1e.\u003C\u003Ep__Site20.Target;
-        // ISSUE: reference to a compiler-generated field
-        CallSite<Func<CallSite, object, string>> pSite20 = Sec7.\u003Ccau13\u003Eo__SiteContainer1e.\u003C\u003Ep__Site20;
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau13\u003Eo__SiteContainer1e.\u003C\u003Ep__Site21 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau13\u003Eo__SiteContainer1e.\u003C\u003Ep__Site21 = CallSite<Func<CallSite, object, object>>.Create(Binder.InvokeMember(CSharpBinderFlags.None, "ToString", (IEnumerable<Type>) null, typeof (Sec7), (IEnumerable<CSharpArgumentInfo>) new CSharpArgumentInfo[1]
-          {
-            CSharpArgumentInfo.Create(CSharpArgumentInfoFlags.None, (string) null)
-          }));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        object obj = Sec7.\u003Ccau13\u003Eo__SiteContainer1e.\u003C\u003Ep__Site21.Target((CallSite) Sec7.\u003Ccau13\u003Eo__SiteContainer1e.\u003C\u003Ep__Site21, d.Sheets[(object) "Graduation Chart"]);
-        str = target((CallSite) pSite20, obj);
-      }
-      catch (Exception ex)
-      {
-        return "False (Graduation Chart)";
-      }
-      return "True";
-    }
+                // Kiểm tra có phải là biểu đồ không
+                if (shape.Type != Microsoft.Office.Core.MsoShapeType.msoChart)
+                    return "False (Not Chart)";
 
-    private static string cau14(Application a, Workbook d)
-    {
-      string str = "True";
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau14\u003Eo__SiteContainer22.\u003C\u003Ep__Site23 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau14\u003Eo__SiteContainer22.\u003C\u003Ep__Site23 = CallSite<Func<CallSite, object, Worksheet>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec7.\u003Ccau14\u003Eo__SiteContainer22.\u003C\u003Ep__Site23.Target((CallSite) Sec7.\u003Ccau14\u003Eo__SiteContainer22.\u003C\u003Ep__Site23, d.Worksheets[(object) "Instructional Hours"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (Instructional Hours worksheet not found)";
-      }
-      if (worksheet.Shapes.Count != 1)
-        return "False (Number of shape)";
-      // ISSUE: variable of a compiler-generated type
-      Chart chart;
-      try
-      {
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        Shape shape = worksheet.Shapes.Item((object) 1);
-        chart = shape.Chart;
-      }
-      catch (Exception ex)
-      {
-        return "False (Not Chart)";
-      }
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau14\u003Eo__SiteContainer22.\u003C\u003Ep__Site24 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau14\u003Eo__SiteContainer22.\u003C\u003Ep__Site24 = CallSite<Func<CallSite, object, Axis>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Axis), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        Axis axis = Sec7.\u003Ccau14\u003Eo__SiteContainer22.\u003C\u003Ep__Site24.Target((CallSite) Sec7.\u003Ccau14\u003Eo__SiteContainer22.\u003C\u003Ep__Site24, chart.Axes((object) XlAxisType.xlValue));
-        if (axis.AxisTitle.Text != "Hours")
-          return "False(Hours)";
-      }
-      catch (Exception ex)
-      {
-        return "False (not add title)";
-      }
-      return str;
-    }
+                Chart chart = shape.Chart;
 
-    private static string cau15(Application a, Workbook d)
-    {
-      string str = "True";
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau15\u003Eo__SiteContainer25.\u003C\u003Ep__Site26 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau15\u003Eo__SiteContainer25.\u003C\u003Ep__Site26 = CallSite<Func<CallSite, object, Worksheet>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec7.\u003Ccau15\u003Eo__SiteContainer25.\u003C\u003Ep__Site26.Target((CallSite) Sec7.\u003Ccau15\u003Eo__SiteContainer25.\u003C\u003Ep__Site26, d.Worksheets[(object) "Inventory"]);
-      }
-      catch (Exception ex)
-      {
-        return "False (Inventory)";
-      }
-      if (worksheet.Shapes.Count != 1)
-        return "False (Number of shape)";
-      // ISSUE: variable of a compiler-generated type
-      Chart chart;
-      try
-      {
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        Shape shape = worksheet.Shapes.Item((object) 1);
-        chart = shape.Chart;
-      }
-      catch (Exception ex)
-      {
-        return "False (Not Chart)";
-      }
-      try
-      {
-        if (chart.ChartTitle.Top != 2.0)
-          return "False()";
-      }
-      catch (Exception ex)
-      {
-        return "False(show Title)";
-      }
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau15\u003Eo__SiteContainer25.\u003C\u003Ep__Site27 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau15\u003Eo__SiteContainer25.\u003C\u003Ep__Site27 = CallSite<Func<CallSite, object, Series>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Series), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        Series series = Sec7.\u003Ccau15\u003Eo__SiteContainer25.\u003C\u003Ep__Site27.Target((CallSite) Sec7.\u003Ccau15\u003Eo__SiteContainer25.\u003C\u003Ep__Site27, chart.SeriesCollection((object) 1));
-        if (!series.HasDataLabels)
-          return "False(show Data)";
-      }
-      catch (Exception ex)
-      {
-        return "False()";
-      }
-      return str;
-    }
+                // Kiểm tra legend width
+                if (chart.Legend == null || chart.Legend.Width < 100.0)
+                    return "False (add series)";
 
-    private static string cau16(Application a, Workbook d)
-    {
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau16\u003Eo__SiteContainer28.\u003C\u003Ep__Site29 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau16\u003Eo__SiteContainer28.\u003C\u003Ep__Site29 = CallSite<Func<CallSite, object, Worksheet>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec7.\u003Ccau16\u003Eo__SiteContainer28.\u003C\u003Ep__Site29.Target((CallSite) Sec7.\u003Ccau16\u003Eo__SiteContainer28.\u003C\u003Ep__Site29, d.Worksheets[(object) "Next Semester"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (Next Semester worksheet not found)";
-      }
-      if (worksheet.Shapes.Count != 1)
-        return "False (Number of shape)";
-      // ISSUE: variable of a compiler-generated type
-      Chart chart;
-      try
-      {
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        Shape shape = worksheet.Shapes.Item((object) 1);
-        chart = shape.Chart;
-      }
-      catch (Exception ex)
-      {
-        return "False (Not Chart)";
-      }
-      try
-      {
-        if (chart.ChartType != XlChartType.xlColumnClustered)
-          return "False (not 3DPie)";
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau16\u003Eo__SiteContainer28.\u003C\u003Ep__Site2a == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau16\u003Eo__SiteContainer28.\u003C\u003Ep__Site2a = CallSite<Func<CallSite, object, SeriesCollection>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (SeriesCollection), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        SeriesCollection seriesCollection = Sec7.\u003Ccau16\u003Eo__SiteContainer28.\u003C\u003Ep__Site2a.Target((CallSite) Sec7.\u003Ccau16\u003Eo__SiteContainer28.\u003C\u003Ep__Site2a, chart.SeriesCollection(Type.Missing));
-        if (seriesCollection.Count != 1)
-          return "False(co 2 series)";
-        // ISSUE: reference to a compiler-generated method
-        if (seriesCollection.Item((object) 1).FormulaR1C1 != "=SERIES('Next Semester'!R3C5,'Next Semester'!R4C1:R21C1,'Next Semester'!R4C5:R21C5,1)")
-          return "False (=SERIES('Next Semester'!R3C5,'Next Semester'!R4C1:R21C1,'Next Semester'!R4C5:R21C5,1))";
-      }
-      catch (Exception ex)
-      {
-        return "False (không xác định)";
-      }
-      return "True";
-    }
+                // Lấy các series
+                SeriesCollection seriesCollection = (SeriesCollection)chart.SeriesCollection();
 
-    private static string cau17(Application a, Workbook d)
-    {
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site2c == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site2c = CallSite<Func<CallSite, object, Worksheet>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site2c.Target((CallSite) Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site2c, d.Worksheets[(object) "Enrollment Summary"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (Enrollment Summary worksheet not found)";
-      }
-      if (worksheet.Shapes.Count != 1)
-        return "False (Number of shape)";
-      // ISSUE: variable of a compiler-generated type
-      Chart chart;
-      try
-      {
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        Shape shape = worksheet.Shapes.Item((object) 1);
-        chart = shape.Chart;
-      }
-      catch (Exception ex)
-      {
-        return "False (Not Chart)";
-      }
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site2d == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site2d = CallSite<Func<CallSite, object, bool>>.Create(Binder.UnaryOperation(CSharpBinderFlags.None, ExpressionType.IsTrue, typeof (Sec7), (IEnumerable<CSharpArgumentInfo>) new CSharpArgumentInfo[1]
-          {
-            CSharpArgumentInfo.Create(CSharpArgumentInfoFlags.None, (string) null)
-          }));
-        }
-        // ISSUE: reference to a compiler-generated field
-        Func<CallSite, object, bool> target1 = Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site2d.Target;
-        // ISSUE: reference to a compiler-generated field
-        CallSite<Func<CallSite, object, bool>> pSite2d = Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site2d;
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site2e == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site2e = CallSite<Func<CallSite, object, string, object>>.Create(Binder.BinaryOperation(CSharpBinderFlags.None, ExpressionType.NotEqual, typeof (Sec7), (IEnumerable<CSharpArgumentInfo>) new CSharpArgumentInfo[2]
-          {
-            CSharpArgumentInfo.Create(CSharpArgumentInfoFlags.None, (string) null),
-            CSharpArgumentInfo.Create(CSharpArgumentInfoFlags.UseCompileTimeType | CSharpArgumentInfoFlags.Constant, (string) null)
-          }));
-        }
-        // ISSUE: reference to a compiler-generated field
-        Func<CallSite, object, string, object> target2 = Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site2e.Target;
-        // ISSUE: reference to a compiler-generated field
-        CallSite<Func<CallSite, object, string, object>> pSite2e = Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site2e;
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site2f == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site2f = CallSite<Func<CallSite, object, object>>.Create(Binder.InvokeMember(CSharpBinderFlags.None, "ToString", (IEnumerable<Type>) null, typeof (Sec7), (IEnumerable<CSharpArgumentInfo>) new CSharpArgumentInfo[1]
-          {
-            CSharpArgumentInfo.Create(CSharpArgumentInfoFlags.None, (string) null)
-          }));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        object obj1 = Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site2f.Target((CallSite) Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site2f, chart.ChartStyle);
-        object obj2 = target2((CallSite) pSite2e, obj1, "268");
-        if (target1((CallSite) pSite2d, obj2))
-          return "False (ChartStyle)";
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site30 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site30 = CallSite<Func<CallSite, object, bool>>.Create(Binder.UnaryOperation(CSharpBinderFlags.None, ExpressionType.IsTrue, typeof (Sec7), (IEnumerable<CSharpArgumentInfo>) new CSharpArgumentInfo[1]
-          {
-            CSharpArgumentInfo.Create(CSharpArgumentInfoFlags.None, (string) null)
-          }));
-        }
-        // ISSUE: reference to a compiler-generated field
-        Func<CallSite, object, bool> target3 = Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site30.Target;
-        // ISSUE: reference to a compiler-generated field
-        CallSite<Func<CallSite, object, bool>> pSite30 = Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site30;
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site31 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site31 = CallSite<Func<CallSite, object, string, object>>.Create(Binder.BinaryOperation(CSharpBinderFlags.None, ExpressionType.NotEqual, typeof (Sec7), (IEnumerable<CSharpArgumentInfo>) new CSharpArgumentInfo[2]
-          {
-            CSharpArgumentInfo.Create(CSharpArgumentInfoFlags.None, (string) null),
-            CSharpArgumentInfo.Create(CSharpArgumentInfoFlags.UseCompileTimeType | CSharpArgumentInfoFlags.Constant, (string) null)
-          }));
-        }
-        // ISSUE: reference to a compiler-generated field
-        Func<CallSite, object, string, object> target4 = Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site31.Target;
-        // ISSUE: reference to a compiler-generated field
-        CallSite<Func<CallSite, object, string, object>> pSite31 = Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site31;
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site32 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site32 = CallSite<Func<CallSite, object, object>>.Create(Binder.InvokeMember(CSharpBinderFlags.None, "ToString", (IEnumerable<Type>) null, typeof (Sec7), (IEnumerable<CSharpArgumentInfo>) new CSharpArgumentInfo[1]
-          {
-            CSharpArgumentInfo.Create(CSharpArgumentInfoFlags.None, (string) null)
-          }));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        object obj3 = Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site32.Target((CallSite) Sec7.\u003Ccau17\u003Eo__SiteContainer2b.\u003C\u003Ep__Site32, chart.ChartColor);
-        object obj4 = target4((CallSite) pSite31, obj3, "19");
-        if (target3((CallSite) pSite30, obj4))
-          return "False(Color)";
-      }
-      catch (Exception ex)
-      {
-        return "False (không xác định)";
-      }
-      return "True";
-    }
+                if (seriesCollection.Count != 3)
+                    return "False (co 3 series)";
 
-    private static string cau18(Application a, Workbook d)
-    {
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau18\u003Eo__SiteContainer33.\u003C\u003Ep__Site34 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau18\u003Eo__SiteContainer33.\u003C\u003Ep__Site34 = CallSite<Func<CallSite, object, Worksheet>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec7.\u003Ccau18\u003Eo__SiteContainer33.\u003C\u003Ep__Site34.Target((CallSite) Sec7.\u003Ccau18\u003Eo__SiteContainer33.\u003C\u003Ep__Site34, d.Worksheets[(object) "New Policies"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (New Policies worksheet not found)";
-      }
-      try
-      {
-        // ISSUE: reference to a compiler-generated method
-        if (worksheet.get_Range((object) "J5", (object) "J13").SparklineGroups.Count != 1)
-          return "False(chen Sparkline)";
-        // ISSUE: reference to a compiler-generated method
-        if (worksheet.get_Range((object) "J5", (object) "J13").SparklineGroups[(object) 1].SourceData != "B5:G13")
-          return "False(B5:G13)";
-        // ISSUE: reference to a compiler-generated method
-        if (worksheet.get_Range((object) "J5", (object) "J13").SparklineGroups[(object) 1].Type != XlSparkType.xlSparkColumnStacked100)
-          return "False(Win/Los)";
-      }
-      catch (Exception ex)
-      {
-        return "False (Chen Sparkline)";
-      }
-      return "True";
-    }
+                Series series3 = seriesCollection.Item(3);
+                if (!series3.FormulaR1C1.Contains("R32C2:R32C7"))
+                    return "False (add series sai)";
 
-    private static string cau19(Application a, Workbook d)
-    {
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau19\u003Eo__SiteContainer35.\u003C\u003Ep__Site36 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau19\u003Eo__SiteContainer35.\u003C\u003Ep__Site36 = CallSite<Func<CallSite, object, Worksheet>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec7)));
+                return "True";
+            }
+            catch (Exception)
+            {
+                return "False (Something wrong)";
+            }
         }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec7.\u003Ccau19\u003Eo__SiteContainer35.\u003C\u003Ep__Site36.Target((CallSite) Sec7.\u003Ccau19\u003Eo__SiteContainer35.\u003C\u003Ep__Site36, d.Worksheets[(object) "New Policies"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (New Policies worksheet not found)";
-      }
-      if (worksheet.Shapes.Count != 1)
-        return "False (không thêm xóa chart)";
-      // ISSUE: variable of a compiler-generated type
-      Chart chart;
-      try
-      {
-        // ISSUE: reference to a compiler-generated method
-        chart = worksheet.Shapes.Item((object) 1).Chart;
-      }
-      catch (Exception ex)
-      {
-        return "False (not Chart)";
-      }
-      try
-      {
-        if (chart.DataTable.ShowLegendKey)
-          return "False(Layout)";
-      }
-      catch (Exception ex1)
-      {
-        try
-        {
-          if (chart.Legend.Position != XlLegendPosition.xlLegendPositionBottom)
-            return "False(sai layout)";
-        }
-        catch (Exception ex2)
-        {
-          return "False(Chon Layout)";
-        }
-        return "True";
-      }
-      return "False(Layout)";
-    }
 
-    private static string cau20(Application a, Workbook d)
-    {
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau20\u003Eo__SiteContainer37.\u003C\u003Ep__Site38 == null)
+        private static string cau3(Application a, Workbook d)
         {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau20\u003Eo__SiteContainer37.\u003C\u003Ep__Site38 = CallSite<Func<CallSite, object, Worksheet>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec7.\u003Ccau20\u003Eo__SiteContainer37.\u003C\u003Ep__Site38.Target((CallSite) Sec7.\u003Ccau20\u003Eo__SiteContainer37.\u003C\u003Ep__Site38, d.Worksheets[(object) "Summary"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (Summary worksheet not found)";
-      }
-      if (worksheet.Shapes.Count != 1)
-        return "False (không thêm xóa chart)";
-      try
-      {
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        Chart chart = worksheet.Shapes.Item((object) 1).Chart;
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau20\u003Eo__SiteContainer37.\u003C\u003Ep__Site39 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau20\u003Eo__SiteContainer37.\u003C\u003Ep__Site39 = CallSite<Func<CallSite, object, bool>>.Create(Binder.UnaryOperation(CSharpBinderFlags.None, ExpressionType.IsTrue, typeof (Sec7), (IEnumerable<CSharpArgumentInfo>) new CSharpArgumentInfo[1]
-          {
-            CSharpArgumentInfo.Create(CSharpArgumentInfoFlags.None, (string) null)
-          }));
-        }
-        // ISSUE: reference to a compiler-generated field
-        Func<CallSite, object, bool> target1 = Sec7.\u003Ccau20\u003Eo__SiteContainer37.\u003C\u003Ep__Site39.Target;
-        // ISSUE: reference to a compiler-generated field
-        CallSite<Func<CallSite, object, bool>> pSite39 = Sec7.\u003Ccau20\u003Eo__SiteContainer37.\u003C\u003Ep__Site39;
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau20\u003Eo__SiteContainer37.\u003C\u003Ep__Site3a == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau20\u003Eo__SiteContainer37.\u003C\u003Ep__Site3a = CallSite<Func<CallSite, object, string, object>>.Create(Binder.BinaryOperation(CSharpBinderFlags.None, ExpressionType.NotEqual, typeof (Sec7), (IEnumerable<CSharpArgumentInfo>) new CSharpArgumentInfo[2]
-          {
-            CSharpArgumentInfo.Create(CSharpArgumentInfoFlags.None, (string) null),
-            CSharpArgumentInfo.Create(CSharpArgumentInfoFlags.UseCompileTimeType | CSharpArgumentInfoFlags.Constant, (string) null)
-          }));
-        }
-        // ISSUE: reference to a compiler-generated field
-        Func<CallSite, object, string, object> target2 = Sec7.\u003Ccau20\u003Eo__SiteContainer37.\u003C\u003Ep__Site3a.Target;
-        // ISSUE: reference to a compiler-generated field
-        CallSite<Func<CallSite, object, string, object>> pSite3a = Sec7.\u003Ccau20\u003Eo__SiteContainer37.\u003C\u003Ep__Site3a;
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau20\u003Eo__SiteContainer37.\u003C\u003Ep__Site3b == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau20\u003Eo__SiteContainer37.\u003C\u003Ep__Site3b = CallSite<Func<CallSite, object, object>>.Create(Binder.InvokeMember(CSharpBinderFlags.None, "ToString", (IEnumerable<Type>) null, typeof (Sec7), (IEnumerable<CSharpArgumentInfo>) new CSharpArgumentInfo[1]
-          {
-            CSharpArgumentInfo.Create(CSharpArgumentInfoFlags.None, (string) null)
-          }));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        object obj1 = Sec7.\u003Ccau20\u003Eo__SiteContainer37.\u003C\u003Ep__Site3b.Target((CallSite) Sec7.\u003Ccau20\u003Eo__SiteContainer37.\u003C\u003Ep__Site3b, chart.ChartColor);
-        object obj2 = target2((CallSite) pSite3a, obj1, "11");
-        if (target1((CallSite) pSite39, obj2))
-          return "False(sai màu)";
-      }
-      catch (Exception ex)
-      {
-        return "False (Graduation Chart)";
-      }
-      return "True";
-    }
+            Worksheet worksheet;
+            try
+            {
+                worksheet = (Worksheet)d.Worksheets["Q1 Sales"];
+            }
+            catch
+            {
+                return "Fales (Ten trang tinh)";
+            }
 
-    private static string cau21(Application a, Workbook d)
-    {
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau21\u003Eo__SiteContainer3c.\u003C\u003Ep__Site3d == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau21\u003Eo__SiteContainer3c.\u003C\u003Ep__Site3d = CallSite<Func<CallSite, object, Worksheet>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec7)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec7.\u003Ccau21\u003Eo__SiteContainer3c.\u003C\u003Ep__Site3d.Target((CallSite) Sec7.\u003Ccau21\u003Eo__SiteContainer3c.\u003C\u003Ep__Site3d, d.Worksheets[(object) "Comparison"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (Comparison worksheet not found)";
-      }
-      if (worksheet.Shapes.Count != 1)
-        return "False (không thêm xóa chart)";
-      try
-      {
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        Chart chart = worksheet.Shapes.Item((object) 1).Chart;
-        if (chart.PlotBy != XlRowCol.xlRows)
-          return "False(Biểu đồ Cột)";
-      }
-      catch (Exception ex)
-      {
-        return "False (Chart)";
-      }
-      return "True";
-    }
+            try
+            {
+                Range sparkRange = worksheet.get_Range("H6", "H36");
+                SparklineGroups sparkGroups = sparkRange.SparklineGroups;
 
-    private static string cau22(Application a, Workbook d)
-    {
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau22\u003Eo__SiteContainer3e.\u003C\u003Ep__Site3f == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau22\u003Eo__SiteContainer3e.\u003C\u003Ep__Site3f = CallSite<Func<CallSite, object, Worksheet>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec7)));
+                if (sparkGroups == null || sparkGroups.Count != 1)
+                    return "False(chen Sparkline)";
+
+                SparklineGroup sparkGroup = sparkGroups[1];
+
+                if (sparkGroup.SourceData != "C6:E36")
+                    return "False(C6:E6)";
+
+                if (sparkGroup.Type != XlSparkType.xlSparkLine)
+                    return "False(Column)";
+            }
+            catch
+            {
+                return "False (something wrong)";
+            }
+
+            return "True";
         }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec7.\u003Ccau22\u003Eo__SiteContainer3e.\u003C\u003Ep__Site3f.Target((CallSite) Sec7.\u003Ccau22\u003Eo__SiteContainer3e.\u003C\u003Ep__Site3f, d.Worksheets[(object) "Score Distribution"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (Score Distribution worksheet not found)";
-      }
-      if (worksheet.Shapes.Count != 1)
-        return "False (không thêm xóa chart)";
-      // ISSUE: variable of a compiler-generated type
-      Chart chart;
-      try
-      {
-        // ISSUE: reference to a compiler-generated method
-        chart = worksheet.Shapes.Item((object) 1).Chart;
-      }
-      catch (Exception ex)
-      {
-        return "False (Chart)";
-      }
-      try
-      {
-        if (chart.Legend != null)
-          return "False(Legend)";
-      }
-      catch (Exception ex)
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec7.\u003Ccau22\u003Eo__SiteContainer3e.\u003C\u003Ep__Site40 == null)
+
+        private static string cau4(Application a, Workbook d)
         {
-          // ISSUE: reference to a compiler-generated field
-          Sec7.\u003Ccau22\u003Eo__SiteContainer3e.\u003C\u003Ep__Site40 = CallSite<Func<CallSite, object, Series>>.Create(Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Series), typeof (Sec7)));
+            Worksheet worksheet;
+            try
+            {
+                worksheet = (Worksheet)d.Worksheets["Q2 Sales"];
+            }
+            catch
+            {
+                return "Fales (Tên Trang Tính)";
+            }
+
+            if (worksheet.Shapes.Count != 1)
+                return "False (Number of shape)";
+
+            Chart chart;
+            try
+            {
+                Shape shape = worksheet.Shapes.Item(1);
+                chart = shape.Chart;
+            }
+            catch
+            {
+                return "False (Not Chart)";
+            }
+
+            try
+            {
+                if (chart.Legend.Width < 90.0)
+                    return "False (add series)";
+
+                SeriesCollection seriesCollection = (SeriesCollection)chart.SeriesCollection(Type.Missing);
+
+                if (seriesCollection.Count != 3)
+                    return "False(co 3 series)";
+
+                string formulaR1C1 = seriesCollection.Item(3).FormulaR1C1;
+
+                if (!formulaR1C1.Contains("'Q2 Sales'!R6C5:R36C5,3)"))
+                    return "False(add series sai)";
+            }
+            catch
+            {
+                return "False(Something wrong)";
+            }
+
+            return "True";
         }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated method
-        // ISSUE: variable of a compiler-generated type
-        Series series = Sec7.\u003Ccau22\u003Eo__SiteContainer3e.\u003C\u003Ep__Site40.Target((CallSite) Sec7.\u003Ccau22\u003Eo__SiteContainer3e.\u003C\u003Ep__Site40, chart.SeriesCollection((object) 1));
-        if (!series.HasDataLabels)
-          return "False(show Data)";
-      }
-      return "True";
+
+        private static string cau5(Application a, Workbook d)
+        {
+            Worksheet worksheet;
+
+            try
+            {
+                // Kiểm tra số lượng sheet tổng và worksheet
+                if (d.Sheets.Count != 5)
+                    return "False(Duy chuyen chart qua trang tin moi)";
+                if (d.Worksheets.Count != 4)
+                    return "False(dung Move chart, khong tao trang tinh moi roi cut qua)";
+
+                worksheet = (Worksheet)d.Worksheets["Outbound Calls"];
+            }
+            catch
+            {
+                return "Fales (Outbound Calls)";
+            }
+
+            try
+            {
+                if (worksheet.Shapes.Count != 1)
+                    return "False (Move not copy)";
+
+                Shape shape = worksheet.Shapes.Item(1);
+                Chart chart = shape.Chart;
+
+                if (chart.ChartType == XlChartType.xlLine)
+                    return "False (Move line chart)";
+            }
+            catch
+            {
+                return "False (Not Chart)";
+            }
+
+            try
+            {
+                object sheet = d.Sheets["Whale Tour Sales"];
+            }
+            catch
+            {
+                return "False(Whale Tour Sales)";
+            }
+
+            return "True";
+        }
+
+        private static string cau6(Application a, Workbook d)
+        {
+            Worksheet worksheet;
+
+            // Bước 1: Kiểm tra tồn tại sheet "Inbound call"
+            try
+            {
+                worksheet = (Worksheet)d.Worksheets["Inbound call"];
+            }
+            catch
+            {
+                return "Fales (ten trang tinh)";
+            }
+
+            Chart chart;
+
+            // Bước 2: Kiểm tra shape "Chart 1" tồn tại và là biểu đồ
+            try
+            {
+                Shape shape = worksheet.Shapes.Item("Chart 1");
+                chart = shape.Chart;
+            }
+            catch
+            {
+                return "False (Not Chart)";
+            }
+
+            try
+            {
+                // Bước 3: Kiểm tra legend width
+                if (chart.Legend.Width < 200.0)
+                    return "False (Swap colunms)";
+
+                SeriesCollection seriesCollection = (SeriesCollection)chart.SeriesCollection(Type.Missing);
+
+                // Bước 4: Kiểm tra số lượng series
+                if (seriesCollection.Count != 6)
+                    return "False(co 6 series)";
+
+                // Bước 5: Kiểm tra công thức R1C1 của series thứ 3
+                string expectedFormula = "=SERIES('Inbound call'!R17C2,'Inbound call'!R2C3:R2C6,'Inbound call'!R17C3:R17C6,3)";
+                if (seriesCollection.Item(3).FormulaR1C1 != expectedFormula)
+                    return "False(Swap colunms)";
+            }
+            catch
+            {
+                return "False(Something wrong)";
+            }
+
+            return "True";
+        }
+
+        private static string cau7(Application a, Workbook d)
+        {
+            Worksheet worksheet;
+
+            // Bước 1: Kiểm tra tồn tại trang tính "Demographics"
+            try
+            {
+                worksheet = (Worksheet)d.Worksheets["Demographics"];
+            }
+            catch
+            {
+                return "Fales (ten trang tinh)";
+            }
+
+            Chart chart;
+
+            // Bước 2: Lấy biểu đồ từ shape
+            try
+            {
+                Shape shape = worksheet.Shapes.Item(1);
+                chart = shape.Chart;
+            }
+            catch
+            {
+                return "False (insert a chart)";
+            }
+
+            // Bước 3: Kiểm tra chi tiết biểu đồ
+            try
+            {
+                SeriesCollection seriesCollection = (SeriesCollection)chart.SeriesCollection(Type.Missing);
+
+                if (seriesCollection.Count != 1)
+                    return "False(co 1 series)";
+
+                string expectedFormula = "=SERIES(Demographics!R3C8,Demographics!R4C7:R9C7,Demographics!R4C8:R9C8,1)";
+                if (seriesCollection.Item(1).FormulaR1C1 != expectedFormula)
+                    return "False(series)";
+
+                if (chart.ChartTitle.Text != "Donations by Age Group")
+                    return "False(Donations by Age Group)";
+
+                if (chart.ChartType != XlChartType.xl3DColumnClustered)
+                    return "False(chartType)";
+            }
+            catch
+            {
+                return "False(Something wrong)";
+            }
+
+            return "True";
+        }
+
+        private static string cau8(Application a, Workbook d)
+        {
+            Worksheet worksheet;
+
+            // Bước 1: Kiểm tra xem có tồn tại sheet "New York City" không
+            try
+            {
+                worksheet = (Worksheet)d.Worksheets["New York City"];
+            }
+            catch
+            {
+                return "Fales (New York City worksheet not found)";
+            }
+
+            // Bước 2: Sheet phải chứa đúng 1 biểu đồ
+            if (worksheet.Shapes.Count != 1)
+                return "False (chèn chart)";
+
+            Chart chart;
+
+            // Bước 3: Lấy chart từ shape
+            try
+            {
+                Shape shape = worksheet.Shapes.Item(1);
+                chart = shape.Chart;
+            }
+            catch
+            {
+                return "False (Not Chart)";
+            }
+
+            // Bước 4: Kiểm tra loại biểu đồ và series
+            try
+            {
+                if (chart.ChartType != XlChartType.xlColumnClustered)
+                    return "False (Chart phải là Clustered Column)";
+
+                SeriesCollection seriesCollection = (SeriesCollection)chart.SeriesCollection(Type.Missing);
+
+                if (seriesCollection.Count != 1)
+                    return "False(co 1 series)";
+
+                string expectedFormula = "=SERIES('New York City'!R4C4,'New York City'!R5C2:R21C2,'New York City'!R5C4:R21C4,1)";
+                if (seriesCollection.Item(1).FormulaR1C1 != expectedFormula)
+                    return "False(series)";
+            }
+            catch
+            {
+                return "False(khong xác định)";
+            }
+
+            return "True";
+        }
+
+        private static string cau9(Application a, Workbook d)
+        {
+            Worksheet worksheet;
+
+            // Bước 1: Kiểm tra có tồn tại sheet "London"
+            try
+            {
+                worksheet = (Worksheet)d.Worksheets["London"];
+            }
+            catch
+            {
+                return "Fales (London worksheet not found)";
+            }
+
+            // Bước 2: Sheet phải có đúng 2 shape
+            if (worksheet.Shapes.Count != 2)
+                return "False (Number of shape)";
+
+            Chart chart;
+
+            // Bước 3: Lấy biểu đồ từ shape thứ 2
+            try
+            {
+                Shape shape = worksheet.Shapes.Item(2);
+                chart = shape.Chart;
+            }
+            catch
+            {
+                return "False (not Chart)";
+            }
+
+            // Bước 4: Kiểm tra DataTable không hiển thị LegendKey
+            try
+            {
+                if (chart.DataTable.ShowLegendKey)
+                    return "False(không show LegendKey)";
+            }
+            catch
+            {
+                return "Fasle(show dataTable)";
+            }
+
+            return "True";
+        }
+
+        private static string cau10(Application a, Workbook d)
+        {
+            string result = "True";
+            Worksheet worksheet;
+
+            // Bước 1: Kiểm tra sheet "New Accounts" tồn tại
+            try
+            {
+                worksheet = (Worksheet)d.Worksheets["New Accounts"];
+            }
+            catch
+            {
+                return "Fales (New Accounts worksheet not found)";
+            }
+
+            // Bước 2: Sheet phải có đúng 1 shape
+            if (worksheet.Shapes.Count != 1)
+                return "False (Number of shape)";
+
+            Chart chart;
+
+            // Bước 3: Lấy chart từ shape
+            try
+            {
+                Shape shape = worksheet.Shapes.Item(1);
+                chart = shape.Chart;
+            }
+            catch
+            {
+                return "False (Not Chart)";
+            }
+
+            // Bước 4: Kiểm tra PlotBy có vẽ theo dòng không (phải là theo cột)
+            try
+            {
+                if (chart.PlotBy == XlRowCol.xlRows)
+                    return "False (biểu đồ dòng)";
+            }
+            catch
+            {
+                return "False (not add title)";
+            }
+
+            return result;
+        }
+
+        private static string cau11(Application a, Workbook d)
+        {
+            Worksheet worksheet;
+
+            // Bước 1: Lấy worksheet "Summary"
+            try
+            {
+                worksheet = (Worksheet)d.Worksheets["Summary"];
+            }
+            catch
+            {
+                return "Fales (Summary worksheet not found)";
+            }
+
+            // Bước 2: Kiểm tra số shape
+            if (worksheet.Shapes.Count != 1)
+                return "False (Number of shape)";
+
+            Chart chart;
+
+            // Bước 3: Lấy chart từ shape
+            try
+            {
+                Shape shape = worksheet.Shapes.Item(1);
+                chart = shape.Chart;
+            }
+            catch
+            {
+                return "False (Not Chart)";
+            }
+
+            try
+            {
+                // Bước 4: Kiểm tra loại biểu đồ
+                if (chart.ChartType != XlChartType.xlColumnClustered)
+                    return "False (not 3DPie)";  // ❗️Ghi chú: Câu thông báo sai — đây là ColumnClustered, không phải 3DPie
+
+                // Bước 5: Lấy series và kiểm tra số lượng
+                SeriesCollection seriesCollection = (SeriesCollection)chart.SeriesCollection(Type.Missing);
+                if (seriesCollection.Count != 2)
+                    return "False(co 2 series)";
+
+                // Bước 6: Kiểm tra công thức của series thứ 2
+                string expectedFormula = "=SERIES(Summary!R5C3,Summary!R6C1:R12C1,Summary!R6C3:R12C3,2)";
+                if (seriesCollection.Item(2).FormulaR1C1 != expectedFormula)
+                    return $"False ({expectedFormula})";
+            }
+            catch
+            {
+                return "False (không xát định)";
+            }
+
+            return "True";
+        }
+
+        private static string cau12(Application a, Workbook d)
+        {
+            Worksheet worksheet;
+
+            // Bước 1: Lấy worksheet "Enrollment"
+            try
+            {
+                worksheet = (Worksheet)d.Worksheets["Enrollment"];
+            }
+            catch
+            {
+                return "Fales (Enrollment worksheet not found)";
+            }
+
+            try
+            {
+                Range sparkRange = worksheet.get_Range("G5", "G25");
+                SparklineGroups sparklineGroups = sparkRange.SparklineGroups;
+
+                // Bước 2: Kiểm tra có đúng 1 SparklineGroup
+                if (sparklineGroups.Count != 1)
+                    return "False(chen Sparkline)";
+
+                SparklineGroup group = sparklineGroups[1];
+
+                // Bước 3: Kiểm tra vùng nguồn dữ liệu
+                if (group.SourceData != "D5:F25")
+                    return "False(D5:F25)";
+
+                // Bước 4: Kiểm tra loại Sparkline
+                if (group.Type != XlSparkType.xlSparkColumn)
+                    return "False(Column)";
+            }
+            catch
+            {
+                return "False (Not Chart)";
+            }
+
+            return "True";
+        }
+
+        private static string cau13(Application a, Workbook d)
+        {
+            Worksheet worksheet;
+
+            // Bước 1: Kiểm tra tồn tại sheet "Graduation"
+            try
+            {
+                worksheet = (Worksheet)d.Worksheets["Graduation"];
+            }
+            catch
+            {
+                return "Fales (Graduation worksheet not found)";
+            }
+
+            // Bước 2: Kiểm tra không còn biểu đồ trong sheet "Graduation"
+            if (worksheet.Shapes.Count != 0)
+                return "False (Move Chart)";
+
+            // Bước 3: Kiểm tra tổng số worksheet là 5
+            try
+            {
+                if (d.Worksheets.Count != 5)
+                    return "False(dùng chức năng move chart)";
+
+                // Bước 4: Kiểm tra tồn tại sheet "Graduation Chart"
+                object chartSheet = d.Sheets["Graduation Chart"];
+                string name = chartSheet.ToString(); // Kiểm tra không lỗi
+            }
+            catch
+            {
+                return "False (Graduation Chart)";
+            }
+
+            return "True";
+        }
+
+        private static string cau14(Application a, Workbook d)
+        {
+            Worksheet worksheet;
+
+            // Bước 1: Tìm sheet "Instructional Hours"
+            try
+            {
+                worksheet = (Worksheet)d.Worksheets["Instructional Hours"];
+            }
+            catch
+            {
+                return "Fales (Instructional Hours worksheet not found)";
+            }
+
+            // Bước 2: Phải có đúng 1 shape (biểu đồ)
+            if (worksheet.Shapes.Count != 1)
+                return "False (Number of shape)";
+
+            // Bước 3: Lấy biểu đồ từ shape
+            Chart chart;
+            try
+            {
+                Shape shape = worksheet.Shapes.Item(1);
+                chart = shape.Chart;
+            }
+            catch
+            {
+                return "False (Not Chart)";
+            }
+
+            // Bước 4: Kiểm tra tiêu đề trục tung (Value Axis)
+            try
+            {
+                Axis yAxis = chart.Axes(XlAxisType.xlValue);
+                if (yAxis.AxisTitle.Text != "Hours")
+                    return "False(Hours)";
+            }
+            catch
+            {
+                return "False (not add title)";
+            }
+
+            return "True";
+        }
+
+        private static string cau15(Application a, Workbook d)
+        {
+            string result = "True";
+            Worksheet worksheet;
+
+            try
+            {
+                worksheet = d.Worksheets["Inventory"] as Worksheet;
+                if (worksheet == null)
+                    return "False (Inventory)";
+            }
+            catch
+            {
+                return "False (Inventory)";
+            }
+
+            if (worksheet.Shapes.Count != 1)
+                return "False (Number of shape)";
+
+            Chart chart;
+            try
+            {
+                Shape shape = worksheet.Shapes.Item(1);
+                chart = shape.Chart;
+            }
+            catch
+            {
+                return "False (Not Chart)";
+            }
+
+            try
+            {
+                if (chart.ChartTitle.Top != 2.0)
+                    return "False()";
+            }
+            catch
+            {
+                return "False(show Title)";
+            }
+
+            try
+            {
+                Series series = chart.SeriesCollection(1) as Series;
+                if (series == null || !series.HasDataLabels)
+                    return "False(show Data)";
+            }
+            catch
+            {
+                return "False()";
+            }
+
+            return result;
+        }
+
+        private static string cau16(Application a, Workbook d)
+        {
+            Worksheet worksheet;
+
+            try
+            {
+                worksheet = d.Worksheets["Next Semester"] as Worksheet;
+                if (worksheet == null)
+                    return "False (Next Semester worksheet not found)";
+            }
+            catch
+            {
+                return "False (Next Semester worksheet not found)";
+            }
+
+            if (worksheet.Shapes.Count != 1)
+                return "False (Number of shape)";
+
+            Chart chart;
+            try
+            {
+                Shape shape = worksheet.Shapes.Item(1);
+                chart = shape.Chart;
+            }
+            catch
+            {
+                return "False (Not Chart)";
+            }
+
+            try
+            {
+                // Kiểm tra loại biểu đồ
+                if (chart.ChartType != XlChartType.xlColumnClustered)
+                    return "False (ChartType not xlColumnClustered)";
+
+                SeriesCollection seriesCollection = chart.SeriesCollection() as SeriesCollection;
+                if (seriesCollection == null || seriesCollection.Count != 1)
+                    return "False (co 2 series)";
+
+                Series series = seriesCollection.Item(1);
+                if (series.FormulaR1C1 != "=SERIES('Next Semester'!R3C5,'Next Semester'!R4C1:R21C1,'Next Semester'!R4C5:R21C5,1)")
+                    return "False (series formula not matched)";
+            }
+            catch
+            {
+                return "False (không xác định)";
+            }
+
+            return "True";
+        }
+
+        private static string cau17(Application a, Workbook d)
+        {
+            Worksheet worksheet;
+
+            try
+            {
+                worksheet = d.Worksheets["Enrollment Summary"] as Worksheet;
+                if (worksheet == null)
+                    return "False (Enrollment Summary worksheet not found)";
+            }
+            catch
+            {
+                return "False (Enrollment Summary worksheet not found)";
+            }
+
+            if (worksheet.Shapes.Count != 1)
+                return "False (Number of shape)";
+
+            Chart chart;
+            try
+            {
+                Shape shape = worksheet.Shapes.Item(1);
+                chart = shape.Chart;
+            }
+            catch
+            {
+                return "False (Not Chart)";
+            }
+
+            try
+            {
+                // Kiểm tra ChartStyle
+                string style = chart.ChartStyle?.ToString();
+                if (style != "268")
+                    return "False (ChartStyle)";
+
+                // Kiểm tra ChartColor
+                string color = chart.ChartColor?.ToString();
+                if (color != "19")
+                    return "False(Color)";
+            }
+            catch
+            {
+                return "False (không xác định)";
+            }
+
+            return "True";
+        }
+
+        private static string cau18(Application a, Workbook d)
+        {
+            Worksheet worksheet;
+            try
+            {
+                worksheet = d.Worksheets["New Policies"] as Worksheet;
+                if (worksheet == null)
+                    return "False (New Policies worksheet not found)";
+            }
+            catch
+            {
+                return "False (New Policies worksheet not found)";
+            }
+
+            try
+            {
+                Range sparkRange = worksheet.Range["J5", "J13"];
+                var sparkGroups = sparkRange.SparklineGroups;
+
+                if (sparkGroups.Count != 1)
+                    return "False (Missing or too many Sparkline groups)";
+
+                var sparkGroup = sparkGroups[1];
+
+                if (sparkGroup.SourceData != "B5:G13")
+                    return $"False (Wrong SourceData: {sparkGroup.SourceData})";
+
+                if (sparkGroup.Type != XlSparkType.xlSparkColumnStacked100)
+                    return $"False (Wrong Sparkline Type: {sparkGroup.Type})";
+            }
+            catch
+            {
+                return "False (Error checking Sparkline)";
+            }
+
+            return "True";
+        }
+
+        private static string cau19(Application a, Workbook d)
+        {
+            Worksheet worksheet;
+            try
+            {
+                worksheet = d.Worksheets["New Policies"] as Worksheet;
+                if (worksheet == null)
+                    return "False (New Policies worksheet not found)";
+            }
+            catch
+            {
+                return "False (New Policies worksheet not found)";
+            }
+
+            if (worksheet.Shapes.Count != 1)
+                return "False (Chart count is not 1)";
+
+            Chart chart;
+            try
+            {
+                chart = worksheet.Shapes.Item(1).Chart;
+            }
+            catch
+            {
+                return "False (Not a Chart)";
+            }
+
+            try
+            {
+                if (chart.DataTable != null && chart.DataTable.ShowLegendKey)
+                    return "False (Legend key shown in DataTable)";
+            }
+            catch
+            {
+                // Có thể biểu đồ không có DataTable → kiểm tra legend thay thế
+                try
+                {
+                    if (chart.Legend == null || chart.Legend.Position != XlLegendPosition.xlLegendPositionBottom)
+                        return "False (Legend not at bottom)";
+                }
+                catch
+                {
+                    return "False (Cannot determine layout)";
+                }
+
+                return "True";
+            }
+
+            return "False (Layout not correct)";
+        }
+
+        private static string cau20(Application a, Workbook d)
+        {
+            Worksheet worksheet;
+            try
+            {
+                worksheet = d.Worksheets["Summary"] as Worksheet;
+                if (worksheet == null)
+                    return "False (Summary worksheet not found)";
+            }
+            catch
+            {
+                return "False (Summary worksheet not found)";
+            }
+
+            if (worksheet.Shapes.Count != 1)
+                return "False (không thêm xóa chart)";
+
+            try
+            {
+                Chart chart = worksheet.Shapes.Item(1).Chart;
+
+                string chartColor = chart.ChartColor?.ToString();
+                if (chartColor != "11")
+                    return "False(sai màu)";
+            }
+            catch
+            {
+                return "False (Graduation Chart)";
+            }
+
+            return "True";
+        }
+
+        private static string cau21(Application a, Workbook d)
+        {
+            Worksheet worksheet;
+            try
+            {
+                worksheet = d.Worksheets["Comparison"] as Worksheet;
+                if (worksheet == null)
+                    return "False (Comparison worksheet not found)";
+            }
+            catch
+            {
+                return "False (Comparison worksheet not found)";
+            }
+
+            if (worksheet.Shapes.Count != 1)
+                return "False (không thêm xóa chart)";
+
+            try
+            {
+                Chart chart = worksheet.Shapes.Item(1).Chart;
+                if (chart.PlotBy != XlRowCol.xlRows)
+                    return "False(Biểu đồ Cột)";
+            }
+            catch
+            {
+                return "False (Chart)";
+            }
+
+            return "True";
+        }
+
+        private static string cau22(Application a, Workbook d)
+        {
+            Worksheet worksheet;
+            try
+            {
+                worksheet = d.Worksheets["Score Distribution"] as Worksheet;
+                if (worksheet == null)
+                    return "False (Score Distribution worksheet not found)";
+            }
+            catch
+            {
+                return "False (Score Distribution worksheet not found)";
+            }
+
+            if (worksheet.Shapes.Count != 1)
+                return "False (không thêm xóa chart)";
+
+            Chart chart;
+            try
+            {
+                chart = worksheet.Shapes.Item(1).Chart;
+            }
+            catch
+            {
+                return "False (Chart)";
+            }
+
+            try
+            {
+                // Kiểm tra nếu có Legend thì sai
+                if (chart.Legend != null)
+                    return "False(Legend)";
+            }
+            catch
+            {
+                // Nếu có lỗi khi kiểm tra Legend, kiểm tra Series[1] có bật DataLabels không
+                try
+                {
+                    Series series = chart.SeriesCollection(1);
+                    if (!series.HasDataLabels)
+                        return "False(show Data)";
+                }
+                catch
+                {
+                    return "False(show Data)";
+                }
+            }
+
+            return "True";
+        }
     }
-  }
 }

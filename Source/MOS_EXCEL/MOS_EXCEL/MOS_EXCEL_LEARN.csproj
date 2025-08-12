@@ -96,6 +96,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="School.cs" />
     <Compile Include="Sec0.cs" />
+    <Compile Include="Sec1.cs" />
+    <Compile Include="Sec2.cs" />
+    <Compile Include="Sec3.cs" />
+    <Compile Include="Sec4.cs" />
+    <Compile Include="Sec5.cs" />
+    <Compile Include="Sec6.cs" />
+    <Compile Include="Sec7.cs" />
+    <Compile Include="Sec8.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

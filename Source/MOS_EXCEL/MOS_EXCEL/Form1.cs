@@ -516,31 +516,31 @@ namespace MOS_EXCEL_LEARN
                         str = Sec0.CheckCau(par.quesion, this.a, this.d);
                         break;
                     case 1:
-                        //str = Sec1.CheckCau(par.quesion, this.a, this.d);
+                        str = Sec1.CheckCau(par.quesion, this.a, this.d);
                         break;
                     case 2:
-                        //str = Sec2.CheckCau(par.quesion, this.a, this.d);
+                        str = Sec2.CheckCau(par.quesion, this.a, this.d);
                         break;
                     case 3:
-                        //str = Sec3.CheckCau(par.quesion, this.a, this.d);
+                        str = Sec3.CheckCau(par.quesion, this.a, this.d);
                         break;
                     case 4:
-                        //str = Sec4.CheckCau(par.quesion, this.a, this.d);
+                        str = Sec4.CheckCau(par.quesion, this.a, this.d);
                         break;
                     case 5:
-                        //str = Sec5.CheckCau(par.quesion, this.a, this.d);
+                        str = Sec5.CheckCau(par.quesion, this.a, this.d);
                         break;
                     case 6:
-                        //str = Sec6.CheckCau(par.quesion, this.a, this.d);
+                        str = Sec6.CheckCau(par.quesion, this.a, this.d);
                         break;
                     case 7:
-                        //str = Sec7.CheckCau(par.quesion, this.a, this.d);
+                        str = Sec7.CheckCau(par.quesion, this.a, this.d);
                         break;
                     case 8:
-                        //str = Sec8.CheckCau(par.quesion, this.a, this.d);
+                        str = Sec8.CheckCau(par.quesion, this.a, this.d);
                         break;
                     case 9:
-                        //str = Sec9.CheckCau(par.quesion, this.a, this.d);
+                        str = Sec9.CheckCau(par.quesion, this.a, this.d);
                         break;
                     case 10:
                         str = CheckWord.CheckCau(par.quesion, (Microsoft.Office.Interop.Excel._Application)this.a, (Microsoft.Office.Interop.Excel._Workbook)this.d).ToString();

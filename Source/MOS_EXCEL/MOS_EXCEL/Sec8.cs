@@ -1,6 +1,6 @@
 ﻿// Decompiled with JetBrains decompiler
-// Type: WindowsFormsApplication1.Sec8
-// Assembly: WindowsFormsApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// Type: MOS_EXCEL_LEARN.Sec8
+// Assembly: MOS_EXCEL_LEARN, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: A91AAF83-2707-4347-A301-00149AC4CDCE
 // Assembly location: C:\Users\Admin\Downloads\WE_19\HOC_EXCEL_19\Chay File Nay.exe
 
@@ -10,7 +10,7 @@ using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace WindowsFormsApplication1
+namespace MOS_EXCEL_LEARN
 {
   internal class Sec8
   {
@@ -33,221 +33,193 @@ namespace WindowsFormsApplication1
       }
     }
 
-    private static string cau1(Application a, Workbook d)
-    {
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec8.\u003Ccau1\u003Eo__SiteContainer0.\u003C\u003Ep__Site1 == null)
+        private static string cau1(Application a, Workbook d)
         {
-          // ISSUE: reference to a compiler-generated field
-          Sec8.\u003Ccau1\u003Eo__SiteContainer0.\u003C\u003Ep__Site1 = CallSite<Func<CallSite, object, Worksheet>>.Create(Microsoft.CSharp.RuntimeBinder.Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec8)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec8.\u003Ccau1\u003Eo__SiteContainer0.\u003C\u003Ep__Site1.Target((CallSite) Sec8.\u003Ccau1\u003Eo__SiteContainer0.\u003C\u003Ep__Site1, d.Worksheets[(object) "Materials"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (Ten trang tinh)";
-      }
-      try
-      {
-        if (worksheet.PageSetup.RightHeader != "Confidential")
-          return "False(Confidential)";
-      }
-      catch (Exception ex)
-      {
-        return "False (Left header)";
-      }
-      return "True";
-    }
+            Worksheet worksheet;
+            try
+            {
+                worksheet = d.Worksheets["Materials"] as Worksheet;
+                if (worksheet == null)
+                    return "False (Ten trang tinh)";
+            }
+            catch
+            {
+                return "False (Ten trang tinh)";
+            }
 
-    private static string cau2(Application a, Workbook d)
-    {
-      string str = "True";
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec8.\u003Ccau2\u003Eo__SiteContainer2.\u003C\u003Ep__Site3 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec8.\u003Ccau2\u003Eo__SiteContainer2.\u003C\u003Ep__Site3 = CallSite<Func<CallSite, object, Worksheet>>.Create(Microsoft.CSharp.RuntimeBinder.Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec8)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec8.\u003Ccau2\u003Eo__SiteContainer2.\u003C\u003Ep__Site3.Target((CallSite) Sec8.\u003Ccau2\u003Eo__SiteContainer2.\u003C\u003Ep__Site3, d.Worksheets[(object) "Materials"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (Sale worksheet not found)";
-      }
-      try
-      {
-        // ISSUE: reference to a compiler-generated method
-        if (worksheet.get_Range((object) "A6", (object) "A6").Hyperlinks.Count != 1)
-          return "False (Number of hyperlink)";
-        // ISSUE: reference to a compiler-generated method
-        if (worksheet.get_Range((object) "A6", (object) "A6").Hyperlinks[(object) 1].SubAddress != "Categories!A18")
-        {
-          // ISSUE: reference to a compiler-generated method
-          return "False (" + worksheet.get_Range((object) "A6", (object) "A6").Hyperlinks[(object) 1].SubAddress + ")";
-        }
-      }
-      catch (Exception ex)
-      {
-        return "False (Not apply hyperlink to A6)";
-      }
-      return str;
-    }
+            try
+            {
+                if (worksheet.PageSetup.RightHeader != "Confidential")
+                    return "False(Confidential)";
+            }
+            catch
+            {
+                return "False (Right header)";
+            }
 
-    private static string cau3(Application a, Workbook d)
-    {
-      string str = "True";
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec8.\u003Ccau3\u003Eo__SiteContainer4.\u003C\u003Ep__Site5 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec8.\u003Ccau3\u003Eo__SiteContainer4.\u003C\u003Ep__Site5 = CallSite<Func<CallSite, object, Worksheet>>.Create(Microsoft.CSharp.RuntimeBinder.Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec8)));
+            return "True";
         }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec8.\u003Ccau3\u003Eo__SiteContainer4.\u003C\u003Ep__Site5.Target((CallSite) Sec8.\u003Ccau3\u003Eo__SiteContainer4.\u003C\u003Ep__Site5, d.Worksheets[(object) "Shareholders Info"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (Olympic Medals worksheet not found)";
-      }
-      try
-      {
-        // ISSUE: reference to a compiler-generated method
-        if (worksheet.get_Range((object) "C5", (object) "C5").Hyperlinks.Count != 1)
-          return "False (Number of hyperlink)";
-        // ISSUE: reference to a compiler-generated method
-        if (!worksheet.get_Range((object) "C5", (object) "C5").Hyperlinks[(object) 1].Address.Contains("tailspintoys.com/beyond.html"))
-        {
-          // ISSUE: reference to a compiler-generated method
-          return "False (" + worksheet.get_Range((object) "C5", (object) "C5").Hyperlinks[(object) 1].Address + ")";
-        }
-        // ISSUE: reference to a compiler-generated method
-        if (worksheet.get_Range((object) "C5", (object) "C5").Hyperlinks[(object) 1].TextToDisplay != "More Info")
-          return "False(More Info)";
-      }
-      catch (Exception ex)
-      {
-        return "False (Not apply hyperlink to D11)";
-      }
-      return str;
-    }
 
-    private static string cau4(Application a, Workbook d)
-    {
-      string str = "True";
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec8.\u003Ccau4\u003Eo__SiteContainer6.\u003C\u003Ep__Site7 == null)
+        private static string cau2(Application a, Workbook d)
         {
-          // ISSUE: reference to a compiler-generated field
-          Sec8.\u003Ccau4\u003Eo__SiteContainer6.\u003C\u003Ep__Site7 = CallSite<Func<CallSite, object, Worksheet>>.Create(Microsoft.CSharp.RuntimeBinder.Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec8)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec8.\u003Ccau4\u003Eo__SiteContainer6.\u003C\u003Ep__Site7.Target((CallSite) Sec8.\u003Ccau4\u003Eo__SiteContainer6.\u003C\u003Ep__Site7, d.Worksheets[(object) "Summary"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (Summary worksheet not found)";
-      }
-      try
-      {
-        // ISSUE: reference to a compiler-generated method
-        if (worksheet.get_Range((object) "A2", (object) "A2").Hyperlinks.Count != 1)
-          return "False (chèn hyperlink tại A2)";
-        // ISSUE: reference to a compiler-generated method
-        if (!worksheet.get_Range((object) "A2", (object) "A2").Hyperlinks[(object) 1].Address.Contains("www.nodpublishers.com"))
-        {
-          // ISSUE: reference to a compiler-generated method
-          return "False (" + worksheet.get_Range((object) "A2", (object) "A2").Hyperlinks[(object) 1].Address + ")";
-        }
-        // ISSUE: reference to a compiler-generated method
-        if (worksheet.get_Range((object) "A2", (object) "A2").Hyperlinks[(object) 1].ScreenTip != "Company Website")
-          return "False(Company Website)";
-      }
-      catch (Exception ex)
-      {
-        return "False (Not apply hyperlink to D11)";
-      }
-      return str;
-    }
+            Worksheet worksheet;
+            try
+            {
+                worksheet = d.Worksheets["Materials"] as Worksheet;
+                if (worksheet == null)
+                    return "False (Materials worksheet not found)";
+            }
+            catch
+            {
+                return "False (Materials worksheet not found)";
+            }
 
-    private static string cau5(Application a, Workbook d)
-    {
-      // ISSUE: variable of a compiler-generated type
-      Worksheet worksheet;
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec8.\u003Ccau5\u003Eo__SiteContainer8.\u003C\u003Ep__Site9 == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec8.\u003Ccau5\u003Eo__SiteContainer8.\u003C\u003Ep__Site9 = CallSite<Func<CallSite, object, Worksheet>>.Create(Microsoft.CSharp.RuntimeBinder.Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec8)));
-        }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        worksheet = Sec8.\u003Ccau5\u003Eo__SiteContainer8.\u003C\u003Ep__Site9.Target((CallSite) Sec8.\u003Ccau5\u003Eo__SiteContainer8.\u003C\u003Ep__Site9, d.Worksheets[(object) "Materials"]);
-      }
-      catch (Exception ex)
-      {
-        return "Fales (Ten trang tinh)";
-      }
-      try
-      {
-        if (worksheet.PageSetup.CenterFooter != "Page &P of &N")
-          return "False(Page 1 of ?)";
-      }
-      catch (Exception ex)
-      {
-        return "False (Left header)";
-      }
-      return "True";
-    }
+            try
+            {
+                Range cell = worksheet.Range["A6"];
+                Hyperlinks hyperlinks = cell.Hyperlinks;
 
-    private static string cau6(Application a, Workbook d)
-    {
-      try
-      {
-        // ISSUE: reference to a compiler-generated field
-        if (Sec8.\u003Ccau6\u003Eo__SiteContainera.\u003C\u003Ep__Siteb == null)
-        {
-          // ISSUE: reference to a compiler-generated field
-          Sec8.\u003Ccau6\u003Eo__SiteContainera.\u003C\u003Ep__Siteb = CallSite<Func<CallSite, object, Worksheet>>.Create(Microsoft.CSharp.RuntimeBinder.Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof (Worksheet), typeof (Sec8)));
+                if (hyperlinks.Count != 1)
+                    return "False (Number of hyperlink)";
+
+                Hyperlink link = hyperlinks[1];
+                if (link.SubAddress != "Categories!A18")
+                    return "False (" + link.SubAddress + ")";
+            }
+            catch
+            {
+                return "False (Not apply hyperlink to A6)";
+            }
+
+            return "True";
         }
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: reference to a compiler-generated field
-        // ISSUE: variable of a compiler-generated type
-        Worksheet worksheet = Sec8.\u003Ccau6\u003Eo__SiteContainera.\u003C\u003Ep__Siteb.Target((CallSite) Sec8.\u003Ccau6\u003Eo__SiteContainera.\u003C\u003Ep__Siteb, d.Worksheets[(object) "Materials"]);
-        if (!a.ActiveWindow.FreezePanes)
-          return "False(FreezePanes)";
-        // ISSUE: reference to a compiler-generated method
-        if (a.ActiveCell.get_Address((object) Missing.Value, (object) Missing.Value, External: (object) Missing.Value, RelativeTo: (object) Missing.Value) != "$A$6")
-          return "False(để con trỏ ô A6 trước khi FreezePanes)";
-      }
-      catch (Exception ex)
-      {
-        return "False (Something not finish!)";
-      }
-      return "True";
+
+        private static string cau3(Application a, Workbook d)
+        {
+            Worksheet worksheet;
+            try
+            {
+                worksheet = d.Worksheets["Shareholders Info"] as Worksheet;
+                if (worksheet == null)
+                    return "False (Shareholders Info worksheet not found)";
+            }
+            catch
+            {
+                return "False (Shareholders Info worksheet not found)";
+            }
+
+            try
+            {
+                Range cell = worksheet.Range["C5"];
+                Hyperlinks hyperlinks = cell.Hyperlinks;
+
+                if (hyperlinks.Count != 1)
+                    return "False (Number of hyperlink)";
+
+                Hyperlink link = hyperlinks[1];
+
+                if (!link.Address.Contains("tailspintoys.com/beyond.html"))
+                    return "False (" + link.Address + ")";
+
+                if (link.TextToDisplay != "More Info")
+                    return "False (More Info)";
+            }
+            catch
+            {
+                return "False (Not apply hyperlink to C5)";
+            }
+
+            return "True";
+        }
+
+        private static string cau4(Application a, Workbook d)
+        {
+            Worksheet worksheet;
+            try
+            {
+                worksheet = d.Worksheets["Summary"] as Worksheet;
+                if (worksheet == null)
+                    return "False (Summary worksheet not found)";
+            }
+            catch
+            {
+                return "False (Summary worksheet not found)";
+            }
+
+            try
+            {
+                Range cell = worksheet.Range["A2"];
+                Hyperlinks hyperlinks = cell.Hyperlinks;
+
+                if (hyperlinks.Count != 1)
+                    return "False (chèn hyperlink tại A2)";
+
+                Hyperlink link = hyperlinks[1];
+
+                if (!link.Address.Contains("www.nodpublishers.com"))
+                    return $"False ({link.Address})";
+
+                if (link.ScreenTip != "Company Website")
+                    return "False (Company Website)";
+            }
+            catch
+            {
+                return "False (Not apply hyperlink to A2)";
+            }
+
+            return "True";
+        }
+
+        private static string cau5(Application a, Workbook d)
+        {
+            Worksheet worksheet;
+
+            try
+            {
+                worksheet = d.Worksheets["Materials"] as Worksheet;
+                if (worksheet == null)
+                    return "False (Tên trang tính)";
+            }
+            catch
+            {
+                return "False (Tên trang tính)";
+            }
+
+            try
+            {
+                if (worksheet.PageSetup.CenterFooter != "Page &P of &N")
+                    return "False (Page 1 of ?)";
+            }
+            catch
+            {
+                return "False (Lỗi khi kiểm tra footer)";
+            }
+
+            return "True";
+        }
+
+        private static string cau6(Application a, Workbook d)
+        {
+            try
+            {
+                Worksheet worksheet = d.Worksheets["Materials"] as Worksheet;
+                if (worksheet == null)
+                    return "False (Không tìm thấy trang 'Materials')";
+
+                worksheet.Activate();
+
+                if (!a.ActiveWindow.FreezePanes)
+                    return "False (Chưa bật Freeze Panes)";
+
+                if (a.ActiveCell.Address != "$A$6")
+                    return "False (Chưa chọn ô A6 trước khi Freeze Panes)";
+            }
+            catch
+            {
+                return "False (Lỗi trong khi kiểm tra Freeze Panes)";
+            }
+
+            return "True";
+        }
     }
-  }
 }
