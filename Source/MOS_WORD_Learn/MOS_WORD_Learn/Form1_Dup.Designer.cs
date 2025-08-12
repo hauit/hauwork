@@ -97,7 +97,7 @@ namespace WindowsFormsApplication1
             this.comboBoxCauNext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
             this.comboBoxCauNext.Cursor = System.Windows.Forms.Cursors.Hand;
             this.comboBoxCauNext.Font = new System.Drawing.Font("Calibri", 17F, System.Drawing.FontStyle.Bold);
-            this.comboBoxCauNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(0)))), ((int)(((byte)(253)))));
+            this.comboBoxCauNext.ForeColor = System.Drawing.Color.White;
             this.comboBoxCauNext.FormattingEnabled = true;
             this.comboBoxCauNext.ItemHeight = 28;
             this.comboBoxCauNext.Location = new System.Drawing.Point(642, 329);
@@ -121,6 +121,7 @@ namespace WindowsFormsApplication1
             this.richTextQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextQuestion.Font = new System.Drawing.Font("Calibri", 20F);
             this.richTextQuestion.Location = new System.Drawing.Point(0, 0);
+            this.richTextQuestion.Margin = new System.Windows.Forms.Padding(10);
             this.richTextQuestion.Name = "richTextQuestion";
             this.richTextQuestion.ReadOnly = true;
             this.richTextQuestion.Size = new System.Drawing.Size(280, 170);
@@ -132,7 +133,7 @@ namespace WindowsFormsApplication1
             this.comboBoxCauDaDanhDau.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
             this.comboBoxCauDaDanhDau.Cursor = System.Windows.Forms.Cursors.Hand;
             this.comboBoxCauDaDanhDau.Font = new System.Drawing.Font("Calibri", 17F, System.Drawing.FontStyle.Bold);
-            this.comboBoxCauDaDanhDau.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(0)))), ((int)(((byte)(253)))));
+            this.comboBoxCauDaDanhDau.ForeColor = System.Drawing.Color.White;
             this.comboBoxCauDaDanhDau.FormattingEnabled = true;
             this.comboBoxCauDaDanhDau.ItemHeight = 28;
             this.comboBoxCauDaDanhDau.Location = new System.Drawing.Point(180, 328);

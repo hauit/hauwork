@@ -11,6 +11,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.WebRequestMethods;
+using File = System.IO.File;
 using Point = System.Drawing.Point;
 
 namespace WindowsFormsApplication1
@@ -256,7 +258,7 @@ namespace WindowsFormsApplication1
         {
             for (int index = 0; index < School.Mn.Length; ++index)
             {
-                string[] files = Directory.GetFiles(Path.Combine(System.Windows.Forms.Application.StartupPath, "Data\\Sec_" + (object)index + "\\hinh\\E"));
+                string[] files = Directory.GetFiles(Path.Combine(System.Windows.Forms.Application.StartupPath, "Data\\Sec_" + (object)index + "\\file"));
                 School.Mn[index] = files.Length;
             }
         }
@@ -287,11 +289,11 @@ namespace WindowsFormsApplication1
                     enviroment.quesion = cauUser - num1;
                     enviroment.section = index;
                     enviroment.dirPath = Path.Combine(System.Windows.Forms.Application.StartupPath, "data\\sec_" + index.ToString());
-                    enviroment.Source_de_En = Path.Combine(enviroment.dirPath, "hinh\\E\\" + enviroment.quesion.ToString());
-                    enviroment.Source_de_Vn = Path.Combine(enviroment.dirPath, "hinh\\V\\" + enviroment.quesion.ToString());
+                    //enviroment.Source_de_En = Path.Combine(enviroment.dirPath, "hinh\\E\\" + enviroment.quesion.ToString());
+                    //enviroment.Source_de_Vn = Path.Combine(enviroment.dirPath, "hinh\\V\\" + enviroment.quesion.ToString());
                     enviroment.Source_file_word_path = Path.Combine(enviroment.dirPath, "file\\" + enviroment.quesion.ToString());
-                    enviroment.Source_file_help_path = Path.Combine(enviroment.dirPath, "help\\" + enviroment.quesion.ToString());
-                    enviroment.Source_file_help_video_path = Path.Combine(enviroment.dirPath, "Vhelp\\" + enviroment.quesion.ToString());
+                    //enviroment.Source_file_help_path = Path.Combine(enviroment.dirPath, "help\\" + enviroment.quesion.ToString());
+                    //enviroment.Source_file_help_video_path = Path.Combine(enviroment.dirPath, "Vhelp\\" + enviroment.quesion.ToString());
                     break;
                 }
                 num1 = num2;
@@ -309,13 +311,13 @@ namespace WindowsFormsApplication1
             this.paramater.DeTiengViet = Path.Combine(System.Windows.Forms.Application.StartupPath, "tam\\" + cau_hoi_so.ToString() + "V");
             this.paramater.DeTiengAnh1 = "đề tiếng anh";
             this.paramater.DeTiengViet1 = "đề tiếng việt";
-            this.paramater.Dest_file_help_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, "tam\\help");
-            this.paramater.Dest_file_help_video_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, "tam\\Vhelp");
+            //this.paramater.Dest_file_help_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, "tam\\help");
+            //this.paramater.Dest_file_help_video_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, "tam\\Vhelp");
             Home.DecryptFile(this.paramater.Source_file_word_path, this.paramater.Dest_file_Word_Name.ToString());
             Home.DecryptFile(this.paramater.Source_de_En, this.paramater.DeTiengAnh);
             Home.DecryptFile(this.paramater.Source_de_Vn, this.paramater.DeTiengViet);
-            if (File.Exists(this.paramater.Source_file_help_video_path))
-                Home.DecryptFile(this.paramater.Source_file_help_video_path, this.paramater.Dest_file_help_video_Name);
+            //if (File.Exists(this.paramater.Source_file_help_video_path))
+            //    Home.DecryptFile(this.paramater.Source_file_help_video_path, this.paramater.Dest_file_help_video_Name);
             this.pictureBox1.Image = Image.FromFile(this.paramater.DeTiengAnh);
             if (this.panel1.Width > this.pictureBox1.Width)
                 this.pictureBox1.Left = (this.panel1.Width - this.pictureBox1.Width) / 2;
@@ -498,7 +500,7 @@ namespace WindowsFormsApplication1
             {
                 this.TopMost = false;
                 this.button2.Text = "Tự Làm";
-                Process.Start("https://meet.google.com/uay-ywnp-xzs");
+                Process.Start("https://google.com");
             }
             else
             {
@@ -509,17 +511,19 @@ namespace WindowsFormsApplication1
 
         private void buttonHelpVideo_Click(object sender, EventArgs e)
         {
-            string str = Path.Combine(System.Windows.Forms.Application.StartupPath, "zip\\1.avi");
-            string fileHelpVideoPath = this.paramater.Source_file_help_video_path;
-            try
-            {
-                Home.DecryptFile(fileHelpVideoPath, str);
-                Process.Start(str);
-            }
-            catch (Exception ex)
-            {
-                int num = (int)MessageBox.Show("Tắt Video help trước khi mở help mới");
-            }
+            return;
+
+            //string str = Path.Combine(System.Windows.Forms.Application.StartupPath, "zip\\1.avi");
+            //string fileHelpVideoPath = this.paramater.Source_file_help_video_path;
+            //try
+            //{
+            //    Home.DecryptFile(fileHelpVideoPath, str);
+            //    Process.Start(str);
+            //}
+            //catch (Exception ex)
+            //{
+            //    int num = (int)MessageBox.Show("Tắt Video help trước khi mở help mới");
+            //}
         }
 
         private void buttonHelp_Click_1(object sender, EventArgs e)
