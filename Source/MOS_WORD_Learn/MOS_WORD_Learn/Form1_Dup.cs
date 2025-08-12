@@ -12,6 +12,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApplication1.Base;
+using static System.Net.WebRequestMethods;
+using File = System.IO.File;
 using Point = System.Drawing.Point;
 
 namespace WindowsFormsApplication1
@@ -247,7 +249,7 @@ namespace WindowsFormsApplication1
         {
             for (int index = 0; index < School.Mn.Length; ++index)
             {
-                string[] files = Directory.GetFiles(Path.Combine(System.Windows.Forms.Application.StartupPath, "Data\\Sec_" + (object)index + "\\hinh\\E"));
+                string[] files = Directory.GetFiles(Path.Combine(System.Windows.Forms.Application.StartupPath, "Data\\Sec_" + (object)index + "\\file"));
                 School.Mn[index] = files.Length;
             }
         }
@@ -281,7 +283,7 @@ namespace WindowsFormsApplication1
                     enviroment.Source_de_En = ClsListQuestion.GetEngQuestion(cauUser);
                     enviroment.Source_de_Vn = ClsListQuestion.GetVNQuestion(cauUser);
                     enviroment.Source_file_word_path = Path.Combine(enviroment.dirPath, "file\\" + enviroment.quesion.ToString());
-                    enviroment.Source_file_help_path = Path.Combine(enviroment.dirPath, "help\\" + enviroment.quesion.ToString());
+                    //enviroment.Source_file_help_path = Path.Combine(enviroment.dirPath, "help\\" + enviroment.quesion.ToString());
                     //enviroment.Source_file_help_video_path = Path.Combine(enviroment.dirPath, "Vhelp\\" + enviroment.quesion.ToString());
                     break;
                 }
@@ -304,8 +306,8 @@ namespace WindowsFormsApplication1
             ////TODO: sua doi thanh text
             this.paramater.DeTiengAnh = this.paramater.Source_de_En;
             this.paramater.DeTiengViet = this.paramater.Source_de_Vn;
-            this.paramater.Dest_file_help_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, "tam\\help");
-            this.paramater.Dest_file_help_video_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, "tam\\Vhelp");
+            //this.paramater.Dest_file_help_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, "tam\\help");
+            //this.paramater.Dest_file_help_video_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, "tam\\Vhelp");
             Home.DecryptFile(this.paramater.Source_file_word_path, this.paramater.Dest_file_Word_Name.ToString());
             ////TODO: họ tạo file tạm cho câu hỏi hiện tại trong thư mục tam\\ rồi copy đề + video vào đấy
             ///         hiện tại đã bỏ việc tạo file của 2 câu hỏi TA và việt(mình tạo file text câu hỏi rồi đọc luôn vào biến)
