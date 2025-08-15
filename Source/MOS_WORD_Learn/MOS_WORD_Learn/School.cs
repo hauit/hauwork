@@ -6,29 +6,29 @@
 
 namespace WindowsFormsApplication1
 {
-  internal class School
-  {
-    public static int[] Mn = new int[11]
+    internal class School
     {
-      9,
-      8,
-      3,
-      9,
-      5,
-      4,
-      5,
-      7,
-      4,
-      5,
-      7
-    };
+        public static int[] Mn = new int[11]
+        {
+            12,
+            9,
+            6,
+            7,
+            13,
+            23,
+            11,
+            19,
+            3,
+            8,
+            11
+        };
 
-    public static int Tong()
-    {
-      int num = 0;
-      for (int index = 0; index < School.Mn.Length; ++index)
-        num += School.Mn[index];
-      return num;
+        public static int Tong()
+        {
+            int num = 0;
+            for (int index = 0; index < School.Mn.Length; ++index)
+                num += School.Mn[index];
+            return num;
+        }
     }
-  }
 }

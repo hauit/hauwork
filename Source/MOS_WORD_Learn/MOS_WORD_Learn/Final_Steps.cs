@@ -382,8 +382,8 @@ namespace WindowsFormsApplication1
     {
       try
       {
-        if (d.Name != "Notes.dotx")
-          return "False(luu lại kiểu template(Notes.dotx))";
+        if (d.Name != "Notes.docx")
+          return "False(luu lại kiểu template(Notes.docx))";
       }
       catch (Exception ex)
       {

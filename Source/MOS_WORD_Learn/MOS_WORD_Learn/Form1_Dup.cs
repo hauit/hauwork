@@ -46,7 +46,7 @@ namespace WindowsFormsApplication1
             InitializeComponent();
             this.FormClosed += new FormClosedEventHandler(this.Form1_Dup_FormClosed);
             this.a = (Microsoft.Office.Interop.Word.Application)Activator.CreateInstance(System.Type.GetTypeFromCLSID(new Guid("000209FF-0000-0000-C000-000000000046")));
-            this.loadTongSoCau();
+            //this.loadTongSoCau();
             this.load_cau_hoi(this.cau_User);
             // ISSUE: method pointer
             // ISSUE: object of a compiler-generated type is created
@@ -268,6 +268,30 @@ namespace WindowsFormsApplication1
             this.check = false;
         }
 
+        private enviroment GetparmaterNew(int cauUser)
+        {
+            enviroment enviroment = new enviroment();
+            int a = 0;
+            for (int index = 0; index < School.Mn.Length; ++index)
+            {
+                a = a + School.Mn[index];
+                if (cauUser <= a)
+                {
+                    enviroment.section = index;
+                    break;
+                }
+                enviroment.quesion = cauUser - a;
+                enviroment.section = index;
+            }
+
+            enviroment.dirPath = Path.Combine(System.Windows.Forms.Application.StartupPath);
+            enviroment.Source_de_En = ClsListQuestion.GetEngQuestion(cauUser);
+            enviroment.Source_de_Vn = ClsListQuestion.GetVNQuestion(cauUser);
+            enviroment.Source_file_word_path = Path.Combine(enviroment.dirPath, "data\\" + questionObj.MaskIndex.ToString());
+
+            return enviroment;
+        }
+
         private enviroment Getparmater(int cauUser)
         {
             enviroment enviroment = new enviroment();
@@ -295,12 +319,13 @@ namespace WindowsFormsApplication1
         private void load_cau_hoi(int cau_hoi_so)
         {
             questionObj = ClsListQuestion.GetQuestion(cau_hoi_so);
-            cau_hoi_so = questionObj.CorrectIndex;
+            //cau_hoi_so = questionObj.CorrectIndex;
             if (!questionObj.Status)
             {
                 throw new ArgumentException("Câu hỏi chưa sẵn sàng để học");
             }
-            this.paramater = this.Getparmater(cau_hoi_so);
+            this.paramater = this.GetparmaterNew(questionObj.CorrectIndex);
+            //this.paramater = this.Getparmater(cau_hoi_so);
             this.setDefalt(this.paramater);
             this.paramater.Dest_file_Word_Name = (object)Path.Combine(System.Windows.Forms.Application.StartupPath, "Word\\" + this.paramater.section.ToString() + "_" + this.paramater.quesion.ToString());
             ////TODO: sua doi thanh text
