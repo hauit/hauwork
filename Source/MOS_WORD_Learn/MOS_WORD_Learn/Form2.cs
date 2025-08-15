@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Management;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Management;
 using System.Net;
 using System.Net.Cache;
 using System.Net.NetworkInformation;
@@ -38,6 +39,13 @@ namespace WindowsFormsApplication1
         {
             try
             {
+                if(Process.GetProcessesByName("WINWORD").Length > 0)
+                {
+                    MessageBox.Show("Vui lòng đóng tất cả các file word trước khi học để tránh mất dữ liệu");
+                    this.textBoxUser.Focus();
+                    return;
+                }
+
                 if (this.textBoxUser.Text.ToUpper() != "MOS TRAINING")
                 {
                     int num = (int)MessageBox.Show("Sai tên đăng nhập");
