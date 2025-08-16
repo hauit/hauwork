@@ -272,6 +272,7 @@ namespace WindowsFormsApplication1
         {
             enviroment enviroment = new enviroment();
             int a = 0;
+            enviroment.quesion = cauUser;
             for (int index = 0; index < School.Mn.Length; ++index)
             {
                 a = a + School.Mn[index];
