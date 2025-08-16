@@ -10,15 +10,15 @@ namespace MOS_EXCEL_LEARN
   {
     public static int[] Mn = new int[10]
     {
-      15,
-      6,
-      6,
-      21,
-      3,
-      6,
-      9,
-      10,
-      3,
+      18,
+      13,
+      5,
+      26,
+      4,
+      4,
+      12,
+      14,
+      5,
       9
     };
 

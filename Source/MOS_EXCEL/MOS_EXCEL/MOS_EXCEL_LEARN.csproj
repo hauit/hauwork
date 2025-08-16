@@ -47,6 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="alo.cs" />
+    <Compile Include="Base\ClsBaseObject.cs" />
+    <Compile Include="Base\ClsQuestion.cs" />
+    <Compile Include="Base\ClsSession.cs" />
     <Compile Include="Base\RJButton.cs">
       <SubType>Component</SubType>
     </Compile>

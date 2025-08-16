@@ -41,7 +41,6 @@ namespace MOS_EXCEL_LEARN
             this.buttonRefresh = new MOS_EXCEL_LEARN.Base.RJButton();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.buttonCheck = new MOS_EXCEL_LEARN.Base.RJButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.labelKQ = new System.Windows.Forms.Label();
             this.labelCauHienTai = new System.Windows.Forms.Label();
             this.comboBoxCauNext = new System.Windows.Forms.ComboBox();
@@ -51,7 +50,7 @@ namespace MOS_EXCEL_LEARN
             this.buttonVideoHelp = new MOS_EXCEL_LEARN.Base.RJButton();
             this.comboBoxCauDaDanhDau = new System.Windows.Forms.ComboBox();
             this.buttonHelpVideo = new MOS_EXCEL_LEARN.Base.RJButton();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.richTextQuestion = new System.Windows.Forms.RichTextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -225,17 +224,6 @@ namespace MOS_EXCEL_LEARN
             this.buttonCheck.UseVisualStyleBackColor = false;
             this.buttonCheck.Click += new System.EventHandler(this.buttonCheck_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(28, 27);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(171, 218);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            this.pictureBox1.MouseHover += new System.EventHandler(this.pictureBox1_MouseHover);
-            // 
             // labelKQ
             // 
             this.labelKQ.AutoSize = true;
@@ -276,7 +264,7 @@ namespace MOS_EXCEL_LEARN
             // panel1
             // 
             this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.richTextQuestion);
             this.panel1.Location = new System.Drawing.Point(573, 35);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(282, 172);
@@ -386,6 +374,19 @@ namespace MOS_EXCEL_LEARN
             this.buttonHelpVideo.UseVisualStyleBackColor = false;
             this.buttonHelpVideo.Click += new System.EventHandler(this.buttonHelpVideo_Click);
             // 
+            // richTextQuestion
+            // 
+            this.richTextQuestion.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextQuestion.Font = new System.Drawing.Font("Calibri", 20F);
+            this.richTextQuestion.Location = new System.Drawing.Point(0, 0);
+            this.richTextQuestion.Margin = new System.Windows.Forms.Padding(10);
+            this.richTextQuestion.Name = "richTextQuestion";
+            this.richTextQuestion.ReadOnly = true;
+            this.richTextQuestion.Size = new System.Drawing.Size(282, 172);
+            this.richTextQuestion.TabIndex = 1;
+            this.richTextQuestion.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -415,9 +416,7 @@ namespace MOS_EXCEL_LEARN
             this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_New_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -432,7 +431,6 @@ namespace MOS_EXCEL_LEARN
         private Base.RJButton buttonRefresh;
         private RichTextBox richTextBox1;
         private Base.RJButton buttonCheck;
-        private PictureBox pictureBox1;
         private Label labelKQ;
         private Label labelCauHienTai;
         private ComboBox comboBoxCauNext;
@@ -443,5 +441,6 @@ namespace MOS_EXCEL_LEARN
         private Base.RJButton button2;
         private ComboBox comboBoxCauDaDanhDau;
         private Base.RJButton buttonHelpVideo;
+        private RichTextBox richTextQuestion;
     }
 }
