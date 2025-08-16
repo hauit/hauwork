@@ -47,6 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="alo.cs" />
+    <Compile Include="Base\RJButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CheckWord.cs" />
     <Compile Include="enviroment.cs" />
     <Compile Include="Form1.cs">

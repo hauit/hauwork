@@ -70,7 +70,10 @@ namespace MOS_EXCEL_LEARN
                 this.loadTongSoCau();
                 this.tong_so_cau = School.Tong();
                 this.Diem = new int[this.tong_so_cau];
-                int y = this.comboBoxCauNext.Height <= this.buttonExit.Height ? (this.buttonExit.Height - this.comboBoxCauNext.Height) / 2 : (this.comboBoxCauNext.Height - this.buttonExit.Height) / 2;
+                //int y = this.comboBoxCauNext.Height <= this.buttonExit.Height ? (this.buttonExit.Height - this.comboBoxCauNext.Height) / 2 : (this.comboBoxCauNext.Height - this.buttonExit.Height) / 2;
+                int y = 5;
+                int leftPadRight = 5;
+                int rightPadLeft = 5;
                 this.screen_height = this.Height;
                 this.screen_width = this.Width;
                 this.WindowState = FormWindowState.Normal;
@@ -78,25 +81,30 @@ namespace MOS_EXCEL_LEARN
                 this.Height = this.screen_height / 5;
                 this.Location = new Point(0, this.screen_height * 4 / 5);
                 this.buttonExit.Location = new Point(0, y);
-                this.buttonRefresh.Location = new Point(this.buttonExit.Width, y);
-                this.buttonHelp.Location = new Point(this.buttonExit.Width + this.buttonRefresh.Width, y);
-                this.buttonHelpVideo.Location = new Point(this.buttonExit.Width + this.buttonRefresh.Width + this.buttonHelp.Width, y);
-                this.buttonCheck.Location = new Point(this.buttonExit.Width + this.buttonRefresh.Width + this.buttonHelp.Width + this.buttonHelpVideo.Width, y);
-                this.labelKQ.Location = new Point(this.buttonExit.Width + this.buttonRefresh.Width + this.buttonHelp.Width + this.buttonHelpVideo.Width + this.buttonCheck.Width, y);
+                this.buttonVideoHelp.Location = new Point(this.buttonExit.Width + leftPadRight, y);
+                this.buttonRefresh.Location = new Point(this.buttonExit.Width + this.buttonVideoHelp.Width + leftPadRight + 5, y);
+
+                this.buttonHelp.Location = new Point(this.buttonExit.Width + this.buttonVideoHelp.Width + this.buttonRefresh.Width + leftPadRight + 10, y);
+                this.buttonHelpVideo.Location = new Point(this.buttonExit.Width + this.buttonVideoHelp.Width + this.buttonRefresh.Width + this.buttonHelp.Width + leftPadRight + 15, y);
+                this.buttonCheck.Location = new Point(this.buttonExit.Width + this.buttonVideoHelp.Width + this.buttonRefresh.Width + this.buttonHelp.Width + this.buttonHelpVideo.Width + leftPadRight + 20, y);
+                this.labelKQ.Location = new Point(this.buttonExit.Width + this.buttonVideoHelp.Width + this.buttonRefresh.Width + this.buttonHelp.Width + this.buttonHelpVideo.Width + this.buttonCheck.Width + leftPadRight + 25, y);
+
+
                 this.buttonEV.Location = new Point(this.Width - this.buttonEV.Width, y);
-                this.comboBoxCauNext.Location = new Point(this.Width - this.buttonEV.Width - this.comboBoxCauNext.Width, 0);
-                this.buttonNext.Location = new Point(this.Width - this.buttonEV.Width - this.comboBoxCauNext.Width - this.buttonNext.Width, y);
-                this.buttonReset.Location = new Point(this.buttonNext.Location.X - this.buttonReset.Width, y);
-                this.labelCauHienTai.Location = new Point(this.buttonReset.Location.X - this.labelCauHienTai.Width, y);
-                this.buttonSummary.Location = new Point(this.labelCauHienTai.Location.X - this.buttonSummary.Width, y);
-                this.comboBoxCauDaDanhDau.Location = new Point(this.buttonSummary.Location.X - this.comboBoxCauDaDanhDau.Width, 0);
-                this.buttonZoom.Location = new Point(this.comboBoxCauDaDanhDau.Location.X - this.buttonZoom.Width, y);
-                this.button2.Location = new Point(this.buttonZoom.Location.X - this.button2.Width, y);
-                this.buttonVideoHelp.Location = new Point(this.button2.Location.X - this.buttonVideoHelp.Width, y);
-                this.richTextBox1.Location = new Point(0, this.comboBoxCauNext.Height);
+                this.comboBoxCauNext.Location = new Point(this.Width - this.buttonEV.Width - this.comboBoxCauNext.Width - rightPadLeft, y);
+                this.buttonNext.Location = new Point(this.Width - this.buttonEV.Width - this.comboBoxCauNext.Width - this.buttonNext.Width - rightPadLeft - 5, y);
+                this.buttonReset.Location = new Point(this.buttonNext.Location.X - this.buttonReset.Width - rightPadLeft, y);
+                this.labelCauHienTai.Location = new Point(this.buttonReset.Location.X - this.labelCauHienTai.Width - rightPadLeft, y);
+                this.buttonSummary.Location = new Point(this.labelCauHienTai.Location.X - this.buttonSummary.Width - rightPadLeft, y);
+                this.comboBoxCauDaDanhDau.Location = new Point(this.buttonSummary.Location.X - this.comboBoxCauDaDanhDau.Width - rightPadLeft, y);
+                this.buttonZoom.Location = new Point(this.comboBoxCauDaDanhDau.Location.X - this.buttonZoom.Width - rightPadLeft, y);
+
+                //this.button2.Location = new Point(this.buttonZoom.Location.X - this.button2.Width, y); //Gọi cô
+
+                this.richTextBox1.Location = new Point(0, this.comboBoxCauNext.Height + 10);
                 this.richTextBox1.Width = this.Width;
                 this.richTextBox1.Height = this.Height - this.comboBoxCauNext.Height;
-                this.panel1.Location = new Point(0, this.comboBoxCauNext.Height);
+                this.panel1.Location = new Point(0, this.comboBoxCauNext.Height + 10);
                 this.panel1.Width = this.Width;
                 this.panel1.Height = this.Height - this.comboBoxCauNext.Height;
                 this.pictureBox1.Location = new Point(0, 0);
@@ -106,6 +114,7 @@ namespace MOS_EXCEL_LEARN
                 for (int index = 0; index < this.tong_so_cau; ++index)
                     this.comboBoxCauNext.Items.Add((object)(index + 1));
                 this.Copy(Path.Combine(System.Windows.Forms.Application.StartupPath, "data\\Doc"), Environment.GetFolderPath(Environment.SpecialFolder.Personal));
+
                 this.a.Visible = true;
                 this.a.WindowState = Microsoft.Office.Interop.Excel.XlWindowState.xlNormal;
                 this.a.Top = 0.0;
@@ -309,12 +318,14 @@ namespace MOS_EXCEL_LEARN
         {
             if (this.TopMost)
             {
-                this.buttonHelp.Text = "Về chế độ làm bài";
+                //this.buttonHelp.Text = "Về chế độ làm bài";
+                this.buttonHelp.Text = "Ẩn Taskbar";
                 this.TopMost = false;
             }
             else
             {
-                this.buttonHelp.Text = "Về chế độ thường";
+                //this.buttonHelp.Text = "Về chế độ thường";
+                this.buttonHelp.Text = "Hiện Taskbar";
                 this.TopMost = true;
             }
         }
@@ -331,7 +342,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch (Exception ex)
             {
-                int num = (int)MessageBox.Show("Bạn đã tắt MS Word! Tắt chương trình và làm lại");
+                int num = (int)MessageBox.Show("Bạn đã tắt MS Excel! Tắt chương trình và làm lại");
             }
         }
 
@@ -390,22 +401,24 @@ namespace MOS_EXCEL_LEARN
 
         private void buttonVideoHelp_Click(object sender, EventArgs e)
         {
-            if (this.buttonVideoHelp.Text == "HDSD phần mềm")
+            if (this.buttonVideoHelp.Text == "HDSD")
             {
-                this.buttonVideoHelp.Text = "Về chế độ làm bài";
+                //this.buttonVideoHelp.Text = "Về chế độ làm bài";
+                this.buttonHelp.Text = "Ẩn Taskbar";
                 this.TopMost = false;
                 try
                 {
-                    Process.Start(Path.Combine(System.Windows.Forms.Application.StartupPath, "zip\\hdh.mp4"));
+                    //Process.Start(Path.Combine(System.Windows.Forms.Application.StartupPath, "zip\\hdh.mp4"));
+                    Process.Start("https://google.com");
                 }
                 catch (Exception ex)
                 {
-                    int num = (int)MessageBox.Show("đổi chương trinh mặt định xem Video khác" + ex.Message);
+                    int num = (int)MessageBox.Show("Vui lòng kết nối mạng để xem Hướng dẫn sử dụng phần mềm " + ex.Message);
                 }
             }
             else
             {
-                this.buttonVideoHelp.Text = "HDSD phần mềm";
+                this.buttonVideoHelp.Text = "HDSD";
                 this.TopMost = true;
             }
         }
@@ -427,16 +440,17 @@ namespace MOS_EXCEL_LEARN
 
         private void buttonHelpVideo_Click(object sender, EventArgs e)
         {
-            string str = Path.Combine(System.Windows.Forms.Application.StartupPath, "zip\\1.avi");
-            string fileHelpVideoPath = this.paramater.Source_file_help_video_path;
             try
             {
-                Home.DecryptFile(fileHelpVideoPath, str);
-                Process.Start(str);
+                //if (!questionObj.Status)
+                //{
+                //    throw new ArgumentException("Câu hỏi chưa sẵn sàng để học");
+                //}
+                //Process.Start(questionObj.Url);
             }
             catch (Exception ex)
             {
-                int num = (int)MessageBox.Show("Tắt Video help trước khi mở help mới");
+                MessageBox.Show(ex.Message);
             }
         }
 
