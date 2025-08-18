@@ -45,12 +45,12 @@ namespace MOS_EXCEL_LEARN
             this.labelCauHienTai = new System.Windows.Forms.Label();
             this.comboBoxCauNext = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.richTextQuestion = new System.Windows.Forms.RichTextBox();
             this.buttonZoom = new MOS_EXCEL_LEARN.Base.RJButton();
             this.buttonSummary = new MOS_EXCEL_LEARN.Base.RJButton();
             this.buttonVideoHelp = new MOS_EXCEL_LEARN.Base.RJButton();
             this.comboBoxCauDaDanhDau = new System.Windows.Forms.ComboBox();
             this.buttonHelpVideo = new MOS_EXCEL_LEARN.Base.RJButton();
-            this.richTextQuestion = new System.Windows.Forms.RichTextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -98,6 +98,7 @@ namespace MOS_EXCEL_LEARN
             this.buttonNext.Text = "Chọn câu";
             this.buttonNext.TextColor = System.Drawing.Color.White;
             this.buttonNext.UseVisualStyleBackColor = false;
+            this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
             // 
             // buttonReset
             // 
@@ -270,6 +271,19 @@ namespace MOS_EXCEL_LEARN
             this.panel1.Size = new System.Drawing.Size(282, 172);
             this.panel1.TabIndex = 15;
             // 
+            // richTextQuestion
+            // 
+            this.richTextQuestion.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextQuestion.Font = new System.Drawing.Font("Calibri", 20F);
+            this.richTextQuestion.Location = new System.Drawing.Point(0, 0);
+            this.richTextQuestion.Margin = new System.Windows.Forms.Padding(10);
+            this.richTextQuestion.Name = "richTextQuestion";
+            this.richTextQuestion.ReadOnly = true;
+            this.richTextQuestion.Size = new System.Drawing.Size(282, 172);
+            this.richTextQuestion.TabIndex = 1;
+            this.richTextQuestion.Text = "";
+            // 
             // buttonZoom
             // 
             this.buttonZoom.AutoSize = true;
@@ -373,19 +387,6 @@ namespace MOS_EXCEL_LEARN
             this.buttonHelpVideo.TextColor = System.Drawing.Color.White;
             this.buttonHelpVideo.UseVisualStyleBackColor = false;
             this.buttonHelpVideo.Click += new System.EventHandler(this.buttonHelpVideo_Click);
-            // 
-            // richTextQuestion
-            // 
-            this.richTextQuestion.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextQuestion.Font = new System.Drawing.Font("Calibri", 20F);
-            this.richTextQuestion.Location = new System.Drawing.Point(0, 0);
-            this.richTextQuestion.Margin = new System.Windows.Forms.Padding(10);
-            this.richTextQuestion.Name = "richTextQuestion";
-            this.richTextQuestion.ReadOnly = true;
-            this.richTextQuestion.Size = new System.Drawing.Size(282, 172);
-            this.richTextQuestion.TabIndex = 1;
-            this.richTextQuestion.Text = "";
             // 
             // Form1
             // 

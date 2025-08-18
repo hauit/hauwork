@@ -613,5 +613,29 @@ namespace MOS_EXCEL_LEARN
                 textWriter.WriteLine(this.comboBoxCauDaDanhDau.Items[index].ToString());
             textWriter.Close();
         }
+
+        private void buttonNext_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                this.turnOff();
+            }
+            catch (Exception ex)
+            {
+            }
+            this.cau_User = int.Parse(this.comboBoxCauNext.Text.Trim());
+            this.load_cau_hoi(this.cau_User);
+            this.labelCauHienTai.Text = "Câu: " + this.cau_User.ToString();
+            if (this.cau_User < this.tong_so_cau)
+                this.comboBoxCauNext.Text = (this.cau_User + 1).ToString();
+            else
+                this.comboBoxCauNext.Text = "1";
+            this.labelKQ.Text = "";
+            this.check = true;
+            this.buttonEV.Text = "Tiếng Việt";
+            //this.h.refresh(); TODO: uncomment after finish Help form
+            this.a.Visible = true;
+        }
     }
 }
