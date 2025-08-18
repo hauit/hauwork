@@ -136,7 +136,7 @@ namespace MOS_EXCEL_LEARN
             this.buttonEV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonEV.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.buttonEV.ForeColor = System.Drawing.Color.White;
-            this.buttonEV.Location = new System.Drawing.Point(711, 528);
+            this.buttonEV.Location = new System.Drawing.Point(724, 533);
             this.buttonEV.Name = "buttonEV";
             this.buttonEV.Padding = new System.Windows.Forms.Padding(3);
             this.buttonEV.Size = new System.Drawing.Size(96, 37);
@@ -258,7 +258,7 @@ namespace MOS_EXCEL_LEARN
             this.comboBoxCauNext.FormattingEnabled = true;
             this.comboBoxCauNext.Location = new System.Drawing.Point(653, 532);
             this.comboBoxCauNext.Name = "comboBoxCauNext";
-            this.comboBoxCauNext.Size = new System.Drawing.Size(52, 36);
+            this.comboBoxCauNext.Size = new System.Drawing.Size(65, 36);
             this.comboBoxCauNext.TabIndex = 13;
             this.comboBoxCauNext.Text = "1";
             // 
@@ -362,7 +362,7 @@ namespace MOS_EXCEL_LEARN
             this.comboBoxCauDaDanhDau.FormattingEnabled = true;
             this.comboBoxCauDaDanhDau.Location = new System.Drawing.Point(171, 528);
             this.comboBoxCauDaDanhDau.Name = "comboBoxCauDaDanhDau";
-            this.comboBoxCauDaDanhDau.Size = new System.Drawing.Size(43, 36);
+            this.comboBoxCauDaDanhDau.Size = new System.Drawing.Size(72, 36);
             this.comboBoxCauDaDanhDau.TabIndex = 26;
             // 
             // buttonHelpVideo
