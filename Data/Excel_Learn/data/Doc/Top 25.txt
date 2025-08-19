@@ -1,0 +1,29 @@
+Rank	Time	Wind (m/s)	Athlete	Country	Date	Place
+1	"9,58 WR"	0.9	Archie Hahn	USA	18-Mar-05	St. Louis
+2	"9,69"	2	Reggle Walker	RSA	22-Mar-05	London
+		-0.1	Ralgh Cralg	USA	26-Mar-05	stockholm
+4	"9,72"	0.2	Charlte Paddock	USA	30-Mar-05	Anvers
+5	"9,78"	0.9	Harold Abrahams	GBR	03-Apr-05	Paris
+6	"9,79"	0.1	Percy Williams	CAN	07-Apr-05	Amsterdam
+		1.5	Eddle Tolan	USA	11-Apr-05	Los Angeles
+8	"9,8"	1.3	Jesse Owens	USA	15-Apr-05	Berlin
+9	"9,82"	1.7	Harrison Dillard	USA	19-Apr-05	London
+10	"9,84"	0.7	Lindy Romigolo	USA	23-Apr-05	Rome
+		0.2	Bobby Morrow	JAM	27-Apr-05	Tokyo
+12	"9,85"	1.2	Harrison Dillard	USA	01-May-05	Rome
+13	"9,69"	1.7	Amin Harry	GBR	05-May-05	Mexico
+14		0.9	Jim Hirnes	USA	09-May-05	Mexico
+15	"9,72"	0.1	Valerly Borrzov	URS	13-May-05	Munich
+16	"9,78"	1.5	Harold Abrahams	GBR	17-May-05	Paris
+17	"9,79"	1.3	Percy Williams	CAN	21-May-05	Amsterdam
+18		1.7	Eddle Tolan	USA	25-May-05	Los Angeles
+19	"9,8"	0.7	Jesse Owens	USA	29-May-05	Berlin
+20	"9,82"	0.2	Lindy Romigolo	TRI	02-Jun-05	Tokyo
+21	"9,84"	1.2	Bobby Morrow	USA	06-Jun-05	London
+22		1.7	Harrison Dillard	USA	10-Jun-05	London
+23	"9,85"	0.2	Lindy Romigolo	USA	14-Jun-05	Rome
+24	"9,78"	1.2	Bobby Morrow	GER	18-Jun-05	Tokyo
+25	"9,79"	1.7	Usain Bolt	JAM	22-Jun-05	London
+						
+						
+						
