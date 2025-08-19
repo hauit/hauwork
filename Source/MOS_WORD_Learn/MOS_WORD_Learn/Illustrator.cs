@@ -1,6 +1,6 @@
 ﻿// Decompiled with JetBrains decompiler
-// Type: WindowsFormsApplication1.Illustrator
-// Assembly: WindowsFormsApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// Type: MOS_WORD_LEARN.Illustrator
+// Assembly: MOS_WORD_LEARN, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: E70F0E30-D79F-439D-990F-4092B40A7B30
 // Assembly location: C:\Users\Admin\Downloads\WE_19\HOC_WORD_19\Chay File Nay.exe
 
@@ -8,7 +8,7 @@ using Microsoft.Office.Core;
 using Microsoft.Office.Interop.Word;
 using System;
 
-namespace WindowsFormsApplication1
+namespace MOS_WORD_LEARN
 {
   internal class Illustrator
   {

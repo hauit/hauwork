@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsApplication1.Base
+namespace MOS_WORD_LEARN.Base
 {
     public class ClsQuestion
     {

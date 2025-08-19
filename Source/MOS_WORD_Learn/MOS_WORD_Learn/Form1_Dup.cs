@@ -11,12 +11,12 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsFormsApplication1.Base;
+using MOS_WORD_LEARN.Base;
 using static System.Net.WebRequestMethods;
 using File = System.IO.File;
 using Point = System.Drawing.Point;
 
-namespace WindowsFormsApplication1
+namespace MOS_WORD_LEARN
 {
     public partial class Form1_Dup : Form
     {
@@ -472,7 +472,7 @@ namespace WindowsFormsApplication1
             if (this.buttonEV.Text == "Tiếng Anh")
             {
                 this.buttonEV.Text = "Tiếng Việt";
-                //this.buttonEV.BackgroundImage = WindowsFormsApplication1.Properties.Resources.btn_en;
+                //this.buttonEV.BackgroundImage = MOS_WORD_LEARN.Properties.Resources.btn_en;
                 this.richTextQuestion.Text = this.paramater.DeTiengAnh;
                 //this.pictureBox1.Image.Dispose();
                 //this.pictureBox1.Image = Image.FromFile(this.paramater.DeTiengViet);
@@ -480,7 +480,7 @@ namespace WindowsFormsApplication1
             else
             {
                 this.buttonEV.Text = "Tiếng Anh";
-                //this.buttonEV.BackgroundImage = WindowsFormsApplication1.Properties.Resources.btn_vi;
+                //this.buttonEV.BackgroundImage = MOS_WORD_LEARN.Properties.Resources.btn_vi;
                 this.richTextQuestion.Text = this.paramater.DeTiengViet;
                 //this.pictureBox1.Image.Dispose();
                 //this.pictureBox1.Image = Image.FromFile(this.paramater.DeTiengAnh);

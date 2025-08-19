@@ -16,9 +16,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsFormsApplication1.Base;
+using MOS_WORD_LEARN.Base;
 
-namespace WindowsFormsApplication1
+namespace MOS_WORD_LEARN
 {
     public partial class Form2 : Form
     {

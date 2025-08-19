@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace MOS_WORD_LEARN
 {
     partial class Form2
     {
@@ -43,8 +43,8 @@ namespace WindowsFormsApplication1
             this.textBoxPassSo = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnCancel = new WindowsFormsApplication1.Base.RJButton();
-            this.buttonOK = new WindowsFormsApplication1.Base.RJButton();
+            this.btnCancel = new MOS_WORD_LEARN.Base.RJButton();
+            this.buttonOK = new MOS_WORD_LEARN.Base.RJButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();

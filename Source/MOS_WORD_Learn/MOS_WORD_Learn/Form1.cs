@@ -15,7 +15,7 @@ using static System.Net.WebRequestMethods;
 using File = System.IO.File;
 using Point = System.Drawing.Point;
 
-namespace WindowsFormsApplication1
+namespace MOS_WORD_LEARN
 {
     public partial class Form1 : Form
     {
