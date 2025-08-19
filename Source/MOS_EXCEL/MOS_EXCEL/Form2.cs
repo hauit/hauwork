@@ -38,21 +38,21 @@ namespace MOS_EXCEL_LEARN
         {
             if (Process.GetProcessesByName("EXCEL").Length > 0)
             {
-                MessageBox.Show("Vui lòng đóng tất cả các file excel trước khi học để tránh mất dữ liệu");
+                MessageBox.Show("Vui lòng lưu và đóng tất cả các file excel trước khi học để tránh mất dữ liệu");
                 this.textBoxUser.Focus();
                 return;
             }
 
-            if (this.textBoxUser.Text.ToUpper() != "ON LUYEN MOS")
+            if (this.textBoxUser.Text.ToUpper() != "MOS TRAINING")
             {
-                int num = (int)MessageBox.Show("sai user name");
+                int num = (int)MessageBox.Show("Sai tài khoản");
                 this.textBoxUser.Focus();
                 return;
             }
 
             if (this.textBoxPass.Text == "")
             {
-                int num = (int)MessageBox.Show("Nhập Pass");
+                int num = (int)MessageBox.Show("Nhập mật khẩu");
                 this.textBoxPass.Focus();
                 return;
             }
