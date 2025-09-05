@@ -179,33 +179,15 @@ namespace MOS_EXCEL_LEARN
             this.paramater = this.GetparmaterNew(questionObj.CorrectIndex);
             //this.paramater = this.Getparmater(cau_hoi_so);
             this.setDefalt(this.paramater);
-            //this.paramater.Dest_file_Word_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, "Word\\" + this.paramater.section.ToString() + "_" + this.paramater.quesion.ToString() + ".docx");
+            this.paramater.Dest_file_Word_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, "Word\\" + this.questionObj.MaskIndex.ToString() + ".docx");
             this.paramater.DeTiengAnh = this.paramater.Source_de_En;
             this.paramater.DeTiengViet = this.paramater.Source_de_Vn;
-            //this.paramater.Dest_file_help_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, "tam\\help");
-            //Home.DecryptFile(this.paramater.Source_file_word_path, this.paramater.Dest_file_Word_Name.ToString());
-            //Home.DecryptFile(this.paramater.Source_de_En, this.paramater.DeTiengAnh);
-            //Home.DecryptFile(this.paramater.Source_de_Vn, this.paramater.DeTiengViet);
-            //if (File.Exists(this.paramater.Source_file_help_video_path))
-            //{
-            //    Home.DecryptFile(this.paramater.Source_file_help_video_path, this.paramater.Dest_file_help_video_Name);
-            //}
-            //else
-            //{
-            //    int num = (int)MessageBox.Show("Chua co Video help");
-            //}
+            Home.DecryptFile(this.paramater.Source_file_word_path, this.paramater.Dest_file_Word_Name.ToString());
             this.richTextQuestion.Text = this.paramater.DeTiengViet;
             if (this.panel1.Width > this.richTextQuestion.Width)
                 this.richTextQuestion.Left = (this.panel1.Width - this.richTextQuestion.Width) / 2;
             else
                 this.richTextQuestion.Left = 0;
-            //this.pictureBox1.Image = Image.FromFile(this.paramater.DeTiengAnh);
-            //this.pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
-            //this.pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            //this.pictureBox1.Height = this.pictureBox1.Height * this.Width / this.pictureBox1.Width;
-            //this.pictureBox1.Width = this.Width - this.buttonCheck.Width / 2;
-            //this.pictureBox1.Refresh();
-            // ISSUE: reference to a compiler-generated method
             this.d = this.a.Workbooks.Open(this.paramater.Dest_file_Word_Name, System.Type.Missing, System.Type.Missing, System.Type.Missing, (object)"271565234", System.Type.Missing, System.Type.Missing, System.Type.Missing, System.Type.Missing, System.Type.Missing, System.Type.Missing, System.Type.Missing, System.Type.Missing, System.Type.Missing, System.Type.Missing);
         }
 
