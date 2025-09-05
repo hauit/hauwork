@@ -328,7 +328,7 @@ namespace WindowsFormsApplication1
             this.paramater = this.GetparmaterNew(questionObj.CorrectIndex);
             //this.paramater = this.Getparmater(cau_hoi_so);
             this.setDefalt(this.paramater);
-            this.paramater.Dest_file_Word_Name = (object)Path.Combine(System.Windows.Forms.Application.StartupPath, "Word\\" + this.paramater.section.ToString() + "_" + this.paramater.quesion.ToString());
+            this.paramater.Dest_file_Word_Name = (object)Path.Combine(System.Windows.Forms.Application.StartupPath, "Word\\" + questionObj.MaskIndex.ToString());
             ////TODO: sua doi thanh text
             this.paramater.DeTiengAnh = this.paramater.Source_de_En;
             this.paramater.DeTiengViet = this.paramater.Source_de_Vn;
