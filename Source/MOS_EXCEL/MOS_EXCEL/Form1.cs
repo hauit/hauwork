@@ -179,11 +179,11 @@ namespace MOS_EXCEL_LEARN
             this.paramater = this.GetparmaterNew(questionObj.CorrectIndex);
             //this.paramater = this.Getparmater(cau_hoi_so);
             this.setDefalt(this.paramater);
-            this.paramater.Dest_file_Word_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, "Word\\" + this.paramater.section.ToString() + "_" + this.paramater.quesion.ToString() + ".docx");
+            //this.paramater.Dest_file_Word_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, "Word\\" + this.paramater.section.ToString() + "_" + this.paramater.quesion.ToString() + ".docx");
             this.paramater.DeTiengAnh = this.paramater.Source_de_En;
             this.paramater.DeTiengViet = this.paramater.Source_de_Vn;
             //this.paramater.Dest_file_help_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, "tam\\help");
-            Home.DecryptFile(this.paramater.Source_file_word_path, this.paramater.Dest_file_Word_Name.ToString());
+            //Home.DecryptFile(this.paramater.Source_file_word_path, this.paramater.Dest_file_Word_Name.ToString());
             //Home.DecryptFile(this.paramater.Source_de_En, this.paramater.DeTiengAnh);
             //Home.DecryptFile(this.paramater.Source_de_Vn, this.paramater.DeTiengViet);
             //if (File.Exists(this.paramater.Source_file_help_video_path))

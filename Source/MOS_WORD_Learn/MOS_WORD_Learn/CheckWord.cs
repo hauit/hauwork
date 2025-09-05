@@ -1,6 +1,6 @@
 ﻿// Decompiled with JetBrains decompiler
-// Type: WindowsFormsApplication1.CheckWord
-// Assembly: WindowsFormsApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// Type: MOS_WORD_LEARN.CheckWord
+// Assembly: MOS_WORD_LEARN, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: E70F0E30-D79F-439D-990F-4092B40A7B30
 // Assembly location: C:\Users\Admin\Downloads\WE_19\HOC_WORD_19\Chay File Nay.exe
 
@@ -10,7 +10,7 @@ using System;
 using System.IO;
 using System.Reflection;
 
-namespace WindowsFormsApplication1
+namespace MOS_WORD_LEARN
 {
   internal class CheckWord
   {

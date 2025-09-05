@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace MOS_WORD_LEARN
 {
     partial class Form1_Dup
     {
@@ -40,18 +40,18 @@ namespace WindowsFormsApplication1
             this.panel1 = new System.Windows.Forms.Panel();
             this.richTextQuestion = new System.Windows.Forms.RichTextBox();
             this.comboBoxCauDaDanhDau = new System.Windows.Forms.ComboBox();
-            this.buttonHelp = new WindowsFormsApplication1.Base.RJButton();
-            this.buttonHelpVideo = new WindowsFormsApplication1.Base.RJButton();
-            this.buttonVideoHelp = new WindowsFormsApplication1.Base.RJButton();
-            this.buttonZoom = new WindowsFormsApplication1.Base.RJButton();
-            this.buttonCheck = new WindowsFormsApplication1.Base.RJButton();
-            this.buttonRefresh = new WindowsFormsApplication1.Base.RJButton();
-            this.buttonEV = new WindowsFormsApplication1.Base.RJButton();
-            this.buttonReset = new WindowsFormsApplication1.Base.RJButton();
-            this.buttonNext = new WindowsFormsApplication1.Base.RJButton();
-            this.buttonExit = new WindowsFormsApplication1.Base.RJButton();
-            this.buttonSummary = new WindowsFormsApplication1.Base.RJButton();
-            this.button2 = new WindowsFormsApplication1.Base.RJButton();
+            this.buttonHelp = new MOS_WORD_LEARN.Base.RJButton();
+            this.buttonHelpVideo = new MOS_WORD_LEARN.Base.RJButton();
+            this.buttonVideoHelp = new MOS_WORD_LEARN.Base.RJButton();
+            this.buttonZoom = new MOS_WORD_LEARN.Base.RJButton();
+            this.buttonCheck = new MOS_WORD_LEARN.Base.RJButton();
+            this.buttonRefresh = new MOS_WORD_LEARN.Base.RJButton();
+            this.buttonEV = new MOS_WORD_LEARN.Base.RJButton();
+            this.buttonReset = new MOS_WORD_LEARN.Base.RJButton();
+            this.buttonNext = new MOS_WORD_LEARN.Base.RJButton();
+            this.buttonExit = new MOS_WORD_LEARN.Base.RJButton();
+            this.buttonSummary = new MOS_WORD_LEARN.Base.RJButton();
+            this.button2 = new MOS_WORD_LEARN.Base.RJButton();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 

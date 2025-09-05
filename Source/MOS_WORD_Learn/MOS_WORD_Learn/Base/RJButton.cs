@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1.Base
+namespace MOS_WORD_LEARN.Base
 {
     public class RJButton : Button
     {
