@@ -20,7 +20,7 @@ namespace MOS_WORD_LEARN
             19,
             3,
             8,
-            11
+            14
         };
 
         public static int Tong()

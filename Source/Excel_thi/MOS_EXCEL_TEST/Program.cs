@@ -101,7 +101,8 @@ namespace MOS_EXCEL_TEST
 
     private static void run()
     {
-      Application.Run((Form) new Form2());
+      Application.Run((Form) new Form1());
+            return;
       switch (Program.status)
       {
         case 1:

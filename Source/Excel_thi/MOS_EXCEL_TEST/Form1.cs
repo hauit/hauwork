@@ -1,5 +1,6 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using MOS_EXCEL_TEST.Properties;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,6 +42,10 @@ namespace MOS_EXCEL_TEST
         private int currentest = 0;
         public Form1()
         {
+            var a = Resources.V01;
+            a.Save(@"D:\V01.png", System.Drawing.Imaging.ImageFormat.Png);
+            var b = Resources.E01;
+            b.Save(@"D:\E01.png", System.Drawing.Imaging.ImageFormat.Png);
             InitializeComponent();
             this.textBox1.MouseClick += new MouseEventHandler(this.textBox1_MouseClick);
             this.getEnviroment();
@@ -688,6 +693,15 @@ namespace MOS_EXCEL_TEST
                 textWriter.Close();
                 this.submit(int.Parse(text.Split('|')[0]) - 1);
             }
+        }
+
+        private void GetQuestion(string path)
+        {
+            byte[] buffer = Home.DecryptFile(path);
+            string jsonString = Encoding.UTF8.GetString(buffer);
+
+            // Giải mã JSON thành object
+            var a = JsonConvert.DeserializeObject<List<Exam>>(jsonString);
         }
     }
 }

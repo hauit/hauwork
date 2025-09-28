@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <!--Project was exported from assembly: E:\hau_Work\Git_HauWork\hauwork\WE_19\TEST_WORD_19\Chay File Nay.exe-->
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -7,7 +7,7 @@
     <ProjectGuid>{658238B2-902A-45E1-A74E-346DF875BE37}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AssemblyName>WindowsFormsApplication1</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <ApplicationVersion>1.0.0.0</ApplicationVersion>
     <FileAlignment>512</FileAlignment>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -30,9 +31,13 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -41,6 +46,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork1.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork10.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork11.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork12.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork13.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork14.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork15.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork16.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork17.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork18.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork19.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork2.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork20.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork21.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork22.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork23.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork24.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork25.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork26.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork27.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork28.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork3.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork4.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork5.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork6.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork7.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork8.cs" />
+    <Compile Include="WindowsFormsApplication1\CheckWork9.cs" />
     <Compile Include="WindowsFormsApplication1\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,14 +111,10 @@
     <Compile Include="WindowsFormsApplication1\Form6.Designer.cs">
       <DependentUpon>Form6.cs</DependentUpon>
     </Compile>
-    <Compile Include="WindowsFormsApplication1\Program.cs" />
     <Compile Include="WindowsFormsApplication1\Home.cs" />
+    <Compile Include="WindowsFormsApplication1\Program.cs" />
     <Compile Include="WindowsFormsApplication1\Properties\Resources.cs" />
     <Compile Include="WindowsFormsApplication1\Properties\Settings.cs" />
-    <Compile Include="AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="WindowsFormsApplication1\Properties\Resources.resx" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
@@ -114,6 +144,13 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="WindowsFormsApplication1\Properties\Resources.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

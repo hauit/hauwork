@@ -1,4 +1,5 @@
 ﻿using Microsoft.Office.Interop.Word;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Windows.Forms;
 using WindowsFormsApplication1.Properties;
 using Point = System.Drawing.Point;
@@ -747,5 +749,14 @@ namespace WindowsFormsApplication1
         }
 
         private void pictureBox1_MouseHover(object sender, EventArgs e) => this.panel1.Focus();
+
+        private void GetQuestion(string path)
+        {
+            byte[] buffer = Home.DecryptFile(path);
+            string jsonString = Encoding.UTF8.GetString(buffer);
+
+            // Giải mã JSON thành object
+            var a = JsonConvert.DeserializeObject<List<Exam>>(jsonString);
+        }
     }
 }

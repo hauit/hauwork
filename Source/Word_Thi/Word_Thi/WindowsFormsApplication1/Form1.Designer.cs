@@ -34,6 +34,7 @@ namespace WindowsFormsApplication1
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = (IContainer)new System.ComponentModel.Container();
             this.checkedListBox1 = new CheckedListBox();
             this.buttonReset = new Button();
             this.buttonCheck = new Button();
