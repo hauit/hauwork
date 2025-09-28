@@ -28,6 +28,8 @@ namespace MOS_EXCEL_LEARN
         {
             InitializeComponent();
             this.textBoxUser.LostFocus += new EventHandler(this.textBoxUser_LostFocus);
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.PASS))
+                this.textBoxPass.Text = Properties.Settings.Default.PASS;
         }
 
         private void textBoxUser_LostFocus(object sender, EventArgs e)
@@ -38,14 +40,14 @@ namespace MOS_EXCEL_LEARN
         {
             if (Process.GetProcessesByName("EXCEL").Length > 0)
             {
-                MessageBox.Show("Vui lòng lưu và đóng tất cả các file excel trước khi học để tránh mất dữ liệu");
+                MessageBox.Show("Vui lòng đóng tất cả các file excel trước khi học để tránh mất dữ liệu");
                 this.textBoxUser.Focus();
                 return;
             }
 
             if (this.textBoxUser.Text.ToUpper() != "MOS TRAINING")
             {
-                int num = (int)MessageBox.Show("Sai tài khoản");
+                int num = (int)MessageBox.Show("Sai tên đăng nhập");
                 this.textBoxUser.Focus();
                 return;
             }
@@ -140,7 +142,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch (Exception ex)
             {
-                int num = (int)MessageBox.Show("Không kết nói được với server vào google meet để tìm hổ trợ|" + ex.Message);
+                int num = (int)MessageBox.Show("Không kết nói được với server vào website để hỗ trợ: https://mos360.vn" + ex.Message);
                 this.Close();
             }
         }
@@ -163,7 +165,7 @@ namespace MOS_EXCEL_LEARN
             }
             this.ngayhethang = this.dt.AddDays(30.0);
             string randomID = Base64Encode(this.mac + this.dt.ToString("yyyyMMdd"));
-            this.richTextBox1.Text = $"Nếu bạn chưa có mật khẩu để đăng nhập vui lòng gửi ID bên dưới cho Admin để lấy:\n\n{randomID}";
+            this.richTextBox1.Text = $"Nếu bạn chưa có mật khẩu để đăng nhập, vui lòng gửi ID bên dưới cho Admin để được cấp:\n\n{randomID}\n\nWebsite hỗ trợ: https://mos360.vn";
         }
 
         private string Base64Encode(string data)
