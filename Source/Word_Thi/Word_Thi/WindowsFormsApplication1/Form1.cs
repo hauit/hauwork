@@ -11,10 +11,10 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
-using WindowsFormsApplication1.Properties;
+using MOS_WORD_TEST.Properties;
 using Point = System.Drawing.Point;
 
-namespace WindowsFormsApplication1
+namespace MOS_WORD_TEST
 {
     public partial class Form1 : Form
     {

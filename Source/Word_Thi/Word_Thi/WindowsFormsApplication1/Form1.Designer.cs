@@ -2,9 +2,9 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using WindowsFormsApplication1.Properties;
+using MOS_WORD_TEST.Properties;
 
-namespace WindowsFormsApplication1
+namespace MOS_WORD_TEST
 {
     partial class Form1
     {

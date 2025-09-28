@@ -1,6 +1,6 @@
 ﻿// Decompiled with JetBrains decompiler
-// Type: WindowsFormsApplication1.CheckWork9
-// Assembly: WindowsFormsApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// Type: MOS_WORD_TEST.CheckWork9
+// Assembly: MOS_WORD_TEST, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: 59EF86EC-8F2D-419F-A3E8-5D9A0E352B91
 // Assembly location: E:\hau_Work\Git_HauWork\hauwork\WE_19\TEST_WORD_19\Chay File Nay.exe
 
@@ -11,7 +11,7 @@ using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace WindowsFormsApplication1
+namespace MOS_WORD_TEST
 {
     public static class CheckWork9
     {

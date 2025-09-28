@@ -11,7 +11,7 @@ using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace MOS_WORD_TEST
 {
     partial class Form2
     {

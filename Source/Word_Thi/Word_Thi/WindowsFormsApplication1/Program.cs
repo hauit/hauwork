@@ -1,6 +1,6 @@
 ﻿// Decompiled with JetBrains decompiler
-// Type: WindowsFormsApplication1.Program
-// Assembly: WindowsFormsApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// Type: MOS_WORD_TEST.Program
+// Assembly: MOS_WORD_TEST, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: 59EF86EC-8F2D-419F-A3E8-5D9A0E352B91
 // Assembly location: E:\hau_Work\Git_HauWork\hauwork\WE_19\TEST_WORD_19\Chay File Nay.exe
 
@@ -16,7 +16,7 @@ using System.Net.Sockets;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace MOS_WORD_TEST
 {
     internal static class Program
     {

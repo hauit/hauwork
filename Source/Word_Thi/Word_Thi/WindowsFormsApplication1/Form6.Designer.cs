@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-namespace WindowsFormsApplication1
+namespace MOS_WORD_TEST
 {
     partial class Form6
     {
