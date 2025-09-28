@@ -38,15 +38,14 @@ namespace MOS_WORD_LEARN
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.textBoxPassSo = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnCancel = new MOS_WORD_LEARN.Base.RJButton();
             this.buttonOK = new MOS_WORD_LEARN.Base.RJButton();
             this.tabControl1.SuspendLayout();
@@ -82,7 +81,7 @@ namespace MOS_WORD_LEARN
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(8, 29);
+            this.label1.Location = new System.Drawing.Point(8, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(83, 22);
             this.label1.TabIndex = 5;
@@ -94,7 +93,7 @@ namespace MOS_WORD_LEARN
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label2.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(8, 80);
+            this.label2.Location = new System.Drawing.Point(8, 74);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(83, 22);
             this.label2.TabIndex = 6;
@@ -111,18 +110,6 @@ namespace MOS_WORD_LEARN
             this.label3.TabIndex = 4;
             this.label3.Text = "Pass Của Ngày";
             this.label3.Visible = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(40, 140);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(214, 33);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "TRUNG TÂM MOS";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // openFileDialog1
             // 
@@ -145,7 +132,7 @@ namespace MOS_WORD_LEARN
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Font = new System.Drawing.Font("Calibri", 10F);
             this.tabControl1.ItemSize = new System.Drawing.Size(100, 25);
-            this.tabControl1.Location = new System.Drawing.Point(12, 202);
+            this.tabControl1.Location = new System.Drawing.Point(12, 160);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Padding = new System.Drawing.Point(10, 3);
             this.tabControl1.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -168,7 +155,7 @@ namespace MOS_WORD_LEARN
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(265, 156);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "ĐĂNG NHẬP";
+            this.tabPage1.Text = "Đăng nhập";
             // 
             // tabPage2
             // 
@@ -187,25 +174,15 @@ namespace MOS_WORD_LEARN
             // 
             this.richTextBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Font = new System.Drawing.Font("Calibri", 12F);
+            this.richTextBox1.Font = new System.Drawing.Font("Calibri", 10F);
             this.richTextBox1.ForeColor = System.Drawing.Color.Black;
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(0);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(265, 156);
             this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "Nếu bạn chưa có mật khẩu để đăng nhập vui lòng gửi ID bên dưới cho Admin để lấy:\n" +
-    "\nAABBCCDDEEFF";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(95, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(121, 110);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
+            this.richTextBox1.Text = "Nếu bạn chưa có mật khẩu để đăng nhập, vui lòng gửi ID bên dưới cho Admin để được" +
+    " cấp:\n\nAABBCCDDEEFF\n\nWebsite hỗ trợ: https://mos360.vn";
             // 
             // richTextBox2
             // 
@@ -213,11 +190,23 @@ namespace MOS_WORD_LEARN
             this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox2.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Italic);
             this.richTextBox2.ForeColor = System.Drawing.Color.White;
-            this.richTextBox2.Location = new System.Drawing.Point(12, 406);
+            this.richTextBox2.Location = new System.Drawing.Point(12, 360);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(273, 42);
+            this.richTextBox2.ReadOnly = true;
+            this.richTextBox2.Size = new System.Drawing.Size(273, 62);
             this.richTextBox2.TabIndex = 15;
-            this.richTextBox2.Text = "Thành công không đến từ may mắn, mà bắt đầu từ từng giờ bạn ngồi học hôm nay.";
+            this.richTextBox2.Text = "Thành công không đến từ may mắn, mà bắt đầu từ từng giờ bạn ngồi học hôm nay.\n\nWe" +
+    "bsite hỗ trợ: https://mos360.vn";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::MOS_WORD_LEARN.Properties.Resources.w_mos_s;
+            this.pictureBox1.Location = new System.Drawing.Point(44, 20);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(210, 119);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
             // 
             // btnCancel
             // 
@@ -265,24 +254,25 @@ namespace MOS_WORD_LEARN
             // 
             // Form2
             // 
-            this.AccessibleName = "";
+            this.AccessibleDescription = "MOS360_WORD_LEARN";
+            this.AccessibleName = "MOS360_WORD_LEARN";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(69)))), ((int)(((byte)(136)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(297, 448);
+            this.ClientSize = new System.Drawing.Size(297, 438);
             this.ControlBox = false;
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.textBoxPassSo);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Form2_Load);
@@ -302,7 +292,6 @@ namespace MOS_WORD_LEARN
         private Label label1;
         private Label label2;
         private Label label3;
-        private Label label4;
         private OpenFileDialog openFileDialog1;
         private TextBox textBoxPassSo;
         private TabControl tabControl1;

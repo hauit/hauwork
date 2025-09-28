@@ -28,7 +28,9 @@ namespace MOS_WORD_LEARN
         public Form2()
         {
             InitializeComponent();
-            this.textBoxUser.LostFocus += new EventHandler(this.textBoxUser_LostFocus);
+            //this.textBoxUser.LostFocus += new EventHandler(this.textBoxUser_LostFocus);
+            if (! string.IsNullOrEmpty(Properties.Settings.Default.PASS))
+                this.textBoxPass.Text = Properties.Settings.Default.PASS;
         }
 
         private void textBoxUser_LostFocus(object sender, EventArgs e)
@@ -42,7 +44,7 @@ namespace MOS_WORD_LEARN
                 if(Process.GetProcessesByName("WINWORD").Length > 0)
                 {
                     MessageBox.Show("Vui lòng đóng tất cả các file word trước khi học để tránh mất dữ liệu");
-                    this.textBoxUser.Focus();
+                    this.textBoxPass.Focus();
                     return;
                 }
 
@@ -94,7 +96,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                int num = (int)MessageBox.Show("Không kết nói được với server vào google meet để tìm hổ trợ|" + ex.Message);
+                int num = (int)MessageBox.Show("Không kết nói được với server vào website để hỗ trợ: https://mos360.vn" + ex.Message);
                 this.Close();
             }
         }
@@ -236,7 +238,7 @@ namespace MOS_WORD_LEARN
             }
             this.ngayhethang = this.dt.AddDays(30.0);
             string randomID = Base64Encode(this.mac + this.dt.ToString("yyyyMMdd"));
-            this.richTextBox1.Text = $"Nếu bạn chưa có mật khẩu để đăng nhập vui lòng gửi ID bên dưới cho Admin để lấy:\n\n{randomID}";
+            this.richTextBox1.Text = $"Nếu bạn chưa có mật khẩu để đăng nhập, vui lòng gửi ID bên dưới cho Admin để được cấp:\n\n{randomID}\n\nWebsite hỗ trợ: https://mos360.vn";
             //var a = Properties.Settings.Default.PASS;
             //var b = Properties.Settings.Default.DATE;
             //var c = Convert.ToInt32(b, 16);

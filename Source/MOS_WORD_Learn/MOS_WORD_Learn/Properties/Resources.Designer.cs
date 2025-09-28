@@ -69,5 +69,29 @@ namespace MOS_WORD_LEARN.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap w_mos
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("w_mos", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap w_mos_s
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("w_mos_s", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

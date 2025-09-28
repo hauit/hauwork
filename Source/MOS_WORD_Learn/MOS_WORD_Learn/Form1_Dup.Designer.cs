@@ -33,6 +33,7 @@ namespace MOS_WORD_LEARN
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1_Dup));
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.labelKQ = new System.Windows.Forms.Label();
             this.labelCauHienTai = new System.Windows.Forms.Label();
@@ -454,8 +455,9 @@ namespace MOS_WORD_LEARN
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.buttonSummary);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1_Dup";
-            this.Text = "Form1_Dup";
+            this.Text = "MOS360_WORD_LEARN";
             this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Dup_Load);
