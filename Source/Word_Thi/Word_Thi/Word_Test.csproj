@@ -115,6 +115,7 @@
     <Compile Include="WindowsFormsApplication1\Program.cs" />
     <Compile Include="WindowsFormsApplication1\Properties\Resources.cs" />
     <Compile Include="WindowsFormsApplication1\Properties\Settings.cs" />
+    <Compile Include="WindowsFormsApplication1\QuestionCheck.cs" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
@@ -150,6 +151,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="WindowsFormsApplication1\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WindowsFormsApplication1\Properties\Resources.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -17,6 +18,10 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
+        private List<Exam> listExam;
+        private Exam currentExam;
+        private Project currentProject;
+        private Question currentQuestion;
         private string pathWork;
         private string pathRun;
         private string pathFileOfficeMaHoa;
@@ -37,7 +42,7 @@ namespace WindowsFormsApplication1
         private bool[] CacCauDaCheck;
         private int So_Cau_Dung = 0;
         private int So_Cau_Sai = 0;
-        private int Tong_So_Cau;
+        private int Tong_So_Cau = 35;
         private List<int> lsViTri;
         private bool chotat = false;
         private int currentest = 0;
@@ -109,29 +114,37 @@ namespace WindowsFormsApplication1
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.Cau_So = this.checkedListBox1.SelectedIndex;
-            if (this.lsViTri.Count < this.checkedListBox1.Items.Count)
-            {
-                this.Cau_So = this.checkedListBox1.SelectedIndex;
-                this.panel2.VerticalScroll.Value = this.Cau_So * this.panel2.VerticalScroll.Maximum / this.Tong_So_Cau + this.panel2.VerticalScroll.Minimum;
-                this.richTextBox1.Text = "KQ";
-            }
-            else
-            {
-                this.Cau_So = this.checkedListBox1.SelectedIndex;
-                this.panel2.VerticalScroll.Value = this.lsViTri[this.Cau_So];
-                this.richTextBox1.Text = "KQ";
-            }
+            //this.Cau_So = this.checkedListBox1.SelectedIndex;
+            //if (this.lsViTri.Count < this.checkedListBox1.Items.Count)
+            //{
+            //    this.Cau_So = this.checkedListBox1.SelectedIndex;
+            //    this.panel2.VerticalScroll.Value = this.Cau_So * this.panel2.VerticalScroll.Maximum / this.Tong_So_Cau + this.panel2.VerticalScroll.Minimum;
+            //    this.richTextBox1.Text = "KQ";
+            //}
+            //else
+            //{
+            //    this.Cau_So = this.checkedListBox1.SelectedIndex;
+            //    this.panel2.VerticalScroll.Value = this.lsViTri[this.Cau_So];
+            //    this.richTextBox1.Text = "KQ";
+            //}
+            this.currentProject = currentExam.ProjectIndex[this.checkedListBox1.SelectedIndex];
+            this.currentQuestion = currentProject.Questions[0];
+            loadcaucanhoiNew(this.checkedListBox1.SelectedIndex);
         }
 
         private void getEnviroment()
         {
-            int length = Directory.GetDirectories(Path.Combine(System.Windows.Forms.Application.StartupPath, "zip\\MaHoa")).Length;
-            Random r = new Random();
+            listExam = GetQuestion(System.Windows.Forms.Application.StartupPath + "\\zip\\Exam\\ExamList");
+            int length = 0;// listExam.Count;// Directory.GetDirectories(Path.Combine(System.Windows.Forms.Application.StartupPath, "zip\\MaHoa")).Length;
+            //Random r = new Random();
             if (Program.TypeOfTest == 0)
             {
+                //Làm đề số 1
                 this.button1.Visible = true;
                 this.textBox2.Visible = true;
+                currentExam = listExam[0];
+                currentest = 0;
+                length = currentExam.ProjectIndex.Count;
                 Program.Tong = length;
                 Program.Lessons = new int[length];
                 for (int index = 0; index < length; ++index)
@@ -139,13 +152,36 @@ namespace WindowsFormsApplication1
             }
             else
             {
+                Random rExam = new Random();
+                int examIndex = rExam.Next(0, listExam.Count - 1);
+                currentExam = listExam[examIndex];
+                //Làm đề random
                 this.button1.Visible = false;
                 this.textBox2.Visible = false;
-                Program.Tong = 7;
+                Program.Tong = currentExam.ProjectIndex.Count;
                 Program.Lessons = new int[length];
-                for (int i = 0; i < length; ++i)
-                    Program.Lessons[i] = this.chonBai(0, length, i, r);
+                for (int index = 0; index < length; ++index)
+                    Program.Lessons[index] = index;
             }
+
+            //if (Program.TypeOfTest == 0)
+            //{
+            //    this.button1.Visible = true;
+            //    this.textBox2.Visible = true;
+            //    Program.Tong = length;
+            //    Program.Lessons = new int[length];
+            //    for (int index = 0; index < length; ++index)
+            //        Program.Lessons[index] = index;
+            //}
+            //else
+            //{
+            //    this.button1.Visible = false;
+            //    this.textBox2.Visible = false;
+            //    Program.Tong = 7;
+            //    Program.Lessons = new int[length];
+            //    for (int i = 0; i < length; ++i)
+            //        Program.Lessons[i] = this.chonBai(0, length, i, r);
+            //}
         }
 
         private int chonBai(int min, int max, int i, Random r)
@@ -184,32 +220,39 @@ namespace WindowsFormsApplication1
             this.Location = new Point(0, num * 4);
             this.checkedListBox1.Location = new Point(0, 0);
             this.checkedListBox1.Height = this.Height;
-            this.tabControl1.Location = new Point(this.checkedListBox1.Width, 0);
-            this.tabControl1.Height = this.Height;
-            this.tabControl1.Width = this.Width - this.checkedListBox1.Width - this.buttonReset.Width;
+            this.panelQuestion.Location = new Point(this.checkedListBox1.Width, 25);
+            this.panelQuestion.Height = this.Height;
+            this.panelQuestion.Width = this.Width - this.checkedListBox1.Width - this.buttonReset.Width;
+            var a = tabControl1.GetTabRect(0);
+            var b = tabControl1.GetTabRect(1);
+            var c = a.Width + b.Width;
+            this.panelJumpQuestion.Location = new Point(c, 0);
+            this.panelJumpQuestion.Height = 25;
+            this.panelJumpQuestion.Width = this.panelQuestion.Width - c;
+
             this.panel1.Location = new Point(0, 0);
             this.panel1.Height = this.tabPage2.Height;
             this.panel1.Width = this.tabPage2.Width;
             this.panel2.Location = new Point(0, 0);
             this.panel2.Height = this.tabPage2.Height;
             this.panel2.Width = this.tabPage2.Width;
-            this.buttonExit.Location = new Point(this.checkedListBox1.Width + this.tabControl1.Width, 0);
-            this.buttonReset.Location = new Point(this.checkedListBox1.Width + this.tabControl1.Width - this.buttonExit.Width, 0);
-            this.buttonSubmit.Location = new Point(this.checkedListBox1.Width + this.tabControl1.Width - this.buttonExit.Width - this.buttonReset.Width, 0);
-            this.label1.Location = new Point(this.checkedListBox1.Width + this.tabControl1.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width, 0);
-            this.button2.Location = new Point(this.checkedListBox1.Width + this.tabControl1.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.button2.Width, 0);
-            this.comboBox1.Location = new Point(this.checkedListBox1.Width + this.tabControl1.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.button2.Width - this.comboBox1.Width, 0);
-            this.buttonSave.Location = new Point(this.checkedListBox1.Width + this.tabControl1.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.comboBox1.Width - this.button2.Width, 0);
-            this.textBox1.Location = new Point(this.checkedListBox1.Width + this.tabControl1.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.comboBox1.Width - this.textBox1.Width, 0);
-            this.button1.Location = new Point(this.checkedListBox1.Width + this.tabControl1.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.comboBox1.Width - this.button1.Width, 0);
-            this.textBox2.Location = new Point(this.checkedListBox1.Width + this.tabControl1.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.button1.Width - this.comboBox1.Width - this.textBox2.Width, 0);
-            this.buttonRefresh.Location = new Point(this.checkedListBox1.Width + this.tabControl1.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.buttonRefresh.Width - this.comboBox1.Width - this.button2.Width, 0);
-            this.buttonShowHide.Location = new Point(this.checkedListBox1.Width + this.tabControl1.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.button1.Width - this.textBox2.Width - this.comboBox1.Width - this.buttonShowHide.Width, 0);
-            this.buttonHelp.Location = new Point(this.checkedListBox1.Width + this.tabControl1.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.button1.Width - this.textBox2.Width - this.comboBox1.Width - this.buttonShowHide.Width - this.buttonHelp.Width, 0);
-            this.buttonxhdh.Location = new Point(this.checkedListBox1.Width + this.tabControl1.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.button1.Width - this.textBox2.Width - this.comboBox1.Width - this.buttonShowHide.Width - this.buttonHelp.Width - this.buttonxhdh.Width, 0);
-            this.panel4.Location = new Point(this.checkedListBox1.Width + this.tabControl1.Width, this.Height - this.buttonCheck.Height - this.panel4.Height);
-            this.buttonCheck.Location = new Point(this.checkedListBox1.Width + this.tabControl1.Width, this.Height - this.buttonCheck.Height);
-            this.loadcaucanhoi();
+            this.buttonExit.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width, 0);
+            this.buttonReset.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width, 0);
+            this.buttonSubmit.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width, 0);
+            this.label1.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width, 0);
+            this.button2.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.button2.Width, 0);
+            this.comboBox1.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.button2.Width - this.comboBox1.Width, 0);
+            this.buttonSave.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.comboBox1.Width - this.button2.Width, 0);
+            this.textBox1.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.comboBox1.Width - this.textBox1.Width, 0);
+            this.button1.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.comboBox1.Width - this.button1.Width, 0);
+            this.textBox2.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.button1.Width - this.comboBox1.Width - this.textBox2.Width, 0);
+            this.buttonRefresh.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.buttonRefresh.Width - this.comboBox1.Width - this.button2.Width, 0);
+            this.buttonShowHide.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.button1.Width - this.textBox2.Width - this.comboBox1.Width - this.buttonShowHide.Width, 0);
+            this.buttonHelp.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.button1.Width - this.textBox2.Width - this.comboBox1.Width - this.buttonShowHide.Width - this.buttonHelp.Width, 0);
+            this.buttonxhdh.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.button1.Width - this.textBox2.Width - this.comboBox1.Width - this.buttonShowHide.Width - this.buttonHelp.Width - this.buttonxhdh.Width, 0);
+            this.panel4.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width, this.Height - this.buttonCheck.Height - this.panel4.Height);
+            this.buttonCheck.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width, this.Height - this.buttonCheck.Height);
+            //this.loadcaucanhoiNew(currentProject.ProjectIndex);
             this.a = (Microsoft.Office.Interop.Word.Application)Activator.CreateInstance(System.Type.GetTypeFromCLSID(new Guid("000209FF-0000-0000-C000-000000000046")));
             this.a.Visible = true;
             this.a.WindowState = WdWindowState.wdWindowStateNormal;
@@ -220,10 +263,66 @@ namespace WindowsFormsApplication1
             // ISSUE: method pointer
             // ISSUE: object of a compiler-generated type is created
             ((ApplicationEvents4_Event)this.a).DocumentBeforeClose += this.a_DocumentBeforeClose;
-            this.SetUp(Program.Lessons[this.currentest]);
+            //this.SetUp(Program.Lessons[this.currentest]);
+            LoadProject(0);
+            currentQuestion = currentProject.Questions[0];
+            loadcaucanhoiNew(0);
             this.timeStrart = DateTime.Now;
             this.timeStrart = this.timeStrart.AddMinutes(50.0);
             this.timer1.Start();
+        }
+
+        private void LoadProject(int projectIndex)
+        {
+            this.checkedListBox1.Items.Clear();
+            for (int i = 0; i < currentExam.ProjectIndex.Count; i++)
+            {
+                var project = currentExam.ProjectIndex[i];
+                this.checkedListBox1.Items.Add((object)(i + 1).ToString());
+            }
+
+            currentProject = currentExam.ProjectIndex[projectIndex];
+        }
+
+        private void loadcaucanhoiNew(int projectIndex)
+        {
+            this.panelJumpQuestion.Controls.Clear();
+            currentProject = currentExam.ProjectIndex[projectIndex];
+            for (int i = 1; i <= currentProject.Questions.Count; i++)
+            {
+                var btn = new System.Windows.Forms.Button();
+                btn.Text = i.ToString();
+                btn.Location = new Point((i - 1) * 50, 0);
+                btn.Width = 40;
+                btn.Height = 23;
+                btn.BackColor = (i == this.currentQuestion.Index) ? System.Drawing.Color.LightBlue : System.Drawing.Color.DarkBlue;
+                btn.ForeColor = System.Drawing.Color.White;
+                btn.Tag = currentProject.Questions[i - 1];
+                btn.Click += LoadQuestionContent;
+                this.panelJumpQuestion.Controls.Add(btn);
+            }
+        }
+
+        private void LoadQuestionContent(object sender, EventArgs e)
+        {
+            Button lastBT = GetLastQuestionButton();
+            lastBT.BackColor = System.Drawing.Color.DarkBlue;
+            var btn = sender as System.Windows.Forms.Button;
+            var question = btn.Tag as Question;
+            currentQuestion = question;
+            btn.BackColor = System.Drawing.Color.LightBlue;
+            ClsQuestion questionObj = ClsListQuestion.GetQuestion(question.QuestionNumber);
+            richTextTA.Text = questionObj.EngQuestion;
+            richTextTV.Text = questionObj.VnQuestion;
+        }
+
+        private Button GetLastQuestionButton()
+        {
+
+            Button btnTimDuoc = panelJumpQuestion.Controls
+                          .OfType<Button>()
+                          .FirstOrDefault(b => b.Text == currentQuestion.Index.ToString());
+            return btnTimDuoc;
         }
 
         private void loadcaucanhoi()
@@ -246,14 +345,20 @@ namespace WindowsFormsApplication1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string str = this.CheckCauLon(this.Cau_So);
-            if (!this.CacCauDaCheck[this.Cau_So])
+            
+            string str = this.CheckCauLon(this.currentQuestion.QuestionNumber);
+            if (!this.currentQuestion.Status)
             {
+                this.currentQuestion.Status = true;
                 if (str == "True")
-                    ++this.So_Cau_Dung;
+                {
+                    this.currentQuestion.Value = true;
+                }
                 else
-                    ++this.So_Cau_Sai;
-                this.CacCauDaCheck[this.Cau_So] = true;
+                {
+                    this.currentQuestion.Value = false;
+                }
+                //this.CacCauDaCheck[this.Cau_So] = true;
             }
             this.richTextBox1.Text = str;
         }
@@ -335,6 +440,10 @@ namespace WindowsFormsApplication1
             }
             this.chotat = false;
         }
+        private void SetUpNew(int Index)
+        {
+
+        }
 
         private void SetUp(int Index)
         {
@@ -365,69 +474,10 @@ namespace WindowsFormsApplication1
                 foreach (string file in Directory.GetFiles(path))
                     File.Copy(file, Path.Combine(System.Windows.Forms.Application.StartupPath + "\\DATA", Path.GetFileName(file)), true);
             }
-            this.Tong_So_Cau = this.ImageFile.Length;
-            this.CacCauDaCheck = new bool[this.Tong_So_Cau];
-            for (int index = 0; index < this.Tong_So_Cau; ++index)
-                this.CacCauDaCheck[index] = false;
-            switch (this.workIndex)
-            {
-                case 0:
-                    this.pictureBox2.Image = (Image)Resources.E01;
-                    this.pictureBox1.Image = (Image)Resources.V01;
-                    break;
-                case 1:
-                    this.pictureBox2.Image = (Image)Resources.E02;
-                    this.pictureBox1.Image = (Image)Resources.V02;
-                    break;
-                case 2:
-                    this.pictureBox2.Image = (Image)Resources.E03;
-                    this.pictureBox1.Image = (Image)Resources.V03;
-                    break;
-                case 3:
-                    this.pictureBox2.Image = (Image)Resources.E04;
-                    this.pictureBox1.Image = (Image)Resources.V04;
-                    break;
-                case 4:
-                    this.pictureBox2.Image = (Image)Resources.E05;
-                    this.pictureBox1.Image = (Image)Resources.V05;
-                    break;
-                case 5:
-                    this.pictureBox2.Image = (Image)Resources.E06;
-                    this.pictureBox1.Image = (Image)Resources.V06;
-                    break;
-                case 6:
-                    this.pictureBox2.Image = (Image)Resources.E07;
-                    this.pictureBox1.Image = (Image)Resources.V07;
-                    break;
-                case 7:
-                    this.pictureBox2.Image = (Image)Resources.E08;
-                    this.pictureBox1.Image = (Image)Resources.V08;
-                    break;
-                case 8:
-                    this.pictureBox2.Image = (Image)Resources.E09;
-                    this.pictureBox1.Image = (Image)Resources.V09;
-                    break;
-                case 9:
-                    this.pictureBox2.Image = (Image)Resources.E10;
-                    this.pictureBox1.Image = (Image)Resources.V10;
-                    break;
-                case 10:
-                    this.pictureBox2.Image = (Image)Resources.E11;
-                    this.pictureBox1.Image = (Image)Resources.V11;
-                    break;
-                case 11:
-                    this.pictureBox2.Image = (Image)Resources.E12;
-                    this.pictureBox1.Image = (Image)Resources.V12;
-                    break;
-                case 12:
-                    this.pictureBox2.Image = (Image)Resources.E13;
-                    this.pictureBox1.Image = (Image)Resources.V13;
-                    break;
-                case 13:
-                    this.pictureBox2.Image = (Image)Resources.E14;
-                    this.pictureBox1.Image = (Image)Resources.V14;
-                    break;
-            }
+            //this.CacCauDaCheck = new bool[this.Tong_So_Cau];
+            //for (int index = 0; index < this.Tong_So_Cau; ++index)
+            //    this.CacCauDaCheck[index] = false;
+
             TextReader textReader = (TextReader)new StreamReader(Path.Combine(this.pathWork, "a.txt"));
             this.lsViTri = new List<int>();
             for (string s = textReader.ReadLine(); s != null; s = textReader.ReadLine())
@@ -455,8 +505,8 @@ namespace WindowsFormsApplication1
             // ISSUE: reference to a compiler-generated method
             this.d = this.a.Documents.Open(ref pathFileOffice, ref missing1, ref missing2, ref missing3, ref PasswordDocument, ref missing4, ref missing5, ref missing6, ref missing7, ref missing8, ref missing9, ref missing10, ref missing11, ref missing12, ref missing13, ref XMLTransform);
             this.soLanReSet = 0;
-            for (int index = 0; index < this.CacCauDaCheck.Length; ++index)
-                this.CacCauDaCheck[index] = false;
+            //for (int index = 0; index < this.CacCauDaCheck.Length; ++index)
+            //    this.CacCauDaCheck[index] = false;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -513,67 +563,8 @@ namespace WindowsFormsApplication1
         {
             try
             {
-                switch (this.workIndex)
-                {
-                    //case 0:
-                    //    return CheckWork1.Check(cau, this.a, this.d);
-                    //case 1:
-                    //    return CheckWork2.Check(cau, this.a, this.d);
-                    //case 2:
-                    //    return CheckWork3.Check(cau, this.a, this.d);
-                    //case 3:
-                    //    return CheckWork4.Check(cau, this.a, this.d);
-                    //case 4:
-                    //    return CheckWork5.Check(cau, this.a, this.d);
-                    //case 5:
-                    //    return CheckWork6.Check(cau, this.a, this.d);
-                    //case 6:
-                    //    return CheckWork7.Check(cau, this.a, this.d);
-                    //case 7:
-                    //    return CheckWork8.Check(cau, this.a, this.d);
-                    //case 8:
-                    //    return CheckWork9.Check(cau, this.a, this.d);
-                    //case 9:
-                    //    return CheckWork10.Check(cau, this.a, this.d);
-                    //case 10:
-                    //    return CheckWork11.Check(cau, this.a, this.d);
-                    //case 11:
-                    //    return CheckWork12.Check(cau, this.a, this.d);
-                    //case 12:
-                    //    return CheckWork13.Check(cau, this.a, this.d);
-                    //case 13:
-                    //    return CheckWork14.Check(cau, this.a, this.d);
-                    //case 14:
-                    //    return CheckWork15.Check(cau, this.a, this.d);
-                    //case 15:
-                    //    return CheckWork16.Check(cau, this.a, this.d);
-                    //case 16:
-                    //    return CheckWork17.Check(cau, this.a, this.d);
-                    //case 17:
-                    //    return CheckWork18.Check(cau, this.a, this.d);
-                    //case 18:
-                    //    return CheckWork19.Check(cau, this.a, this.d);
-                    //case 19:
-                    //    return CheckWork20.Check(cau, this.a, this.d);
-                    //case 20:
-                    //    return CheckWork21.Check(cau, this.a, this.d);
-                    //case 21:
-                    //    return CheckWork22.Check(cau, this.a, this.d);
-                    //case 22:
-                    //    return CheckWork23.Check(cau, this.a, this.d);
-                    //case 23:
-                    //    return CheckWork24.Check(cau, this.a, this.d);
-                    //case 24:
-                    //    return CheckWork25.Check(cau, this.a, this.d);
-                    //case 25:
-                    //    return CheckWork26.Check(cau, this.a, this.d);
-                    //case 26:
-                    //    return CheckWork27.Check(cau, this.a, this.d);
-                    //case 27:
-                    //    return CheckWork28.Check(cau, this.a, this.d);
-                    default:
-                        return "đề tham khảo";
-                }
+                IQuestionCheck questionCheck = new QuestionCheck();
+                return questionCheck.CheckAnswer(currentQuestion.QuestionNumber, this.a, this.d);
             }
             catch (Exception ex)
             {
@@ -750,13 +741,14 @@ namespace WindowsFormsApplication1
 
         private void pictureBox1_MouseHover(object sender, EventArgs e) => this.panel1.Focus();
 
-        private void GetQuestion(string path)
+        private List<Exam> GetQuestion(string path)
         {
             byte[] buffer = Home.DecryptFile(path);
             string jsonString = Encoding.UTF8.GetString(buffer);
 
             // Giải mã JSON thành object
-            var a = JsonConvert.DeserializeObject<List<Exam>>(jsonString);
+            var listExam = JsonConvert.DeserializeObject<List<Exam>>(jsonString);
+            return listExam;
         }
     }
 }
