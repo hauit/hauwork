@@ -13,6 +13,7 @@ using System.Text;
 using System.Windows.Forms;
 using MOS_WORD_TEST.Properties;
 using Point = System.Drawing.Point;
+using MOS_WORD_TEST.Base;
 
 namespace MOS_WORD_TEST
 {
@@ -212,17 +213,22 @@ namespace MOS_WORD_TEST
             this.TopMost = true;
             int num = this.Height / 5;
             int width = this.Width;
+            int y = 5;
+            int leftPadRight = 5;
+            int rightPadLeft = 5;
             this.screen_height = this.Height;
             this.screen_width = this.Width;
             this.WindowState = FormWindowState.Normal;
             this.Height = num;
             this.Width = width;
             this.Location = new Point(0, num * 4);
+
+            //Project
             this.checkedListBox1.Location = new Point(0, 0);
             this.checkedListBox1.Height = this.Height;
-            this.panelQuestion.Location = new Point(this.checkedListBox1.Width, 25);
+            this.panelQuestion.Location = new Point(this.checkedListBox1.Width, this.buttonExit.Height + y);
             this.panelQuestion.Height = this.Height;
-            this.panelQuestion.Width = this.Width - this.checkedListBox1.Width - this.buttonReset.Width;
+            this.panelQuestion.Width = this.Width - this.checkedListBox1.Width - 200;
             var a = tabControl1.GetTabRect(0);
             var b = tabControl1.GetTabRect(1);
             var c = a.Width + b.Width;
@@ -230,28 +236,61 @@ namespace MOS_WORD_TEST
             this.panelJumpQuestion.Height = 25;
             this.panelJumpQuestion.Width = this.panelQuestion.Width - c;
 
+            //Panel Right
             this.panel1.Location = new Point(0, 0);
             this.panel1.Height = this.tabPage2.Height;
             this.panel1.Width = this.tabPage2.Width;
             this.panel2.Location = new Point(0, 0);
             this.panel2.Height = this.tabPage2.Height;
             this.panel2.Width = this.tabPage2.Width;
-            this.buttonExit.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width, 0);
-            this.buttonReset.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width, 0);
-            this.buttonSubmit.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width, 0);
-            this.label1.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width, 0);
-            this.button2.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.button2.Width, 0);
-            this.comboBox1.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.button2.Width - this.comboBox1.Width, 0);
-            this.buttonSave.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.comboBox1.Width - this.button2.Width, 0);
-            this.textBox1.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.comboBox1.Width - this.textBox1.Width, 0);
-            this.button1.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.comboBox1.Width - this.button1.Width, 0);
-            this.textBox2.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.button1.Width - this.comboBox1.Width - this.textBox2.Width, 0);
-            this.buttonRefresh.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.buttonRefresh.Width - this.comboBox1.Width - this.button2.Width, 0);
-            this.buttonShowHide.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.button1.Width - this.textBox2.Width - this.comboBox1.Width - this.buttonShowHide.Width, 0);
-            this.buttonHelp.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.button1.Width - this.textBox2.Width - this.comboBox1.Width - this.buttonShowHide.Width - this.buttonHelp.Width, 0);
-            this.buttonxhdh.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.button1.Width - this.textBox2.Width - this.comboBox1.Width - this.buttonShowHide.Width - this.buttonHelp.Width - this.buttonxhdh.Width, 0);
+
+            //int panelButtonWidth = this.checkedListBox1.Width + this.panelQuestion.Width;
+            int panelButtonWidth = screen_width;
+
+            // Exit
+            this.buttonExit.Location = new Point(panelButtonWidth - this.buttonExit.Width - rightPadLeft, y);
+
+            // Reset Project
+            this.buttonReset.Location = new Point(panelButtonWidth - this.buttonReset.Width - this.buttonExit.Width - rightPadLeft, y);
+
+            // Submit Project
+            this.buttonSubmit.Location = new Point(panelButtonWidth - this.buttonSubmit.Width - this.buttonReset.Width - this.buttonExit.Width - rightPadLeft, y);
+
+            // Bố trí lại
+            this.buttonRefresh.Location = new Point(panelButtonWidth - this.buttonRefresh.Width - this.buttonReset.Width - this.buttonSubmit.Width - this.buttonExit.Width - rightPadLeft, y);
+            
+            // Timer
+            this.label1.Location = new Point(this.checkedListBox1.Width + y, y);
+
+
+
+
+
+
+
+
+
+
+
+
+
+            this.button2.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.button2.Width, 10000);
+            this.comboBox1.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.button2.Width - this.comboBox1.Width, 10000);
+            this.buttonSave.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.comboBox1.Width - this.button2.Width, 10000);
+            this.textBox1.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.comboBox1.Width - this.textBox1.Width, 10000);
+            this.button1.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.comboBox1.Width - this.button1.Width, 10000);
+            this.textBox2.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.button1.Width - this.comboBox1.Width - this.textBox2.Width, 10000);
+            
+            
+            this.buttonShowHide.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.button1.Width - this.textBox2.Width - this.comboBox1.Width - this.buttonShowHide.Width, 10000);
+            this.buttonHelp.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.button1.Width - this.textBox2.Width - this.comboBox1.Width - this.buttonShowHide.Width - this.buttonHelp.Width, 10000);
+            this.buttonxhdh.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.button1.Width - this.textBox2.Width - this.comboBox1.Width - this.buttonShowHide.Width - this.buttonHelp.Width - this.buttonxhdh.Width, 10000);
             this.panel4.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width, this.Height - this.buttonCheck.Height - this.panel4.Height);
+
+            // Check
             this.buttonCheck.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width, this.Height - this.buttonCheck.Height);
+            
+            
             //this.loadcaucanhoiNew(currentProject.ProjectIndex);
             this.a = (Microsoft.Office.Interop.Word.Application)Activator.CreateInstance(System.Type.GetTypeFromCLSID(new Guid("000209FF-0000-0000-C000-000000000046")));
             this.a.Visible = true;
