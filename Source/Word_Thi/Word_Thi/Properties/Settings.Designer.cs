@@ -46,5 +46,17 @@ namespace MOS_WORD_TEST.Properties {
                 this["DATE"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string USER {
+            get {
+                return ((string)(this["USER"]));
+            }
+            set {
+                this["USER"] = value;
+            }
+        }
     }
 }

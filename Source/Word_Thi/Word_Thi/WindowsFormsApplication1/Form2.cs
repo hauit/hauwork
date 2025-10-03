@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Management;
 using System.Net;
 using System.Net.Cache;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Forms;
 
 namespace MOS_WORD_TEST
@@ -18,11 +22,14 @@ namespace MOS_WORD_TEST
         private DateTime dt;
         private DateTime ngayhethang;
         private string mac;
+        private string user;
 
         public Form2()
         {
             InitializeComponent();
             this.textBoxUser.LostFocus += new EventHandler(this.textBoxUser_LostFocus);
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.USER))
+                this.textBoxUser.Text = Properties.Settings.Default.USER;
             if (!string.IsNullOrEmpty(Properties.Settings.Default.PASS))
                 this.textBoxPass.Text = Properties.Settings.Default.PASS;
         }
@@ -33,26 +40,64 @@ namespace MOS_WORD_TEST
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
-            if (this.comboBox1.Visible)
+            try
             {
-                if (this.comboBox1.Text == "")
+                if (Process.GetProcessesByName("WINWORD").Length > 0)
                 {
-                    int num = (int)MessageBox.Show("Bạn phải chọn đề thi");
+                    MessageBox.Show("Vui lòng đóng tất cả các file word trước khi thi để tránh mất dữ liệu");
+                    this.textBoxUser.Focus();
+                    return;
                 }
-                else
+
+                if (this.textBoxUser.Text == "")
                 {
-                    Program.user = "271565";
-                    Program.pass = this.textBoxPass.Text;
-                    Program.status = 1;
-                    this.Close();
+                    int num = (int)MessageBox.Show("Nhập tài khoản");
+                    this.textBoxPass.Focus();
+                    return;
                 }
-            }
-            else
-            {
-                Program.user = "271565";
+
+                if (this.textBoxPass.Text == "")
+                {
+                    int num = (int)MessageBox.Show("Nhập mật khẩu");
+                    this.textBoxPass.Focus();
+                    return;
+                }
+
+                //if (this.comboBox1.Visible)
+                //{
+                //    if (this.comboBox1.Text == "")
+                //    {
+                //        int num = (int)MessageBox.Show("Bạn phải chọn đề thi");
+                //    }
+                //    else
+                //    {
+                //        Program.user = "271565";
+                //        Program.pass = this.textBoxPass.Text;
+                //        Program.status = 1;
+                //        this.Close();
+                //    }
+                //}
+                //else
+                //{
+                //    Program.user = "271565";
+                //    Program.pass = this.textBoxPass.Text;
+                //    Program.status = 1;
+                //    this.Close();
+                //}
+
+                Program.user = this.textBoxUser.Text;
                 Program.pass = this.textBoxPass.Text;
+                if (!this.check1())
+                {
+                    return;
+                }
+
                 Program.status = 1;
                 this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -60,35 +105,45 @@ namespace MOS_WORD_TEST
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            string str = Path.Combine(Application.StartupPath, "zip\\b");
+            //string str = Path.Combine(Application.StartupPath, "zip\\b");
+            //try
+            //{
+            //    if (!System.IO.File.Exists(str))
+            //    {
+            //        int num1 = (int)MessageBox.Show("Chọn file key để active phần mềm này");
+            //        if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
+            //        {
+            //            if (System.IO.File.Exists(this.openFileDialog1.FileName))
+            //            {
+            //                System.IO.File.Copy(this.openFileDialog1.FileName, str);
+            //                System.IO.File.Copy("C:\\MOS\\GOC HO TRO\\NHAC HOC.lnk", Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\nhac hoc.lnk", true);
+            //                this.check(str);
+            //            }
+            //            else
+            //            {
+            //                int num2 = (int)MessageBox.Show("Không tiềm thấy file");
+            //                this.Close();
+            //            }
+            //        }
+            //        else
+            //            this.Close();
+            //    }
+            //    else
+            //        this.check(str);
+            //}
+            //catch (Exception ex)
+            //{
+            //    int num = (int)MessageBox.Show("Không thể copy file, click chuột phải chọn chạy bằng administrator |" + ex.Message);
+            //    this.Close();
+            //}
+
             try
             {
-                if (!System.IO.File.Exists(str))
-                {
-                    int num1 = (int)MessageBox.Show("Chọn file key để active phần mềm này");
-                    if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
-                    {
-                        if (System.IO.File.Exists(this.openFileDialog1.FileName))
-                        {
-                            System.IO.File.Copy(this.openFileDialog1.FileName, str);
-                            System.IO.File.Copy("C:\\MOS\\GOC HO TRO\\NHAC HOC.lnk", Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\nhac hoc.lnk", true);
-                            this.check(str);
-                        }
-                        else
-                        {
-                            int num2 = (int)MessageBox.Show("Không tiềm thấy file");
-                            this.Close();
-                        }
-                    }
-                    else
-                        this.Close();
-                }
-                else
-                    this.check(str);
+                this.check();
             }
             catch (Exception ex)
             {
-                int num = (int)MessageBox.Show("Không thể copy file, click chuột phải chọn chạy bằng administrator |" + ex.Message);
+                int num = (int)MessageBox.Show("Không kết nói được với server vào website để hỗ trợ: https://mos360.vn" + ex.Message);
                 this.Close();
             }
         }
@@ -203,7 +258,7 @@ namespace MOS_WORD_TEST
             }
         }
 
-        private void check(string KeyPath)
+        private void checkOld(string KeyPath)
         {
             string str1 = Path.Combine(Application.StartupPath, "Zip\\t");
             if (System.IO.File.Exists(KeyPath))
@@ -313,6 +368,118 @@ namespace MOS_WORD_TEST
             {
                 int num1 = (int)MessageBox.Show("không tìm thây file");
             }
+        }
+
+        private string GetMotherboardID()
+        {
+            string motherboardID = string.Empty;
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT SerialNumber FROM Win32_BaseBoard");
+            foreach (ManagementObject obj in searcher.Get())
+            {
+                motherboardID = obj["SerialNumber"]?.ToString()?.Trim();
+                break;
+            }
+            return motherboardID;
+        }
+
+        private void check()
+        {
+            ////TODO:
+            //return;
+            this.dt = Form2.GetDateFromeInternet();
+            if (this.dt < new DateTime(2022, 1, 20))
+            {
+                int num = (int)MessageBox.Show("Chưa kết nối mạng");
+                this.Close();
+                return;
+            }
+            this.mac = this.GetMotherboardID();
+            if (this.mac.Length < 10)
+            {
+                int num = (int)MessageBox.Show("Tạo randomID bị lỗi");
+                this.Close();
+                return;
+            }
+            this.ngayhethang = this.dt.AddDays(30.0);
+            string randomID = Base64Encode(this.mac + this.dt.ToString("yyyyMMdd"));
+            this.richTextBox1.Text = $"Nếu bạn chưa có mật khẩu để đăng nhập, vui lòng gửi ID bên dưới cho Admin để được cấp:\n\n{randomID}\n\nWebsite hỗ trợ: https://mos360.vn";
+        }
+
+        private string Base64Encode(string data)
+        {
+            byte[] textBytes = Encoding.UTF8.GetBytes(data);
+            var result = Convert.ToBase64String(textBytes);
+
+            return result;
+        }
+
+        public string ToMD5(string input)
+        {
+            input += "FJKSFxnEO7EUKIK9KFWT";
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+                StringBuilder sb = new StringBuilder();
+                foreach (byte b in hashBytes)
+                {
+                    sb.Append(b.ToString("x2"));
+                }
+
+                string result = sb.ToString();
+                return result.Substring(result.Length - 10);
+            }
+        }
+
+        private bool check1()
+        {
+            ////TODO:
+            //return true;
+            string expire = GetExpireDate();
+            if (!string.IsNullOrEmpty(expire))
+            {
+                DateTime.TryParseExact(expire, "yyyyMMdd", null, DateTimeStyles.None, out this.ngayhethang);
+            }
+            if (this.ngayhethang < this.dt)
+            {
+                MessageBox.Show("Phần mềm đã hết hạn");
+                return false;
+            }
+
+            string user = this.textBoxUser.Text.Trim();
+
+            string pass = ToMD5(user + this.mac + this.ngayhethang.ToString("yyyyMMdd"));
+            if (pass.ToLower() == textBoxPass.Text.ToLower() && user.ToLower() == textBoxUser.Text.ToLower())
+            {
+                Properties.Settings.Default.PASS = pass.ToLower();
+                Properties.Settings.Default.USER = user.ToLower();
+                Properties.Settings.Default.DATE = int.Parse(this.ngayhethang.ToString("yyyMMdd")).ToString("X");
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                Properties.Settings.Default.DATE = string.Empty;
+                Properties.Settings.Default.Save();
+                MessageBox.Show("Tài khoản và Mật khẩu không đúng. Vui lòng liên hệ Admin để cấp lại");
+                return false;
+            }
+            return true;
+        }
+
+        private string GetExpireDate()
+        {
+            string data = Properties.Settings.Default.DATE;
+            if (!string.IsNullOrEmpty(data))
+            {
+                data = Convert.ToInt32(data, 16).ToString();
+            }
+
+            return data;
+        }
+
+        private void btnCancel_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

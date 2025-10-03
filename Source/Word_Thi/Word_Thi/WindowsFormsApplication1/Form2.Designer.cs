@@ -42,12 +42,6 @@ namespace MOS_WORD_TEST
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBoxUser1 = new System.Windows.Forms.TextBox();
-            this.textBoxPass1 = new System.Windows.Forms.TextBox();
-            this.buttonOK = new MOS_WORD_TEST.Base.RJButton();
-            this.btnCancel = new MOS_WORD_TEST.Base.RJButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -60,96 +54,12 @@ namespace MOS_WORD_TEST
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.btnCancel = new MOS_WORD_TEST.Base.RJButton();
+            this.buttonOK = new MOS_WORD_TEST.Base.RJButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // textBoxUser1
-            // 
-            this.textBoxUser1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxUser1.Location = new System.Drawing.Point(150, 448);
-            this.textBoxUser1.Name = "textBoxUser1";
-            this.textBoxUser1.Size = new System.Drawing.Size(398, 38);
-            this.textBoxUser1.TabIndex = 1;
-            this.textBoxUser1.Text = "hocmosonline";
-            // 
-            // textBoxPass1
-            // 
-            this.textBoxPass1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxPass1.Location = new System.Drawing.Point(150, 494);
-            this.textBoxPass1.Name = "textBoxPass1";
-            this.textBoxPass1.PasswordChar = '*';
-            this.textBoxPass1.Size = new System.Drawing.Size(398, 38);
-            this.textBoxPass1.TabIndex = 2;
-            this.textBoxPass1.Text = "123456";
-            // 
-            // buttonOK
-            // 
-            this.buttonOK.AutoSize = true;
-            this.buttonOK.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonOK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
-            this.buttonOK.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
-            this.buttonOK.BorderColor = System.Drawing.Color.White;
-            this.buttonOK.BorderRadius = 5;
-            this.buttonOK.BorderSize = 1;
-            this.buttonOK.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonOK.Font = new System.Drawing.Font("Calibri", 12F);
-            this.buttonOK.ForeColor = System.Drawing.Color.White;
-            this.buttonOK.Location = new System.Drawing.Point(90, 165);
-            this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Padding = new System.Windows.Forms.Padding(2);
-            this.buttonOK.Size = new System.Drawing.Size(95, 35);
-            this.buttonOK.TabIndex = 3;
-            this.buttonOK.Text = "Đăng nhập";
-            this.buttonOK.TextColor = System.Drawing.Color.White;
-            this.buttonOK.UseVisualStyleBackColor = false;
-            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.AutoSize = true;
-            this.btnCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
-            this.btnCancel.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
-            this.btnCancel.BorderColor = System.Drawing.Color.White;
-            this.btnCancel.BorderRadius = 5;
-            this.btnCancel.BorderSize = 1;
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("Calibri", 12F);
-            this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(194, 165);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Padding = new System.Windows.Forms.Padding(2);
-            this.btnCancel.Size = new System.Drawing.Size(62, 35);
-            this.btnCancel.TabIndex = 7;
-            this.btnCancel.Text = "Thoát";
-            this.btnCancel.TextColor = System.Drawing.Color.White;
-            this.btnCancel.UseVisualStyleBackColor = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(47, 448);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 24);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "User";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(45, 501);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 24);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "PassWord";
             // 
             // comboBox1
             // 
@@ -187,7 +97,7 @@ namespace MOS_WORD_TEST
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Font = new System.Drawing.Font("Calibri", 10F);
             this.tabControl1.ItemSize = new System.Drawing.Size(100, 25);
-            this.tabControl1.Location = new System.Drawing.Point(93, 77);
+            this.tabControl1.Location = new System.Drawing.Point(12, 160);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Padding = new System.Drawing.Point(10, 3);
             this.tabControl1.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -290,13 +200,59 @@ namespace MOS_WORD_TEST
             this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox2.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Italic);
             this.richTextBox2.ForeColor = System.Drawing.Color.White;
-            this.richTextBox2.Location = new System.Drawing.Point(93, 326);
+            this.richTextBox2.Location = new System.Drawing.Point(12, 412);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.ReadOnly = true;
             this.richTextBox2.Size = new System.Drawing.Size(273, 62);
             this.richTextBox2.TabIndex = 16;
             this.richTextBox2.Text = "Thành công không đến từ may mắn, mà bắt đầu từ từng giờ bạn ngồi học hôm nay.\n\nWe" +
     "bsite hỗ trợ: https://mos360.vn";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.AutoSize = true;
+            this.btnCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.btnCancel.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.btnCancel.BorderColor = System.Drawing.Color.White;
+            this.btnCancel.BorderRadius = 5;
+            this.btnCancel.BorderSize = 1;
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Calibri", 12F);
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(194, 165);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Padding = new System.Windows.Forms.Padding(2);
+            this.btnCancel.Size = new System.Drawing.Size(62, 35);
+            this.btnCancel.TabIndex = 7;
+            this.btnCancel.Text = "Thoát";
+            this.btnCancel.TextColor = System.Drawing.Color.White;
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click_1);
+            // 
+            // buttonOK
+            // 
+            this.buttonOK.AutoSize = true;
+            this.buttonOK.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonOK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonOK.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonOK.BorderColor = System.Drawing.Color.White;
+            this.buttonOK.BorderRadius = 5;
+            this.buttonOK.BorderSize = 1;
+            this.buttonOK.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonOK.Font = new System.Drawing.Font("Calibri", 12F);
+            this.buttonOK.ForeColor = System.Drawing.Color.White;
+            this.buttonOK.Location = new System.Drawing.Point(90, 165);
+            this.buttonOK.Name = "buttonOK";
+            this.buttonOK.Padding = new System.Windows.Forms.Padding(2);
+            this.buttonOK.Size = new System.Drawing.Size(95, 35);
+            this.buttonOK.TabIndex = 3;
+            this.buttonOK.Text = "Đăng nhập";
+            this.buttonOK.TextColor = System.Drawing.Color.White;
+            this.buttonOK.UseVisualStyleBackColor = false;
+            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
             // Form2
             // 
@@ -307,14 +263,10 @@ namespace MOS_WORD_TEST
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(69)))), ((int)(((byte)(136)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(485, 428);
+            this.ClientSize = new System.Drawing.Size(296, 487);
             this.ControlBox = false;
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBoxPass1);
-            this.Controls.Add(this.textBoxUser1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.HelpButton = true;
@@ -326,17 +278,12 @@ namespace MOS_WORD_TEST
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private TextBox textBoxUser1;
-        private TextBox textBoxPass1;
         private Base.RJButton buttonOK;
         private Base.RJButton btnCancel;
-        private Label label1;
-        private Label label2;
         private ComboBox comboBox1;
         private Label label3;
         private OpenFileDialog openFileDialog1;
