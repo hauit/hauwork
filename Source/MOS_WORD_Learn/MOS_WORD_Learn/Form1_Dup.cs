@@ -375,7 +375,7 @@ namespace MOS_WORD_LEARN
                     case 0:
                         str = PageSetup.CheckCau(par.quesion, this.a, this.d);
                         break;
-                    case 1:
+                    case 1:///////////
                         ////TODO:
                         str = Design.CheckCau(par.quesion, this.a, this.d);
                         break;

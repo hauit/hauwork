@@ -1,4 +1,5 @@
-﻿using Microsoft.Office.Interop.Word;
+﻿using Microsoft.Office.Core;
+using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -149,22 +150,68 @@ namespace MOS_WORD_TEST
 
         private string Cau1(Application a, Document d)
         {
-            throw new NotImplementedException();
+            //Sec 10 question 1 index 112
+            try
+            {
+                if (d.Name != "Notes.docx")
+                    return "False(luu lại kiểu template(Notes.docx))";
+            }
+            catch (Exception ex)
+            {
+                return "False (Something not finish!)";
+            }
+            return "True";
         }
 
         private string Cau2(Application a, Document d)
         {
-            throw new NotImplementedException();
+
+            try
+            {
+                int Index = 1;
+                while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Barstow College"))
+                    ++Index;
+                if (Index >= d.Paragraphs.Count)
+                    return "False(Tieu de Barstow College khong tim thay)";
+                if (d.Paragraphs[Index].Range.Text != "Barstow College \vObservation Project\r")
+                    return "False(chen chi ngat dong xac tu Observation)";
+            }
+            catch (Exception ex)
+            {
+                return "False (Something not finish!)";
+            }
+            return "True";
         }
 
         private string Cau3(Application a, Document d)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (d.DocumentTheme.ThemeColorScheme.Colors(MsoThemeColorSchemeIndex.msoThemeAccent1).RGB != 1250736)
+                    return "False(chon theme Ion )";
+                object Index = (object)"Heading 1";
+                if (d.Styles[ref Index].ParagraphFormat.Shading.BackgroundPatternColor.ToString() != "-738131969")
+                    return "False(sai kieu Formating)";
+            }
+            catch (Exception ex)
+            {
+                return "False (Something not finish!)";
+            }
+            return "True";
         }
 
         private string Cau4(Application a, Document d)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (d.DocumentTheme.ThemeFontScheme.MajorFont.Item(MsoFontLanguageIndex.msoThemeLatin).Name != "Candara")
+                    return "False(sai theme font)";
+            }
+            catch (Exception ex)
+            {
+                return "False (Something not finish!)";
+            }
+            return "True";
         }
 
         private string Cau5(Application a, Document d)

@@ -125,7 +125,6 @@
     <Compile Include="WindowsFormsApplication1\Home.cs" />
     <Compile Include="WindowsFormsApplication1\Program.cs" />
     <Compile Include="WindowsFormsApplication1\Properties\Resources.cs" />
-    <Compile Include="WindowsFormsApplication1\Properties\Settings.cs" />
     <Compile Include="WindowsFormsApplication1\QuestionCheck.cs" />
   </ItemGroup>
   <ItemGroup>
