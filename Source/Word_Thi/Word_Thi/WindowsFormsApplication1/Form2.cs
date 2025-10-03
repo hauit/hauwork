@@ -15,10 +15,16 @@ namespace MOS_WORD_TEST
 {
     public partial class Form2 : Form
     {
+        private DateTime dt;
+        private DateTime ngayhethang;
+        private string mac;
+
         public Form2()
         {
             InitializeComponent();
             this.textBoxUser.LostFocus += new EventHandler(this.textBoxUser_LostFocus);
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.PASS))
+                this.textBoxPass.Text = Properties.Settings.Default.PASS;
         }
 
         private void textBoxUser_LostFocus(object sender, EventArgs e)
@@ -31,7 +37,7 @@ namespace MOS_WORD_TEST
             {
                 if (this.comboBox1.Text == "")
                 {
-                    int num = (int)MessageBox.Show("Bạn phải chọn bài test");
+                    int num = (int)MessageBox.Show("Bạn phải chọn đề thi");
                 }
                 else
                 {
