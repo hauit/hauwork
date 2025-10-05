@@ -47,6 +47,7 @@ namespace MOS_WORD_TEST
         private List<int> lsViTri;
         private bool chotat = false;
         private int currentest = 0;
+        public object missing = (object)Missing.Value;
         public Form1()
         {
             InitializeComponent();
@@ -302,7 +303,7 @@ namespace MOS_WORD_TEST
             // ISSUE: method pointer
             // ISSUE: object of a compiler-generated type is created
             ((ApplicationEvents4_Event)this.a).DocumentBeforeClose += this.a_DocumentBeforeClose;
-            //this.SetUp(Program.Lessons[this.currentest]);
+            this.SetUp(currentExam.ProjectIndex[0].ProjectIndex);
             LoadProject(0);
             currentQuestion = currentProject.Questions[0];
             loadcaucanhoiNew(0);
@@ -420,7 +421,19 @@ namespace MOS_WORD_TEST
                 }
                 else
                     ++this.next;
-                this.SetUp(Program.Lessons[this.next]);
+
+                this.checkedListBox1.SetItemChecked(currentProject.ProjectIndex - 1, true);
+                int nexproject = currentProject.ProjectIndex + 1;
+                if(nexproject <= currentExam.ProjectIndex.Count)
+                {
+                    currentProject = currentExam.ProjectIndex[nexproject - 1];
+                    this.checkedListBox1.SelectedIndex = nexproject - 1;
+                    this.SetUp(currentProject.ProjectIndex);
+                }
+                else
+                {
+                    int num = (int)MessageBox.Show("Hết bài rồi bạn nhé");
+                }
             }
             this.chotat = false;
         }
@@ -456,28 +469,67 @@ namespace MOS_WORD_TEST
 
         private void ChamDiem()
         {
-            for (int cau = 0; cau < this.Tong_So_Cau; ++cau)
+            for (int i = 0; i < currentExam.ProjectIndex.Count; i++)
             {
-                if (!this.CacCauDaCheck[cau])
+                for (int j = 0; j < currentExam.ProjectIndex[i].Questions.Count; j++)
                 {
-                    if (this.CheckCauLon(cau) == "True")
-                        ++this.So_Cau_Dung;
-                    else
-                        ++this.So_Cau_Sai;
+                    if (currentExam.ProjectIndex[i].ProjectIndex != currentProject.ProjectIndex)
+                    {
+                        continue;
+                    }
+
+                    if (!currentExam.ProjectIndex[i].Questions[j].Status == true)
+                    {
+                        int cau = currentExam.ProjectIndex[i].Questions[j].QuestionNumber;
+                        currentExam.ProjectIndex[i].Questions[j].Status = true;
+                        if (this.CheckCauLon(cau) == "True")
+                        {
+                            currentExam.ProjectIndex[i].Questions[j].Value = true;
+                            ++this.So_Cau_Dung;
+                        }
+                        else
+                        {
+                            currentExam.ProjectIndex[i].Questions[j].Value = false;
+                            ++this.So_Cau_Sai;
+                        }
+                    }
                 }
             }
-            this.chotat = true;
-            object obj = (object)WdSaveOptions.wdDoNotSaveChanges;
-            while (this.a.Documents.Count >= 1)
-            {
-                object SaveChanges = obj;
-                object missing1 = System.Type.Missing;
-                object missing2 = System.Type.Missing;
-                object Index = (object)1;
-                // ISSUE: reference to a compiler-generated method
-                this.a.Documents[ref Index].Close(ref SaveChanges, ref missing1, ref missing2);
-            }
-            this.chotat = false;
+
+            //this.So_Cau_Dung = 0;
+            //this.So_Cau_Sai = 0;
+            //this.So_Cau_Dung = currentExam.ProjectIndex.SelectMany(p => p.Questions).Count(x => x.Status == true && x.Value == true);
+            //this.So_Cau_Sai = 35 - this.So_Cau_Dung;
+            //int a = currentExam.ProjectIndex.SelectMany(p => p.Questions).Count(x => x.Status == true && x.Value == false);
+            //for (int cau = 0; cau < this.Tong_So_Cau; ++cau)
+            //{
+            //    if (!this.CacCauDaCheck[cau])
+            //    {
+            //        currentQuestion.Status = true;
+            //        if (this.CheckCauLon(cau) == "True")
+            //        {
+            //            ++this.So_Cau_Dung;
+            //            currentQuestion.Value = true;
+            //        }
+            //        else
+            //        {
+            //            currentQuestion.Value = false;
+            //            ++this.So_Cau_Sai;
+            //        }
+            //    }
+            //}
+            //this.chotat = true;
+            //object obj = (object)WdSaveOptions.wdDoNotSaveChanges;
+            //while (this.a.Documents.Count >= 1)
+            //{
+            //    object SaveChanges = obj;
+            //    object missing1 = System.Type.Missing;
+            //    object missing2 = System.Type.Missing;
+            //    object Index = (object)1;
+            //    // ISSUE: reference to a compiler-generated method
+            //    this.a.Documents[ref Index].Close(ref SaveChanges, ref missing1, ref missing2);
+            //}
+            //this.chotat = false;
         }
         private void SetUpNew(int Index)
         {
@@ -486,16 +538,16 @@ namespace MOS_WORD_TEST
 
         private void SetUp(int Index)
         {
-            string[] directories = Directory.GetDirectories(Path.Combine(System.Windows.Forms.Application.StartupPath, "Zip\\MaHoa"));
+            string[] directories = Directory.GetDirectories(Path.Combine(System.Windows.Forms.Application.StartupPath, $@"Zip\\Exam\\Exam{currentExam.ExamIndex}"));
             this.works = directories.Length;
             Array.Sort<string>(directories, (IComparer<string>)StringComparer.InvariantCulture);
-            this.workIndex = Index;
+            this.workIndex = Index-1;
             this.pathWork = directories[this.workIndex];
             this.pathRun = Path.Combine(System.Windows.Forms.Application.StartupPath, "Zip\\Tam");
-            this.ImageFile = Directory.GetFiles(Path.Combine(this.pathWork, "Test"));
-            this.checkedListBox1.Items.Clear();
-            for (int index = 0; index < this.ImageFile.Length; ++index)
-                this.checkedListBox1.Items.Add((object)(index + 1).ToString());
+            //this.ImageFile = Directory.GetFiles(Path.Combine(this.pathWork, "Test"));
+            //this.checkedListBox1.Items.Clear();
+            //for (int index = 0; index < this.ImageFile.Length; ++index)
+            //    this.checkedListBox1.Items.Add((object)(index + 1).ToString());
             this.pathFileOfficeMaHoa = Path.Combine(this.pathWork, "Source\\Main");
             this.pathFileOfficeMaHoa = Directory.GetFiles(this.pathFileOfficeMaHoa)[0];
             this.pathFileOffice = Path.Combine(System.Windows.Forms.Application.StartupPath, "Zip\\Tam\\A\\");
@@ -523,7 +575,7 @@ namespace MOS_WORD_TEST
                 this.lsViTri.Add(int.Parse(s));
             textReader.Close();
             this.Cau_So = 0;
-            this.checkedListBox1.SelectedIndex = this.Cau_So;
+            //this.checkedListBox1.SelectedIndex = this.Cau_So;
             Home.DecryptFile(this.pathFileOfficeMaHoa, this.pathFileOffice);
             object pathFileOffice = (object)this.pathFileOffice;
             object missing1 = System.Type.Missing;
@@ -744,16 +796,37 @@ namespace MOS_WORD_TEST
         {
             if (MessageBox.Show("Bạn có chắc nộp bài?", "Cảnh Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
             {
-                for (int cau = 0; cau < this.Tong_So_Cau; ++cau)
+                for(int i = 0; i < currentExam.ProjectIndex.Count; i++)
                 {
-                    if (!this.CacCauDaCheck[cau])
+                    for(int j = 0; j < currentExam.ProjectIndex[i].Questions.Count; j++)
                     {
-                        if (this.CheckCauLon(cau) == "True")
-                            ++this.So_Cau_Dung;
-                        else
-                            ++this.So_Cau_Sai;
+                        if(!currentExam.ProjectIndex[i].Questions[j].Status == true)
+                        {
+                            int cau = currentExam.ProjectIndex[i].Questions[j].QuestionNumber;
+                            currentExam.ProjectIndex[i].Questions[j].Status = true;
+                            if (this.CheckCauLon(cau) == "True")
+                            {
+                                currentExam.ProjectIndex[i].Questions[j].Value = true;
+                                ++this.So_Cau_Dung;
+                            }
+                            else
+                            {
+                                currentExam.ProjectIndex[i].Questions[j].Value = false;
+                                ++this.So_Cau_Sai;
+                            }
+                        }
                     }
                 }
+                //for (int cau = 0; cau < this.Tong_So_Cau; ++cau)
+                //{
+                //    if (!this.CacCauDaCheck[cau])
+                //    {
+                //        if (this.CheckCauLon(cau) == "True")
+                //            ++this.So_Cau_Dung;
+                //        else
+                //            ++this.So_Cau_Sai;
+                //    }
+                //}
                 this.Cau_So = 0;
                 this.checkedListBox1.SelectedIndex = 0;
                 this.pathReset = Path.Combine(this.pathWork, "Source\\Sub\\" + this.Cau_So.ToString());

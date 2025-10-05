@@ -1255,8 +1255,8 @@ namespace MOS_WORD_TEST
                 Range headingRange = rng.Duplicate; // range chứa heading
 
                 // 2) Tìm SmartArt có anchor nằm sau heading (nếu có). Nếu không, fallback sang SmartArt đầu tiên.
-                Shape smartArtShape = null;
-                foreach (Shape s in d.Shapes)
+                Microsoft.Office.Interop.Word.Shape smartArtShape = null;
+                foreach (Microsoft.Office.Interop.Word.Shape s in d.Shapes)
                 {
                     try
                     {
@@ -1279,7 +1279,7 @@ namespace MOS_WORD_TEST
                 if (smartArtShape == null)
                 {
                     // fallback: lấy SmartArt đầu tiên trong document
-                    foreach (Shape s in d.Shapes)
+                    foreach (Microsoft.Office.Interop.Word.Shape s in d.Shapes)
                     {
                         if (s.Type == MsoShapeType.msoSmartArt)
                         {
