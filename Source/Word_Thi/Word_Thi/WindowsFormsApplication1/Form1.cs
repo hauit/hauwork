@@ -410,7 +410,7 @@ namespace MOS_WORD_TEST
             if (MessageBox.Show("Bạn có chắc nộp bài?", "Cảnh Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
             {
                 this.ChamDiem();
-                if (this.next >= Program.Tong - 1)
+                if (currentProject.ProjectIndex == currentExam.ProjectIndex[6].ProjectIndex)
                 {
                     this.next = 0;
                     string str = "Kết quả của " + Home.thongtin + " = Đúng " + (object)this.So_Cau_Dung + "câu; Sai " + (object)this.So_Cau_Sai + " câu => Điểm: " + (1000.0 / (double)(this.So_Cau_Dung + this.So_Cau_Sai) * (double)this.So_Cau_Dung).ToString("#,##0.0");
