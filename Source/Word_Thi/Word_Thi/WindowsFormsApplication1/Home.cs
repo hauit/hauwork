@@ -147,6 +147,7 @@ namespace MOS_WORD_TEST
     public class Project
     {
         public int ProjectIndex { get; set; }
+        public string ProjectName { get; set; }
         public List<Question> Questions { get; set; }
     }
 
@@ -154,8 +155,12 @@ namespace MOS_WORD_TEST
     {
         private bool status = false;
         private bool questionValue = false;
+        private bool maskForReview = false;
+        private bool maskForComplete = false;
         public int Index { get; set; }
         public int QuestionNumber { get; set; }
+        public bool MaskForReview { get { return maskForReview; } set { maskForReview = value; } }
+        public bool MaskForComplete { get { return maskForComplete; } set { maskForComplete = value; } }
         public bool Status { get { return status; } set { status = value; } }
         public bool Value { get { return questionValue; } set { questionValue = value; } }
 

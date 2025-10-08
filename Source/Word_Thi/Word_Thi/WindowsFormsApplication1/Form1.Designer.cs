@@ -502,6 +502,7 @@ namespace MOS_WORD_TEST
             this.btnMaskComplete.TabIndex = 34;
             this.btnMaskComplete.Text = "Mask Complete";
             this.btnMaskComplete.UseVisualStyleBackColor = true;
+            this.btnMaskComplete.Click += new System.EventHandler(this.btnMaskComplete_Click);
             // 
             // btnMaskReview
             // 
@@ -516,6 +517,7 @@ namespace MOS_WORD_TEST
             this.btnMaskReview.TabIndex = 35;
             this.btnMaskReview.Text = "Mark for Review";
             this.btnMaskReview.UseVisualStyleBackColor = true;
+            this.btnMaskReview.Click += new System.EventHandler(this.btnMaskReview_Click);
             // 
             // Form1
             // 

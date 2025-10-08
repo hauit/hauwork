@@ -78,6 +78,14 @@ namespace MOS_WORD_TEST
                 if (MessageBox.Show("Bạn có muốn reset không? (reset sẽ làm lại từ đầu)", "Cảnh Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) != DialogResult.Yes)
                     return;
                 this.chotat = true;
+                for(int i = 0; i < currentProject.Questions.Count; i++)
+                {
+                    currentProject.Questions[i].Status = false;
+                    currentProject.Questions[i].Value = false;
+                    currentProject.Questions[i].MaskForComplete = false;
+                    currentProject.Questions[i].MaskForReview = false;
+                }
+
                 while (this.a.Documents.Count >= 1)
                 {
                     object SaveChanges = (object)false;
@@ -320,7 +328,7 @@ namespace MOS_WORD_TEST
 
         private void LoadProject(int projectIndex)
         {
-            this.labelProject.Text = "Project " + (projectIndex + 1).ToString() + " of " + currentExam.ProjectIndex.Count.ToString() + ":";
+            this.labelProject.Text = $@"Project {(projectIndex + 1).ToString()} of {currentExam.ProjectIndex.Count.ToString()} : {currentExam.ProjectIndex[projectIndex].ProjectName}";
 
             this.checkedListBox1.Items.Clear();
             for (int i = 0; i < currentExam.ProjectIndex.Count; i++)
@@ -339,15 +347,19 @@ namespace MOS_WORD_TEST
 
             this.panelJumpQuestion.Controls.Clear();
             currentProject = currentExam.ProjectIndex[projectIndex];
+            if(currentProject.Questions.Count > 1)
+            {
+                AddBackButton();
+            }
             for (int i = 1; i <= currentProject.Questions.Count; i++)
             {
                 var btn = new MOS_WORD_TEST.Base.RJButton();
                 // btn.Text = "Project " +  i.ToString() + " of " + currentProject.Questions.Count + ":";
                 btn.Text = i.ToString();
-                btn.Location = new Point((i - 1) * 110, 0);
+                btn.Location = new Point((i) * 110, 0);
                 //btn.Width = 50;
                 //btn.Height = 32;
-                btn.BackColor = (i == this.currentQuestion.Index) ? System.Drawing.Color.LightBlue : System.Drawing.Color.DarkBlue;
+                btn.BackColor = System.Drawing.Color.DarkBlue;
                 //btn.ForeColor = System.Drawing.Color.White;
 
                 btn.AutoSize = true;
@@ -366,7 +378,119 @@ namespace MOS_WORD_TEST
                 btn.Tag = currentProject.Questions[i - 1];
                 btn.Click += LoadQuestionContent;
                 this.panelJumpQuestion.Controls.Add(btn);
+                if(i == 1)
+                {
+                    LoadQuestionContent(btn, EventArgs.Empty);
+                }
             }
+            if (currentProject.Questions.Count > 1)
+            {
+                AddNextButton();
+            }
+        }
+
+        private void AddNextButton()
+        {
+
+            var btn = new MOS_WORD_TEST.Base.RJButton();
+            btn.Text = ">";
+            btn.Location = new Point((currentProject.Questions.Count + 1) * 110, 0);
+            btn.BackColor = System.Drawing.Color.DarkBlue;
+
+            btn.AutoSize = true;
+            btn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            btn.BorderColor = System.Drawing.Color.White;
+            btn.BorderRadius = 5;
+            btn.BorderSize = 2;
+            btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btn.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            btn.MinimumSize = new System.Drawing.Size(80, 0);
+            btn.Padding = new System.Windows.Forms.Padding(2);
+
+            //btn.Tag = currentProject.Questions[i - 1];
+            btn.Click += LoadNextQuestion;
+            this.panelJumpQuestion.Controls.Add(btn);
+        }
+
+        private void AddBackButton()
+        {
+            var btn = new MOS_WORD_TEST.Base.RJButton();
+            btn.Text = "<";
+            btn.Location = new Point(0, 0);
+            //btn.Width = 50;
+            //btn.Height = 32;
+            btn.BackColor = System.Drawing.Color.DarkBlue;
+            //btn.ForeColor = System.Drawing.Color.White;
+
+            btn.AutoSize = true;
+            btn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            btn.BorderColor = System.Drawing.Color.White;
+            btn.BorderRadius = 5;
+            btn.BorderSize = 2;
+            btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btn.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            btn.MinimumSize = new System.Drawing.Size(80, 0);
+            btn.Padding = new System.Windows.Forms.Padding(2);
+
+            //btn.Tag = currentProject.Questions[i - 1];
+            btn.Click += LoadLastQuestion;
+            this.panelJumpQuestion.Controls.Add(btn);
+        }
+
+        private void LoadNextQuestion(object sender, EventArgs e)
+        {
+            int curQuestionIndex = currentQuestion.Index;
+            if (curQuestionIndex >= currentProject.Questions.Count)
+            {
+                return;
+            }
+
+            Button currentBT = GetLastQuestionButton();
+            currentBT.BackColor = System.Drawing.Color.DarkBlue;
+
+            Button nextBT = GetLastQuestionButtonByIndex(currentQuestion.Index + 1);
+            bool isNext = currentProject.Questions.Where(x => x.Index == (curQuestionIndex + 1)).Any();
+            if (!isNext)
+            {
+                return;
+            }
+
+            currentQuestion = currentProject.Questions.Where(x => x.Index == (curQuestionIndex + 1)).FirstOrDefault();
+            nextBT.BackColor = System.Drawing.Color.LightBlue;
+            ClsQuestion questionObj = ClsListQuestion.GetQuestion(currentQuestion.QuestionNumber);
+            richTextTA.Text = questionObj.EngQuestion;
+            richTextTV.Text = questionObj.VnQuestion;
+        }
+
+        private void LoadLastQuestion(object sender, EventArgs e)
+        {
+            int curQuestionIndex = currentQuestion.Index;
+            if (curQuestionIndex <= 1)
+            {
+                return;
+            }
+
+            Button currentBT = GetLastQuestionButton();
+            currentBT.BackColor = System.Drawing.Color.DarkBlue;
+
+            Button lastBT = GetLastQuestionButtonByIndex(currentQuestion.Index - 1);
+            bool isLast = currentProject.Questions.Where(x => x.Index == (curQuestionIndex - 1)).Any();
+            if (!isLast)
+            {
+                return;
+            }
+
+            currentQuestion = currentProject.Questions.Where(x => x.Index == (curQuestionIndex - 1)).FirstOrDefault();
+            lastBT.BackColor = System.Drawing.Color.LightBlue;
+            ClsQuestion questionObj = ClsListQuestion.GetQuestion(currentQuestion.QuestionNumber);
+            richTextTA.Text = questionObj.EngQuestion;
+            richTextTV.Text = questionObj.VnQuestion;
         }
 
         private void LoadQuestionContent(object sender, EventArgs e)
@@ -380,6 +504,15 @@ namespace MOS_WORD_TEST
             ClsQuestion questionObj = ClsListQuestion.GetQuestion(question.QuestionNumber);
             richTextTA.Text = questionObj.EngQuestion;
             richTextTV.Text = questionObj.VnQuestion;
+        }
+
+        private Button GetLastQuestionButtonByIndex(int questionIndex)
+        {
+
+            Button btnTimDuoc = panelJumpQuestion.Controls
+                          .OfType<Button>()
+                          .FirstOrDefault(b => b.Text == questionIndex.ToString());
+            return btnTimDuoc;
         }
 
         private Button GetLastQuestionButton()
@@ -448,7 +581,7 @@ namespace MOS_WORD_TEST
                 else
                     ++this.next;
 
-                this.labelProject.Text = "Project " + (currentProject.ProjectIndex + 1).ToString() + " of " + currentExam.ProjectIndex.Count.ToString() + ":";
+                this.labelProject.Text = $@"Project {(currentProject.ProjectIndex + 1).ToString()} of {currentExam.ProjectIndex.Count.ToString()}: {currentProject.ProjectName}";
 
                 this.checkedListBox1.SetItemChecked(currentProject.ProjectIndex - 1, true);
                 int nexproject = currentProject.ProjectIndex + 1;
@@ -889,6 +1022,16 @@ namespace MOS_WORD_TEST
             // Giải mã JSON thành object
             var listExam = JsonConvert.DeserializeObject<List<Exam>>(jsonString);
             return listExam;
+        }
+
+        private void btnMaskComplete_Click(object sender, EventArgs e)
+        {
+            currentQuestion.MaskForComplete = true;
+        }
+
+        private void btnMaskReview_Click(object sender, EventArgs e)
+        {
+            currentQuestion.MaskForReview = true;
         }
     }
 }
