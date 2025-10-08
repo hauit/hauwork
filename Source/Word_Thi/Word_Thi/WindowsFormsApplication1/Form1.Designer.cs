@@ -65,6 +65,9 @@ namespace MOS_WORD_TEST
             this.buttonSubmit = new MOS_WORD_TEST.Base.RJButton();
             this.buttonCheck = new MOS_WORD_TEST.Base.RJButton();
             this.buttonReset = new MOS_WORD_TEST.Base.RJButton();
+            this.labelProject = new System.Windows.Forms.Label();
+            this.btnMaskComplete = new System.Windows.Forms.Button();
+            this.btnMaskReview = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -79,10 +82,11 @@ namespace MOS_WORD_TEST
             // 
             this.checkedListBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(16, 173);
+            this.checkedListBox1.Location = new System.Drawing.Point(170, 28);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(122, 172);
+            this.checkedListBox1.Size = new System.Drawing.Size(122, 109);
             this.checkedListBox1.TabIndex = 0;
+            this.checkedListBox1.Visible = false;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
             // label1
@@ -90,7 +94,7 @@ namespace MOS_WORD_TEST
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(156, 172);
+            this.label1.Location = new System.Drawing.Point(24, 177);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 29);
             this.label1.TabIndex = 6;
@@ -106,6 +110,7 @@ namespace MOS_WORD_TEST
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -115,12 +120,12 @@ namespace MOS_WORD_TEST
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.panel2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(297, 166);
+            this.tabPage2.Size = new System.Drawing.Size(297, 160);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "T A";
+            this.tabPage2.Text = "Tiếng Anh";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // panel2
@@ -135,6 +140,7 @@ namespace MOS_WORD_TEST
             // richTextTA
             // 
             this.richTextTA.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextTA.Font = new System.Drawing.Font("Calibri", 20F);
             this.richTextTA.Location = new System.Drawing.Point(0, 0);
             this.richTextTA.Name = "richTextTA";
             this.richTextTA.Size = new System.Drawing.Size(512, 264);
@@ -144,12 +150,12 @@ namespace MOS_WORD_TEST
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.panel1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(297, 166);
+            this.tabPage1.Size = new System.Drawing.Size(297, 160);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "TV";
+            this.tabPage1.Text = "Tiếng Việt";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // panel1
@@ -164,6 +170,7 @@ namespace MOS_WORD_TEST
             // richTextTV
             // 
             this.richTextTV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextTV.Font = new System.Drawing.Font("Calibri", 20F);
             this.richTextTV.Location = new System.Drawing.Point(0, 0);
             this.richTextTV.Name = "richTextTV";
             this.richTextTV.Size = new System.Drawing.Size(509, 249);
@@ -197,11 +204,12 @@ namespace MOS_WORD_TEST
             // 
             this.panel4.AutoScroll = true;
             this.panel4.Controls.Add(this.richTextBox1);
-            this.panel4.Location = new System.Drawing.Point(692, 226);
+            this.panel4.Location = new System.Drawing.Point(315, 33);
             this.panel4.MinimumSize = new System.Drawing.Size(190, 100);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(190, 100);
             this.panel4.TabIndex = 17;
+            this.panel4.Visible = false;
             // 
             // textBox2
             // 
@@ -214,7 +222,7 @@ namespace MOS_WORD_TEST
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(859, 33);
+            this.comboBox1.Location = new System.Drawing.Point(604, 35);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(44, 21);
             this.comboBox1.TabIndex = 31;
@@ -223,13 +231,14 @@ namespace MOS_WORD_TEST
             // 
             this.panelQuestion.Controls.Add(this.panelJumpQuestion);
             this.panelQuestion.Controls.Add(this.panelQuestionContent);
-            this.panelQuestion.Location = new System.Drawing.Point(161, 204);
+            this.panelQuestion.Location = new System.Drawing.Point(29, 209);
             this.panelQuestion.Name = "panelQuestion";
             this.panelQuestion.Size = new System.Drawing.Size(305, 192);
             this.panelQuestion.TabIndex = 32;
             // 
             // panelJumpQuestion
             // 
+            this.panelJumpQuestion.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.panelJumpQuestion.Location = new System.Drawing.Point(157, 97);
             this.panelJumpQuestion.Name = "panelJumpQuestion";
             this.panelJumpQuestion.Size = new System.Drawing.Size(184, 26);
@@ -253,7 +262,7 @@ namespace MOS_WORD_TEST
             this.button2.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(799, 63);
+            this.button2.Location = new System.Drawing.Point(544, 65);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(41, 23);
             this.button2.TabIndex = 30;
@@ -271,7 +280,7 @@ namespace MOS_WORD_TEST
             this.buttonShowHide.BorderSize = 0;
             this.buttonShowHide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonShowHide.ForeColor = System.Drawing.Color.White;
-            this.buttonShowHide.Location = new System.Drawing.Point(777, 34);
+            this.buttonShowHide.Location = new System.Drawing.Point(522, 36);
             this.buttonShowHide.Name = "buttonShowHide";
             this.buttonShowHide.Size = new System.Drawing.Size(63, 23);
             this.buttonShowHide.TabIndex = 27;
@@ -289,7 +298,7 @@ namespace MOS_WORD_TEST
             this.buttonxhdh.BorderSize = 0;
             this.buttonxhdh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonxhdh.ForeColor = System.Drawing.Color.White;
-            this.buttonxhdh.Location = new System.Drawing.Point(1017, 31);
+            this.buttonxhdh.Location = new System.Drawing.Point(679, 35);
             this.buttonxhdh.Name = "buttonxhdh";
             this.buttonxhdh.Size = new System.Drawing.Size(114, 23);
             this.buttonxhdh.TabIndex = 25;
@@ -311,12 +320,12 @@ namespace MOS_WORD_TEST
             this.buttonRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRefresh.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.buttonRefresh.ForeColor = System.Drawing.Color.White;
-            this.buttonRefresh.Location = new System.Drawing.Point(695, 173);
+            this.buttonRefresh.Location = new System.Drawing.Point(679, 171);
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Padding = new System.Windows.Forms.Padding(2);
-            this.buttonRefresh.Size = new System.Drawing.Size(83, 35);
+            this.buttonRefresh.Size = new System.Drawing.Size(121, 35);
             this.buttonRefresh.TabIndex = 24;
-            this.buttonRefresh.Text = "Bố trí lại";
+            this.buttonRefresh.Text = "Hiện / Ẩn Test";
             this.buttonRefresh.TextColor = System.Drawing.Color.White;
             this.buttonRefresh.UseVisualStyleBackColor = false;
             this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
@@ -330,7 +339,7 @@ namespace MOS_WORD_TEST
             this.buttonHelp.BorderSize = 0;
             this.buttonHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonHelp.ForeColor = System.Drawing.Color.White;
-            this.buttonHelp.Location = new System.Drawing.Point(1025, 89);
+            this.buttonHelp.Location = new System.Drawing.Point(687, 93);
             this.buttonHelp.Name = "buttonHelp";
             this.buttonHelp.Size = new System.Drawing.Size(106, 23);
             this.buttonHelp.TabIndex = 23;
@@ -366,7 +375,7 @@ namespace MOS_WORD_TEST
             this.buttonSave.BorderSize = 0;
             this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSave.ForeColor = System.Drawing.Color.White;
-            this.buttonSave.Location = new System.Drawing.Point(1046, 60);
+            this.buttonSave.Location = new System.Drawing.Point(708, 64);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(85, 23);
             this.buttonSave.TabIndex = 14;
@@ -388,7 +397,7 @@ namespace MOS_WORD_TEST
             this.buttonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonExit.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.buttonExit.ForeColor = System.Drawing.Color.White;
-            this.buttonExit.Location = new System.Drawing.Point(1040, 173);
+            this.buttonExit.Location = new System.Drawing.Point(806, 171);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Padding = new System.Windows.Forms.Padding(2);
             this.buttonExit.Size = new System.Drawing.Size(50, 35);
@@ -411,7 +420,7 @@ namespace MOS_WORD_TEST
             this.buttonSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSubmit.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.buttonSubmit.ForeColor = System.Drawing.Color.White;
-            this.buttonSubmit.Location = new System.Drawing.Point(786, 173);
+            this.buttonSubmit.Location = new System.Drawing.Point(537, 171);
             this.buttonSubmit.Name = "buttonSubmit";
             this.buttonSubmit.Padding = new System.Windows.Forms.Padding(2);
             this.buttonSubmit.Size = new System.Drawing.Size(127, 35);
@@ -434,12 +443,12 @@ namespace MOS_WORD_TEST
             this.buttonCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCheck.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.buttonCheck.ForeColor = System.Drawing.Color.White;
-            this.buttonCheck.Location = new System.Drawing.Point(693, 337);
+            this.buttonCheck.Location = new System.Drawing.Point(98, 171);
             this.buttonCheck.Name = "buttonCheck";
             this.buttonCheck.Padding = new System.Windows.Forms.Padding(2);
-            this.buttonCheck.Size = new System.Drawing.Size(65, 35);
+            this.buttonCheck.Size = new System.Drawing.Size(133, 35);
             this.buttonCheck.TabIndex = 3;
-            this.buttonCheck.Text = "Check";
+            this.buttonCheck.Text = "Go To Summary";
             this.buttonCheck.TextColor = System.Drawing.Color.White;
             this.buttonCheck.UseVisualStyleBackColor = false;
             this.buttonCheck.Click += new System.EventHandler(this.button2_Click);
@@ -457,22 +466,66 @@ namespace MOS_WORD_TEST
             this.buttonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonReset.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.buttonReset.ForeColor = System.Drawing.Color.White;
-            this.buttonReset.Location = new System.Drawing.Point(919, 173);
+            this.buttonReset.Location = new System.Drawing.Point(402, 171);
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Padding = new System.Windows.Forms.Padding(2);
-            this.buttonReset.Size = new System.Drawing.Size(115, 35);
+            this.buttonReset.Size = new System.Drawing.Size(127, 35);
             this.buttonReset.TabIndex = 2;
-            this.buttonReset.Text = "Reset Project";
+            this.buttonReset.Text = "Restart Project";
             this.buttonReset.TextColor = System.Drawing.Color.White;
             this.buttonReset.UseVisualStyleBackColor = false;
             this.buttonReset.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // labelProject
+            // 
+            this.labelProject.AutoSize = true;
+            this.labelProject.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelProject.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Bold);
+            this.labelProject.ForeColor = System.Drawing.Color.White;
+            this.labelProject.Location = new System.Drawing.Point(245, 176);
+            this.labelProject.Name = "labelProject";
+            this.labelProject.Size = new System.Drawing.Size(151, 23);
+            this.labelProject.TabIndex = 33;
+            this.labelProject.Text = "Project ….. of …. : ";
+            this.labelProject.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnMaskComplete
+            // 
+            this.btnMaskComplete.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMaskComplete.AutoSize = true;
+            this.btnMaskComplete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnMaskComplete.Location = new System.Drawing.Point(362, 398);
+            this.btnMaskComplete.Name = "btnMaskComplete";
+            this.btnMaskComplete.Size = new System.Drawing.Size(90, 23);
+            this.btnMaskComplete.TabIndex = 34;
+            this.btnMaskComplete.Text = "Mask Complete";
+            this.btnMaskComplete.UseVisualStyleBackColor = true;
+            // 
+            // btnMaskReview
+            // 
+            this.btnMaskReview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMaskReview.AutoSize = true;
+            this.btnMaskReview.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnMaskReview.Location = new System.Drawing.Point(468, 398);
+            this.btnMaskReview.Name = "btnMaskReview";
+            this.btnMaskReview.Size = new System.Drawing.Size(95, 23);
+            this.btnMaskReview.TabIndex = 35;
+            this.btnMaskReview.Text = "Mark for Review";
+            this.btnMaskReview.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
-            this.ClientSize = new System.Drawing.Size(1161, 457);
+            this.ClientSize = new System.Drawing.Size(885, 457);
+            this.Controls.Add(this.btnMaskReview);
+            this.Controls.Add(this.btnMaskComplete);
+            this.Controls.Add(this.labelProject);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.buttonShowHide);
@@ -537,5 +590,8 @@ namespace MOS_WORD_TEST
         private Panel panelJumpQuestion;
         private RichTextBox richTextTA;
         private RichTextBox richTextTV;
+        private Label labelProject;
+        private Button btnMaskComplete;
+        private Button btnMaskReview;
     }
 }

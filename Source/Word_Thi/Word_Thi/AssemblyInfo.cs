@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 [assembly: Guid("5c9029b7-21df-4b34-a480-4f3f82cd4fa0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCopyright("Copyright ©  2025")]
+[assembly: AssemblyCopyright("Copyright © 2025")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyTitle("MOS360_WORD_TEST")]
 [assembly: AssemblyCompany("MOS360.vn")]

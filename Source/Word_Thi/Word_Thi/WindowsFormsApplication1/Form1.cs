@@ -227,15 +227,20 @@ namespace MOS_WORD_TEST
             //Project
             this.checkedListBox1.Location = new Point(0, 0);
             this.checkedListBox1.Height = this.Height;
-            this.panelQuestion.Location = new Point(this.checkedListBox1.Width, this.buttonExit.Height + y);
+            //this.panelQuestion.Location = new Point(this.checkedListBox1.Width, this.buttonExit.Height + y);
+            this.panelQuestion.Location = new Point((screen_width / 10) * 1, this.buttonExit.Height + y + y);
             this.panelQuestion.Height = this.Height;
-            this.panelQuestion.Width = this.Width - this.checkedListBox1.Width - 200;
+            //this.panelQuestion.Width = this.Width - this.checkedListBox1.Width - 200;
+            this.panelQuestion.Width = (screen_width / 10) * 8;
             var a = tabControl1.GetTabRect(0);
             var b = tabControl1.GetTabRect(1);
             var c = a.Width + b.Width;
-            this.panelJumpQuestion.Location = new Point(c, 0);
-            this.panelJumpQuestion.Height = 25;
-            this.panelJumpQuestion.Width = this.panelQuestion.Width - c;
+            //this.panelJumpQuestion.Location = new Point(c, 0);
+            this.panelJumpQuestion.Location = new Point(0, 0);
+            //this.panelJumpQuestion.Height = 25;
+            //this.panelJumpQuestion.Width = this.panelQuestion.Width - c;
+            this.panelJumpQuestion.Height = this.buttonExit.Height;
+            this.panelJumpQuestion.Width = (screen_width / 10) * 8;
 
             //Panel Right
             this.panel1.Location = new Point(0, 0);
@@ -251,26 +256,29 @@ namespace MOS_WORD_TEST
             // Exit
             this.buttonExit.Location = new Point(panelButtonWidth - this.buttonExit.Width - rightPadLeft, y);
 
-            // Reset Project
-            this.buttonReset.Location = new Point(panelButtonWidth - this.buttonReset.Width - this.buttonExit.Width - rightPadLeft, y);
+            // Bố trí lại
+            this.buttonRefresh.Location = new Point(panelButtonWidth - this.buttonRefresh.Width - this.buttonExit.Width - rightPadLeft, y);
 
             // Submit Project
-            this.buttonSubmit.Location = new Point(panelButtonWidth - this.buttonSubmit.Width - this.buttonReset.Width - this.buttonExit.Width - rightPadLeft, y);
+            this.buttonSubmit.Location = new Point(panelButtonWidth - this.buttonSubmit.Width - this.buttonRefresh.Width - this.buttonExit.Width - rightPadLeft, y);
 
-            // Bố trí lại
-            this.buttonRefresh.Location = new Point(panelButtonWidth - this.buttonRefresh.Width - this.buttonReset.Width - this.buttonSubmit.Width - this.buttonExit.Width - rightPadLeft, y);
+            // Reset Project
+            this.buttonReset.Location = new Point(panelButtonWidth - this.buttonReset.Width - this.buttonRefresh.Width - this.buttonSubmit.Width - this.buttonExit.Width - rightPadLeft, y);
             
             // Timer
-            this.label1.Location = new Point(this.checkedListBox1.Width + y, y);
+            //this.label1.Location = new Point(this.checkedListBox1.Width + y, y);
+            this.label1.Location = new Point(y, y);
+
+            // Check -> 2.	Go To Summary
+            //this.buttonCheck.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width, this.Height - this.buttonCheck.Height);
+            this.buttonCheck.Location = new Point(this.label1.Width + y, y);
+
+            // Label Project
+            this.labelProject.Location = new Point( (panelButtonWidth / 2) - this.labelProject.Width, y);
 
 
-
-
-
-
-
-
-
+            this.btnMaskComplete.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width, this.Height - this.btnMaskComplete.Height - y);
+            this.btnMaskReview.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width, this.Height - this.btnMaskComplete.Height - this.btnMaskReview.Height - y - y);
 
 
 
@@ -288,8 +296,6 @@ namespace MOS_WORD_TEST
             this.buttonxhdh.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.button1.Width - this.textBox2.Width - this.comboBox1.Width - this.buttonShowHide.Width - this.buttonHelp.Width - this.buttonxhdh.Width, 10000);
             this.panel4.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width, this.Height - this.buttonCheck.Height - this.panel4.Height);
 
-            // Check
-            this.buttonCheck.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width, this.Height - this.buttonCheck.Height);
             
             
             //this.loadcaucanhoiNew(currentProject.ProjectIndex);
@@ -314,6 +320,8 @@ namespace MOS_WORD_TEST
 
         private void LoadProject(int projectIndex)
         {
+            this.labelProject.Text = "Project " + (projectIndex + 1).ToString() + " of " + currentExam.ProjectIndex.Count.ToString() + ":";
+
             this.checkedListBox1.Items.Clear();
             for (int i = 0; i < currentExam.ProjectIndex.Count; i++)
             {
@@ -326,17 +334,35 @@ namespace MOS_WORD_TEST
 
         private void loadcaucanhoiNew(int projectIndex)
         {
+
+            this.screen_width = this.Width;
+
             this.panelJumpQuestion.Controls.Clear();
             currentProject = currentExam.ProjectIndex[projectIndex];
             for (int i = 1; i <= currentProject.Questions.Count; i++)
             {
-                var btn = new System.Windows.Forms.Button();
+                var btn = new MOS_WORD_TEST.Base.RJButton();
+                // btn.Text = "Project " +  i.ToString() + " of " + currentProject.Questions.Count + ":";
                 btn.Text = i.ToString();
-                btn.Location = new Point((i - 1) * 50, 0);
-                btn.Width = 40;
-                btn.Height = 23;
+                btn.Location = new Point((i - 1) * 110, 0);
+                //btn.Width = 50;
+                //btn.Height = 32;
                 btn.BackColor = (i == this.currentQuestion.Index) ? System.Drawing.Color.LightBlue : System.Drawing.Color.DarkBlue;
-                btn.ForeColor = System.Drawing.Color.White;
+                //btn.ForeColor = System.Drawing.Color.White;
+
+                btn.AutoSize = true;
+                btn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+                btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+                btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+                btn.BorderColor = System.Drawing.Color.White;
+                btn.BorderRadius = 5;
+                btn.BorderSize = 2;
+                btn.Cursor = System.Windows.Forms.Cursors.Hand;
+                btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                btn.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+                btn.MinimumSize = new System.Drawing.Size(80, 0);
+                btn.Padding = new System.Windows.Forms.Padding(2);
+
                 btn.Tag = currentProject.Questions[i - 1];
                 btn.Click += LoadQuestionContent;
                 this.panelJumpQuestion.Controls.Add(btn);
@@ -422,6 +448,8 @@ namespace MOS_WORD_TEST
                 else
                     ++this.next;
 
+                this.labelProject.Text = "Project " + (currentProject.ProjectIndex + 1).ToString() + " of " + currentExam.ProjectIndex.Count.ToString() + ":";
+
                 this.checkedListBox1.SetItemChecked(currentProject.ProjectIndex - 1, true);
                 int nexproject = currentProject.ProjectIndex + 1;
                 if(nexproject <= currentExam.ProjectIndex.Count)
@@ -460,7 +488,7 @@ namespace MOS_WORD_TEST
             else
             {
                 TextWriter textWriter4 = (TextWriter)new StreamWriter(path, true);
-                string str2 = "<P style=\"text-align:center;color:red;font-size:160%\"> Điều Kiện để được thi lại miễn phí là phải học hành chăm chỉ, gửi điểm thường xuyên cho thầy</p><P style=\"text-align:center;\">Khi Có Điểm bạn copy Điểm này gửi cho thầy qua 1 trong các face sau: </p> <P style=\"text-align:center;\">================================================================== </p> <P style=\"text-align:center;\"><a href=\"https://www.facebook.com/tinhoc.hoangkha.17\" target=\"_blank\">1. Minh Quang Vũ </a>  </p><P style=\"text-align:center;\"><a href=\"https://www.facebook.com/truongthinh.19\" target=\"_blank\">2. Trường Thịnh</a>  </p> <P style=\"text-align:center;\"><a href=\"https://www.facebook.com/tinhocmos900\" target=\"_blank\">3. Nguyễn Cữu Đàm</a>  </p><P style=\"text-align:center;\">================================================================== </p> ";
+                string str2 = "<P style=\"text-align:center;color:red;font-size:160%\"> Điều Kiện để được thi lại miễn phí là phải học hành chăm chỉ, gửi điểm thường xuyên cho thầy</p><P style=\"text-align:center;\">Khi Có Điểm bạn copy Điểm này gửi cho thầy qua Website hỗ trợ https://mos360.vn</p><P style=\"text-align:center;\">================================================================== </p> ";
                 textWriter4.WriteLine(str2);
                 textWriter4.WriteLine("<p style=\"text-align:center;\">" + shortDateString + ":" + diem + "</p>");
                 textWriter4.Close();
@@ -553,7 +581,7 @@ namespace MOS_WORD_TEST
             this.pathFileOffice = Path.Combine(System.Windows.Forms.Application.StartupPath, "Zip\\Tam\\A\\");
             this.pathFileOffice = Path.Combine(this.pathFileOffice, Path.GetFileName(this.pathFileOfficeMaHoa));
             string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            string path = Path.Combine(this.pathWork, "Source\\Data");
+            string path = Path.Combine(this.pathWork, "Source\\Main");
             try
             {
                 foreach (string file in Directory.GetFiles(path))
@@ -761,7 +789,7 @@ namespace MOS_WORD_TEST
             {
                 this.TopMost = false;
                 this.buttonShowHide.Text = "Tự Làm";
-                Process.Start("https://meet.google.com/uay-ywnp-xzs");
+                //Process.Start("https://meet.google.com/uay-ywnp-xzs");
             }
             else
             {

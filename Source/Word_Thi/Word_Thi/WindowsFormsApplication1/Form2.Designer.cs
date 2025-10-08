@@ -42,6 +42,7 @@ namespace MOS_WORD_TEST
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -54,11 +55,13 @@ namespace MOS_WORD_TEST
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnCancel = new MOS_WORD_TEST.Base.RJButton();
             this.buttonOK = new MOS_WORD_TEST.Base.RJButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -208,6 +211,15 @@ namespace MOS_WORD_TEST
             this.richTextBox2.Text = "Thành công không đến từ may mắn, mà bắt đầu từ từng giờ bạn ngồi học hôm nay.\n\nWe" +
     "bsite hỗ trợ: https://mos360.vn";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::MOS_WORD_TEST.Properties.Resources.w_mos_s;
+            this.pictureBox1.Location = new System.Drawing.Point(44, 20);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(210, 119);
+            this.pictureBox1.TabIndex = 17;
+            this.pictureBox1.TabStop = false;
+            // 
             // btnCancel
             // 
             this.btnCancel.AutoSize = true;
@@ -265,11 +277,13 @@ namespace MOS_WORD_TEST
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(296, 487);
             this.ControlBox = false;
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.tabControl1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.HelpButton = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Form2_Load);
@@ -277,6 +291,7 @@ namespace MOS_WORD_TEST
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -296,5 +311,6 @@ namespace MOS_WORD_TEST
         private TabPage tabPage2;
         private RichTextBox richTextBox1;
         private RichTextBox richTextBox2;
+        private PictureBox pictureBox1;
     }
 }
