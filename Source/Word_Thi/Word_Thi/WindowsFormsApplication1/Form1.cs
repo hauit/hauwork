@@ -544,22 +544,32 @@ namespace MOS_WORD_TEST
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
-            string str = this.CheckCauLon(this.currentQuestion.QuestionNumber);
-            if (!this.currentQuestion.Status)
+
+            //string str = this.CheckCauLon(this.currentQuestion.QuestionNumber);
+            //if (!this.currentQuestion.Status)
+            //{
+            //    this.currentQuestion.Status = true;
+            //    if (str == "True")
+            //    {
+            //        this.currentQuestion.Value = true;
+            //    }
+            //    else
+            //    {
+            //        this.currentQuestion.Value = false;
+            //    }
+            //    //this.CacCauDaCheck[this.Cau_So] = true;
+            //}
+            //this.richTextBox1.Text = str;
+            string str = string.Empty;
+            for(int i =0; i < currentExam.ProjectIndex.Count; i++)
             {
-                this.currentQuestion.Status = true;
-                if (str == "True")
+                for(int j =0; j < currentExam.ProjectIndex[i].Questions.Count; i++)
                 {
-                    this.currentQuestion.Value = true;
+                    string kq = currentExam.ProjectIndex[i].Questions[j].Value == true ? "Đúng" : "sai";
+                    str += $@"Project: {currentExam.ProjectIndex[i].ProjectName} - Câu hỏi:{currentExam.ProjectIndex[i].Questions[j].Index} - Kết quả: {kq}{Environment.NewLine}";
                 }
-                else
-                {
-                    this.currentQuestion.Value = false;
-                }
-                //this.CacCauDaCheck[this.Cau_So] = true;
             }
-            this.richTextBox1.Text = str;
+            MessageBox.Show(str);
         }
 
         private void button3_Click(object sender, EventArgs e) => this.submit();
@@ -568,6 +578,13 @@ namespace MOS_WORD_TEST
         {
             if (MessageBox.Show("Bạn có chắc nộp bài?", "Cảnh Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
             {
+                bool reviewQestion = currentProject.Questions.Where(x => x.MaskForReview == true).Any();
+                if (reviewQestion)
+                {
+                    MessageBox.Show($@"Poject có question cần review nên không thể submit. Vui lòng kiểm tra câu hỏi và chuyển thành Mask for complete");
+                    return;
+                }
+
                 this.ChamDiem();
                 if (currentProject.ProjectIndex == currentExam.ProjectIndex[6].ProjectIndex)
                 {
@@ -1027,11 +1044,15 @@ namespace MOS_WORD_TEST
         private void btnMaskComplete_Click(object sender, EventArgs e)
         {
             currentQuestion.MaskForComplete = true;
+            Button currentBT = GetLastQuestionButton();
+            currentBT.Text = $@"{currentQuestion.Index.ToString()}";
         }
 
         private void btnMaskReview_Click(object sender, EventArgs e)
         {
             currentQuestion.MaskForReview = true;
+            Button currentBT = GetLastQuestionButton();
+            currentBT.Text = $@"{currentQuestion.Index.ToString()}";
         }
     }
 }
