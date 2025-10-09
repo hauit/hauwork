@@ -237,7 +237,7 @@ namespace MOS_WORD_TEST
             this.checkedListBox1.Height = this.Height;
             //this.panelQuestion.Location = new Point(this.checkedListBox1.Width, this.buttonExit.Height + y);
             this.panelQuestion.Location = new Point((screen_width / 10) * 1, this.buttonExit.Height + y + y);
-            this.panelQuestion.Height = this.Height;
+            this.panelQuestion.Height = this.Height - 40;
             //this.panelQuestion.Width = this.Width - this.checkedListBox1.Width - 200;
             this.panelQuestion.Width = (screen_width / 10) * 8;
             var a = tabControl1.GetTabRect(0);
@@ -281,9 +281,11 @@ namespace MOS_WORD_TEST
             this.labelProject.Location = new Point( (panelButtonWidth / 2) - this.labelProject.Width, y);
 
 
-            this.btnMaskComplete.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width, this.Height - this.btnMaskComplete.Height - y);
-            this.btnMaskReview.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width, this.Height - this.btnMaskComplete.Height - this.btnMaskReview.Height - y - y);
+            //this.btnMaskComplete.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width, this.Height - this.btnMaskComplete.Height - y);
+            //this.btnMaskReview.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width, this.Height - this.btnMaskComplete.Height - this.btnMaskReview.Height - y - y);
 
+            this.btnMaskComplete.Location = new Point((screen_width / 2) - this.btnMaskComplete.Width, this.Height - this.btnMaskComplete.Height - y);
+            this.btnMaskReview.Location = new Point((screen_width) / 2 + y, this.Height - this.btnMaskComplete.Height - y);
 
 
 
@@ -343,16 +345,16 @@ namespace MOS_WORD_TEST
 
             this.panelJumpQuestion.Controls.Clear();
             currentProject = currentExam.ProjectIndex[projectIndex];
-            if(currentProject.Questions.Count > 1)
-            {
+            //if(currentProject.Questions.Count > 1)
+            //{
                 AddBackButton();
-            }
+            //}
             for (int i = 1; i <= currentProject.Questions.Count; i++)
             {
                 var btn = new MOS_WORD_TEST.Base.RJButton();
                 // btn.Text = "Project " +  i.ToString() + " of " + currentProject.Questions.Count + ":";
                 btn.Text = i.ToString();
-                btn.Location = new Point((i) * 110, 0);
+                btn.Location = new Point((i) * 60, 0);
                 //btn.Width = 50;
                 //btn.Height = 32;
                 btn.BackColor = System.Drawing.Color.DarkBlue;
@@ -368,7 +370,7 @@ namespace MOS_WORD_TEST
                 btn.Cursor = System.Windows.Forms.Cursors.Hand;
                 btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 btn.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-                btn.MinimumSize = new System.Drawing.Size(80, 0);
+                btn.MinimumSize = new System.Drawing.Size(50, 0);
                 btn.Padding = new System.Windows.Forms.Padding(2);
 
                 btn.Tag = currentProject.Questions[i - 1];
@@ -379,18 +381,20 @@ namespace MOS_WORD_TEST
                     LoadQuestionContent(btn, EventArgs.Empty);
                 }
             }
-            if (currentProject.Questions.Count > 1)
-            {
+            //if (currentProject.Questions.Count > 1)
+            //{
                 AddNextButton();
-            }
+            //}
         }
 
         private void AddNextButton()
         {
+            this.screen_width = this.panelQuestion.Width;
 
             var btn = new MOS_WORD_TEST.Base.RJButton();
             btn.Text = ">";
-            btn.Location = new Point((currentProject.Questions.Count + 1) * 110, 0);
+            //btn.Location = new Point((currentProject.Questions.Count + 1) * 60, 0);
+            btn.Location = new Point(screen_width - btn.Width, 0);
             btn.BackColor = System.Drawing.Color.DarkBlue;
 
             btn.AutoSize = true;
@@ -403,7 +407,7 @@ namespace MOS_WORD_TEST
             btn.Cursor = System.Windows.Forms.Cursors.Hand;
             btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btn.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            btn.MinimumSize = new System.Drawing.Size(80, 0);
+            btn.MinimumSize = new System.Drawing.Size(50, 0);
             btn.Padding = new System.Windows.Forms.Padding(2);
 
             //btn.Tag = currentProject.Questions[i - 1];
@@ -431,7 +435,7 @@ namespace MOS_WORD_TEST
             btn.Cursor = System.Windows.Forms.Cursors.Hand;
             btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btn.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            btn.MinimumSize = new System.Drawing.Size(80, 0);
+            btn.MinimumSize = new System.Drawing.Size(50, 0);
             btn.Padding = new System.Windows.Forms.Padding(2);
 
             //btn.Tag = currentProject.Questions[i - 1];
@@ -510,10 +514,9 @@ namespace MOS_WORD_TEST
 
         private Button GetLastQuestionButton()
         {
-
             Button btnTimDuoc = panelJumpQuestion.Controls
-                          .OfType<Button>()
-                          .FirstOrDefault(b => b.Text == currentQuestion.Index.ToString());
+                            .OfType<Button>()
+                            .FirstOrDefault(b => b.Text.EndsWith(currentQuestion.Index.ToString()));
             return btnTimDuoc;
         }
 
@@ -556,7 +559,7 @@ namespace MOS_WORD_TEST
             string str = string.Empty;
             for(int i =0; i < currentExam.ProjectIndex.Count; i++)
             {
-                for(int j =0; j < currentExam.ProjectIndex[i].Questions.Count; i++)
+                for(int j =0; j < currentExam.ProjectIndex[i].Questions.Count; j++)
                 {
                     string kq = currentExam.ProjectIndex[i].Questions[j].Value == true ? "Đúng" : "sai";
                     str += $@"Project: {currentExam.ProjectIndex[i].ProjectName} - Câu hỏi:{currentExam.ProjectIndex[i].Questions[j].Index} - Kết quả: {kq}{Environment.NewLine}";
@@ -1026,16 +1029,58 @@ namespace MOS_WORD_TEST
 
         private void btnMaskComplete_Click(object sender, EventArgs e)
         {
-            currentQuestion.MaskForComplete = true;
+            //currentQuestion.MaskForComplete = true;
             Button currentBT = GetLastQuestionButton();
-            currentBT.Text = $@"{currentQuestion.Index.ToString()}";
-        }
+
+            if (currentBT.Text.StartsWith("❓"))
+            {
+                currentBT.Text = $@"✔️ {currentQuestion.Index.ToString()}";
+                currentQuestion.MaskForComplete = true;
+                currentQuestion.MaskForReview = false;
+            }
+            else
+            {
+                if (currentBT.Text == currentQuestion.Index.ToString())
+                {
+                    currentBT.Text = $@"✔️ {currentQuestion.Index.ToString()}";
+                    currentQuestion.MaskForComplete = true;
+                    currentQuestion.MaskForReview = false;
+                }
+                else
+                {
+                    currentBT.Text = $@"{currentQuestion.Index.ToString()}";
+                    currentQuestion.MaskForComplete = false;
+                    currentQuestion.MaskForReview = false;
+                }
+            }
+        }   
 
         private void btnMaskReview_Click(object sender, EventArgs e)
         {
-            currentQuestion.MaskForReview = true;
+            //currentQuestion.MaskForReview = true;
             Button currentBT = GetLastQuestionButton();
-            currentBT.Text = $@"{currentQuestion.Index.ToString()}";
+
+            if (currentBT.Text.StartsWith("✔️"))
+            {
+                currentBT.Text = $@"❓ {currentQuestion.Index.ToString()}";
+                currentQuestion.MaskForReview = true;
+                currentQuestion.MaskForComplete = false;
+            }
+            else
+            {
+                if (currentBT.Text == currentQuestion.Index.ToString())
+                {
+                    currentBT.Text = $@"❓ {currentQuestion.Index.ToString()}";
+                    currentQuestion.MaskForReview = true;
+                    currentQuestion.MaskForComplete = false;
+                }
+                else
+                {
+                    currentBT.Text = $@"{currentQuestion.Index.ToString()}";
+                    currentQuestion.MaskForReview = false;
+                    currentQuestion.MaskForComplete = false;
+                }
+            }
         }
     }
 }

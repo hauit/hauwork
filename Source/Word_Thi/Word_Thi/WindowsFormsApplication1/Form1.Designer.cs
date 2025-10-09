@@ -51,6 +51,9 @@ namespace MOS_WORD_TEST
             this.panelQuestion = new System.Windows.Forms.Panel();
             this.panelJumpQuestion = new System.Windows.Forms.Panel();
             this.panelQuestionContent = new System.Windows.Forms.Panel();
+            this.labelProject = new System.Windows.Forms.Label();
+            this.btnMaskReview = new MOS_WORD_TEST.Base.RJButton();
+            this.btnMaskComplete = new MOS_WORD_TEST.Base.RJButton();
             this.button2 = new MOS_WORD_TEST.Base.RJButton();
             this.buttonShowHide = new MOS_WORD_TEST.Base.RJButton();
             this.buttonxhdh = new MOS_WORD_TEST.Base.RJButton();
@@ -62,9 +65,6 @@ namespace MOS_WORD_TEST
             this.buttonSubmit = new MOS_WORD_TEST.Base.RJButton();
             this.buttonCheck = new MOS_WORD_TEST.Base.RJButton();
             this.buttonReset = new MOS_WORD_TEST.Base.RJButton();
-            this.labelProject = new System.Windows.Forms.Label();
-            this.btnMaskComplete = new System.Windows.Forms.Button();
-            this.btnMaskReview = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -134,7 +134,7 @@ namespace MOS_WORD_TEST
             // richTextTA
             // 
             this.richTextTA.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextTA.Font = new System.Drawing.Font("Calibri", 20F);
+            this.richTextTA.Font = new System.Drawing.Font("Calibri", 18F);
             this.richTextTA.Location = new System.Drawing.Point(0, 0);
             this.richTextTA.Name = "richTextTA";
             this.richTextTA.Size = new System.Drawing.Size(512, 264);
@@ -216,6 +216,67 @@ namespace MOS_WORD_TEST
             this.panelQuestionContent.Name = "panelQuestionContent";
             this.panelQuestionContent.Size = new System.Drawing.Size(305, 192);
             this.panelQuestionContent.TabIndex = 0;
+            // 
+            // labelProject
+            // 
+            this.labelProject.AutoSize = true;
+            this.labelProject.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelProject.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Bold);
+            this.labelProject.ForeColor = System.Drawing.Color.White;
+            this.labelProject.Location = new System.Drawing.Point(245, 176);
+            this.labelProject.Name = "labelProject";
+            this.labelProject.Size = new System.Drawing.Size(151, 23);
+            this.labelProject.TabIndex = 33;
+            this.labelProject.Text = "Project ….. of …. : ";
+            this.labelProject.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnMaskReview
+            // 
+            this.btnMaskReview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMaskReview.AutoSize = true;
+            this.btnMaskReview.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnMaskReview.BackColor = System.Drawing.Color.White;
+            this.btnMaskReview.BackgroundColor = System.Drawing.Color.White;
+            this.btnMaskReview.BorderColor = System.Drawing.Color.Black;
+            this.btnMaskReview.BorderRadius = 5;
+            this.btnMaskReview.BorderSize = 1;
+            this.btnMaskReview.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMaskReview.Font = new System.Drawing.Font("Calibri", 10F);
+            this.btnMaskReview.ForeColor = System.Drawing.Color.Black;
+            this.btnMaskReview.Location = new System.Drawing.Point(667, 361);
+            this.btnMaskReview.Name = "btnMaskReview";
+            this.btnMaskReview.Size = new System.Drawing.Size(113, 29);
+            this.btnMaskReview.TabIndex = 35;
+            this.btnMaskReview.Text = "Mark for Review";
+            this.btnMaskReview.TextColor = System.Drawing.Color.Black;
+            this.btnMaskReview.UseVisualStyleBackColor = false;
+            this.btnMaskReview.Click += new System.EventHandler(this.btnMaskReview_Click);
+            // 
+            // btnMaskComplete
+            // 
+            this.btnMaskComplete.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMaskComplete.AutoSize = true;
+            this.btnMaskComplete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnMaskComplete.BackColor = System.Drawing.Color.White;
+            this.btnMaskComplete.BackgroundColor = System.Drawing.Color.White;
+            this.btnMaskComplete.BorderColor = System.Drawing.Color.Black;
+            this.btnMaskComplete.BorderRadius = 5;
+            this.btnMaskComplete.BorderSize = 1;
+            this.btnMaskComplete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMaskComplete.Font = new System.Drawing.Font("Calibri", 10F);
+            this.btnMaskComplete.ForeColor = System.Drawing.Color.Black;
+            this.btnMaskComplete.Location = new System.Drawing.Point(554, 361);
+            this.btnMaskComplete.Name = "btnMaskComplete";
+            this.btnMaskComplete.Size = new System.Drawing.Size(107, 29);
+            this.btnMaskComplete.TabIndex = 34;
+            this.btnMaskComplete.Text = "Mask Complete";
+            this.btnMaskComplete.TextColor = System.Drawing.Color.Black;
+            this.btnMaskComplete.UseVisualStyleBackColor = false;
+            this.btnMaskComplete.Click += new System.EventHandler(this.btnMaskComplete_Click);
             // 
             // button2
             // 
@@ -440,49 +501,6 @@ namespace MOS_WORD_TEST
             this.buttonReset.UseVisualStyleBackColor = false;
             this.buttonReset.Click += new System.EventHandler(this.button1_Click);
             // 
-            // labelProject
-            // 
-            this.labelProject.AutoSize = true;
-            this.labelProject.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelProject.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Bold);
-            this.labelProject.ForeColor = System.Drawing.Color.White;
-            this.labelProject.Location = new System.Drawing.Point(245, 176);
-            this.labelProject.Name = "labelProject";
-            this.labelProject.Size = new System.Drawing.Size(151, 23);
-            this.labelProject.TabIndex = 33;
-            this.labelProject.Text = "Project ….. of …. : ";
-            this.labelProject.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnMaskComplete
-            // 
-            this.btnMaskComplete.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMaskComplete.AutoSize = true;
-            this.btnMaskComplete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnMaskComplete.Location = new System.Drawing.Point(362, 398);
-            this.btnMaskComplete.Name = "btnMaskComplete";
-            this.btnMaskComplete.Size = new System.Drawing.Size(90, 23);
-            this.btnMaskComplete.TabIndex = 34;
-            this.btnMaskComplete.Text = "Mask Complete";
-            this.btnMaskComplete.UseVisualStyleBackColor = true;
-            this.btnMaskComplete.Click += new System.EventHandler(this.btnMaskComplete_Click);
-            // 
-            // btnMaskReview
-            // 
-            this.btnMaskReview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMaskReview.AutoSize = true;
-            this.btnMaskReview.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnMaskReview.Location = new System.Drawing.Point(468, 398);
-            this.btnMaskReview.Name = "btnMaskReview";
-            this.btnMaskReview.Size = new System.Drawing.Size(95, 23);
-            this.btnMaskReview.TabIndex = 35;
-            this.btnMaskReview.Text = "Mark for Review";
-            this.btnMaskReview.UseVisualStyleBackColor = true;
-            this.btnMaskReview.Click += new System.EventHandler(this.btnMaskReview_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -552,7 +570,7 @@ namespace MOS_WORD_TEST
         private Panel panelJumpQuestion;
         private RichTextBox richTextTA;
         private Label labelProject;
-        private Button btnMaskComplete;
-        private Button btnMaskReview;
+        private RJButton btnMaskComplete;
+        private RJButton btnMaskReview;
     }
 }
