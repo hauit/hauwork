@@ -57,7 +57,7 @@ namespace MOS_EXCEL_LEARN
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox1.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox1.Location = new System.Drawing.Point(61, 159);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
@@ -68,8 +68,8 @@ namespace MOS_EXCEL_LEARN
             // labelKQ
             // 
             this.labelKQ.AutoSize = true;
-            this.labelKQ.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelKQ.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.labelKQ.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelKQ.ForeColor = System.Drawing.Color.Aqua;
             this.labelKQ.Location = new System.Drawing.Point(516, 220);
             this.labelKQ.Name = "labelKQ";
             this.labelKQ.Size = new System.Drawing.Size(0, 21);
