@@ -43,9 +43,6 @@ namespace MOS_WORD_TEST
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.richTextTA = new System.Windows.Forms.RichTextBox();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.richTextTV = new System.Windows.Forms.RichTextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -71,8 +68,6 @@ namespace MOS_WORD_TEST
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panelQuestion.SuspendLayout();
             this.panelQuestionContent.SuspendLayout();
@@ -108,7 +103,6 @@ namespace MOS_WORD_TEST
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -125,7 +119,7 @@ namespace MOS_WORD_TEST
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(297, 160);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Tiếng Anh";
+            this.tabPage2.Text = "Question";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // panel2
@@ -146,36 +140,6 @@ namespace MOS_WORD_TEST
             this.richTextTA.Size = new System.Drawing.Size(512, 264);
             this.richTextTA.TabIndex = 0;
             this.richTextTA.Text = "";
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.panel1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(297, 160);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Tiếng Việt";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.richTextTV);
-            this.panel1.Location = new System.Drawing.Point(6, 6);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(509, 249);
-            this.panel1.TabIndex = 0;
-            // 
-            // richTextTV
-            // 
-            this.richTextTV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextTV.Font = new System.Drawing.Font("Calibri", 20F);
-            this.richTextTV.Location = new System.Drawing.Point(0, 0);
-            this.richTextTV.Name = "richTextTV";
-            this.richTextTV.Size = new System.Drawing.Size(509, 249);
-            this.richTextTV.TabIndex = 0;
-            this.richTextTV.Text = "";
             // 
             // textBox1
             // 
@@ -552,8 +516,6 @@ namespace MOS_WORD_TEST
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panelQuestion.ResumeLayout(false);
             this.panelQuestionContent.ResumeLayout(false);
@@ -571,14 +533,12 @@ namespace MOS_WORD_TEST
         private Label label1;
         private Timer timer1;
         private TabControl tabControl1;
-        private TabPage tabPage1;
         private TabPage tabPage2;
         private Panel panel2;
         private Base.RJButton buttonSave;
         private TextBox textBox1;
         private RichTextBox richTextBox1;
         private Panel panel4;
-        private Panel panel1;
         private Base.RJButton button1;
         private TextBox textBox2;
         private Base.RJButton buttonHelp;
@@ -591,7 +551,6 @@ namespace MOS_WORD_TEST
         private Panel panelQuestionContent;
         private Panel panelJumpQuestion;
         private RichTextBox richTextTA;
-        private RichTextBox richTextTV;
         private Label labelProject;
         private Button btnMaskComplete;
         private Button btnMaskReview;

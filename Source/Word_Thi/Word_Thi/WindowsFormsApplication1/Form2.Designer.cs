@@ -43,48 +43,50 @@ namespace MOS_WORD_TEST
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbExamList = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnCancel = new MOS_WORD_TEST.Base.RJButton();
             this.textBoxPass = new System.Windows.Forms.TextBox();
             this.textBoxUser = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.buttonOK = new MOS_WORD_TEST.Base.RJButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnCancel = new MOS_WORD_TEST.Base.RJButton();
-            this.buttonOK = new MOS_WORD_TEST.Base.RJButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.radioEN = new System.Windows.Forms.RadioButton();
+            this.radioVN = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // cbExamList
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbExamList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbExamList.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
+            this.cbExamList.FormattingEnabled = true;
+            this.cbExamList.Items.AddRange(new object[] {
             "Tổng",
             "Test"});
-            this.comboBox1.Location = new System.Drawing.Point(90, 122);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(140, 29);
-            this.comboBox1.TabIndex = 0;
-            this.comboBox1.Visible = false;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cbExamList.Location = new System.Drawing.Point(90, 93);
+            this.cbExamList.Name = "cbExamList";
+            this.cbExamList.Size = new System.Drawing.Size(140, 29);
+            this.cbExamList.TabIndex = 0;
+            this.cbExamList.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(8, 124);
+            this.label3.Location = new System.Drawing.Point(8, 95);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 22);
             this.label3.TabIndex = 4;
@@ -111,11 +113,14 @@ namespace MOS_WORD_TEST
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(69)))), ((int)(((byte)(136)))));
+            this.tabPage1.Controls.Add(this.radioVN);
+            this.tabPage1.Controls.Add(this.radioEN);
             this.tabPage1.Controls.Add(this.btnCancel);
             this.tabPage1.Controls.Add(this.textBoxPass);
+            this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.textBoxUser);
-            this.tabPage1.Controls.Add(this.comboBox1);
+            this.tabPage1.Controls.Add(this.cbExamList);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.buttonOK);
@@ -127,11 +132,34 @@ namespace MOS_WORD_TEST
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Đăng nhập";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.AutoSize = true;
+            this.btnCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.btnCancel.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.btnCancel.BorderColor = System.Drawing.Color.White;
+            this.btnCancel.BorderRadius = 5;
+            this.btnCancel.BorderSize = 1;
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Calibri", 12F);
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(194, 165);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Padding = new System.Windows.Forms.Padding(2);
+            this.btnCancel.Size = new System.Drawing.Size(62, 35);
+            this.btnCancel.TabIndex = 7;
+            this.btnCancel.Text = "Thoát";
+            this.btnCancel.TextColor = System.Drawing.Color.White;
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click_1);
+            // 
             // textBoxPass
             // 
             this.textBoxPass.Cursor = System.Windows.Forms.Cursors.Hand;
             this.textBoxPass.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
-            this.textBoxPass.Location = new System.Drawing.Point(90, 72);
+            this.textBoxPass.Location = new System.Drawing.Point(90, 49);
             this.textBoxPass.Name = "textBoxPass";
             this.textBoxPass.PasswordChar = '*';
             this.textBoxPass.Size = new System.Drawing.Size(166, 29);
@@ -141,7 +169,7 @@ namespace MOS_WORD_TEST
             // 
             this.textBoxUser.Cursor = System.Windows.Forms.Cursors.Hand;
             this.textBoxUser.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
-            this.textBoxUser.Location = new System.Drawing.Point(90, 22);
+            this.textBoxUser.Location = new System.Drawing.Point(90, 9);
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.Size = new System.Drawing.Size(166, 29);
             this.textBoxUser.TabIndex = 1;
@@ -152,7 +180,7 @@ namespace MOS_WORD_TEST
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label4.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(8, 24);
+            this.label4.Location = new System.Drawing.Point(8, 11);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(83, 22);
             this.label4.TabIndex = 5;
@@ -164,11 +192,34 @@ namespace MOS_WORD_TEST
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label5.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(8, 74);
+            this.label5.Location = new System.Drawing.Point(8, 51);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(83, 22);
             this.label5.TabIndex = 6;
             this.label5.Text = "Mật khẩu";
+            // 
+            // buttonOK
+            // 
+            this.buttonOK.AutoSize = true;
+            this.buttonOK.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonOK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonOK.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonOK.BorderColor = System.Drawing.Color.White;
+            this.buttonOK.BorderRadius = 5;
+            this.buttonOK.BorderSize = 1;
+            this.buttonOK.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonOK.Font = new System.Drawing.Font("Calibri", 12F);
+            this.buttonOK.ForeColor = System.Drawing.Color.White;
+            this.buttonOK.Location = new System.Drawing.Point(90, 165);
+            this.buttonOK.Name = "buttonOK";
+            this.buttonOK.Padding = new System.Windows.Forms.Padding(2);
+            this.buttonOK.Size = new System.Drawing.Size(95, 35);
+            this.buttonOK.TabIndex = 3;
+            this.buttonOK.Text = "Đăng nhập";
+            this.buttonOK.TextColor = System.Drawing.Color.White;
+            this.buttonOK.UseVisualStyleBackColor = false;
+            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
             // tabPage2
             // 
@@ -220,51 +271,40 @@ namespace MOS_WORD_TEST
             this.pictureBox1.TabIndex = 17;
             this.pictureBox1.TabStop = false;
             // 
-            // btnCancel
+            // label1
             // 
-            this.btnCancel.AutoSize = true;
-            this.btnCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
-            this.btnCancel.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
-            this.btnCancel.BorderColor = System.Drawing.Color.White;
-            this.btnCancel.BorderRadius = 5;
-            this.btnCancel.BorderSize = 1;
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("Calibri", 12F);
-            this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(194, 165);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Padding = new System.Windows.Forms.Padding(2);
-            this.btnCancel.Size = new System.Drawing.Size(62, 35);
-            this.btnCancel.TabIndex = 7;
-            this.btnCancel.Text = "Thoát";
-            this.btnCancel.TextColor = System.Drawing.Color.White;
-            this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click_1);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(6, 137);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 22);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Ngôn ngữ";
             // 
-            // buttonOK
+            // radioEN
             // 
-            this.buttonOK.AutoSize = true;
-            this.buttonOK.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonOK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
-            this.buttonOK.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
-            this.buttonOK.BorderColor = System.Drawing.Color.White;
-            this.buttonOK.BorderRadius = 5;
-            this.buttonOK.BorderSize = 1;
-            this.buttonOK.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonOK.Font = new System.Drawing.Font("Calibri", 12F);
-            this.buttonOK.ForeColor = System.Drawing.Color.White;
-            this.buttonOK.Location = new System.Drawing.Point(90, 165);
-            this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Padding = new System.Windows.Forms.Padding(2);
-            this.buttonOK.Size = new System.Drawing.Size(95, 35);
-            this.buttonOK.TabIndex = 3;
-            this.buttonOK.Text = "Đăng nhập";
-            this.buttonOK.TextColor = System.Drawing.Color.White;
-            this.buttonOK.UseVisualStyleBackColor = false;
-            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
+            this.radioEN.AutoSize = true;
+            this.radioEN.Checked = true;
+            this.radioEN.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.radioEN.Location = new System.Drawing.Point(96, 139);
+            this.radioEN.Name = "radioEN";
+            this.radioEN.Size = new System.Drawing.Size(42, 21);
+            this.radioEN.TabIndex = 8;
+            this.radioEN.TabStop = true;
+            this.radioEN.Text = "EN";
+            this.radioEN.UseVisualStyleBackColor = true;
+            // 
+            // radioVN
+            // 
+            this.radioVN.AutoSize = true;
+            this.radioVN.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.radioVN.Location = new System.Drawing.Point(144, 139);
+            this.radioVN.Name = "radioVN";
+            this.radioVN.Size = new System.Drawing.Size(43, 21);
+            this.radioVN.TabIndex = 8;
+            this.radioVN.Text = "VN";
+            this.radioVN.UseVisualStyleBackColor = true;
             // 
             // Form2
             // 
@@ -299,7 +339,7 @@ namespace MOS_WORD_TEST
         #endregion
         private Base.RJButton buttonOK;
         private Base.RJButton btnCancel;
-        private ComboBox comboBox1;
+        private ComboBox cbExamList;
         private Label label3;
         private OpenFileDialog openFileDialog1;
         private TabControl tabControl1;
@@ -312,5 +352,8 @@ namespace MOS_WORD_TEST
         private RichTextBox richTextBox1;
         private RichTextBox richTextBox2;
         private PictureBox pictureBox1;
+        private RadioButton radioVN;
+        private RadioButton radioEN;
+        private Label label1;
     }
 }

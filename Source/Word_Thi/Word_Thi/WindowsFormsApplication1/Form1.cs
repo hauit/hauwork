@@ -19,10 +19,11 @@ namespace MOS_WORD_TEST
 {
     public partial class Form1 : Form
     {
-        private List<Exam> listExam;
-        private Exam currentExam;
+        public static List<Exam> listExam;
+        public static Exam currentExam;
         private Project currentProject;
         private Question currentQuestion;
+        public static string Language;
         private string pathWork;
         private string pathRun;
         private string pathFileOfficeMaHoa;
@@ -144,7 +145,6 @@ namespace MOS_WORD_TEST
 
         private void getEnviroment()
         {
-            listExam = GetQuestion(System.Windows.Forms.Application.StartupPath + "\\zip\\Exam\\ExamList");
             int length = 0;// listExam.Count;// Directory.GetDirectories(Path.Combine(System.Windows.Forms.Application.StartupPath, "zip\\MaHoa")).Length;
             //Random r = new Random();
             if (Program.TypeOfTest == 0)
@@ -152,7 +152,7 @@ namespace MOS_WORD_TEST
                 //Làm đề số 1
                 this.button1.Visible = true;
                 this.textBox2.Visible = true;
-                currentExam = listExam[0];
+                //currentExam = listExam[0];
                 currentest = 0;
                 length = currentExam.ProjectIndex.Count;
                 Program.Tong = length;
@@ -164,7 +164,7 @@ namespace MOS_WORD_TEST
             {
                 Random rExam = new Random();
                 int examIndex = rExam.Next(0, listExam.Count - 1);
-                currentExam = listExam[examIndex];
+                //currentExam = listExam[examIndex];
                 //Làm đề random
                 this.button1.Visible = false;
                 this.textBox2.Visible = false;
@@ -241,8 +241,7 @@ namespace MOS_WORD_TEST
             //this.panelQuestion.Width = this.Width - this.checkedListBox1.Width - 200;
             this.panelQuestion.Width = (screen_width / 10) * 8;
             var a = tabControl1.GetTabRect(0);
-            var b = tabControl1.GetTabRect(1);
-            var c = a.Width + b.Width;
+            var c = a.Width;
             //this.panelJumpQuestion.Location = new Point(c, 0);
             this.panelJumpQuestion.Location = new Point(0, 0);
             //this.panelJumpQuestion.Height = 25;
@@ -251,9 +250,6 @@ namespace MOS_WORD_TEST
             this.panelJumpQuestion.Width = (screen_width / 10) * 8;
 
             //Panel Right
-            this.panel1.Location = new Point(0, 0);
-            this.panel1.Height = this.tabPage2.Height;
-            this.panel1.Width = this.tabPage2.Width;
             this.panel2.Location = new Point(0, 0);
             this.panel2.Height = this.tabPage2.Height;
             this.panel2.Width = this.tabPage2.Width;
@@ -464,8 +460,7 @@ namespace MOS_WORD_TEST
             currentQuestion = currentProject.Questions.Where(x => x.Index == (curQuestionIndex + 1)).FirstOrDefault();
             nextBT.BackColor = System.Drawing.Color.LightBlue;
             ClsQuestion questionObj = ClsListQuestion.GetQuestion(currentQuestion.QuestionNumber);
-            richTextTA.Text = questionObj.EngQuestion;
-            richTextTV.Text = questionObj.VnQuestion;
+            richTextTA.Text = Language == "EN" ? questionObj.EngQuestion : questionObj.VnQuestion;
         }
 
         private void LoadLastQuestion(object sender, EventArgs e)
@@ -489,8 +484,7 @@ namespace MOS_WORD_TEST
             currentQuestion = currentProject.Questions.Where(x => x.Index == (curQuestionIndex - 1)).FirstOrDefault();
             lastBT.BackColor = System.Drawing.Color.LightBlue;
             ClsQuestion questionObj = ClsListQuestion.GetQuestion(currentQuestion.QuestionNumber);
-            richTextTA.Text = questionObj.EngQuestion;
-            richTextTV.Text = questionObj.VnQuestion;
+            richTextTA.Text = Language == "EN" ? questionObj.EngQuestion : questionObj.VnQuestion;
         }
 
         private void LoadQuestionContent(object sender, EventArgs e)
@@ -502,8 +496,7 @@ namespace MOS_WORD_TEST
             currentQuestion = question;
             btn.BackColor = System.Drawing.Color.LightBlue;
             ClsQuestion questionObj = ClsListQuestion.GetQuestion(question.QuestionNumber);
-            richTextTA.Text = questionObj.EngQuestion;
-            richTextTV.Text = questionObj.VnQuestion;
+            richTextTA.Text = Language == "EN" ? questionObj.EngQuestion : questionObj.VnQuestion;
         }
 
         private Button GetLastQuestionButtonByIndex(int questionIndex)
@@ -1029,17 +1022,7 @@ namespace MOS_WORD_TEST
             this.checkedListBox1.SelectedIndex = 0;
         }
 
-        private void pictureBox1_MouseHover(object sender, EventArgs e) => this.panel1.Focus();
-
-        private List<Exam> GetQuestion(string path)
-        {
-            byte[] buffer = Home.DecryptFile(path);
-            string jsonString = Encoding.UTF8.GetString(buffer);
-
-            // Giải mã JSON thành object
-            var listExam = JsonConvert.DeserializeObject<List<Exam>>(jsonString);
-            return listExam;
-        }
+        //private void pictureBox1_MouseHover(object sender, EventArgs e) => this.panel1.Focus();
 
         private void btnMaskComplete_Click(object sender, EventArgs e)
         {

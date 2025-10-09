@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -26,12 +27,29 @@ namespace MOS_WORD_TEST
 
         public Form2()
         {
+            Form1.listExam = GetQuestion(System.Windows.Forms.Application.StartupPath + "\\zip\\Exam\\ExamList");
             InitializeComponent();
+            for(int i = 0; i < Form1.listExam.Count; i++)
+            {
+                this.cbExamList.DataSource = Form1.listExam;
+                this.cbExamList.DisplayMember = "ExamIndex";
+                this.cbExamList.ValueMember = "ExamIndex";
+            }
             this.textBoxUser.LostFocus += new EventHandler(this.textBoxUser_LostFocus);
             if (!string.IsNullOrEmpty(Properties.Settings.Default.USER))
                 this.textBoxUser.Text = Properties.Settings.Default.USER;
             if (!string.IsNullOrEmpty(Properties.Settings.Default.PASS))
                 this.textBoxPass.Text = Properties.Settings.Default.PASS;
+        }
+
+        private List<Exam> GetQuestion(string path)
+        {
+            byte[] buffer = Home.DecryptFile(path);
+            string jsonString = Encoding.UTF8.GetString(buffer);
+
+            // Giải mã JSON thành object
+            var listExam = JsonConvert.DeserializeObject<List<Exam>>(jsonString);
+            return listExam;
         }
 
         private void textBoxUser_LostFocus(object sender, EventArgs e)
@@ -93,6 +111,8 @@ namespace MOS_WORD_TEST
                 }
 
                 Program.status = 1;
+                Form1.currentExam = (Exam)this.cbExamList.SelectedItem;
+                Form1.Language = this.radioEN.Checked ? "EN" : "VI";
                 this.Close();
             }
             catch (Exception ex)
@@ -101,7 +121,7 @@ namespace MOS_WORD_TEST
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) => Program.TypeOfTest = this.comboBox1.SelectedIndex;
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) => Program.TypeOfTest = this.cbExamList.SelectedIndex;
 
         private void Form2_Load(object sender, EventArgs e)
         {
