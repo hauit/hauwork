@@ -49,11 +49,11 @@ namespace MOS_WORD_TEST
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panelQuestion = new System.Windows.Forms.Panel();
-            this.panelJumpQuestion = new System.Windows.Forms.Panel();
             this.panelQuestionContent = new System.Windows.Forms.Panel();
+            this.panelJumpQuestion = new System.Windows.Forms.Panel();
             this.labelProject = new System.Windows.Forms.Label();
             this.btnMaskReview = new MOS_WORD_TEST.Base.RJButton();
-            this.btnMaskComplete = new MOS_WORD_TEST.Base.RJButton();
+            this.btnMarkComplete = new MOS_WORD_TEST.Base.RJButton();
             this.button2 = new MOS_WORD_TEST.Base.RJButton();
             this.buttonShowHide = new MOS_WORD_TEST.Base.RJButton();
             this.buttonxhdh = new MOS_WORD_TEST.Base.RJButton();
@@ -65,6 +65,7 @@ namespace MOS_WORD_TEST
             this.buttonSubmit = new MOS_WORD_TEST.Base.RJButton();
             this.buttonCheck = new MOS_WORD_TEST.Base.RJButton();
             this.buttonReset = new MOS_WORD_TEST.Base.RJButton();
+            this.panelButton = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panelQuestion.SuspendLayout();
@@ -202,14 +203,6 @@ namespace MOS_WORD_TEST
             this.panelQuestion.Size = new System.Drawing.Size(305, 192);
             this.panelQuestion.TabIndex = 32;
             // 
-            // panelJumpQuestion
-            // 
-            this.panelJumpQuestion.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            this.panelJumpQuestion.Location = new System.Drawing.Point(355, 214);
-            this.panelJumpQuestion.Name = "panelJumpQuestion";
-            this.panelJumpQuestion.Size = new System.Drawing.Size(501, 26);
-            this.panelJumpQuestion.TabIndex = 33;
-            // 
             // panelQuestionContent
             // 
             this.panelQuestionContent.Controls.Add(this.tabControl1);
@@ -219,6 +212,14 @@ namespace MOS_WORD_TEST
             this.panelQuestionContent.Size = new System.Drawing.Size(305, 192);
             this.panelQuestionContent.TabIndex = 0;
             // 
+            // panelJumpQuestion
+            // 
+            this.panelJumpQuestion.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.panelJumpQuestion.Location = new System.Drawing.Point(355, 214);
+            this.panelJumpQuestion.Name = "panelJumpQuestion";
+            this.panelJumpQuestion.Size = new System.Drawing.Size(501, 26);
+            this.panelJumpQuestion.TabIndex = 33;
+            // 
             // labelProject
             // 
             this.labelProject.AutoSize = true;
@@ -227,9 +228,9 @@ namespace MOS_WORD_TEST
             this.labelProject.ForeColor = System.Drawing.Color.White;
             this.labelProject.Location = new System.Drawing.Point(245, 176);
             this.labelProject.Name = "labelProject";
-            this.labelProject.Size = new System.Drawing.Size(151, 23);
+            this.labelProject.Size = new System.Drawing.Size(153, 23);
             this.labelProject.TabIndex = 33;
-            this.labelProject.Text = "Project ….. of …. : ";
+            this.labelProject.Text = "Project ... of ... : ...";
             this.labelProject.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnMaskReview
@@ -244,6 +245,7 @@ namespace MOS_WORD_TEST
             this.btnMaskReview.BorderColor = System.Drawing.Color.Black;
             this.btnMaskReview.BorderRadius = 5;
             this.btnMaskReview.BorderSize = 1;
+            this.btnMaskReview.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMaskReview.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMaskReview.Font = new System.Drawing.Font("Calibri", 10F);
             this.btnMaskReview.ForeColor = System.Drawing.Color.Black;
@@ -256,29 +258,30 @@ namespace MOS_WORD_TEST
             this.btnMaskReview.UseVisualStyleBackColor = false;
             this.btnMaskReview.Click += new System.EventHandler(this.btnMaskReview_Click);
             // 
-            // btnMaskComplete
+            // btnMarkComplete
             // 
-            this.btnMaskComplete.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.btnMarkComplete.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMaskComplete.AutoSize = true;
-            this.btnMaskComplete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnMaskComplete.BackColor = System.Drawing.Color.White;
-            this.btnMaskComplete.BackgroundColor = System.Drawing.Color.White;
-            this.btnMaskComplete.BorderColor = System.Drawing.Color.Black;
-            this.btnMaskComplete.BorderRadius = 5;
-            this.btnMaskComplete.BorderSize = 1;
-            this.btnMaskComplete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMaskComplete.Font = new System.Drawing.Font("Calibri", 10F);
-            this.btnMaskComplete.ForeColor = System.Drawing.Color.Black;
-            this.btnMaskComplete.Location = new System.Drawing.Point(478, 368);
-            this.btnMaskComplete.Name = "btnMaskComplete";
-            this.btnMaskComplete.Size = new System.Drawing.Size(107, 29);
-            this.btnMaskComplete.TabIndex = 34;
-            this.btnMaskComplete.Text = "Mask Complete";
-            this.btnMaskComplete.TextColor = System.Drawing.Color.Black;
-            this.btnMaskComplete.UseVisualStyleBackColor = false;
-            this.btnMaskComplete.Click += new System.EventHandler(this.btnMaskComplete_Click);
+            this.btnMarkComplete.AutoSize = true;
+            this.btnMarkComplete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnMarkComplete.BackColor = System.Drawing.Color.White;
+            this.btnMarkComplete.BackgroundColor = System.Drawing.Color.White;
+            this.btnMarkComplete.BorderColor = System.Drawing.Color.Black;
+            this.btnMarkComplete.BorderRadius = 5;
+            this.btnMarkComplete.BorderSize = 1;
+            this.btnMarkComplete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMarkComplete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMarkComplete.Font = new System.Drawing.Font("Calibri", 10F);
+            this.btnMarkComplete.ForeColor = System.Drawing.Color.Black;
+            this.btnMarkComplete.Location = new System.Drawing.Point(478, 368);
+            this.btnMarkComplete.Name = "btnMarkComplete";
+            this.btnMarkComplete.Size = new System.Drawing.Size(107, 29);
+            this.btnMarkComplete.TabIndex = 34;
+            this.btnMarkComplete.Text = "Mark Complete";
+            this.btnMarkComplete.TextColor = System.Drawing.Color.Black;
+            this.btnMarkComplete.UseVisualStyleBackColor = false;
+            this.btnMarkComplete.Click += new System.EventHandler(this.btnMarkComplete_Click);
             // 
             // button2
             // 
@@ -338,8 +341,8 @@ namespace MOS_WORD_TEST
             // 
             this.buttonRefresh.AutoSize = true;
             this.buttonRefresh.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
-            this.buttonRefresh.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
+            this.buttonRefresh.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
             this.buttonRefresh.BorderColor = System.Drawing.Color.White;
             this.buttonRefresh.BorderRadius = 5;
             this.buttonRefresh.BorderSize = 2;
@@ -350,9 +353,9 @@ namespace MOS_WORD_TEST
             this.buttonRefresh.Location = new System.Drawing.Point(679, 171);
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Padding = new System.Windows.Forms.Padding(2);
-            this.buttonRefresh.Size = new System.Drawing.Size(121, 35);
+            this.buttonRefresh.Size = new System.Drawing.Size(87, 35);
             this.buttonRefresh.TabIndex = 24;
-            this.buttonRefresh.Text = "Hiện / Ẩn Test";
+            this.buttonRefresh.Text = "Hiện Test";
             this.buttonRefresh.TextColor = System.Drawing.Color.White;
             this.buttonRefresh.UseVisualStyleBackColor = false;
             this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
@@ -415,8 +418,8 @@ namespace MOS_WORD_TEST
             // 
             this.buttonExit.AutoSize = true;
             this.buttonExit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
-            this.buttonExit.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
+            this.buttonExit.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
             this.buttonExit.BorderColor = System.Drawing.Color.White;
             this.buttonExit.BorderRadius = 5;
             this.buttonExit.BorderSize = 2;
@@ -438,8 +441,8 @@ namespace MOS_WORD_TEST
             // 
             this.buttonSubmit.AutoSize = true;
             this.buttonSubmit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonSubmit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
-            this.buttonSubmit.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonSubmit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
+            this.buttonSubmit.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
             this.buttonSubmit.BorderColor = System.Drawing.Color.White;
             this.buttonSubmit.BorderRadius = 5;
             this.buttonSubmit.BorderSize = 2;
@@ -461,8 +464,8 @@ namespace MOS_WORD_TEST
             // 
             this.buttonCheck.AutoSize = true;
             this.buttonCheck.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonCheck.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
-            this.buttonCheck.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonCheck.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
+            this.buttonCheck.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
             this.buttonCheck.BorderColor = System.Drawing.Color.White;
             this.buttonCheck.BorderRadius = 5;
             this.buttonCheck.BorderSize = 2;
@@ -484,8 +487,8 @@ namespace MOS_WORD_TEST
             // 
             this.buttonReset.AutoSize = true;
             this.buttonReset.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonReset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
-            this.buttonReset.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonReset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
+            this.buttonReset.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
             this.buttonReset.BorderColor = System.Drawing.Color.White;
             this.buttonReset.BorderRadius = 5;
             this.buttonReset.BorderSize = 2;
@@ -503,16 +506,25 @@ namespace MOS_WORD_TEST
             this.buttonReset.UseVisualStyleBackColor = false;
             this.buttonReset.Click += new System.EventHandler(this.button1_Click);
             // 
+            // panelButton
+            // 
+            this.panelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
+            this.panelButton.Location = new System.Drawing.Point(28, 139);
+            this.panelButton.Name = "panelButton";
+            this.panelButton.Size = new System.Drawing.Size(828, 27);
+            this.panelButton.TabIndex = 36;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(174)))), ((int)(((byte)(176)))));
             this.ClientSize = new System.Drawing.Size(885, 457);
+            this.Controls.Add(this.panelButton);
             this.Controls.Add(this.panelJumpQuestion);
             this.Controls.Add(this.richTextTA);
             this.Controls.Add(this.btnMaskReview);
-            this.Controls.Add(this.btnMaskComplete);
+            this.Controls.Add(this.btnMarkComplete);
             this.Controls.Add(this.labelProject);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button2);
@@ -572,7 +584,8 @@ namespace MOS_WORD_TEST
         private Panel panelJumpQuestion;
         private RichTextBox richTextTA;
         private Label labelProject;
-        private RJButton btnMaskComplete;
+        private RJButton btnMarkComplete;
         private RJButton btnMaskReview;
+        private Panel panelButton;
     }
 }

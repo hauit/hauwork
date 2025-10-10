@@ -48,8 +48,11 @@ namespace MOS_WORD_TEST
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.radioVN = new System.Windows.Forms.RadioButton();
+            this.radioEN = new System.Windows.Forms.RadioButton();
             this.btnCancel = new MOS_WORD_TEST.Base.RJButton();
             this.textBoxPass = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.textBoxUser = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -58,9 +61,6 @@ namespace MOS_WORD_TEST
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.radioEN = new System.Windows.Forms.RadioButton();
-            this.radioVN = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -112,7 +112,7 @@ namespace MOS_WORD_TEST
             // 
             // tabPage1
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(69)))), ((int)(((byte)(136)))));
+            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
             this.tabPage1.Controls.Add(this.radioVN);
             this.tabPage1.Controls.Add(this.radioEN);
             this.tabPage1.Controls.Add(this.btnCancel);
@@ -132,12 +132,36 @@ namespace MOS_WORD_TEST
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Đăng nhập";
             // 
+            // radioVN
+            // 
+            this.radioVN.AutoSize = true;
+            this.radioVN.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.radioVN.Location = new System.Drawing.Point(144, 139);
+            this.radioVN.Name = "radioVN";
+            this.radioVN.Size = new System.Drawing.Size(43, 21);
+            this.radioVN.TabIndex = 8;
+            this.radioVN.Text = "VN";
+            this.radioVN.UseVisualStyleBackColor = true;
+            // 
+            // radioEN
+            // 
+            this.radioEN.AutoSize = true;
+            this.radioEN.Checked = true;
+            this.radioEN.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.radioEN.Location = new System.Drawing.Point(96, 139);
+            this.radioEN.Name = "radioEN";
+            this.radioEN.Size = new System.Drawing.Size(42, 21);
+            this.radioEN.TabIndex = 8;
+            this.radioEN.TabStop = true;
+            this.radioEN.Text = "EN";
+            this.radioEN.UseVisualStyleBackColor = true;
+            // 
             // btnCancel
             // 
             this.btnCancel.AutoSize = true;
             this.btnCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
-            this.btnCancel.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
+            this.btnCancel.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
             this.btnCancel.BorderColor = System.Drawing.Color.White;
             this.btnCancel.BorderRadius = 5;
             this.btnCancel.BorderSize = 1;
@@ -164,6 +188,17 @@ namespace MOS_WORD_TEST
             this.textBoxPass.PasswordChar = '*';
             this.textBoxPass.Size = new System.Drawing.Size(166, 29);
             this.textBoxPass.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(6, 137);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 22);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Ngôn ngữ";
             // 
             // textBoxUser
             // 
@@ -202,8 +237,8 @@ namespace MOS_WORD_TEST
             // 
             this.buttonOK.AutoSize = true;
             this.buttonOK.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonOK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
-            this.buttonOK.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.buttonOK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
+            this.buttonOK.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
             this.buttonOK.BorderColor = System.Drawing.Color.White;
             this.buttonOK.BorderRadius = 5;
             this.buttonOK.BorderSize = 1;
@@ -250,7 +285,7 @@ namespace MOS_WORD_TEST
             // 
             // richTextBox2
             // 
-            this.richTextBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(69)))), ((int)(((byte)(136)))));
+            this.richTextBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
             this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox2.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Italic);
             this.richTextBox2.ForeColor = System.Drawing.Color.White;
@@ -271,41 +306,6 @@ namespace MOS_WORD_TEST
             this.pictureBox1.TabIndex = 17;
             this.pictureBox1.TabStop = false;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 13F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(6, 137);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 22);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Ngôn ngữ";
-            // 
-            // radioEN
-            // 
-            this.radioEN.AutoSize = true;
-            this.radioEN.Checked = true;
-            this.radioEN.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.radioEN.Location = new System.Drawing.Point(96, 139);
-            this.radioEN.Name = "radioEN";
-            this.radioEN.Size = new System.Drawing.Size(42, 21);
-            this.radioEN.TabIndex = 8;
-            this.radioEN.TabStop = true;
-            this.radioEN.Text = "EN";
-            this.radioEN.UseVisualStyleBackColor = true;
-            // 
-            // radioVN
-            // 
-            this.radioVN.AutoSize = true;
-            this.radioVN.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.radioVN.Location = new System.Drawing.Point(144, 139);
-            this.radioVN.Name = "radioVN";
-            this.radioVN.Size = new System.Drawing.Size(43, 21);
-            this.radioVN.TabIndex = 8;
-            this.radioVN.Text = "VN";
-            this.radioVN.UseVisualStyleBackColor = true;
-            // 
             // Form2
             // 
             this.AccessibleDescription = "MOS360_WORD_TEST";
@@ -313,7 +313,7 @@ namespace MOS_WORD_TEST
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(69)))), ((int)(((byte)(136)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(296, 487);
             this.ControlBox = false;
