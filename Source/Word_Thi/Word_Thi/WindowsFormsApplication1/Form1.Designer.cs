@@ -52,6 +52,7 @@ namespace MOS_WORD_TEST
             this.panelQuestionContent = new System.Windows.Forms.Panel();
             this.panelJumpQuestion = new System.Windows.Forms.Panel();
             this.labelProject = new System.Windows.Forms.Label();
+            this.panelButton = new System.Windows.Forms.Panel();
             this.btnMaskReview = new MOS_WORD_TEST.Base.RJButton();
             this.btnMarkComplete = new MOS_WORD_TEST.Base.RJButton();
             this.button2 = new MOS_WORD_TEST.Base.RJButton();
@@ -65,7 +66,6 @@ namespace MOS_WORD_TEST
             this.buttonSubmit = new MOS_WORD_TEST.Base.RJButton();
             this.buttonCheck = new MOS_WORD_TEST.Base.RJButton();
             this.buttonReset = new MOS_WORD_TEST.Base.RJButton();
-            this.panelButton = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panelQuestion.SuspendLayout();
@@ -141,7 +141,7 @@ namespace MOS_WORD_TEST
             this.richTextTA.Location = new System.Drawing.Point(355, 246);
             this.richTextTA.Name = "richTextTA";
             this.richTextTA.ReadOnly = true;
-            this.richTextTA.Size = new System.Drawing.Size(501, 116);
+            this.richTextTA.Size = new System.Drawing.Size(628, 116);
             this.richTextTA.TabIndex = 11;
             this.richTextTA.Text = "Question";
             // 
@@ -228,10 +228,18 @@ namespace MOS_WORD_TEST
             this.labelProject.ForeColor = System.Drawing.Color.White;
             this.labelProject.Location = new System.Drawing.Point(245, 176);
             this.labelProject.Name = "labelProject";
-            this.labelProject.Size = new System.Drawing.Size(153, 23);
+            this.labelProject.Size = new System.Drawing.Size(125, 23);
             this.labelProject.TabIndex = 33;
-            this.labelProject.Text = "Project ... of ... : ...";
+            this.labelProject.Text = "Project ... of ...";
             this.labelProject.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panelButton
+            // 
+            this.panelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
+            this.panelButton.Location = new System.Drawing.Point(28, 139);
+            this.panelButton.Name = "panelButton";
+            this.panelButton.Size = new System.Drawing.Size(828, 27);
+            this.panelButton.TabIndex = 36;
             // 
             // btnMaskReview
             // 
@@ -292,7 +300,7 @@ namespace MOS_WORD_TEST
             this.button2.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(545, 66);
+            this.button2.Location = new System.Drawing.Point(546, 66);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(41, 23);
             this.button2.TabIndex = 30;
@@ -310,7 +318,7 @@ namespace MOS_WORD_TEST
             this.buttonShowHide.BorderSize = 0;
             this.buttonShowHide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonShowHide.ForeColor = System.Drawing.Color.White;
-            this.buttonShowHide.Location = new System.Drawing.Point(523, 37);
+            this.buttonShowHide.Location = new System.Drawing.Point(524, 37);
             this.buttonShowHide.Name = "buttonShowHide";
             this.buttonShowHide.Size = new System.Drawing.Size(63, 23);
             this.buttonShowHide.TabIndex = 27;
@@ -321,20 +329,26 @@ namespace MOS_WORD_TEST
             // 
             // buttonxhdh
             // 
-            this.buttonxhdh.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.buttonxhdh.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
-            this.buttonxhdh.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.buttonxhdh.BorderRadius = 0;
-            this.buttonxhdh.BorderSize = 0;
+            this.buttonxhdh.AutoSize = true;
+            this.buttonxhdh.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonxhdh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
+            this.buttonxhdh.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
+            this.buttonxhdh.BorderColor = System.Drawing.Color.White;
+            this.buttonxhdh.BorderRadius = 5;
+            this.buttonxhdh.BorderSize = 2;
+            this.buttonxhdh.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonxhdh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonxhdh.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.buttonxhdh.ForeColor = System.Drawing.Color.White;
-            this.buttonxhdh.Location = new System.Drawing.Point(680, 36);
+            this.buttonxhdh.Location = new System.Drawing.Point(761, 171);
+            this.buttonxhdh.MinimumSize = new System.Drawing.Size(100, 0);
             this.buttonxhdh.Name = "buttonxhdh";
-            this.buttonxhdh.Size = new System.Drawing.Size(114, 23);
+            this.buttonxhdh.Padding = new System.Windows.Forms.Padding(2);
+            this.buttonxhdh.Size = new System.Drawing.Size(100, 35);
             this.buttonxhdh.TabIndex = 25;
-            this.buttonxhdh.Text = "Hướng dẫn sử dụng";
+            this.buttonxhdh.Text = "HDSD";
             this.buttonxhdh.TextColor = System.Drawing.Color.White;
-            this.buttonxhdh.UseVisualStyleBackColor = true;
+            this.buttonxhdh.UseVisualStyleBackColor = false;
             this.buttonxhdh.Click += new System.EventHandler(this.buttonxhdh_Click);
             // 
             // buttonRefresh
@@ -350,7 +364,7 @@ namespace MOS_WORD_TEST
             this.buttonRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRefresh.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.buttonRefresh.ForeColor = System.Drawing.Color.White;
-            this.buttonRefresh.Location = new System.Drawing.Point(679, 171);
+            this.buttonRefresh.Location = new System.Drawing.Point(668, 171);
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Padding = new System.Windows.Forms.Padding(2);
             this.buttonRefresh.Size = new System.Drawing.Size(87, 35);
@@ -369,7 +383,7 @@ namespace MOS_WORD_TEST
             this.buttonHelp.BorderSize = 0;
             this.buttonHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonHelp.ForeColor = System.Drawing.Color.White;
-            this.buttonHelp.Location = new System.Drawing.Point(688, 94);
+            this.buttonHelp.Location = new System.Drawing.Point(689, 94);
             this.buttonHelp.Name = "buttonHelp";
             this.buttonHelp.Size = new System.Drawing.Size(106, 23);
             this.buttonHelp.TabIndex = 23;
@@ -387,7 +401,7 @@ namespace MOS_WORD_TEST
             this.button1.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(59, 89);
+            this.button1.Location = new System.Drawing.Point(60, 89);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(29, 23);
             this.button1.TabIndex = 22;
@@ -405,7 +419,7 @@ namespace MOS_WORD_TEST
             this.buttonSave.BorderSize = 0;
             this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSave.ForeColor = System.Drawing.Color.White;
-            this.buttonSave.Location = new System.Drawing.Point(709, 65);
+            this.buttonSave.Location = new System.Drawing.Point(710, 65);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(85, 23);
             this.buttonSave.TabIndex = 14;
@@ -427,7 +441,7 @@ namespace MOS_WORD_TEST
             this.buttonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonExit.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.buttonExit.ForeColor = System.Drawing.Color.White;
-            this.buttonExit.Location = new System.Drawing.Point(806, 171);
+            this.buttonExit.Location = new System.Drawing.Point(867, 171);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Padding = new System.Windows.Forms.Padding(2);
             this.buttonExit.Size = new System.Drawing.Size(50, 35);
@@ -450,7 +464,7 @@ namespace MOS_WORD_TEST
             this.buttonSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSubmit.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.buttonSubmit.ForeColor = System.Drawing.Color.White;
-            this.buttonSubmit.Location = new System.Drawing.Point(537, 171);
+            this.buttonSubmit.Location = new System.Drawing.Point(535, 171);
             this.buttonSubmit.Name = "buttonSubmit";
             this.buttonSubmit.Padding = new System.Windows.Forms.Padding(2);
             this.buttonSubmit.Size = new System.Drawing.Size(127, 35);
@@ -506,20 +520,12 @@ namespace MOS_WORD_TEST
             this.buttonReset.UseVisualStyleBackColor = false;
             this.buttonReset.Click += new System.EventHandler(this.button1_Click);
             // 
-            // panelButton
-            // 
-            this.panelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
-            this.panelButton.Location = new System.Drawing.Point(28, 139);
-            this.panelButton.Name = "panelButton";
-            this.panelButton.Size = new System.Drawing.Size(828, 27);
-            this.panelButton.TabIndex = 36;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(174)))), ((int)(((byte)(176)))));
-            this.ClientSize = new System.Drawing.Size(885, 457);
+            this.BackColor = System.Drawing.Color.Gainsboro;
+            this.ClientSize = new System.Drawing.Size(1012, 457);
             this.Controls.Add(this.panelButton);
             this.Controls.Add(this.panelJumpQuestion);
             this.Controls.Add(this.richTextTA);

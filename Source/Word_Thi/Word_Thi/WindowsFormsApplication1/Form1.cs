@@ -273,6 +273,7 @@ namespace MOS_WORD_TEST
             this.panelButton.Controls.Add(this.buttonRefresh);
             this.panelButton.Controls.Add(this.buttonSubmit);
             this.panelButton.Controls.Add(this.buttonReset);
+            this.panelButton.Controls.Add(this.buttonxhdh);
 
             //int panelButtonWidth = this.checkedListBox1.Width + this.panelQuestion.Width;
             int panelButtonWidth = screen_width;
@@ -280,14 +281,17 @@ namespace MOS_WORD_TEST
             // Exit
             this.buttonExit.Location = new Point(panelButtonWidth - this.buttonExit.Width - rightPadLeft, y);
 
+            // HDSD
+            this.buttonxhdh.Location = new Point(panelButtonWidth - this.buttonxhdh.Width - this.buttonExit.Width - rightPadLeft, y);
+
             // Bố trí lại
-            this.buttonRefresh.Location = new Point(panelButtonWidth - this.buttonRefresh.Width - this.buttonExit.Width - rightPadLeft, y);
+            this.buttonRefresh.Location = new Point(panelButtonWidth - this.buttonRefresh.Width - this.buttonxhdh.Width - this.buttonExit.Width - rightPadLeft, y);
 
             // Submit Project
-            this.buttonSubmit.Location = new Point(panelButtonWidth - this.buttonSubmit.Width - this.buttonRefresh.Width - this.buttonExit.Width - rightPadLeft, y);
+            this.buttonSubmit.Location = new Point(panelButtonWidth - this.buttonSubmit.Width - this.buttonRefresh.Width - this.buttonxhdh.Width - this.buttonExit.Width - rightPadLeft, y);
 
             // Reset Project
-            this.buttonReset.Location = new Point(panelButtonWidth - this.buttonReset.Width - this.buttonRefresh.Width - this.buttonSubmit.Width - this.buttonExit.Width - rightPadLeft, y);
+            this.buttonReset.Location = new Point(panelButtonWidth - this.buttonReset.Width - this.buttonRefresh.Width - this.buttonSubmit.Width - this.buttonxhdh.Width - this.buttonExit.Width - rightPadLeft, y);
             
             // Timer
             //this.label1.Location = new Point(this.checkedListBox1.Width + y, y);
@@ -319,7 +323,7 @@ namespace MOS_WORD_TEST
             
             this.buttonShowHide.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.button1.Width - this.textBox2.Width - this.comboBox1.Width - this.buttonShowHide.Width, 10000);
             this.buttonHelp.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.button1.Width - this.textBox2.Width - this.comboBox1.Width - this.buttonShowHide.Width - this.buttonHelp.Width, 10000);
-            this.buttonxhdh.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.button1.Width - this.textBox2.Width - this.comboBox1.Width - this.buttonShowHide.Width - this.buttonHelp.Width - this.buttonxhdh.Width, 10000);
+            
             this.panel4.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width, this.Height - this.buttonCheck.Height - this.panel4.Height);
 
             
@@ -374,7 +378,7 @@ namespace MOS_WORD_TEST
                 var btn = new MOS_WORD_TEST.Base.RJButton();
                 // btn.Text = "Project " +  i.ToString() + " of " + currentProject.Questions.Count + ":";
                 btn.Text = i.ToString();
-                btn.Location = new Point((i) * 90, 0);
+                btn.Location = new Point((i) * 110, 0);
                 //btn.Width = 50;
                 //btn.Height = 32;
                 //btn.BackColor = System.Drawing.Color.DarkBlue;
@@ -385,12 +389,12 @@ namespace MOS_WORD_TEST
                 btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
                 btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
                 btn.BorderColor = System.Drawing.Color.White;
-                btn.BorderRadius = 5;
+                btn.BorderRadius = 10;
                 btn.BorderSize = 0;
                 btn.Cursor = System.Windows.Forms.Cursors.Hand;
                 btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 btn.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-                btn.MinimumSize = new System.Drawing.Size(80, 0);
+                btn.MinimumSize = new System.Drawing.Size(100, 0);
                 btn.Padding = new System.Windows.Forms.Padding(2);
 
                 btn.Tag = currentProject.Questions[i - 1];
@@ -412,7 +416,7 @@ namespace MOS_WORD_TEST
             var btn = new MOS_WORD_TEST.Base.RJButton();
             btn.Text = ">";
             //btn.Location = new Point((currentProject.Questions.Count + 1) * 60, 0);
-            btn.Location = new Point(((screen_width / 10) * 8) - 80, 0);
+            btn.Location = new Point(((screen_width / 10) * 8) - 100, 0);
             //btn.BackColor = System.Drawing.Color.DarkBlue;
 
             btn.AutoSize = true;
@@ -420,12 +424,12 @@ namespace MOS_WORD_TEST
             btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
             btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
             btn.BorderColor = System.Drawing.Color.White;
-            btn.BorderRadius = 5;
+            btn.BorderRadius = 10;
             btn.BorderSize = 0;
             btn.Cursor = System.Windows.Forms.Cursors.Hand;
             btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btn.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            btn.MinimumSize = new System.Drawing.Size(80, 0);
+            btn.MinimumSize = new System.Drawing.Size(100, 0);
             btn.Padding = new System.Windows.Forms.Padding(2);
 
             //btn.Tag = currentProject.Questions[i - 1];
@@ -448,12 +452,12 @@ namespace MOS_WORD_TEST
             btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
             btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
             btn.BorderColor = System.Drawing.Color.White;
-            btn.BorderRadius = 5;
+            btn.BorderRadius = 10;
             btn.BorderSize = 0;
             btn.Cursor = System.Windows.Forms.Cursors.Hand;
             btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btn.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            btn.MinimumSize = new System.Drawing.Size(80, 0);
+            btn.MinimumSize = new System.Drawing.Size(100, 0);
             btn.Padding = new System.Windows.Forms.Padding(2);
 
             //btn.Tag = currentProject.Questions[i - 1];
@@ -618,7 +622,8 @@ namespace MOS_WORD_TEST
                 else
                     ++this.next;
 
-                this.labelProject.Text = $@"Project {(currentProject.ProjectIndex + 1).ToString()} of {currentExam.ProjectIndex.Count.ToString()}: {currentProject.ProjectName}";
+                //this.labelProject.Text = $@"Project {(currentProject.ProjectIndex + 1).ToString()} of {currentExam.ProjectIndex.Count.ToString()}: {currentProject.ProjectName}";
+                this.labelProject.Text = $@"Project {(currentProject.ProjectIndex + 1).ToString()} of {currentExam.ProjectIndex.Count.ToString()}";
 
                 this.checkedListBox1.SetItemChecked(currentProject.ProjectIndex - 1, true);
                 int nexproject = currentProject.ProjectIndex + 1;
@@ -933,22 +938,22 @@ namespace MOS_WORD_TEST
 
         private void buttonxhdh_Click(object sender, EventArgs e)
         {
-            if (this.buttonxhdh.Text == "Hướng dẫn sử dụng")
+            if (this.buttonxhdh.Text == "HDSD")
             {
-                this.buttonxhdh.Text = "Về chế độ làm bài";
+                this.buttonxhdh.Text = "Ẩn Taskbar";
                 this.TopMost = false;
                 try
                 {
-                    Process.Start(Path.Combine(System.Windows.Forms.Application.StartupPath, "zip\\hdh.mp4"));
+                    Process.Start("https://go.mos360.vn/mostesthdsd");
                 }
                 catch (Exception ex)
                 {
-                    int num = (int)MessageBox.Show("đổi chương trinh mặt định xem Video khác" + ex.Message);
+                    int num = (int)MessageBox.Show("Vui lòng kết nối mạng để xem Hướng dẫn sử dụng phần mềm " + ex.Message);
                 }
             }
             else
             {
-                this.buttonxhdh.Text = "Hướng dẫn sử dụng";
+                this.buttonxhdh.Text = "HDSD";
                 this.TopMost = true;
             }
         }
