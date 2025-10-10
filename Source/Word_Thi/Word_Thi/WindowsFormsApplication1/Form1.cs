@@ -240,19 +240,25 @@ namespace MOS_WORD_TEST
             this.panelQuestion.Height = this.Height - 40;
             //this.panelQuestion.Width = this.Width - this.checkedListBox1.Width - 200;
             this.panelQuestion.Width = (screen_width / 10) * 8;
-            var a = tabControl1.GetTabRect(0);
-            var c = a.Width;
+            //var a = tabControl1.GetTabRect(0);
+            //var c = a.Width;
             //this.panelJumpQuestion.Location = new Point(c, 0);
-            this.panelJumpQuestion.Location = new Point(0, 0);
+            this.panelJumpQuestion.Location = new Point((screen_width / 10) * 1, this.buttonExit.Height + y + y);
             //this.panelJumpQuestion.Height = 25;
             //this.panelJumpQuestion.Width = this.panelQuestion.Width - c;
             this.panelJumpQuestion.Height = this.buttonExit.Height;
-            this.panelJumpQuestion.Width = (screen_width / 10) * 8;
+            this.panelJumpQuestion.Width = screen_width;
 
             //Panel Right
-            this.panel2.Location = new Point(0, 0);
-            this.panel2.Height = this.tabPage2.Height;
-            this.panel2.Width = this.tabPage2.Width;
+            //this.panel2.Location = new Point(0, 0);
+            //this.panel2.Height = this.tabPage2.Height;
+            //this.panel2.Width = this.tabPage2.Width;
+
+            // richTextTA
+            this.richTextTA.Location = new Point((screen_width / 10) * 1, this.buttonExit.Height + this.panelJumpQuestion.Height + (y * 3));
+            this.richTextTA.Height = this.Height - this.buttonExit.Height - this.panelJumpQuestion.Height - 50;
+            this.richTextTA.Width = (screen_width / 10) * 8;
+
 
             //int panelButtonWidth = this.checkedListBox1.Width + this.panelQuestion.Width;
             int panelButtonWidth = screen_width;
@@ -354,10 +360,10 @@ namespace MOS_WORD_TEST
                 var btn = new MOS_WORD_TEST.Base.RJButton();
                 // btn.Text = "Project " +  i.ToString() + " of " + currentProject.Questions.Count + ":";
                 btn.Text = i.ToString();
-                btn.Location = new Point((i) * 60, 0);
+                btn.Location = new Point((i) * 90, 0);
                 //btn.Width = 50;
                 //btn.Height = 32;
-                btn.BackColor = System.Drawing.Color.DarkBlue;
+                //btn.BackColor = System.Drawing.Color.DarkBlue;
                 //btn.ForeColor = System.Drawing.Color.White;
 
                 btn.AutoSize = true;
@@ -370,7 +376,7 @@ namespace MOS_WORD_TEST
                 btn.Cursor = System.Windows.Forms.Cursors.Hand;
                 btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 btn.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-                btn.MinimumSize = new System.Drawing.Size(50, 0);
+                btn.MinimumSize = new System.Drawing.Size(80, 0);
                 btn.Padding = new System.Windows.Forms.Padding(2);
 
                 btn.Tag = currentProject.Questions[i - 1];
@@ -389,13 +395,11 @@ namespace MOS_WORD_TEST
 
         private void AddNextButton()
         {
-            this.screen_width = this.panelQuestion.Width;
-
             var btn = new MOS_WORD_TEST.Base.RJButton();
             btn.Text = ">";
             //btn.Location = new Point((currentProject.Questions.Count + 1) * 60, 0);
-            btn.Location = new Point(screen_width - btn.Width, 0);
-            btn.BackColor = System.Drawing.Color.DarkBlue;
+            btn.Location = new Point(((screen_width / 10) * 8) - 80, 0);
+            //btn.BackColor = System.Drawing.Color.DarkBlue;
 
             btn.AutoSize = true;
             btn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -407,7 +411,7 @@ namespace MOS_WORD_TEST
             btn.Cursor = System.Windows.Forms.Cursors.Hand;
             btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btn.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            btn.MinimumSize = new System.Drawing.Size(50, 0);
+            btn.MinimumSize = new System.Drawing.Size(80, 0);
             btn.Padding = new System.Windows.Forms.Padding(2);
 
             //btn.Tag = currentProject.Questions[i - 1];
@@ -422,7 +426,7 @@ namespace MOS_WORD_TEST
             btn.Location = new Point(0, 0);
             //btn.Width = 50;
             //btn.Height = 32;
-            btn.BackColor = System.Drawing.Color.DarkBlue;
+            //btn.BackColor = System.Drawing.Color.DarkBlue;
             //btn.ForeColor = System.Drawing.Color.White;
 
             btn.AutoSize = true;
@@ -435,7 +439,7 @@ namespace MOS_WORD_TEST
             btn.Cursor = System.Windows.Forms.Cursors.Hand;
             btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btn.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            btn.MinimumSize = new System.Drawing.Size(50, 0);
+            btn.MinimumSize = new System.Drawing.Size(80, 0);
             btn.Padding = new System.Windows.Forms.Padding(2);
 
             //btn.Tag = currentProject.Questions[i - 1];
@@ -452,7 +456,7 @@ namespace MOS_WORD_TEST
             }
 
             Button currentBT = GetLastQuestionButton();
-            currentBT.BackColor = System.Drawing.Color.DarkBlue;
+            currentBT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154))))); ;
 
             Button nextBT = GetLastQuestionButtonByIndex(currentQuestion.Index + 1);
             bool isNext = currentProject.Questions.Where(x => x.Index == (curQuestionIndex + 1)).Any();
@@ -462,7 +466,7 @@ namespace MOS_WORD_TEST
             }
 
             currentQuestion = currentProject.Questions.Where(x => x.Index == (curQuestionIndex + 1)).FirstOrDefault();
-            nextBT.BackColor = System.Drawing.Color.LightBlue;
+            nextBT.BackColor = System.Drawing.Color.DarkBlue;
             ClsQuestion questionObj = ClsListQuestion.GetQuestion(currentQuestion.QuestionNumber);
             richTextTA.Text = Language == "EN" ? questionObj.EngQuestion : questionObj.VnQuestion;
         }
@@ -476,7 +480,7 @@ namespace MOS_WORD_TEST
             }
 
             Button currentBT = GetLastQuestionButton();
-            currentBT.BackColor = System.Drawing.Color.DarkBlue;
+            currentBT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154))))); ;
 
             Button lastBT = GetLastQuestionButtonByIndex(currentQuestion.Index - 1);
             bool isLast = currentProject.Questions.Where(x => x.Index == (curQuestionIndex - 1)).Any();
@@ -486,7 +490,7 @@ namespace MOS_WORD_TEST
             }
 
             currentQuestion = currentProject.Questions.Where(x => x.Index == (curQuestionIndex - 1)).FirstOrDefault();
-            lastBT.BackColor = System.Drawing.Color.LightBlue;
+            lastBT.BackColor = System.Drawing.Color.DarkBlue;
             ClsQuestion questionObj = ClsListQuestion.GetQuestion(currentQuestion.QuestionNumber);
             richTextTA.Text = Language == "EN" ? questionObj.EngQuestion : questionObj.VnQuestion;
         }
@@ -494,11 +498,11 @@ namespace MOS_WORD_TEST
         private void LoadQuestionContent(object sender, EventArgs e)
         {
             Button lastBT = GetLastQuestionButton();
-            lastBT.BackColor = System.Drawing.Color.DarkBlue;
+            lastBT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154))))); ; ;
             var btn = sender as System.Windows.Forms.Button;
             var question = btn.Tag as Question;
             currentQuestion = question;
-            btn.BackColor = System.Drawing.Color.LightBlue;
+            btn.BackColor = System.Drawing.Color.DarkBlue;
             ClsQuestion questionObj = ClsListQuestion.GetQuestion(question.QuestionNumber);
             richTextTA.Text = Language == "EN" ? questionObj.EngQuestion : questionObj.VnQuestion;
         }
