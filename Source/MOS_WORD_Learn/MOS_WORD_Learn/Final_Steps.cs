@@ -514,12 +514,12 @@ namespace MOS_WORD_LEARN
         {
             try
             {
-                if (d.Name != "Notes.docx")
-                    return "False(luu lại kiểu template(Notes.docx))";
+                if (!d.Name.StartsWith("Notes."))
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }

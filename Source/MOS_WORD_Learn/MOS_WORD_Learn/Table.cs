@@ -136,7 +136,7 @@ namespace MOS_WORD_LEARN
         if (d.Tables.Count != 1)
           return "False(not insert or delete table)";
         if (d.Tables[1].Columns.Width.ToString() != "89.3")
-          return "False(Distribute column width)";
+          return "False";
       }
       catch (Exception ex)
       {

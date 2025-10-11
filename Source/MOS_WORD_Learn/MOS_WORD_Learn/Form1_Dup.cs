@@ -384,7 +384,7 @@ namespace MOS_WORD_LEARN
                         break;
                     case 3:
                         ////TODO:
-                        //str = Style.CheckCau(par.quesion, this.a, this.d);
+                        str = Style.CheckCau(par.quesion, this.a, this.d);
                         break;
                     case 4:
                         str = Paragaph.CheckCau(par.quesion, this.a, this.d);

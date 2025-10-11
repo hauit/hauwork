@@ -741,17 +741,17 @@ namespace MOS_WORD_LEARN
         object count = (object) d.Shapes.Count;
         string name = d.Shapes[ref count].Name;
         if (!name.Contains("12-Point Star"))
-          return "False(chen ngo sao 12 canh)";
+          return "False";
         object Index1 = (object) name;
         if ((double) d.Shapes[ref Index1].Left != -999995.0)
-          return "False(H)";
+          return "False";
         object Index2 = (object) name;
         if ((double) d.Shapes[ref Index2].Top != -999997.0)
-          return "False(V)";
+          return "False";
       }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -761,13 +761,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Paragraphs[2].Range.InlineShapes.Count != 1)
-          return "False(insert SmartArt)";
+          return "False";
         if (d.Paragraphs[2].Range.InlineShapes[1].SmartArt == null)
-          return "False(SmartArt)";
+          return "False";
       }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -777,13 +777,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Paragraphs[5].Range.InlineShapes.Count != 1)
-          return "False(insert SmartArt)";
+          return "False";
         if (d.Paragraphs[5].Range.InlineShapes[1].SmartArt == null)
-          return "False(SmartArt)";
+          return "False";
       }
       catch (Exception ex)
       {
-        return "False (enter xuong 1 doan)";
+        return "False";
       }
       return "True";
     }
@@ -793,11 +793,11 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Paragraphs[7].Range.InlineShapes[1].SmartArt.Color.Name != "Transparent Gradient Range - Accent 1")
-          return "False(Change Colors)";
+          return "False";
       }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -808,17 +808,17 @@ namespace MOS_WORD_LEARN
       {
         object Index1 = (object) "Text Box 2";
         if (!d.Shapes[ref Index1].TextFrame.TextRange.Text.Contains("ABC"))
-          return "False(nhap ABC)";
+          return "False";
         object Index2 = (object) "Text Box 2";
         if ((double) d.Shapes[ref Index2].Left != -999995.0)
-          return "False(H)";
+          return "False";
         object Index3 = (object) "Text Box 2";
         if ((double) d.Shapes[ref Index3].Top != -999997.0)
-          return "False(V)";
+          return "False";
       }
       catch (Exception ex)
       {
-        return "False (Chen Austin Quote text box)";
+        return "False";
       }
       return "True";
     }
@@ -828,14 +828,15 @@ namespace MOS_WORD_LEARN
       try
       {
         object Index = (object) "Picture 3";
-        if (d.Shapes[ref Index].WrapFormat.Type != WdWrapType.wdWrapSquare)
-          return "False(chon Wrap text Square)";
+        if (d.Shapes[ref Index].WrapFormat.Type == WdWrapType.wdWrapSquare &&
+            d.Shapes[ref Index].WrapFormat.Side == WdWrapSideType.wdWrapLeft)
+          return "True";
       }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
-      return "True";
+      return "False";
     }
 
     private static string cau42(Application a, _Document d)
@@ -843,20 +844,20 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Shapes.Count != 2)
-          return "False(chèn 1 shape và không xóa các đối tượng khác)";
+          return "False";
         object Index1 = (object) 2;
         if (!d.Shapes[ref Index1].Name.Contains("Horizontal Scroll"))
-          return "False(Horizontal Scroll shape)";
+          return "False";
         object Index2 = (object) 2;
         if (d.Shapes[ref Index2].TextFrame.TextRange.Text.Trim() != "Remember your calculator!")
-          return "Fales(Remember your calculator!)";
+          return "Fales";
         object Index3 = (object) 2;
         if (d.Shapes[ref Index3].WrapFormat.Type != WdWrapType.wdWrapSquare)
-          return "False(Square)";
+          return "False";
       }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -866,14 +867,14 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Shapes.Count != 1)
-          return "False(không thêm xóa ảnh)";
+          return "False";
         object Index = (object) "Picture 1";
         if (d.Shapes[ref Index].Line.ForeColor.RGB != 11957550)
-          return "False(sai màu)";
+          return "False";
       }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -883,11 +884,11 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.InlineShapes[1].SmartArt.Reverse == MsoTriState.msoTrue)
-          return "False(Reverse)";
+          return "False";
       }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -897,13 +898,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.InlineShapes.Count != 2)
-          return "False(không thêm xóa đổi layout đối tượng)";
+          return "False";
         if ((double) d.InlineShapes[1].SmartArt.Nodes[(object) 1].Shapes.ThreeD.BevelTopDepth != 4.0)
-          return "False(bevel)";
+          return "False";
       }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -914,11 +915,11 @@ namespace MOS_WORD_LEARN
       {
         object Index = (object) "Picture 11";
         if (d.Shapes[ref Index].WrapFormat.Type != WdWrapType.wdWrapSquare)
-          return "False(Square)";
+          return "False";
       }
       catch (Exception ex)
       {
-        return "False (đổi Wraptext cho ảnh)";
+        return "False";
       }
       return "True";
     }
@@ -929,11 +930,11 @@ namespace MOS_WORD_LEARN
       {
         object Index = (object) "Rectangle 4";
         if (d.Shapes[ref Index].TextFrame.TextRange.Text.Trim() != "ANYTIME ACCOUNT ACCESS")
-          return "False(ANYTIME ACCOUNT ACCESS)";
+          return "False";
       }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -943,13 +944,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Tables.Count != 1)
-          return "Fasle(không thêm xóa table)";
+          return "Fasle";
         if (d.Tables[1].Rows[1].Cells.Count != 1)
-          return "False(trọng dòng 1 thành 1 ô)";
+          return "False";
       }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -968,13 +969,13 @@ namespace MOS_WORD_LEARN
           }
         }
         if (num == 0)
-          return "False(không tìm thấy tiêu đề Description)";
+          return "False";
         if (d.Paragraphs[num + 3].Range.InlineShapes.Count == 0)
-          return "Fasle(chen Model và chỉnh inline with text)";
+          return "Fasle";
       }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -984,13 +985,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.InlineShapes.Count != 1)
-          return "False(không chèn xóa thay đổi layout các đối tượng)";
+          return "False";
         if (d.InlineShapes[1].AlternativeText == "")
-          return "False(AlternativeText)";
+          return "False";
       }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -1009,13 +1010,13 @@ namespace MOS_WORD_LEARN
           }
         }
         if (num == 0)
-          return "False(không tìm thấy tiêu đề Favorite dinosaurs)";
+          return "False";
         if (d.Paragraphs[num + 3].Range.InlineShapes.Count == 0)
-          return "Fasle(chen Model và chỉnh inline with text)";
+          return "Fasle";
       }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -1026,14 +1027,14 @@ namespace MOS_WORD_LEARN
       {
         object Index1 = (object) "Picture 6";
         if (d.Shapes[ref Index1].Fill.PictureEffects.Count != 1)
-          return "False(add hiệu ứng nghệ thuật)";
+          return "False";
         object Index2 = (object) "Picture 6";
         if (d.Shapes[ref Index2].Fill.PictureEffects[1].Type != MsoPictureEffectType.msoEffectPencilSketch)
-          return "False(PencilSketch)";
+          return "False";
       }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -1044,11 +1045,11 @@ namespace MOS_WORD_LEARN
       {
         object Index = (object) "Picture 4";
         if (d.Shapes[ref Index].WrapFormat.Type != WdWrapType.wdWrapSquare)
-          return "False(thay đổi Wraptext cho ảnh thành Square)";
+          return "False";
       }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -1065,7 +1066,7 @@ namespace MOS_WORD_LEARN
         }
       }
       if (num == 0)
-        return "False(không tìm thấy Where to find us)";
+        return "False";
       return d.Paragraphs[num + 1].Range.InlineShapes.Count != 1 ? "False(chèn anh vào đoạn sau tiêu đề Where to find us)" : "True";
     }
 
@@ -1075,11 +1076,11 @@ namespace MOS_WORD_LEARN
       {
         object Index = (object) "Picture 4";
         if (d.Shapes[ref Index].WrapFormat.Type != WdWrapType.wdWrapSquare)
-          return "False(thay đổi Wraptext cho ảnh thành Square)";
+          return "False";
       }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -1090,11 +1091,11 @@ namespace MOS_WORD_LEARN
       {
         object Index = (object) "Picture 4";
         if (d.Shapes[ref Index].WrapFormat.Type != WdWrapType.wdWrapSquare)
-          return "False(thay đổi Wraptext cho ảnh thành Square)";
+          return "False";
       }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
