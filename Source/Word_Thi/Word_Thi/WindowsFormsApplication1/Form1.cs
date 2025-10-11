@@ -1,4 +1,7 @@
 ﻿using Microsoft.Office.Interop.Word;
+using MOS_WORD_TEST.Base;
+using MOS_WORD_TEST.Properties;
+using MOS_WORD_TEST.WindowsFormsApplication1;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,9 +14,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
-using MOS_WORD_TEST.Properties;
 using Point = System.Drawing.Point;
-using MOS_WORD_TEST.Base;
 
 namespace MOS_WORD_TEST
 {
@@ -339,8 +340,8 @@ namespace MOS_WORD_TEST
             // ISSUE: method pointer
             // ISSUE: object of a compiler-generated type is created
             ((ApplicationEvents4_Event)this.a).DocumentBeforeClose += this.a_DocumentBeforeClose;
-            this.SetUp(currentExam.ProjectIndex[0].ProjectIndex);
             LoadProject(0);
+            this.SetUp(currentExam.ProjectIndex[0].ProjectIndex);
             currentQuestion = currentProject.Questions[0];
             loadcaucanhoiNew(0);
             this.timeStrart = DateTime.Now;
@@ -377,7 +378,18 @@ namespace MOS_WORD_TEST
             {
                 var btn = new MOS_WORD_TEST.Base.RJButton();
                 // btn.Text = "Project " +  i.ToString() + " of " + currentProject.Questions.Count + ":";
-                btn.Text = i.ToString();
+                string prefix = "";
+                if (currentProject.Questions[i-1].MaskForReview == true)
+                {
+                    prefix += "❓ ";
+                }
+
+                if (currentProject.Questions[i-1].MaskForComplete == true)
+                {
+                    prefix = "✓ ";
+                }
+
+                btn.Text = $@"{prefix + i.ToString()}";
                 btn.Location = new Point((i) * 110, 0);
                 //btn.Width = 50;
                 //btn.Height = 32;
@@ -584,16 +596,84 @@ namespace MOS_WORD_TEST
             //    //this.CacCauDaCheck[this.Cau_So] = true;
             //}
             //this.richTextBox1.Text = str;
-            string str = string.Empty;
-            for(int i =0; i < currentExam.ProjectIndex.Count; i++)
+            //string str = string.Empty;
+            //for(int i =0; i < currentExam.ProjectIndex.Count; i++)
+            //{
+            //    for(int j =0; j < currentExam.ProjectIndex[i].Questions.Count; j++)
+            //    {
+            //        string kq = currentExam.ProjectIndex[i].Questions[j].Value == true ? "Đúng" : "sai";
+            //        str += $@"Project: {currentExam.ProjectIndex[i].ProjectName} - Câu hỏi:{currentExam.ProjectIndex[i].Questions[j].Index} - Kết quả: {kq}{Environment.NewLine}";
+            //    }
+            //}
+            //MessageBox.Show(str);
+            Frm_GoToSummary frm = new Frm_GoToSummary();
+            frm.OnChangeAnswer += Frm_OnChangeAnswer;
+            frm.DataSource = this.GetDataSource();
+            frm.ShowDialog();
+        }
+
+        private System.Data.DataTable GetDataSource()
+        {
+            var dt = new System.Data.DataTable();
+            dt.Columns.Add("ProjectIndex", typeof(int));
+            dt.Columns.Add("ProjectName", typeof(string));
+            dt.Columns.Add("QuestionIndex", typeof(int));
+            //dt.Columns.Add("QuestionNumber", typeof(int));
+            dt.Columns.Add("MaskForComplete", typeof(bool));
+            dt.Columns.Add("MaskForReview", typeof(bool));
+            dt.Columns.Add("Status", typeof(bool));
+            dt.Columns.Add("Value", typeof(bool));
+            for (int i = 0; i < currentExam.ProjectIndex.Count; i++)
             {
-                for(int j =0; j < currentExam.ProjectIndex[i].Questions.Count; j++)
+                for (int j = 0; j < currentExam.ProjectIndex[i].Questions.Count; j++)
                 {
-                    string kq = currentExam.ProjectIndex[i].Questions[j].Value == true ? "Đúng" : "sai";
-                    str += $@"Project: {currentExam.ProjectIndex[i].ProjectName} - Câu hỏi:{currentExam.ProjectIndex[i].Questions[j].Index} - Kết quả: {kq}{Environment.NewLine}";
+                    var row = dt.NewRow();
+                    row["ProjectIndex"] = currentExam.ProjectIndex[i].ProjectIndex;
+                    row["ProjectName"] = currentExam.ProjectIndex[i].ProjectName;
+                    row["QuestionIndex"] = currentExam.ProjectIndex[i].Questions[j].Index;
+                    //row["QuestionNumber"] = currentExam.ProjectIndex[i].Questions[j].QuestionNumber;
+                    row["MaskForComplete"] = currentExam.ProjectIndex[i].Questions[j].MaskForComplete;
+                    row["MaskForReview"] = currentExam.ProjectIndex[i].Questions[j].MaskForReview;
+                    row["Status"] = currentExam.ProjectIndex[i].Questions[j].Status;
+                    row["Value"] = currentExam.ProjectIndex[i].Questions[j].Value;
+                    dt.Rows.Add(row);
                 }
             }
-            MessageBox.Show(str);
+            return dt;
+        }
+
+        private void Frm_OnChangeAnswer(ProjectEventArgs e)
+        {
+            bool currentExist = currentExam.ProjectIndex.Where(x => x.ProjectIndex == e.ProjectIndex).Any();
+            if (!currentExist)
+            {
+                MessageBox.Show("Project không tồn tại. Vui lòng thử lại");
+                return;
+            }
+            currentProject = currentExam.ProjectIndex.Where(x => x.ProjectIndex == e.ProjectIndex).FirstOrDefault();
+            //this.SetUp(currentProject.ProjectIndex);
+            this.pathFileOffice = currentProject.PathFileOffice;
+            this.pathFileOfficeMaHoa = currentProject.PathFileOfficeMaHoa;
+            OpenDocument();
+            LoadProject(currentProject.ProjectIndex - 1);
+            loadcaucanhoiNew(currentProject.ProjectIndex - 1);
+            ChangeCurrentBT();
+            bool currentQuestionExist = currentProject.Questions.Where(x => x.Index == e.QuestionIndex).Any();
+            if (!currentQuestionExist)
+            {
+                MessageBox.Show("Question không tồn tại. Vui lòng thử lại");
+                return;
+            }
+            currentQuestion = currentProject.Questions.Where(x => x.Index == e.QuestionIndex).FirstOrDefault();
+            Button changeQuestionBT = GetLastQuestionButtonByIndex(currentQuestion.Index);
+            LoadQuestionContent(changeQuestionBT, EventArgs.Empty);
+        }
+
+        private void ChangeCurrentBT()
+        {
+            Button currentBT = GetLastQuestionButton();
+            currentBT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
+            currentBT.ForeColor = System.Drawing.Color.White;
         }
 
         private void button3_Click(object sender, EventArgs e) => this.submit();
@@ -602,12 +682,12 @@ namespace MOS_WORD_TEST
         {
             if (MessageBox.Show("Bạn có chắc nộp bài?", "Cảnh Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
             {
-                bool reviewQestion = currentProject.Questions.Where(x => x.MaskForReview == true).Any();
-                if (reviewQestion)
-                {
-                    MessageBox.Show($@"Poject có question cần review nên không thể submit. Vui lòng kiểm tra câu hỏi và chuyển thành Mask for complete");
-                    return;
-                }
+                //bool reviewQestion = currentProject.Questions.Where(x => x.MaskForReview == true).Any();
+                //if (reviewQestion)
+                //{
+                //    MessageBox.Show($@"Poject có question cần review nên không thể submit. Vui lòng kiểm tra câu hỏi và chuyển thành Mask for complete");
+                //    return;
+                //}
 
                 this.ChamDiem();
                 if (currentProject.ProjectIndex == currentExam.ProjectIndex[6].ProjectIndex)
@@ -751,10 +831,20 @@ namespace MOS_WORD_TEST
             //this.checkedListBox1.Items.Clear();
             //for (int index = 0; index < this.ImageFile.Length; ++index)
             //    this.checkedListBox1.Items.Add((object)(index + 1).ToString());
-            this.pathFileOfficeMaHoa = Path.Combine(this.pathWork, "Source\\Main");
-            this.pathFileOfficeMaHoa = Directory.GetFiles(this.pathFileOfficeMaHoa)[0];
-            this.pathFileOffice = Path.Combine(System.Windows.Forms.Application.StartupPath, "Zip\\Tam\\A\\");
-            this.pathFileOffice = Path.Combine(this.pathFileOffice, Path.GetFileName(this.pathFileOfficeMaHoa));
+            if(string.IsNullOrEmpty(currentProject.PathFileOfficeMaHoa))
+            {
+                this.pathFileOfficeMaHoa = Path.Combine(this.pathWork, "Source\\Main");
+                this.pathFileOfficeMaHoa = Directory.GetFiles(this.pathFileOfficeMaHoa)[0];
+                currentProject.PathFileOfficeMaHoa = this.pathFileOfficeMaHoa;
+            }
+            if(string.IsNullOrEmpty(currentProject.PathFileOffice))
+            {
+                this.pathFileOffice = Path.Combine(System.Windows.Forms.Application.StartupPath, "Zip\\Tam\\A\\");
+                this.pathFileOffice = Path.Combine(this.pathFileOffice, Path.GetFileName(this.pathFileOfficeMaHoa));
+                currentProject.PathFileOffice = this.pathFileOffice;
+            }
+            //this.pathFileOffice = Path.Combine(System.Windows.Forms.Application.StartupPath, "Zip\\Tam\\A\\");
+            //this.pathFileOffice = Path.Combine(this.pathFileOffice, Path.GetFileName(this.pathFileOfficeMaHoa));
             string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             string path = Path.Combine(this.pathWork, "Source\\Main");
             try
@@ -780,6 +870,13 @@ namespace MOS_WORD_TEST
             this.Cau_So = 0;
             //this.checkedListBox1.SelectedIndex = this.Cau_So;
             Home.DecryptFile(this.pathFileOfficeMaHoa, this.pathFileOffice);
+            OpenDocument();
+            //for (int index = 0; index < this.CacCauDaCheck.Length; ++index)
+            //    this.CacCauDaCheck[index] = false;
+        }
+
+        private void OpenDocument()
+        {
             object pathFileOffice = (object)this.pathFileOffice;
             object missing1 = System.Type.Missing;
             object missing2 = System.Type.Missing;
@@ -799,8 +896,6 @@ namespace MOS_WORD_TEST
             // ISSUE: reference to a compiler-generated method
             this.d = this.a.Documents.Open(ref pathFileOffice, ref missing1, ref missing2, ref missing3, ref PasswordDocument, ref missing4, ref missing5, ref missing6, ref missing7, ref missing8, ref missing9, ref missing10, ref missing11, ref missing12, ref missing13, ref XMLTransform);
             this.soLanReSet = 0;
-            //for (int index = 0; index < this.CacCauDaCheck.Length; ++index)
-            //    this.CacCauDaCheck[index] = false;
         }
 
         private void button4_Click(object sender, EventArgs e)

@@ -4,6 +4,7 @@
 // MVID: 59EF86EC-8F2D-419F-A3E8-5D9A0E352B91
 // Assembly location: E:\hau_Work\Git_HauWork\hauwork\WE_19\TEST_WORD_19\Chay File Nay.exe
 
+using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -146,9 +147,15 @@ namespace MOS_WORD_TEST
 
     public class Project
     {
+        private string pathFileOfficeMaHoa = string.Empty;
+        private string pathFileOffice = string.Empty;
         public int ProjectIndex { get; set; }
         public string ProjectName { get; set; }
         public List<Question> Questions { get; set; }
+
+        public string PathFileOfficeMaHoa { get { return pathFileOfficeMaHoa; } set { pathFileOfficeMaHoa = value; } }
+        public string PathFileOffice { get { return pathFileOffice; } set { pathFileOffice = value; } }
+
     }
 
     public class Question
