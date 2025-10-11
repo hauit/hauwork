@@ -130,24 +130,46 @@ namespace MOS_EXCEL_LEARN
                 if (worksheet == null)
                     return "False";
 
-                // Nếu cả vùng A12:B18 bị merge lại thì sai
-                Range mergedRange = worksheet.Range["A12", "B18"];
-                if ((bool)mergedRange.MergeCells == true)
-                    return "False(chọn merge cross)";
+                //// Nếu cả vùng A12:B18 bị merge lại thì sai
+                //Range mergedRange = worksheet.Range["A12", "B18"];
+                //if ((bool)mergedRange.MergeCells == true)
+                //    return "False(chọn merge across) 1";
 
-                // Nếu A12:B12 không được merge thì sai
-                Range topRow = worksheet.Range["A12", "B12"];
-                if ((bool)topRow.MergeCells != true)
-                    return "False(chọn merge cross)";
+                //// Nếu A12:B12 không được merge thì sai
+                //Range topRow = worksheet.Range["A12", "B12"];
+                //if ((bool)topRow.MergeCells != true)
+                //    return "False(chọn merge across)";
 
-                // Nếu A18:B18 không được merge thì sai
-                Range bottomRow = worksheet.Range["A18", "B18"];
-                if ((bool)bottomRow.MergeCells != true)
-                    return "False(chọn merge cross)";
+                //// Nếu A18:B18 không được merge thì sai
+                //Range bottomRow = worksheet.Range["A18", "B18"];
+                //if ((bool)bottomRow.MergeCells != true)
+                //    return "False(chọn merge across)";
+
+                // Vùng kiểm tra tổng
+                Range fullRange = worksheet.Range["A12", "B18"];
+
+                // Nếu toàn vùng bị merge 1 khối → sai
+                object fullRangeVal = fullRange.MergeCells;
+                if (fullRange.MergeCells != null && fullRangeVal != DBNull.Value && (bool)fullRange.MergeCells)
+                    return "False(chọn merge across)";
+
+                // Duyệt từng dòng để đảm bảo mỗi hàng được merge across
+                for (int row = 12; row <= 18; row++)
+                {
+                    Range rowRange = worksheet.Range[$"A{row}", $"B{row}"];
+                    object mergeValue = rowRange.MergeCells;
+
+                    if (mergeValue == null || mergeValue == DBNull.Value || (bool)mergeValue == false)
+                        return $"False(chọn merge across tại hàng {row})";
+                }
+
+                // Nếu qua hết mà ok
+                return "True";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                //return "False (Something not finish!)";
+                return ex.ToString();
             }
 
             return "True";

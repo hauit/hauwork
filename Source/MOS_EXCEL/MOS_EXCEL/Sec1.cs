@@ -265,20 +265,32 @@ namespace MOS_EXCEL_LEARN
         {
             try
             {
-                Worksheet sheet1 = a.ActiveWorkbook.Sheets["Sheet1"] as Worksheet;
-                if (sheet1 == null)
-                    return "";
+                Worksheet worksheet = d.Worksheets["Exchange Rates"];
+                if (worksheet == null)
+                    return "False 1";
 
-                Range cell = sheet1.get_Range("B5");
-                if (cell == null || cell.Value2 == null)
-                    return "";
+                Range cellRange = worksheet.Range["A7", "D8"];
+                if (cellRange == null)
+                    return "False 2";
 
-                return cell.Value2.ToString();
+                // Duyệt qua từng ô trong vùng
+                foreach (Range cell in cellRange.Cells)
+                {
+                    object val = cell.Value2;
+
+                    if (val != null && val != DBNull.Value && val.ToString().Trim() != "")
+                    {
+                        // Nếu có ít nhất 1 ô có dữ liệu → sai
+                        return "False (Sheet Exchange Rates ô " + cell.Address + " còn dữ liệu)";
+                    }
+                }
             }
-            catch
+            catch (Exception)
             {
-                return "";
+                return "False (Something not finish!)";
             }
+
+            return "True";
         }
 
         private static string cau10(Application a, Workbook d)

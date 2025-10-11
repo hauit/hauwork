@@ -49,7 +49,8 @@ namespace MOS_EXCEL_LEARN
                 case 14:
                     return Sec0.cau27(a, d);
                 case 15:
-                    return Sec0.cau25(a, d);
+                    //return Sec0.cau25(a, d);
+                    return Sec0.cau15New(a, d);
                 case 16:
                     return Sec0.cau26(a, d);
                 case 17:
@@ -610,6 +611,25 @@ namespace MOS_EXCEL_LEARN
             }
 
             return "True";
+        }
+
+        private static string cau15New(Application a, Workbook d)
+        {
+            try
+            {
+                Worksheet worksheet = (Worksheet)d.Worksheets["Last Semester"];
+                Range range = worksheet.Range["A3", "F3"];
+
+                // Nếu WrapText == true => đạt yêu cầu
+                if ((bool)range.WrapText == true)
+                    return "True (A3:F3)";
+            }
+            catch (Exception)
+            {
+                return "False (Something not finish!)";
+            }
+
+            return "False";
         }
 
         private static string cau25(Application a, Workbook d)

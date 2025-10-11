@@ -28,8 +28,8 @@ namespace MOS_EXCEL_LEARN
 
         private static void run()
         {
-            //Application.Run((Form)new Form1());
-            //return;
+            Application.Run((Form)new Form1());
+            return;
             Application.Run((Form)new Form2());
             switch (Program.status)
             {

@@ -416,18 +416,20 @@ namespace MOS_EXCEL_LEARN
             {
                 worksheet = workbook.Worksheets["Revenue"] as Worksheet;
                 if (worksheet == null)
-                    return "Fales (trang tính New Accounts)";
+                    return "False (trang tính Revenue)";
             }
             catch
             {
-                return "Fales (trang tính New Accounts)";
+                return "False (trang tính Revenue)";
             }
 
             // Bước 2: Kiểm tra ô A3 có trong một bảng hay không
+            ListObject a3Object;
             try
             {
                 Range rangeA3 = worksheet.Range["A3"];
-                if (rangeA3.ListObject == null)
+                a3Object = rangeA3.ListObject;
+                if (a3Object == null)
                     return "False (A3)";
             }
             catch
@@ -466,11 +468,13 @@ namespace MOS_EXCEL_LEARN
                 return "False(chưa chuyển sang table)";
             }
 
+            //return listObject.TableStyle.Name.ToString();
+
             // Bước 5: Kiểm tra kiểu của bảng có phải là "TableStyleLight14"
             try
             {
                 if (listObject.TableStyle != null &&
-                    listObject.TableStyle.ToString() != "TableStyleLight14")
+                    listObject.TableStyle.Name.ToString() != "TableStyleLight14")
                 {
                     return "False(sai kiểu)";
                 }
