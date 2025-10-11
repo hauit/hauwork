@@ -89,30 +89,30 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet worksheet = workbook.Worksheets["roster"] as Worksheet;
                 if (worksheet == null)
-                    return "False (Không tìm thấy sheet 'roster')";
+                    return "False";
 
                 // Duyệt dòng 1 đến 6: phải ẩn
                 for (int row = 1; row <= 6; row++)
                 {
                     Range range = worksheet.Range[$"A{row}"];
                     if (range.EntireRow.Hidden == false)
-                        return $"False(ẩn dòng {row})";
+                        return $"False";
                 }
 
                 // Dòng 7: không được ẩn
                 Range row7 = worksheet.Range["A7"];
-                if (row7.EntireRow.Hidden == false)
+                if (row7.EntireRow.Hidden == true)
                 {
                     // Ý muốn kiểm tra xem dòng 7 PHẢI bị ẩn,
                     // nhưng hiện tại KHÔNG bị ẩn => sai
-                    return "False(không ẩn dòng 7)";
+                    return "False";
                 }
 
                 return "True";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -122,21 +122,21 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet worksheet = workbook.Worksheets["roster"] as Worksheet;
                 if (worksheet == null)
-                    return "False (Không tìm thấy sheet 'roster')";
+                    return "False";
 
                 // Duyệt dòng 1 đến 6, kiểm tra xem có bị ẩn không
                 for (int row = 1; row <= 6; row++)
                 {
                     Range range = worksheet.Range[$"A{row}"];
-                    if (!range.EntireRow.Hidden)
-                        return $"False(mở ẩn dòng {row})";
+                    if (range.EntireRow.Hidden == true)
+                        return $"False";
                 }
 
                 return "True";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -147,22 +147,28 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet worksheet = workbook.Worksheets["students"] as Worksheet;
                 if (worksheet == null)
-                    return "False (Không tìm thấy sheet 'students')";
+                    return "False";
 
                 string d1Text = worksheet.Range["D1"].Text.ToString();
-                if (string.IsNullOrWhiteSpace(d1Text))
+                if (!string.IsNullOrEmpty(d1Text))
                     return "False";
 
-                string e1Text = worksheet.Range["E1"].Text.ToString();
-                if (e1Text != "GPA")
+                //string e1Text = worksheet.Range["E1"].Text.ToString();
+                if (d1Text.Trim() == "GPA")
                     return "False";
 
-                return "True";
+                string d30Text = worksheet.Range["D30"].Text.ToString();
+                if (!string.IsNullOrEmpty(d30Text))
+                    return "False";
+                if (d30Text.Trim() == "2")
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
+
+            return "True";
         }
 
         private static string cau3(Application excelApp, Workbook workbook)
@@ -171,11 +177,11 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet worksheet = workbook.Worksheets["Microsoft Word"] as Worksheet;
                 if (worksheet == null)
-                    return "False(Microsoft Word)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False(Microsoft Word)";
+                return "False";
             }
             return "True";
         }
@@ -186,14 +192,14 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet worksheet = workbook.Worksheets["Q3 Sales"] as Worksheet;
                 if (worksheet == null)
-                    return "False (Q3 Sales)";
+                    return "False";
 
                 if (worksheet.Index <= 2)
-                    return "False(sai vị trí)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Q3 Sales)";
+                return "False";
             }
             return "True";
         }
@@ -204,14 +210,14 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet worksheet = workbook.Worksheets["October (2)"] as Worksheet;
                 if (worksheet == null)
-                    return "False (tạo bảng copy)";
+                    return "False";
 
                 if (worksheet.Index <= 1)
-                    return "False(move to end)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (tạo bảng copy)";
+                return "False";
             }
             return "True";
         }
@@ -222,23 +228,23 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet ws = wb.Worksheets["Donor Contact Info"] as Worksheet;
                 if (ws == null)
-                    return "False (Something not finish!)";
+                    return "False";
 
                 string cellI1 = ws.get_Range("I1", "I1").Text?.ToString();
                 if (cellI1 != "Cell Phone")
-                    return "False (Cell Phone)";
+                    return "False";
 
                 string cellH1 = ws.get_Range("H1", "H1").Text?.ToString();
                 if (cellH1 != "Home Phone")
-                    return "False (Home Phone)";
+                    return "False";
 
                 string cellJ1 = ws.get_Range("J1", "J1").Text?.ToString();
                 if (cellJ1 != "Email")
-                    return "False (Email)";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -250,16 +256,16 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet ws = wb.Worksheets["Shareholders Info"] as Worksheet;
                 if (ws == null)
-                    return "False (Sheet not found)";
+                    return "False";
 
                 double row2Height = ws.get_Range("A2", "A2").EntireRow.Height;
 
                 if (row2Height != 30)
-                    return "False (row 2)"; // Hàng 2 không có chiều cao 30
+                    return "False"; // Hàng 2 không có chiều cao 30
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -271,14 +277,14 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet ws = wb.Worksheets["Outdoor sports"] as Worksheet;
                 if (ws == null)
-                    return "False (Sheet not found)";
+                    return "False";
 
                 if (ws.Index != 3)
-                    return "False(Sửa tên Outdoor toys)";
+                    return "False";
             }
             catch
             {
-                return "False (Rename)";
+                return "False";
             }
 
             return "True";
@@ -290,14 +296,14 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet ws = wb.Worksheets["Donor List"] as Worksheet;
                 if (ws == null)
-                    return "False (Sheet not found)";
+                    return "False";
 
                 if (ws.Index <= 3)
-                    return "False(Move to end)";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -309,14 +315,14 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet ws = wb.Worksheets["Top Donors"] as Worksheet;
                 if (ws == null)
-                    return "False (Sheet not found)";
+                    return "False";
 
                 if (ws.Index <= 3)
-                    return "False(Move to end)";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -328,14 +334,14 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet ws = wb.Worksheets["Top Donors"] as Worksheet;
                 if (ws == null)
-                    return "False (Sheet not found)";
+                    return "False";
 
                 if (ws.Index != 1)
-                    return "False(Move to first)";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -347,17 +353,17 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet ws = wb.Worksheets["Products"] as Worksheet;
                 if (ws == null)
-                    return "False (Sheet not found)";
+                    return "False";
 
                 Range rng = ws.Range["A1"];
                 int align = Convert.ToInt32(rng.HorizontalAlignment);
 
                 if (align != -4131) // -4131 là xlLeft
-                    return "False(Left)";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -369,7 +375,7 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet ws = wb.Worksheets["Demographics"] as Worksheet;
                 if (ws == null)
-                    return "False (Sheet not found)";
+                    return "False";
 
                 Range g9 = ws.Range["G9"];
                 Range h9 = ws.Range["H9"];
@@ -380,14 +386,14 @@ namespace MOS_EXCEL_LEARN
                 string h8Text = h8.Text?.ToString() ?? "";
 
                 if (string.IsNullOrWhiteSpace(g9Text) || string.IsNullOrWhiteSpace(h9Text))
-                    return "False(xoa dong cuoi)";
+                    return "False";
 
                 if (string.IsNullOrWhiteSpace(h8Text))
-                    return "False (chỉ xoa dong cuoi)";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -399,14 +405,14 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet ws = wb.Worksheets["indoor toys"] as Worksheet;
                 if (ws == null)
-                    return "False (đổi tên indoor toys)";
+                    return "False";
 
                 if (ws.Index != 4)
-                    return "False (sai trang tinh)";
+                    return "False";
             }
             catch
             {
-                return "False (đổi tên indoor toys)";
+                return "False";
             }
 
             return "True";
@@ -418,7 +424,7 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet ws = wb.Worksheets["Outdoor toys"] as Worksheet;
                 if (ws == null)
-                    return "False (Tên sheet sai)";
+                    return "False";
 
                 // Lấy mã màu của tab (Tab.Color có kiểu int)
                 int tabColor = (int)(ws.Tab.Color);
@@ -429,7 +435,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -441,14 +447,14 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet ws = wb.Worksheets["Outdoor toys"] as Worksheet;
                 if (ws == null)
-                    return "False (Không tìm thấy sheet)";
+                    return "False";
 
                 if (ws.Visible != XlSheetVisibility.xlSheetHidden)
                     return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -460,14 +466,14 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet ws = wb.Worksheets["Outdoor toys"] as Worksheet;
                 if (ws == null)
-                    return "False (Không tìm thấy sheet)";
+                    return "False";
 
                 if (ws.Visible != XlSheetVisibility.xlSheetHidden)
                     return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -480,12 +486,12 @@ namespace MOS_EXCEL_LEARN
                 foreach (Worksheet sheet in wb.Worksheets)
                 {
                     if (sheet.Visible == XlSheetVisibility.xlSheetHidden)
-                        return $"False({sheet.Name})";
+                        return $"False";
                 }
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -501,7 +507,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -514,15 +520,15 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet sheet1 = wb.Worksheets["Sheet1"];
                 if (sheet1.Visible != XlSheetVisibility.xlSheetVisible)
-                    return "False(bỏ ẩn Sheet1)";
+                    return "False";
 
                 Worksheet shareholders = wb.Worksheets["Shareholders Info"];
                 if (shareholders.Visible == XlSheetVisibility.xlSheetVisible)
-                    return "False (vẫn ẩn Shareholders Info)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -535,11 +541,11 @@ namespace MOS_EXCEL_LEARN
                 Worksheet worksheet = (Worksheet)d.Worksheets["Materials"];
                 Range cell = worksheet.get_Range("A1", "A1");
                 if (!cell.WrapText)
-                    return "False (A1)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -553,7 +559,7 @@ namespace MOS_EXCEL_LEARN
 
                 // Kiểm tra Freeze Panes đã bật chưa
                 if (!a.ActiveWindow.FreezePanes)
-                    return "False(FreezePanes)";
+                    return "False";
 
                 // Kiểm tra địa chỉ của ô hiện tại (active cell) có phải là A6 không
                 string address = a.ActiveCell.get_Address(
@@ -561,11 +567,11 @@ namespace MOS_EXCEL_LEARN
                     XlReferenceStyle.xlA1, Type.Missing, Type.Missing);
 
                 if (address != "$A$6")
-                    return "False(để con trỏ ô A6 trước khi FreezePanes)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -583,7 +589,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -607,7 +613,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -622,11 +628,11 @@ namespace MOS_EXCEL_LEARN
 
                 // Nếu WrapText == true => đạt yêu cầu
                 if ((bool)range.WrapText == true)
-                    return "True (A3:F3)";
+                    return "True";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "False";
@@ -641,11 +647,11 @@ namespace MOS_EXCEL_LEARN
 
                 // Nếu WrapText == true => không đạt yêu cầu
                 if ((bool)range.WrapText == true)
-                    return "False (A3:F3)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -661,15 +667,15 @@ namespace MOS_EXCEL_LEARN
 
                 // Kiểm tra canh trái (Left = -4131)
                 if ((int)range.HorizontalAlignment != -4131)
-                    return "False(Left(Indent))";
+                    return "False";
 
                 // Kiểm tra thụt đầu dòng là 1
                 if (range.IndentLevel != 1)
-                    return "False(Indent 1)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -683,22 +689,22 @@ namespace MOS_EXCEL_LEARN
 
                 // Kiểm tra xem đã FreezePanes chưa
                 if (!a.ActiveWindow.FreezePanes)
-                    return "False(FreezePanes)";
+                    return "False";
 
-                // Kiểm tra con trỏ hiện tại có ở đúng ô A3 không
-                string activeAddress = a.ActiveCell.get_Address(
-                                        Missing.Value,
-                                        Missing.Value,
-                                        XlReferenceStyle.xlA1,
-                                        Missing.Value,
-                                        Missing.Value);
+                //// Kiểm tra con trỏ hiện tại có ở đúng ô A3 không
+                //string activeAddress = a.ActiveCell.get_Address(
+                //                        Missing.Value,
+                //                        Missing.Value,
+                //                        XlReferenceStyle.xlA1,
+                //                        Missing.Value,
+                //                        Missing.Value);
 
-                if (activeAddress != "$A$3")
-                    return "False(để con trỏ ô A3 trước khi FreezePanes)";
+                //if (activeAddress != "$A$3")
+                //    return "False(để con trỏ ô A3 trước khi FreezePanes)";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -708,23 +714,22 @@ namespace MOS_EXCEL_LEARN
         {
             try
             {
-                Worksheet worksheet = (Worksheet)d.Worksheets["Materials"];
-
-                double widthA4 = ((Range)worksheet.get_Range("A4", "A4")).Width;
-                if (widthA4 < 159.0 || widthA4 > 161.0)
+                Worksheet ws = (Worksheet)d.Worksheets["Materials"];
+                if (ws == null)
                     return "False";
 
-                double widthB4 = ((Range)worksheet.get_Range("B4", "B4")).Width;
-                if (widthB4 < 68.0 || widthB4 > 70.0)
-                    return "False";
+                double wA = ((Range)ws.get_Range("A4")).ColumnWidth;
+                double wB = ((Range)ws.get_Range("B4")).ColumnWidth;
+                double wN = ((Range)ws.get_Range("N4")).ColumnWidth;
 
-                double widthN4 = ((Range)worksheet.get_Range("N4", "N4")).Width;
-                if (widthN4 < 35.0 || widthN4 > 37.0)
-                    return "False";
+                if (wA < 34.0 || wA > 35.0) return "False";
+                if (wB < 14.0 || wB > 15.0) return "False";
+                if (wN < 6.0 || wN > 8.0) return "False";
+
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";

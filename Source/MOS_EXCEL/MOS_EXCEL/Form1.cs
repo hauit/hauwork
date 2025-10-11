@@ -365,7 +365,7 @@ namespace MOS_EXCEL_LEARN
 
         private void buttonCheck_Click(object sender, EventArgs e)
         {
-            this.labelKQ.Text = this.CheckResult(this.paramater);
+            //this.labelKQ.Text = this.CheckResult(this.paramater);
             if (this.labelKQ.Text == "True")
                 this.Diem[this.cau_User - 1] = 1;
             this.check = false;

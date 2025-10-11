@@ -54,31 +54,31 @@ namespace MOS_EXCEL_LEARN
             }
             catch
             {
-                return "False (Not FormatCondition)";
+                return "False";
             }
 
             if (formatConditions.Count != 1)
-                return "False (Number of FormatCondition)";
+                return "False";
 
             // 3. Kiểm tra xem điều kiện là "AboveAverage"
             try
             {
                 var aboveAverage = formatConditions[1] as AboveAverage;
                 if (aboveAverage == null)
-                    return "False(AboveAverage cast failed)";
+                    return "False";
 
                 if (aboveAverage.AboveBelow != XlAboveBelow.xlAboveAverage)
-                    return "False(AboveAverage)";
+                    return "False";
 
                 string fontColor = aboveAverage.Font.Color?.ToString() ?? "";
 
                 // Kiểm tra xem Font.Color có phải là 24832 không
                 if (fontColor != "24832")
-                    return "False(sai format)";
+                    return "False";
             }
             catch
             {
-                return "False(something wrong)";
+                return "False";
             }
 
             return "True";
@@ -90,21 +90,21 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet worksheet = d.Worksheets["London"] as Worksheet;
                 if (worksheet == null)
-                    return "False (Không tìm thấy sheet London)";
+                    return "False";
 
                 Range range = worksheet.Range["D5", "D21"];
                 FormatConditions formatConditions = range.FormatConditions;
 
                 if (formatConditions == null)
-                    return "False (Not FormatCondition)";
+                    return "False";
 
                 return formatConditions.Count != 0
-                    ? "False (Chưa xóa bỏ định dạng có điều kiện!)"
+                    ? "False"
                     : "True";
             }
             catch
             {
-                return "False (Exception)";
+                return "False";
             }
         }
 
@@ -114,52 +114,52 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet worksheet = d.Worksheets["Products"] as Worksheet;
                 if (worksheet == null)
-                    return "False (Not found Worksheet)";
+                    return "False";
 
                 Range range = worksheet.Range["E3", "E54"];
                 FormatConditions formatConditions = range.FormatConditions;
 
                 if (formatConditions == null)
-                    return "False (Not FormatCondition)";
+                    return "False";
                 if (formatConditions.Count != 1)
-                    return "False (Number of FormatCondition)";
+                    return "False";
 
                 IconSetCondition iconSetCondition = formatConditions[1] as IconSetCondition;
                 if (iconSetCondition == null)
-                    return "False (Not Iconset)";
+                    return "False";
 
                 IconSet iconSet = iconSetCondition.IconSet;
                 if (iconSet == null)
-                    return "False (IconSet null)";
+                    return "False";
                 if (iconSet.ID != XlIconSet.xl3TrafficLights1)
-                    return "False (loại)";
+                    return "False";
                 if (iconSet.Count != 3)
-                    return "False (not 3 Icon)";
+                    return "False";
                 if (iconSetCondition.IconCriteria.Count != 3)
-                    return "False (not 3 Criteria)";
+                    return "False";
 
                 if (iconSetCondition.IconCriteria[1].Icon != XlIcon.xlIconRedCircleWithBorder)
-                    return "False (0FilledBoxes)";
+                    return "False";
                 if (iconSetCondition.IconCriteria[2].Icon != XlIcon.xlIconYellowCircle)
-                    return "False (1FilledBox)";
+                    return "False";
                 if (iconSetCondition.IconCriteria[3].Icon != XlIcon.xlIconGreenCircle)
-                    return "False (2FilledBoxes)";
+                    return "False";
 
                 if (iconSetCondition.IconCriteria[1].Type != XlConditionValueTypes.xlConditionValuePercent ||
                     iconSetCondition.IconCriteria[2].Type != XlConditionValueTypes.xlConditionValuePercent ||
                     iconSetCondition.IconCriteria[3].Type != XlConditionValueTypes.xlConditionValuePercent)
-                    return "False (type Number)";
+                    return "False";
 
                 if (iconSetCondition.IconCriteria[1].Operator != 7 ||
                     iconSetCondition.IconCriteria[2].Operator != 7 ||
                     iconSetCondition.IconCriteria[3].Operator != 7)
-                    return "False (Operator)";
+                    return "False";
 
                 return "True";
             }
             catch
             {
-                return "False (Exception)";
+                return "False";
             }
         }
 
@@ -172,7 +172,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch (Exception)
             {
-                return "False (Not found Worksheet)";
+                return "False";
             }
 
             FormatConditions formatConditions;
@@ -182,11 +182,11 @@ namespace MOS_EXCEL_LEARN
             }
             catch (Exception)
             {
-                return "False (Not FormatCondition)";
+                return "False";
             }
 
             if (formatConditions.Count != 1)
-                return "False (Number of FormatCondition)";
+                return "False";
 
             FormatCondition formatCondition;
             try
@@ -195,18 +195,18 @@ namespace MOS_EXCEL_LEARN
             }
             catch (Exception)
             {
-                return "False (Not CellValue)";
+                return "False";
             }
 
             // Sửa lỗi kiểu ở đây
             if ((int)formatCondition.Type != (int)XlFormatConditionType.xlCellValue)
-                return "False (Sai kiểu)";
+                return "False";
 
             if ((int)formatCondition.Operator != (int)XlFormatConditionOperator.xlGreater)
-                return "False (Chọn sai toán tử)";
+                return "False";
 
             if (formatCondition.Formula1 != "=5000000")
-                return "False (=5000000)";
+                return "False";
 
             object colorValue;
             try
@@ -215,11 +215,11 @@ namespace MOS_EXCEL_LEARN
             }
             catch (Exception)
             {
-                return "False (Không đọc được màu chữ)";
+                return "False";
             }
 
             if (colorValue.ToString() != "22428")
-                return "False (Sai kiểu định dạng)";
+                return "False";
 
             return "True";
         }
