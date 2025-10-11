@@ -103,11 +103,11 @@ namespace MOS_EXCEL_LEARN
 
                 string formula = n2.Formula.ToString();
                 if (formula != "=AVERAGE(Table1[CurrenAge])")
-                    return "False(=AVERAGE(Table1[CurrenAge]))";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -122,11 +122,11 @@ namespace MOS_EXCEL_LEARN
                 string formula = j2.Formula.ToString();
 
                 if (formula != "=MAX(G2:G526)")
-                    return "False(==MAX(G2:G526)))";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -141,11 +141,11 @@ namespace MOS_EXCEL_LEARN
                 string formula = c8.Formula.ToString();
 
                 if (formula != "=PROPER(A8)")
-                    return "False(=PROPER(A8))";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -160,26 +160,26 @@ namespace MOS_EXCEL_LEARN
                 // Kiểm tra công thức ở ô H5
                 string formulaH5 = worksheet.Range["H5"].Formula.ToString();
                 if (formulaH5 != "=F5-G5")
-                    return "False(=F5-G5)";
+                    return "False";
 
                 // Kiểm tra công thức ở ô H35
                 string formulaH35 = worksheet.Range["H35"].Formula.ToString();
                 if (formulaH35 != "=F35-G35")
-                    return "False(=F35-G35)";
+                    return "False";
 
                 // Kiểm tra định dạng số ở ô H5
                 string numberFormatH5 = worksheet.Range["H5"].NumberFormat.ToString();
                 if (numberFormatH5 != "General")
-                    return "False(General)";
+                    return "False";
 
                 // Kiểm tra màu nền ô H6
                 string colorH6 = worksheet.Range["H6"].Interior.Color.ToString();
                 if (colorH6 != "16777215") // 16777215 là màu trắng (trong Excel)
-                    return "False(without format)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -195,12 +195,12 @@ namespace MOS_EXCEL_LEARN
                 if (!formula.Contains("=AVERAGEIF(D5:D35,\"Lucerne Publishing\",F5:F35)") &&
                     !formula.Contains("=AVERAGEIF($D$5:$D$35,\"Lucerne Publishing\",$F$5:$F$35)"))
                 {
-                    return "False(=AVERAGEIF(D5:D35,\"Lucerne Publishing\",F5:F35))";
+                    return "False";
                 }
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -214,15 +214,15 @@ namespace MOS_EXCEL_LEARN
 
                 string formulaI2 = worksheet.Range["I2"].Formula.ToString();
                 if (formulaI2 != "=IF(H2>719,\"Yes\",\"No\")")
-                    return "False(=IF(H2>719,\"Yes\",\"No\"))";
+                    return "False";
 
                 string formulaI30 = worksheet.Range["I30"].Formula.ToString();
                 if (formulaI30 != "=IF(H30>719,\"Yes\",\"No\")")
-                    return "False(Auto Fill)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -236,11 +236,11 @@ namespace MOS_EXCEL_LEARN
                 string formula = worksheet.Range["B15"].Formula.ToString();
 
                 if (formula != "=MAX(F4:F11)")
-                    return "False(=MAX(F4:F11))";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -254,11 +254,11 @@ namespace MOS_EXCEL_LEARN
                 string formula = worksheet.Range["G35"].Formula.ToString();
 
                 if (formula != "=G34-F35-E35")
-                    return "False(Auto Fill)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -274,12 +274,12 @@ namespace MOS_EXCEL_LEARN
                 if (!formula.Contains("=AVERAGEIF(E11:E35,\">300\",E11:E35)") &&
                     !formula.Contains("=AVERAGEIF($E$11:$E$35,\">300\",$E$11:$E$35)"))
                 {
-                    return "False(=AVERAGEIF(E11:E35,\">300\",E11:E35))";
+                    return "False";
                 }
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -293,15 +293,15 @@ namespace MOS_EXCEL_LEARN
 
                 string formulaB9 = worksheet.Range["B9"].Formula.ToString();
                 if (!formulaB9.Contains("=LOWER(D9)"))
-                    return "False(=LOWER(D9))";
+                    return "False";
 
                 string formulaB66 = worksheet.Range["B66"].Formula.ToString();
                 if (!formulaB66.Contains("=LOWER(D66)"))
-                    return "False(Auto Fill)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -315,15 +315,15 @@ namespace MOS_EXCEL_LEARN
 
                 string formulaC9 = worksheet.Range["C9"].Formula.ToString();
                 if (!formulaC9.Contains("=UPPER(A9)"))
-                    return "False(=UPPER(A9))";
+                    return "False";
 
                 string formulaC66 = worksheet.Range["C66"].Formula.ToString();
                 if (!formulaC66.Contains("=UPPER(A66)"))
-                    return "False(Auto Fill)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -337,11 +337,11 @@ namespace MOS_EXCEL_LEARN
                 string formula = worksheet.Range["F37"].Formula.ToString();
 
                 if (!formula.Contains("=CONCATENATE(D6\", \",G6)"))
-                    return "False(=CONCATENATE(D6,\", \",G6))";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -356,14 +356,14 @@ namespace MOS_EXCEL_LEARN
                 string formulaK5 = ws.Range["K5"].Formula.ToString();
 
                 if (!formulaK4.Contains("=COUNTIF(Table5[Size Group],\">=12\")"))
-                    return "False(=COUNTIF(Table5[Size Group],\">=12\"))";
+                    return "False";
 
                 if (!formulaK5.Contains("=SUMIF(Table5[Size Group],\">=12\",Table5[Total Donations])"))
-                    return "False(=SUMIF(Table5[Size Group],\">=12\",Table5[Total Donations]))";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -377,11 +377,11 @@ namespace MOS_EXCEL_LEARN
                 string formula = ws.Range["B13"].Formula.ToString();
 
                 if (!formula.Contains("=AVERAGEIF(Table14[Discount],\">0\",Table14[Discount])"))
-                    return "False(=AVERAGEIF(Table14[Discount],\">0\",Table14[Discount]))";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -398,14 +398,14 @@ namespace MOS_EXCEL_LEARN
                 string numberFormat = cell.NumberFormat.ToString();
 
                 if (!formula.Contains("[@Price]*[@[Discount % ]]"))
-                    return "False([@Price]*[@[Discount % ]])";
+                    return "False";
 
                 if (!numberFormat.Contains("$"))
-                    return "False(apply Accounting format)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -420,26 +420,26 @@ namespace MOS_EXCEL_LEARN
                 // Kiểm tra công thức COUNTIF ở ô H9
                 string formulaH9 = sheet.Range["H9"].Formula.ToString();
                 if (!formulaH9.Contains("COUNTIF(Table2[Donation Level],G9)"))
-                    return "False(COUNTIF(Table2[Donation Level],G9))";
+                    return "False";
 
                 // Kiểm tra công thức COUNTIF được tự động điền ở H12
                 string formulaH12 = sheet.Range["H12"].Formula.ToString();
                 if (!formulaH12.Contains("COUNTIF(Table2[Donation Level],G12)"))
-                    return "False(Auto Fill)";
+                    return "False";
 
                 // Kiểm tra công thức SUMIF ở ô I9
                 string formulaI9 = sheet.Range["I9"].Formula.ToString();
                 if (!formulaI9.Contains("=SUMIF(Table2[Donation Level],G9,Table2[Annual Donations])"))
-                    return "False(=SUMIF(Table2[Donation Level],G9,Table2[Annual Donations]))";
+                    return "False";
 
                 // Kiểm tra công thức SUMIF được tự động điền ở I12
                 string formulaI12 = sheet.Range["I12"].Formula.ToString();
                 if (!formulaI12.Contains("=SUMIF(Table2[Donation Level],G12,Table2[Annual Donations])"))
-                    return "False(Auto Fill)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -453,15 +453,15 @@ namespace MOS_EXCEL_LEARN
 
                 string formulaE21 = sheet.Range["E21"].Formula.ToString();
                 if (formulaE21 != "=[@[Air Miles]]*0.08")
-                    return "False(Auto Fill)";
+                    return "False";
 
                 string formatE21 = sheet.Range["E21"].NumberFormat.ToString();
                 if (formatE21 != "General")
-                    return "False(không lấy định dạng)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -475,11 +475,11 @@ namespace MOS_EXCEL_LEARN
                 string formula = sheet.Range["D23"].Formula.ToString();
 
                 if (!formula.Contains("=MAX(Table1[Air Miles]"))
-                    return "False(=MAX(Table1[Air Miles])";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -493,15 +493,15 @@ namespace MOS_EXCEL_LEARN
 
                 string formulaC4 = sheet.Range["C4"].Formula.ToString();
                 if (!formulaC4.Contains("=AVERAGE(Table1[@[January]:[April]])"))
-                    return "False(=AVERAGE(Table1[@[January]:[April]]))";
+                    return "False";
 
                 string formulaC12 = sheet.Range["C12"].Formula.ToString();
                 if (!formulaC12.Contains("=AVERAGE(Table1[@[January]:[April]])"))
-                    return "False(=AVERAGE(Table1[@[January]:[April]]))";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -514,16 +514,16 @@ namespace MOS_EXCEL_LEARN
                 Worksheet sheet = wb.Worksheets["Contact"];
 
                 string formulaC5 = sheet.Range["C5"].Formula.ToString();
-                if (!formulaC5.Contains("=CONCATENATE([@[First Name]],\"@woodgrovebank.com\")"))
-                    return "False(=CONCATENATE([@[First Name]],\"@woodgrovebank.com\"))";
+                if (!formulaC5.Contains("=CONCAT([@[First Name]],\"@woodgrovebank.com\")"))
+                    return "False";
 
                 string formulaC19 = sheet.Range["C19"].Formula.ToString();
-                if (!formulaC19.Contains("=CONCATENATE([@[First Name]],\"@woodgrovebank.com\")"))
-                    return "False(=CONCATENATE([@[First Name]],\"@woodgrovebank.com\"))";
+                if (!formulaC19.Contains("=CONCAT([@[First Name]],\"@woodgrovebank.com\")"))
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -537,11 +537,11 @@ namespace MOS_EXCEL_LEARN
 
                 // Kiểm tra xem cửa sổ đang hiển thị có bật chế độ hiện công thức không
                 if (!sheet.Application.ActiveWindow.DisplayFormulas)
-                    return "False(bật show Formulas)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -555,15 +555,15 @@ namespace MOS_EXCEL_LEARN
 
                 string formulaD2 = sheet.Range["D2"].Formula.ToString();
                 if (!formulaD2.Contains("=IF([@[Books Sold]]>10000,500,100)"))
-                    return "False(=IF([@[Books Sold]]>10000,500,100))";
+                    return "False";
 
                 string formulaD37 = sheet.Range["D37"].Formula.ToString();
                 if (!formulaD37.Contains("=IF([@[Books Sold]]>10000,500,100)"))
-                    return "False(=IF([@[Books Sold]]>10000,500,100))";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -577,15 +577,15 @@ namespace MOS_EXCEL_LEARN
 
                 string formulaE2 = sheet.Range["E2"].Formula.ToString();
                 if (!formulaE2.Contains("=UPPER(LEFT([@City],3))"))
-                    return "False(=UPPER(LEFT([@City],3))";
+                    return "False";
 
                 string formulaE20 = sheet.Range["E20"].Formula.ToString();
                 if (!formulaE20.Contains("=UPPER(LEFT([@City],3))"))
-                    return "False(=UPPER(LEFT([@City],3))";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -599,15 +599,15 @@ namespace MOS_EXCEL_LEARN
 
                 string formulaJ5 = sheet.Range["J5"].Formula.ToString();
                 if (!formulaJ5.Contains("=[@[Unit Price]]*$L$2"))
-                    return "False(=[@[Unit Price]]*$L$2)";
+                    return "False";
 
                 string formulaJ25 = sheet.Range["J25"].Formula.ToString();
                 if (!formulaJ25.Contains("=[@[Unit Price]]*$L$2"))
-                    return "False(=[@[Unit Price]]*$L$2)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -621,15 +621,15 @@ namespace MOS_EXCEL_LEARN
 
                 string formulaG5 = sheet.Range["G5"].Formula.ToString();
                 if (!formulaG5.Contains("=IF([@[Inventory Level]]<15%,\"Low\",\"\")"))
-                    return "False(=IF([@[Inventory Level]]<15%,\"Low\",\"\"))";
+                    return "False";
 
                 string formulaG25 = sheet.Range["G25"].Formula.ToString();
                 if (!formulaG25.Contains("=IF([@[Inventory Level]]<15%,\"Low\",\"\")"))
-                    return "False(=IF([@[Inventory Level]]<15%,\"Low\",\"\"))";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -640,19 +640,19 @@ namespace MOS_EXCEL_LEARN
             try
             {
                 if (d.Names.Count != 1)
-                    return "False(Tạo 1 range name)";
+                    return "False";
 
                 Name rangeName = d.Names.Item(1);
                 if (rangeName.Name != "Enrollment")
-                    return "False(Enrollment)";
+                    return "False";
 
                 string refersTo = rangeName.RefersToLocal?.ToString() ?? "";
                 if (refersTo != "='Enrollment Summary'!$A$3:$B$7")
-                    return $"False({refersTo})";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -666,15 +666,15 @@ namespace MOS_EXCEL_LEARN
 
                 string formulaI5 = worksheet.Range["I5"].Formula?.ToString() ?? "";
                 if (!formulaI5.Contains("=COUNTBLANK(Table1[@[January]:[June]])"))
-                    return "False(=COUNTBLANK(Table1[@[January]:[June]]))";
+                    return "False";
 
                 string formulaI13 = worksheet.Range["I13"].Formula?.ToString() ?? "";
                 if (!formulaI13.Contains("=COUNTBLANK(Table1[@[January]:[June]])"))
-                    return "False(=COUNTBLANK(Table1[@[January]:[June]]))";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -687,16 +687,16 @@ namespace MOS_EXCEL_LEARN
                 Worksheet worksheet = d.Worksheets["Contact"];
 
                 string formulaC5 = worksheet.Range["C5"].Formula?.ToString() ?? "";
-                if (!formulaC5.Contains("=CONCATENATE([@[First Name]],\"@humongousinsurance.com\")"))
-                    return "False(=CONCATENATE([@[First Name]],\"@humongousinsurance.com\"))";
+                if (!formulaC5.Contains("=CONCAT([@[First Name]],\"@humongousinsurance.com\")"))
+                    return "False";
 
                 string formulaC13 = worksheet.Range["C13"].Formula?.ToString() ?? "";
-                if (!formulaC13.Contains("=CONCATENATE([@[First Name]],\"@humongousinsurance.com\")"))
-                    return "False(=CONCATENATE([@[First Name]],\"@humongousinsurance.com\"))";
+                if (!formulaC13.Contains("=CONCAT([@[First Name]],\"@humongousinsurance.com\")"))
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -710,15 +710,15 @@ namespace MOS_EXCEL_LEARN
 
                 string formulaG5 = worksheet.Range["G5"].Formula?.ToString() ?? "";
                 if (!formulaG5.Contains("=IF([@[Years as Member]]>3,\"Yes\",\"No\")"))
-                    return "False(=IF([@[Years as Member]]>3,\"Yes\",\"No\"))";
+                    return "False";
 
                 string formulaG18 = worksheet.Range["G18"].Formula?.ToString() ?? "";
                 if (!formulaG18.Contains("=IF([@[Years as Member]]>3,\"Yes\",\"No\")"))
-                    return "False(=IF([@[Years as Member]]>3,\"Yes\",\"No\"))";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -732,15 +732,15 @@ namespace MOS_EXCEL_LEARN
 
                 string formulaF5 = worksheet.Range["F5"].Formula?.ToString() ?? "";
                 if (!formulaF5.Contains("=LEFT([@[Policy Number ]],2)"))
-                    return "False(=LEFT([@[Policy Number ]],2))";
+                    return "False";
 
                 string formulaF18 = worksheet.Range["F18"].Formula?.ToString() ?? "";
                 if (!formulaF18.Contains("=LEFT([@[Policy Number ]],2)"))
-                    return "False(=LEFT([@[Policy Number ]],2))";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -754,15 +754,15 @@ namespace MOS_EXCEL_LEARN
 
                 string formulaG3 = worksheet.Range["G3"].Formula?.ToString() ?? "";
                 if (!formulaG3.Contains("=[@[Current Value]]*Increase"))
-                    return "False(=[@[Current Value]]*Increase)";
+                    return "False";
 
                 string formulaG54 = worksheet.Range["G54"].Formula?.ToString() ?? "";
                 if (!formulaG54.Contains("=[@[Current Value]]*Increase"))
-                    return "False(=[@[Current Value]]*Increase)";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -776,15 +776,15 @@ namespace MOS_EXCEL_LEARN
 
                 string formulaC4 = worksheet.Range["C4"].Formula?.ToString() ?? "";
                 if (!formulaC4.Contains("=[@[Quarter 1]]*Q2_Increase"))
-                    return "False(=[@[Quarter 1]]*Q2_Increase)";
+                    return "False";
 
                 string formulaC11 = worksheet.Range["C11"].Formula?.ToString() ?? "";
                 if (!formulaC11.Contains("=[@[Quarter 1]]*Q2_Increase"))
-                    return "False(=[@[Quarter 1]]*Q2_Increase)";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -798,11 +798,11 @@ namespace MOS_EXCEL_LEARN
 
                 string formulaB15 = worksheet.Range["B15"].Formula?.ToString() ?? "";
                 if (!formulaB15.Contains("=MAX(F4:F11)"))
-                    return "False(=MAX(F4:F11))";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -818,12 +818,12 @@ namespace MOS_EXCEL_LEARN
                 if (!formulaB28.Contains("=SUM(Total1,Total2,Total3)") &&
                     !formulaB28.Contains("=Total1+Total2+Total3"))
                 {
-                    return "False(=SUM(Total1,Total2,Total3))";
+                    return "False";
                 }
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -837,11 +837,11 @@ namespace MOS_EXCEL_LEARN
                 string formulaE35 = worksheet.Range["E35"].Formula?.ToString() ?? "";
 
                 if (!formulaE35.Contains("=COUNTBLANK(Table3[Exam 3])"))
-                    return "False(=COUNTBLANK(Table3[Exam 3]))";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";

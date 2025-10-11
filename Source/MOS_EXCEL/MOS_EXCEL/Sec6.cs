@@ -70,23 +70,23 @@ namespace MOS_EXCEL_LEARN
                 // 1. Tìm worksheet có tên "Customers"
                 Worksheet worksheet = workbook.Worksheets["Customers"] as Worksheet;
                 if (worksheet == null)
-                    return "False (ten trang tinh)";
+                    return "False";
 
                 // 2. Lấy bảng đầu tiên trong worksheet
                 if (worksheet.ListObjects.Count < 1)
-                    return "False (Table)";
+                    return "False";
 
                 ListObject table = worksheet.ListObjects[1];
 
                 // 3. Kiểm tra banded rows (hàng xen kẽ màu)
                 if (!table.ShowTableStyleRowStripes)
-                    return "False (banded rows)";
+                    return "False";
 
                 return "True";
             }
             catch
             {
-                return "False (Exception)";
+                return "False";
             }
         }
 
@@ -96,7 +96,7 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet sheet = wb.Worksheets["Customers"];
                 if (sheet == null)
-                    return "False (ten trang tinh)";
+                    return "False";
 
                 // Lấy dữ liệu các ô cần kiểm tra
                 string I499 = sheet.Range["I499"].Text.ToString();
@@ -111,21 +111,21 @@ namespace MOS_EXCEL_LEARN
 
                 // Kiểm tra điều kiện sort Level 1
                 if (I499 != "Canada" || I500 != "Canada" || I501 != "Canada")
-                    return "False(sort sai Level 1)";
+                    return "False";
 
                 // Kiểm tra điều kiện sort Level 2
                 if (G499 != "QC" || G2 != "AK")
-                    return "False(sort sai Level 2)";
+                    return "False";
 
                 // Kiểm tra điều kiện sort Level 3
                 if (H2 != "16202" || H4 != "64577")
-                    return "False(sort sai Level 3)";
+                    return "False";
 
                 return "True";
             }
             catch
             {
-                return "False (ten trang tinh)";
+                return "False";
             }
         }
 
@@ -135,24 +135,24 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet ws = wb.Worksheets["Inbound call"] as Worksheet;
                 if (ws == null)
-                    return "False (ten trang tinh)";
+                    return "False";
 
                 ListObject table = ws.ListObjects[1];
                 if (table == null)
-                    return "False (Table)";
+                    return "False";
 
                 if (!table.ShowTotals)
-                    return "False (Totals)";
+                    return "False";
 
                 return "True";
             }
             catch (System.Runtime.InteropServices.COMException)
             {
-                return "False (COM Error)";
+                return "False";
             }
             catch (Exception)
             {
-                return "False (Exception)";
+                return "False";
             }
         }
 
@@ -165,22 +165,22 @@ namespace MOS_EXCEL_LEARN
             {
                 worksheet = d.Worksheets["Donor List"] as Worksheet;
                 if (worksheet == null)
-                    return "False (ten trang tinh)";
+                    return "False";
             }
             catch
             {
-                return "False (ten trang tinh)";
+                return "False";
             }
 
             // Bước 2: Kiểm tra xem có Table nào trong sheet không
             try
             {
                 if (worksheet.ListObjects.Count > 0)
-                    return "False (convert table to range)";
+                    return "False";
             }
             catch
             {
-                return "False (something wrong)";
+                return "False";
             }
 
             return "True";
@@ -194,26 +194,26 @@ namespace MOS_EXCEL_LEARN
             {
                 worksheet = d.Worksheets["Donor List"] as Worksheet;
                 if (worksheet == null)
-                    return "False (ten trang tinh)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (ten trang tinh)";
+                return "False";
             }
 
             try
             {
                 if (worksheet.ListObjects.Count != 2)
-                    return "False (chuyen tu day o sang table)";
+                    return "False";
 
                 ListObject listObject = worksheet.ListObjects[2]; // index 2 là bảng thứ hai (1-based index)
 
                 if (listObject.ListRows.Count != 4)
-                    return "False (check vao table has headerRow khi insert table)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (something wrong)";
+                return "False";
             }
 
             return "True";
@@ -228,11 +228,11 @@ namespace MOS_EXCEL_LEARN
             {
                 worksheet = d.Worksheets["Demographics"] as Worksheet;
                 if (worksheet == null)
-                    return "False (Tên trang tính)";
+                    return "False";
             }
             catch
             {
-                return "False (Tên trang tính)";
+                return "False";
             }
 
             try
@@ -241,11 +241,11 @@ namespace MOS_EXCEL_LEARN
                 string value = cell.Value?.ToString().Trim();
 
                 if (value != "300")
-                    return "False (C5)";
+                    return "False";
             }
             catch
             {
-                return "False (Lỗi khi đọc ô C5)";
+                return "False";
             }
 
             return "True";
@@ -257,24 +257,24 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet worksheet = d.Worksheets["Donor List"] as Worksheet;
                 if (worksheet == null)
-                    return "False (Tên trang tính)";
+                    return "False";
 
                 ListObject listObject = worksheet.ListObjects["Table2"];
                 if (listObject == null)
-                    return "False (Tên bảng)";
+                    return "False";
 
                 string altText = listObject.AlternativeText;
                 if (string.IsNullOrWhiteSpace(altText))
-                    return "False (Chưa thêm alt text)";
+                    return "False";
 
                 if (altText != "Donor")
-                    return "False (Donor - Chuột phải chọn bảng → Alt Text)";
+                    return "False";
 
                 return "True";
             }
             catch (Exception ex)
             {
-                return "False (Lỗi không xác định)";
+                return "False";
             }
         }
 
@@ -284,21 +284,21 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet worksheet = d.Worksheets["New York City"] as Worksheet;
                 if (worksheet == null)
-                    return "False (Tên trang tính)";
+                    return "False";
 
                 string country = worksheet.Range["A7"].Text.ToString();
                 if (country != "China")
-                    return "False (Sai ở sort cấp 1)";
+                    return "False";
 
                 string city = worksheet.Range["B7"].Text.ToString();
                 if (city != "Beijing")
-                    return "False (Sai ở sort cấp 2)";
+                    return "False";
 
                 return "True";
             }
             catch (Exception ex)
             {
-                return "False (Lỗi không xác định)";
+                return "False";
             }
         }
 
@@ -308,7 +308,7 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet worksheet = d.Worksheets["New Accounts"] as Worksheet;
                 if (worksheet == null)
-                    return "False (Trang tính 'New Accounts' không tồn tại)";
+                    return "False";
 
                 try
                 {
@@ -316,7 +316,7 @@ namespace MOS_EXCEL_LEARN
                 }
                 catch
                 {
-                    return "False (Table bị chỉnh sửa hoặc không tồn tại tại A3)";
+                    return "False";
                 }
 
                 string cellA6 = worksheet.Range["A6"].Text.ToString();
@@ -327,7 +327,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch
             {
-                return "False (Lỗi không xác định)";
+                return "False";
             }
         }
 
@@ -338,7 +338,7 @@ namespace MOS_EXCEL_LEARN
                 // Truy cập worksheet tên "Classes"
                 Worksheet worksheet = workbook.Worksheets["Classes"] as Worksheet;
                 if (worksheet == null)
-                    return "Fales (trang tính Classes)";
+                    return "False";
 
                 // Truy cập vùng A4:F25
                 Range range = worksheet.Range["A4", "F25"];
@@ -351,7 +351,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch
             {
-                return "Fales (trang tính Classes)";
+                return "False";
             }
         }
 
@@ -364,11 +364,11 @@ namespace MOS_EXCEL_LEARN
             {
                 worksheet = workbook.Worksheets["Orders"] as Worksheet;
                 if (worksheet == null)
-                    return "Fales (trang tính Orders)";
+                    return "False";
             }
             catch
             {
-                return "Fales (trang tính Orders)";
+                return "False";
             }
 
             // Bước 2: Lấy bảng bắt đầu từ ô A1
@@ -378,30 +378,30 @@ namespace MOS_EXCEL_LEARN
                 Range range = worksheet.Range["A1"];
                 listObject = range.ListObject;
                 if (listObject == null)
-                    return "False (Table was modify)";
+                    return "False";
             }
             catch
             {
-                return "False (Table was modify)";
+                return "False";
             }
 
             // Bước 3: Kiểm tra filter trên cột đầu tiên
             try
             {
                 if (listObject.AutoFilter == null)
-                    return "False (Chưa áp dụng filter)";
+                    return "False";
 
                 Filter filter = listObject.AutoFilter.Filters[1];
                 if (!filter.On)
-                    return "False(filter trên cột 1 chưa bật)";
+                    return "False";
 
                 string criteria = filter.Criteria1?.ToString();
                 if (criteria != "=Alpine Ski House")
-                    return "False(filter cột 1 không chọn Alpine Ski House)";
+                    return "False";
             }
             catch
             {
-                return "False()";
+                return "False";
             }
 
             return "True";
@@ -416,11 +416,11 @@ namespace MOS_EXCEL_LEARN
             {
                 worksheet = workbook.Worksheets["Revenue"] as Worksheet;
                 if (worksheet == null)
-                    return "False (trang tính Revenue)";
+                    return "False";
             }
             catch
             {
-                return "False (trang tính Revenue)";
+                return "False";
             }
 
             // Bước 2: Kiểm tra ô A3 có trong một bảng hay không
@@ -430,11 +430,11 @@ namespace MOS_EXCEL_LEARN
                 Range rangeA3 = worksheet.Range["A3"];
                 a3Object = rangeA3.ListObject;
                 if (a3Object == null)
-                    return "False (A3)";
+                    return "False";
             }
             catch
             {
-                return "False (A3)";
+                return "False";
             }
 
             // Bước 3: Kiểm tra ô B7 có thuộc bảng, và bảng đó có đúng vùng không
@@ -444,11 +444,11 @@ namespace MOS_EXCEL_LEARN
                 Range rangeB7 = worksheet.Range["B7"];
                 listObject = rangeB7.ListObject;
                 if (listObject == null)
-                    return "False (B7)";
+                    return "False";
             }
             catch
             {
-                return "False (B7)";
+                return "False";
             }
 
             // Bước 4: Kiểm tra vùng của bảng có phải là $A$3:$B$7 không
@@ -461,11 +461,11 @@ namespace MOS_EXCEL_LEARN
                 );
 
                 if (address != "$A$3:$B$7")
-                    return $"False({address})";
+                    return "False";
             }
             catch
             {
-                return "False(chưa chuyển sang table)";
+                return "False";
             }
 
             //return listObject.TableStyle.Name.ToString();
@@ -476,12 +476,12 @@ namespace MOS_EXCEL_LEARN
                 if (listObject.TableStyle != null &&
                     listObject.TableStyle.Name.ToString() != "TableStyleLight14")
                 {
-                    return "False(sai kiểu)";
+                    return "False";
                 }
             }
             catch
             {
-                return "False(không xác định liên quan đến Kiểu)";
+                return "False";
             }
 
             return "True";
@@ -496,11 +496,11 @@ namespace MOS_EXCEL_LEARN
             {
                 worksheet = workbook.Worksheets["Last Semester"] as Worksheet;
                 if (worksheet == null)
-                    return "Fales (trang tính Last Semester)";
+                    return "False";
             }
             catch
             {
-                return "Fales (trang tính Last Semester)";
+                return "False";
             }
 
             // Bước 2: Kiểm tra xem ô B6 có thuộc một bảng không
@@ -508,11 +508,11 @@ namespace MOS_EXCEL_LEARN
             {
                 Range rangeB6 = worksheet.Range["B6"];
                 if (rangeB6.ListObject == null)
-                    return "False (Table was modify)";
+                    return "False";
             }
             catch
             {
-                return "False (Table was modify)";
+                return "False";
             }
 
             // Bước 3: So sánh nội dung ô B6
@@ -541,7 +541,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch
             {
-                return "False (trang tính New Policies)";
+                return "False";
             }
 
             ListObject tbl;
@@ -551,27 +551,27 @@ namespace MOS_EXCEL_LEARN
             }
             catch
             {
-                return "False (Table was modified)";
+                return "False";
             }
 
             if (!tbl.ShowTotals)
-                return "False (show dòng tổng)";
+                return "False";
 
             string b14 = ws.Range["B14"].Formula?.ToString();
             if (b14 != "=SUBTOTAL(109,[January])")
-                return "False (B14)";
+                return "False";
 
             string h14 = ws.Range["H14"].Formula?.ToString();
             if (h14 != "=SUBTOTAL(109,[Total])")
-                return "False (H14)";
+                return "False";
 
             string i14 = ws.Range["I14"].Formula?.ToString();
             if (!string.IsNullOrEmpty(i14))
-                return "False (I14)";
+                return "False";
 
             string j14 = ws.Range["J14"].Formula?.ToString();
             if (!string.IsNullOrEmpty(j14))
-                return "False (J14)";
+                return "False";
 
             return "True";
         }
@@ -585,7 +585,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch
             {
-                return "False (trang tính March)";
+                return "False";
             }
 
             ListObject tbl;
@@ -595,7 +595,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch
             {
-                return "False (Table was modify)";
+                return "False";
             }
 
             try
@@ -607,7 +607,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch
             {
-                return "False (không xác định)";
+                return "False";
             }
 
             return "True";
@@ -622,7 +622,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch
             {
-                return "False (trang tính Products)";
+                return "False";
             }
 
             ListObject tbl;
@@ -632,17 +632,17 @@ namespace MOS_EXCEL_LEARN
             }
             catch
             {
-                return "False (Table was modify)";
+                return "False";
             }
 
             try
             {
                 if (tbl.TableStyle.Name != "TableStyleMedium1")
-                    return "False (sai style)";
+                    return "False";
             }
             catch
             {
-                return "False (style không xác định)";
+                return "False";
             }
 
             return "True";
@@ -654,15 +654,15 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet worksheet = d.Worksheets["Region 1"] as Worksheet;
                 if (worksheet == null)
-                    return "False (trang tính Region 1)";
+                    return "False";
 
                 ListObject listObject = worksheet.Range["A3"]?.ListObject;
                 if (listObject == null)
-                    return "False (Table was modify)";
+                    return "False";
 
                 var sortFields = listObject.Sort.SortFields;
                 if (sortFields.Count < 2)
-                    return "False(chưa sort đủ 2 trường cùng lúc)";
+                    return "False";
 
                 var field1 = sortFields[1];
                 var field2 = sortFields[2];
@@ -685,18 +685,18 @@ namespace MOS_EXCEL_LEARN
                 );
 
                 if (address1 != "$A$4:$A$11")
-                    return "False(Product)";
+                    return "False";
                 if (field1.Order != XlSortOrder.xlAscending)
-                    return "False(Product->A to Z)";
+                    return "False";
 
                 if (address2 != "$F$4:$F$11")
-                    return "False(Total Sales)";
+                    return "False";
                 if (field2.Order != XlSortOrder.xlDescending)
-                    return "False(Total Sales->lớn đến nhỏ)";
+                    return "False";
             }
             catch
             {
-                return "False(chưa sort đủ 2 trường cùng lúc)";
+                return "False";
             }
 
             return "True";
@@ -708,24 +708,24 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet worksheet = d.Worksheets["Tasks"] as Worksheet;
                 if (worksheet == null)
-                    return "False (trang tính Tasks)";
+                    return "False";
 
                 Range cell = worksheet.get_Range("A3", "A3");
                 if (cell == null)
-                    return "False (ô A3 không tồn tại)";
+                    return "False";
 
                 ListObject listObject = cell.ListObject;
                 if (listObject == null)
-                    return "False (Table không tồn tại ở A3)";
+                    return "False";
 
                 if (!listObject.ShowTableStyleRowStripes)
-                    return "False (banded rows)";
+                    return "False";
 
                 return "True";
             }
             catch (Exception ex)
             {
-                return "False (" + ex.Message + ")";
+                return "False";
             }
         }
 
@@ -733,31 +733,36 @@ namespace MOS_EXCEL_LEARN
         {
             try
             {
-                Worksheet worksheet = null;
+                //Worksheet worksheet = null;
 
-                // Tìm sheet "Tasks"
-                foreach (Worksheet ws in d.Worksheets)
-                {
-                    if (ws.Name == "Tasks")
-                    {
-                        worksheet = ws;
-                        break;
-                    }
-                }
+                //// Tìm sheet "Tasks"
+                //foreach (Worksheet ws in d.Worksheets)
+                //{
+                //    if (ws.Name == "Tasks")
+                //    {
+                //        worksheet = ws;
+                //        break;
+                //    }
+                //}
 
+                //if (worksheet == null)
+                //    return "False (trang tính Tasks)";
+
+                Worksheet worksheet = d.Worksheets["Tasks"] as Worksheet;
                 if (worksheet == null)
-                    return "False (trang tính Tasks)";
+                    return "False";
 
                 // Lấy ô A3
                 Range cell = worksheet.Range["A3"];
                 if (cell == null)
-                    return "False (không tìm thấy ô A3)";
+                    return "False";
 
-                // Lấy ListObject từ ô A3
+                // Tìm bảng chứa ô A3
                 ListObject listObject = null;
                 foreach (ListObject lo in worksheet.ListObjects)
                 {
-                    if (lo.Range.get_Address(Type.Missing, Type.Missing, XlReferenceStyle.xlA1) == cell.get_Address(Type.Missing, Type.Missing, XlReferenceStyle.xlA1))
+                    Range intersect = worksheet.Application.Intersect(lo.Range, cell);
+                    if (intersect != null)
                     {
                         listObject = lo;
                         break;
@@ -765,17 +770,17 @@ namespace MOS_EXCEL_LEARN
                 }
 
                 if (listObject == null)
-                    return "False (Table was modified)";
+                    return "False";
 
                 // Kiểm tra tên bảng
-                if (listObject.Name != "Tasks")
-                    return "False (tên table)";
+                if (!string.Equals(listObject.Name, "Tasks", StringComparison.OrdinalIgnoreCase))
+                    return "False";
 
                 return "True";
             }
             catch (Exception)
             {
-                return "False (lỗi không xác định)";
+                return "False";
             }
         }
     }

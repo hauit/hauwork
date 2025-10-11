@@ -40,21 +40,21 @@ namespace MOS_EXCEL_LEARN
             {
                 worksheet = d.Worksheets["Materials"] as Worksheet;
                 if (worksheet == null)
-                    return "False (Ten trang tinh)";
+                    return "False";
             }
             catch
             {
-                return "False (Ten trang tinh)";
+                return "False";
             }
 
             try
             {
                 if (worksheet.PageSetup.RightHeader != "Confidential")
-                    return "False(Confidential)";
+                    return "False";
             }
             catch
             {
-                return "False (Right header)";
+                return "False";
             }
 
             return "True";
@@ -67,11 +67,11 @@ namespace MOS_EXCEL_LEARN
             {
                 worksheet = d.Worksheets["Materials"] as Worksheet;
                 if (worksheet == null)
-                    return "False (Materials worksheet not found)";
+                    return "False";
             }
             catch
             {
-                return "False (Materials worksheet not found)";
+                return "False";
             }
 
             try
@@ -80,15 +80,15 @@ namespace MOS_EXCEL_LEARN
                 Hyperlinks hyperlinks = cell.Hyperlinks;
 
                 if (hyperlinks.Count != 1)
-                    return "False (Number of hyperlink)";
+                    return "False";
 
                 Hyperlink link = hyperlinks[1];
                 if (link.SubAddress != "Categories!A18")
-                    return "False (" + link.SubAddress + ")";
+                    return "False";
             }
             catch
             {
-                return "False (Not apply hyperlink to A6)";
+                return "False";
             }
 
             return "True";
@@ -101,11 +101,11 @@ namespace MOS_EXCEL_LEARN
             {
                 worksheet = d.Worksheets["Shareholders Info"] as Worksheet;
                 if (worksheet == null)
-                    return "False (Shareholders Info worksheet not found)";
+                    return "False";
             }
             catch
             {
-                return "False (Shareholders Info worksheet not found)";
+                return "False";
             }
 
             try
@@ -114,19 +114,19 @@ namespace MOS_EXCEL_LEARN
                 Hyperlinks hyperlinks = cell.Hyperlinks;
 
                 if (hyperlinks.Count != 1)
-                    return "False (Number of hyperlink)";
+                    return "False";
 
                 Hyperlink link = hyperlinks[1];
 
                 if (!link.Address.Contains("tailspintoys.com/beyond.html"))
-                    return "False (" + link.Address + ")";
+                    return "False";
 
                 if (link.TextToDisplay != "More Info")
-                    return "False (More Info)";
+                    return "False";
             }
             catch
             {
-                return "False (Not apply hyperlink to C5)";
+                return "False";
             }
 
             return "True";
@@ -139,11 +139,11 @@ namespace MOS_EXCEL_LEARN
             {
                 worksheet = d.Worksheets["Summary"] as Worksheet;
                 if (worksheet == null)
-                    return "False (Summary worksheet not found)";
+                    return "False";
             }
             catch
             {
-                return "False (Summary worksheet not found)";
+                return "False";
             }
 
             try
@@ -152,19 +152,19 @@ namespace MOS_EXCEL_LEARN
                 Hyperlinks hyperlinks = cell.Hyperlinks;
 
                 if (hyperlinks.Count != 1)
-                    return "False (chèn hyperlink tại A2)";
+                    return "False";
 
                 Hyperlink link = hyperlinks[1];
 
                 if (!link.Address.Contains("www.nodpublishers.com"))
-                    return $"False ({link.Address})";
+                    return "False";
 
                 if (link.ScreenTip != "Company Website")
-                    return "False (Company Website)";
+                    return "False";
             }
             catch
             {
-                return "False (Not apply hyperlink to A2)";
+                return "False";
             }
 
             return "True";
@@ -178,21 +178,21 @@ namespace MOS_EXCEL_LEARN
             {
                 worksheet = d.Worksheets["Materials"] as Worksheet;
                 if (worksheet == null)
-                    return "False (Tên trang tính)";
+                    return "False";
             }
             catch
             {
-                return "False (Tên trang tính)";
+                return "False";
             }
 
             try
             {
                 if (worksheet.PageSetup.CenterFooter != "Page &P of &N")
-                    return "False (Page 1 of ?)";
+                    return "False";
             }
             catch
             {
-                return "False (Lỗi khi kiểm tra footer)";
+                return "False";
             }
 
             return "True";

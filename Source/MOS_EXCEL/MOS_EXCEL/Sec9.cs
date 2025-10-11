@@ -71,22 +71,26 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet worksheet = d.Worksheets["Materials"] as Worksheet;
                 if (worksheet == null)
-                    return "False (Không tìm thấy worksheet 'Materials')";
+                    return "False";
 
                 var pageSetup = worksheet.PageSetup;
 
-                if (pageSetup.Orientation != XlPageOrientation.xlLandscape)
-                    return "False (Không phải Landscape)";
+                //return pageSetup.Orientation.ToString() + XlPageOrientation.xlLandscape.ToString();
+
+                if (pageSetup.Orientation.ToString() != XlPageOrientation.xlLandscape.ToString())
+                    return "False";
+
+                //return pageSetup.FitToPagesWide.ToString() + pageSetup.FitToPagesTall.ToString();
 
                 if (pageSetup.FitToPagesWide != 1)
-                    return "False (FitToPagesWide ≠ 1)";
+                    return "False";
 
-                if (pageSetup.FitToPagesTall != 0)
-                    return "False (FitToPagesTall ≠ 0)";
+                if (pageSetup.FitToPagesTall == true)
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Lỗi kiểm tra PageSetup)";
+                return "False";
             }
 
             return "True";
@@ -98,14 +102,14 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet worksheet = d.Worksheets["roster"] as Worksheet;
                 if (worksheet == null)
-                    return "False (Không tìm thấy worksheet 'roster')";
+                    return "False";
 
                 if (worksheet.PageSetup.PrintTitleRows != "$7:$7")
-                    return "False (PrintTitleRows ≠ $7:$7)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Lỗi kiểm tra PageSetup)";
+                return "False";
             }
 
             return "True";
@@ -122,11 +126,11 @@ namespace MOS_EXCEL_LEARN
                     ?.ToString();
 
                 if (companyName != "Lucerne Publishing")
-                    return "False (Lucerne Publishing)";
+                    return "False";
             }
             catch
             {
-                return "False(add company)";
+                return "False";
             }
 
             return "True";
@@ -140,13 +144,13 @@ namespace MOS_EXCEL_LEARN
                 string textInE32 = ws.Range["E32"].Text;
 
                 if (textInE32 == "=AVERAGE(E2:E30)")
-                    return "False(file->option show formular)";
+                    return "False";
             }
             catch (Exception ex)
             {
                 return ex.Message.Contains("Living Online")
-                    ? "Fales (ten trang tinh)"
-                    : "False (Something not finish!)";
+                    ? "False"
+                    : "False";
             }
 
             return "True";
@@ -160,13 +164,13 @@ namespace MOS_EXCEL_LEARN
                 string textInF6 = ws.Range["F6"].Text;
 
                 if (textInF6 == "=AVERAGE(Table2[@[April]:[June]])")
-                    return "False(file->option show formular)";
+                    return "False";
             }
             catch (Exception ex)
             {
                 if (ex.Message.Contains("Q2 Sales"))
-                    return "Fales (ten trang tinh)";
-                return "False (Something not finish!)";
+                    return "False";
+                return "False";
             }
 
             return "True";
@@ -183,11 +187,11 @@ namespace MOS_EXCEL_LEARN
                                   BindingFlags.GetProperty, null, titleProp, new object[0]).ToString();
 
                 if (titleValue != "2015")
-                    return $"False ({titleValue})";
+                    return "False";
             }
             catch
             {
-                return "False(add title)";
+                return "False";
             }
 
             return "True";
@@ -205,25 +209,25 @@ namespace MOS_EXCEL_LEARN
 
                         // Kiểm tra Zoom phải là False
                         if (ps.Zoom != false)
-                            return $"False({ws.Name})";
+                            return "False";
 
                         // Kiểm tra FitToPagesWide == 1
                         if (ps.FitToPagesWide != 1)
-                            return $"False(Wide=1 of {ws.Name})";
+                            return "False";
 
                         // Kiểm tra FitToPagesTall == 1
                         if (ps.FitToPagesTall != 1)
-                            return $"False(Tall=1 of {ws.Name})";
+                            return "False";
                     }
                     catch
                     {
-                        return "False (Something not finish!)";
+                        return "False";
                     }
                 }
             }
             catch
             {
-                return "Fales (ten trang tinh)";
+                return "False";
             }
 
             return "True";
@@ -236,11 +240,11 @@ namespace MOS_EXCEL_LEARN
                 Worksheet worksheet = d.Worksheets["Inbound call"];
 
                 if (worksheet.PageSetup.PrintArea != "$A$1:$C$19")
-                    return "False($A$1:$C$19)";
+                    return "False";
             }
             catch
             {
-                return "False (ten trang tinh hoac loi khac)";
+                return "False";
             }
 
             return "True";
@@ -256,18 +260,18 @@ namespace MOS_EXCEL_LEARN
             }
             catch
             {
-                return "False (ten trang tinh)";
+                return "False";
             }
 
             try
             {
                 string cellText = worksheet.get_Range("F6", "F6").Text.ToString();
                 if (cellText != "=AVERAGE(Table2[@[April]:[June]])")
-                    return "False(file->option show formulas)";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -297,7 +301,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch
             {
-                return "False(something wrong)";
+                return "False";
             }
 
             return "True"; // Subject không có giá trị
@@ -309,15 +313,15 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet worksheet = workbook.Worksheets["Expenses"] as Worksheet;
                 if (worksheet == null)
-                    return "Fales (Tên Trang Tính)";
+                    return "False";
 
                 string printArea = worksheet.PageSetup.PrintArea;
                 if (printArea != "$B$5:$D$52")
-                    return "False($B$5:$D$52)";
+                    return "False";
             }
             catch
             {
-                return "Fales (Tên Trang Tính)";
+                return "False";
             }
 
             return "True";
@@ -329,14 +333,14 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet worksheet = d.Worksheets["Scholarships"] as Worksheet;
                 if (worksheet == null)
-                    return "Fales (ten trang tinh)";
+                    return "False";
 
                 if (worksheet.PageSetup.PrintTitleColumns != "$A:$A")
-                    return "False($A:$A)";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -348,14 +352,14 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet worksheet = d.Worksheets["Q2 Sales"] as Worksheet;
                 if (worksheet == null)
-                    return "Fales (ten trang tinh)";
+                    return "False";
 
                 if (worksheet.PageSetup.BottomMargin != 54.0 || worksheet.PageSetup.LeftMargin != 18.0)
-                    return "False(Build In)";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -370,17 +374,17 @@ namespace MOS_EXCEL_LEARN
                     return "Fales (ten trang tinh)";
 
                 if (worksheet.PageSetup.TopMargin != 72.0)
-                    return "False(Top)";
+                    return "False";
                 if (worksheet.PageSetup.BottomMargin != 72.0)
-                    return "False(Bottom)";
+                    return "False";
                 if (worksheet.PageSetup.LeftMargin != 108.0)
-                    return "False(Left)";
+                    return "False";
                 if (worksheet.PageSetup.RightMargin != 108.0)
-                    return "False(Right)";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -393,16 +397,16 @@ namespace MOS_EXCEL_LEARN
                 // Sheet 1: "Games"
                 Worksheet worksheet1 = d.Worksheets["Games"] as Worksheet;
                 if (worksheet1 == null)
-                    return "Fales (ten trang tinh)";
+                    return "False";
 
                 if (worksheet1.ListObjects["Table2"].AlternativeText != "data")
-                    return "False(data)";
+                    return "False";
                 if (worksheet1.ListObjects["Table3"].AlternativeText != "data")
-                    return "False(data)";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             try
@@ -410,17 +414,17 @@ namespace MOS_EXCEL_LEARN
                 // Sheet 2: "Shareholders Info"
                 Worksheet worksheet2 = d.Worksheets["Shareholders Info"] as Worksheet;
                 if (worksheet2 == null)
-                    return "Fales (ten trang tinh)";
+                    return "False";
 
                 if (worksheet2.ListObjects["Table1"].AlternativeText != "data")
-                    return "False(data)";
+                    return "False";
 
                 if (worksheet2.Shapes.Item("Chart 1").Title != "data")
-                    return "False(data)";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -455,7 +459,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch
             {
-                return "False(something wrong)";
+                return "False";
             }
 
             return "True";
@@ -471,18 +475,18 @@ namespace MOS_EXCEL_LEARN
             }
             catch
             {
-                return "False (tên trang tính)";
+                return "False";
             }
 
             try
             {
                 // Kiểm tra vùng in
                 if (worksheet.PageSetup.PrintArea != "$A$4:$F$20")
-                    return "False (vùng in là $A$4:$F$20)";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -498,7 +502,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch
             {
-                return "False (tên trang tính)";
+                return "False";
             }
 
             try
@@ -508,11 +512,11 @@ namespace MOS_EXCEL_LEARN
 
                 // Nếu không đúng công thức hiển thị, tức là chưa bật chế độ "Show formulas"
                 if (cellText != "=AVERAGE(Table2[@[April]:[June]])")
-                    return "False (file->option show formula)";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -528,7 +532,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch
             {
-                return "False (tên trang tính)";
+                return "False";
             }
 
             try
@@ -538,11 +542,11 @@ namespace MOS_EXCEL_LEARN
 
                 // So sánh với công thức mong muốn (ở chế độ hiển thị công thức)
                 if (cellText != "=AVERAGE(Table2[@[April]:[June]])")
-                    return "False (file->option show formula)";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -558,7 +562,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch
             {
-                return "False (tên trang tính)";
+                return "False";
             }
 
             try
@@ -568,11 +572,11 @@ namespace MOS_EXCEL_LEARN
 
                 // Nếu vẫn đang hiển thị công thức, thì sai
                 if (cellText == "=AVERAGE(Table2[@[April]:[June]])")
-                    return "False (file->option show formula)";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";

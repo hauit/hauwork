@@ -77,7 +77,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -94,13 +94,13 @@ namespace MOS_EXCEL_LEARN
                 string valueA17 = cellA17?.Text?.ToString()?.Trim() ?? "";
 
                 if (!string.Equals(valueA17, "RANCH", StringComparison.OrdinalIgnoreCase))
-                    return "False (comma)";
+                    return "False";
 
                 return "True";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -115,18 +115,18 @@ namespace MOS_EXCEL_LEARN
                 // Kiểm tra ô A2 có phải là "Mark Bebbington" hay không
                 string cellA2 = worksheet.Range["A2"].Text?.ToString()?.Trim();
                 if (!string.Equals(cellA2, "Mark Bebbington", StringComparison.OrdinalIgnoreCase))
-                    return "False (A2)";
+                    return "False";
 
                 // Kiểm tra ô C6 có phải là "Platinum" hay không
                 string cellC6 = worksheet.Range["C6"].Text?.ToString()?.Trim();
                 if (!string.Equals(cellC6, "Platinum", StringComparison.OrdinalIgnoreCase))
-                    return "False (C6)";
+                    return "False";
 
                 return "True";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -138,15 +138,15 @@ namespace MOS_EXCEL_LEARN
 
                 string cellA2 = worksheet.get_Range("A2", "A2").Text.ToString();
                 if (cellA2 != "Rank")
-                    return "False (A2)";
+                    return "False";
 
                 string cellG27 = worksheet.get_Range("G27", "G27").Text.ToString();
                 if (cellG27 != "London")
-                    return "False (G27)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -161,15 +161,15 @@ namespace MOS_EXCEL_LEARN
 
                 string a2 = ws.Range["A2"].Text.ToString();
                 if (a2 != "Daniel P. Taylor")
-                    return "False (A2)";
+                    return "False";
 
                 string c2 = ws.Range["C2"].Text.ToString();
                 if (c2 != "Charles Fitzgerald")
-                    return "False (C2)";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -186,14 +186,14 @@ namespace MOS_EXCEL_LEARN
                 string h46 = ws.Range["H46"].Text.ToString();
 
                 if (f2 != "64043" || f3 != "64043")
-                    return "False(thay thế tất cả)";
+                    return "False";
 
                 if (h46 != "314-555-64044")
-                    return "False(Chỉ thay thế trên cột F)";
+                    return "False";
             }
             catch
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -209,20 +209,20 @@ namespace MOS_EXCEL_LEARN
                 worksheet.Range["C27"].Text.ToString() != "Silver Total" ||
                 worksheet.Range["C67"].Text.ToString() != "Platinum Total")
             {
-                return "False(chọn group trên Annual Donations Hàm Sum)";
+                return "False";
             }
 
             // Kiểm tra giá trị ô B67
             string cellB67 = worksheet.Range["B67"].Text.ToString();
             if (cellB67 != "$38,021.00 ")
             {
-                return "False(Sum trên Donation Level)";
+                return "False";
             }
 
             // Kiểm tra số lượng page break ngang
             if (worksheet.HPageBreaks.Count != 4)
             {
-                return "False(check vào Page break between group)";
+                return "False";
             }
 
             return "True";
@@ -236,26 +236,26 @@ namespace MOS_EXCEL_LEARN
 
                 string c16 = worksheet.Range["C16"].Text?.ToString();
                 if (c16 != "Bronze Count")
-                    return "False(chọn group trên Annual Donations hàm count)";
+                    return "False";
 
                 string c27 = worksheet.Range["C27"].Text?.ToString();
                 if (c27 != "Silver Count")
-                    return "False(chọn group trên Annual Donations hàm count)";
+                    return "False";
 
                 string c67 = worksheet.Range["C67"].Text?.ToString();
                 if (c67 != "Platinum Count")
-                    return "False(chọn group trên Annual Donations hàm count)";
+                    return "False";
 
                 string a67 = worksheet.Range["A67"].Text?.ToString();
                 if (a67 != "28")
-                    return "False(Count trên Name)";
+                    return "False";
 
                 if (worksheet.HPageBreaks.Count != 4)
-                    return "False(check vào Page break between group)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -267,11 +267,11 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet worksheet = d.Worksheets["Exchange Rates"];
                 if (worksheet == null)
-                    return "False 1";
+                    return "False";
 
                 Range cellRange = worksheet.Range["A7", "D8"];
                 if (cellRange == null)
-                    return "False 2";
+                    return "False";
 
                 // Duyệt qua từng ô trong vùng
                 foreach (Range cell in cellRange.Cells)
@@ -281,13 +281,13 @@ namespace MOS_EXCEL_LEARN
                     if (val != null && val != DBNull.Value && val.ToString().Trim() != "")
                     {
                         // Nếu có ít nhất 1 ô có dữ liệu → sai
-                        return "False (Sheet Exchange Rates ô " + cell.Address + " còn dữ liệu)";
+                        return "False";
                     }
                 }
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -309,7 +309,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -322,20 +322,20 @@ namespace MOS_EXCEL_LEARN
                 Worksheet ws = wb.Worksheets["Quote"];
 
                 string e12 = ws.Range["E12", "E12"].Text.ToString();
-                if (e12 != "Quantity")
-                    return "False (E12)";
+                if (e12.Trim() != "Quantity")
+                    return "False";
 
                 string f12 = ws.Range["F12", "F12"].Text.ToString();
-                if (f12 != "Unit Price")
-                    return "False (F12)";
+                if (f12.Trim() != "Unit Price")
+                    return "False";
 
                 string f30 = ws.Range["F30", "F30"].Text.ToString();
-                if (f30 != "Total")
-                    return "False (F30)";
+                if (f30.Trim() != "Total")
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -350,19 +350,19 @@ namespace MOS_EXCEL_LEARN
 
                 string e12 = sheet.Range["E12"].Text?.ToString().Trim();
                 if (e12 != "Quantity")
-                    return "False (E12)";
+                    return "False";
 
                 string f12 = sheet.Range["F12"].Text?.ToString();
                 if (f12 != "Unit Price ") // có dấu cách ở cuối
-                    return "False (F12)";
+                    return "False";
 
                 string f30 = sheet.Range["F30"].Text?.ToString().Trim();
                 if (f30 != "Total")
-                    return "False (F30)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -384,7 +384,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -401,7 +401,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch (Exception)
             {
-                return "Fales (Ten trang tinh)"; // Có thể bạn muốn viết là "False"?
+                return "False";
             }
 
             try
@@ -412,12 +412,12 @@ namespace MOS_EXCEL_LEARN
 
                 if (cellValue != "300")
                 {
-                    return "False(C5)";
+                    return "False";
                 }
             }
             catch (Exception)
             {
-                return "False (something wrong)";
+                return "False";
             }
 
             return "True";

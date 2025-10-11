@@ -47,19 +47,19 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet worksheet = d.Worksheets["Products"] as Worksheet;
                 if (worksheet == null)
-                    return "False (Không tìm thấy sheet 'Products')";
+                    return "False";
 
                 Range range = worksheet.get_Range("D2", "D32");
                 if (range == null)
-                    return "False (Không lấy được vùng D2:D32)";
+                    return "False";
 
                 string numberFormat = range.NumberFormat?.ToString();
                 if (numberFormat != "0.000")
-                    return "False(chuỗi định dạng phải là: 0.000)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -72,23 +72,23 @@ namespace MOS_EXCEL_LEARN
             {
                 Worksheet worksheet = d.Worksheets["Materials"] as Worksheet;
                 if (worksheet == null)
-                    return "False (Không tìm thấy sheet 'Materials')";
+                    return "False";
 
                 Range range = worksheet.get_Range("A1", "N1");
                 if (range == null)
-                    return "False (Không lấy được vùng A1:N1)";
+                    return "False";
 
                 // Kiểm tra MergeCells
                 if (!(range.MergeCells is bool merged) || !merged)
-                    return "False(MergeCell)";
+                    return "False";
 
                 // Kiểm tra canh lề ngang (1 = xlLeft)
                 if (!(range.HorizontalAlignment is int alignment) || alignment != 1)
-                    return "False(không thay đổi canh lề)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -115,7 +115,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -151,7 +151,7 @@ namespace MOS_EXCEL_LEARN
                 // Nếu toàn vùng bị merge 1 khối → sai
                 object fullRangeVal = fullRange.MergeCells;
                 if (fullRange.MergeCells != null && fullRangeVal != DBNull.Value && (bool)fullRange.MergeCells)
-                    return "False(chọn merge across)";
+                    return "False";
 
                 // Duyệt từng dòng để đảm bảo mỗi hàng được merge across
                 for (int row = 12; row <= 18; row++)
@@ -160,16 +160,12 @@ namespace MOS_EXCEL_LEARN
                     object mergeValue = rowRange.MergeCells;
 
                     if (mergeValue == null || mergeValue == DBNull.Value || (bool)mergeValue == false)
-                        return $"False(chọn merge across tại hàng {row})";
+                        return "False";
                 }
-
-                // Nếu qua hết mà ok
-                return "True";
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                //return "False (Something not finish!)";
-                return ex.ToString();
+                return "False";
             }
 
             return "True";
@@ -186,15 +182,15 @@ namespace MOS_EXCEL_LEARN
 
                 Range cellA2 = worksheet.Range["A2"];
                 if (!(bool)cellA2.WrapText)
-                    return "False(dong 2)";
+                    return "False";
 
                 Range cellA3 = worksheet.Range["A3"];
                 if (!(bool)cellA3.WrapText)
-                    return "False(dong 3)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -213,11 +209,11 @@ namespace MOS_EXCEL_LEARN
                 string numberFormat = range.NumberFormat as string;
 
                 if (numberFormat != "0.00")
-                    return "False (hien thi so duoi dang 0.00)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -233,11 +229,11 @@ namespace MOS_EXCEL_LEARN
                 string styleName = range.Style.Name;
 
                 if (styleName != "Title")
-                    return $"False({styleName})";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -253,11 +249,11 @@ namespace MOS_EXCEL_LEARN
                 int horizontalAlign = (int)range.HorizontalAlignment;
 
                 if (horizontalAlign != -4131)  // -4131 == xlLeft
-                    return "False(Left)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -275,19 +271,19 @@ namespace MOS_EXCEL_LEARN
 
                 // Kiểm tra A1 đã merge chưa
                 if (!(bool)a1.MergeCells)
-                    return "False(copy định dang)";
+                    return "False";
 
                 // Kiểm tra A1 căn giữa (1 == xlCenter)
                 if ((int)a1.HorizontalAlignment != 1)
-                    return "False(copy định dang)";
+                    return "False";
 
                 // Kiểm tra A1 có màu nền là 14408667 không
                 if ((int)(a1.Interior.Color) != 14408667)
-                    return "False(copy định dang)";
+                    return "False";
 
                 // Kiểm tra A2 đã merge chưa
                 if (!(bool)a2.MergeCells)
-                    return "False(copy định dang)";
+                    return "False";
 
                 // Kiểm tra A2 căn giữa
                 if ((int)a2.HorizontalAlignment != 1)
@@ -295,7 +291,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";

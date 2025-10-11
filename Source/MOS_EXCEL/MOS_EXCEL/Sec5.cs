@@ -43,28 +43,28 @@ namespace MOS_EXCEL_LEARN
             {
                 worksheet = d.Worksheets["Fiction"] as Worksheet;
                 if (worksheet == null)
-                    return "False (tên trang tính)";
+                    return "False";
             }
             catch
             {
-                return "False (tên trang tính)";
+                return "False";
             }
 
             try
             {
                 if (worksheet.Shapes.Count != 1)
-                    return "False (Number of picture)";
+                    return "False";
 
                 Microsoft.Office.Interop.Excel.Shape picture = worksheet.Shapes.Item("picture 1");
                 if (picture == null)
-                    return "False (không tìm thấy hình)";
+                    return "False";
 
                 if (picture.Rotation != 0)
-                    return "False (quay 0 độ)";
+                    return "False";
             }
             catch
             {
-                return "False (Number of picture)";
+                return "False";
             }
 
             return "True";
@@ -79,27 +79,27 @@ namespace MOS_EXCEL_LEARN
             {
                 worksheet = d.Worksheets["October"] as Worksheet;
                 if (worksheet == null)
-                    return "False (tên trang tính)";
+                    return "False";
             }
             catch
             {
-                return "False (tên trang tính)";
+                return "False";
             }
 
             try
             {
                 if (worksheet.Shapes.Count != 2)
-                    return "False (add picture)";
+                    return "False";
 
                 var shape = worksheet.Shapes.Item(2);
                 if ((double)shape.Left < 400.0)
-                    return "False (di chuyển đến bên phải tiêu đề)";
+                    return "False";
                 if ((double)shape.Top > 100.0)
-                    return "False (di chuyển đến sau tiêu đề)";
+                    return "False";
             }
             catch
             {
-                return "False (chèn hình)";
+                return "False";
             }
 
             return "True";
@@ -114,34 +114,34 @@ namespace MOS_EXCEL_LEARN
             {
                 worksheet = d.Worksheets["Non_Fiction"] as Worksheet;
                 if (worksheet == null)
-                    return "False (ten trang tinh)";
+                    return "False";
             }
             catch
             {
-                return "False (ten trang tinh)";
+                return "False";
             }
 
             try
             {
                 // Kiểm tra số lượng hình vẽ
                 if (worksheet.Shapes.Count != 1)
-                    return "False (khong them xoa hinh)";
+                    return "False";
 
                 var shape = worksheet.Shapes.Item(1);
 
                 // Kiểm tra hiệu ứng hình ảnh
                 if (shape.Fill.PictureEffects.Count != 1)
-                    return "False (chi remove background)";
+                    return "False";
                 if (shape.Fill.PictureEffects[1].Type != MsoPictureEffectType.msoEffectBackgroundRemoval)
-                    return "False (remove background)";
+                    return "False";
 
                 // Kiểm tra Pattern Fill
                 if (shape.Fill.Pattern != MsoPatternType.msoPattern20Percent)
-                    return "False (Fill Pattern20)";
+                    return "False";
             }
             catch
             {
-                return "False (khong them xoa hinh)";
+                return "False";
             }
 
             return "True";
@@ -155,25 +155,25 @@ namespace MOS_EXCEL_LEARN
             {
                 worksheet = workbook.Worksheets["Summary"] as Worksheet;
                 if (worksheet == null)
-                    return "False (ten trang tinh)";
+                    return "False";
             }
             catch
             {
-                return "False (ten trang tinh)";
+                return "False";
             }
 
             try
             {
                 if (worksheet.Shapes.Count != 1)
-                    return "False (khong them xoa đối tượng)";
+                    return "False";
 
                 Microsoft.Office.Interop.Excel.Shape shape = worksheet.Shapes.Item(1);
                 if (shape.AlternativeText != "Renewal data")
-                    return "False (sai chính tả)";
+                    return "False";
             }
             catch
             {
-                return "False (khong them xoa hinh)";
+                return "False";
             }
 
             return "True";
@@ -188,30 +188,30 @@ namespace MOS_EXCEL_LEARN
             {
                 worksheet = d.Worksheets["Summary"] as Worksheet;
                 if (worksheet == null)
-                    return "False (không tìm thấy trang Summary)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (lỗi khi truy cập trang Summary)";
+                return "False";
             }
 
             // Bước 2: Kiểm tra số lượng shape
             try
             {
                 if (worksheet.Shapes.Count != 1)
-                    return "False (không thêm/xóa đối tượng shape)";
+                    return "False";
 
                 Microsoft.Office.Interop.Excel.Shape shape = worksheet.Shapes.Item(1);
 
                 if (shape.Type != MsoShapeType.msoAutoShape)
-                    return "False (không phải là AutoShape)";
+                    return "False";
 
                 if (shape.AutoShapeType != MsoAutoShapeType.msoShapeVerticalScroll)
-                    return "False (không phải hình dạng cuộn dọc)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (lỗi khi kiểm tra shape)";
+                return "False";
             }
 
             return "True";
@@ -224,33 +224,33 @@ namespace MOS_EXCEL_LEARN
             {
                 worksheet = d.Worksheets["Olympic Men Single Sculls"] as Worksheet;
                 if (worksheet == null)
-                    return "False (Not found Olympic Men Single Sculls Worksheet)";
+                    return "False";
             }
             catch
             {
-                return "False (Not found Olympic Men Single Sculls Worksheet)";
+                return "False";
             }
 
             try
             {
                 if (worksheet.Shapes.Count != 1)
-                    return "False (Number of Shape)";
+                    return "False";
 
                 var shape = worksheet.Shapes.Item(1);
                 if (shape.Type != MsoShapeType.msoAutoShape)
-                    return "False (not AutoShape)";
+                    return "False";
 
                 if (shape.AutoShapeType != MsoAutoShapeType.msoShapeVerticalScroll)
-                    return "False (wrong AutoShapeType)";
+                    return "False";
 
                 var text = shape.TextFrame2.TextRange.Text;
                 var expectedText = "Top experts - from trail runners to CEOs to beloved authors - reveal the trails that fuel their dreams.";
                 if (text != expectedText)
-                    return "False (wrong text)";
+                    return "False";
             }
             catch
             {
-                return "False (Shape error)";
+                return "False";
             }
 
             return "True";
