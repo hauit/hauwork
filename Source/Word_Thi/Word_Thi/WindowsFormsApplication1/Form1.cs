@@ -692,12 +692,14 @@ namespace MOS_WORD_TEST
                 this.ChamDiem();
                 if (currentProject.ProjectIndex == currentExam.ProjectIndex[6].ProjectIndex)
                 {
-                    this.next = 0;
-                    string str = "Kết quả của " + Home.thongtin + " = Đúng " + (object)this.So_Cau_Dung + "câu; Sai " + (object)this.So_Cau_Sai + " câu => Điểm: " + (1000.0 / (double)(this.So_Cau_Dung + this.So_Cau_Sai) * (double)this.So_Cau_Dung).ToString("#,##0.0");
-                    this.luuDiem(str);
-                    int num = (int)MessageBox.Show(str);
-                    this.So_Cau_Dung = 0;
-                    this.So_Cau_Sai = 0;
+                    button2_Click(null, null);
+                    return;
+                    //this.next = 0;
+                    //string str = "Kết quả của " + Home.thongtin + " = Đúng " + (object)this.So_Cau_Dung + "câu; Sai " + (object)this.So_Cau_Sai + " câu => Điểm: " + (1000.0 / (double)(this.So_Cau_Dung + this.So_Cau_Sai) * (double)this.So_Cau_Dung).ToString("#,##0.0");
+                    //this.luuDiem(str);
+                    //int num = (int)MessageBox.Show(str);
+                    //this.So_Cau_Dung = 0;
+                    //this.So_Cau_Sai = 0;
                 }
                 else
                     ++this.next;
