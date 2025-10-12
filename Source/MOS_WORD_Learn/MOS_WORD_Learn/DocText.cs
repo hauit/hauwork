@@ -101,11 +101,11 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Tables.Count != 9)
-                    return "False(table.count:" + (object)d.Tables.Count + ")";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -127,7 +127,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -146,7 +146,7 @@ namespace MOS_WORD_LEARN
                 Range r1 = FindRange("Contest");
                 Range r2 = FindRange("The Dirty Details");
                 if (r1 == null || r2 == null)
-                    return "False (Cannot find 'Contest' or 'The Dirty Details')";
+                    return "False";
                 var c = r1.Font;
                 var b = r2.Font;
                 if ( r1.Font.Name != r2.Font.Name ||
@@ -156,11 +156,11 @@ namespace MOS_WORD_LEARN
                        r1.Font.Underline != r2.Font.Underline ||
                        r1.Font.Color != r2.Font.Color ||
                        r1.HighlightColorIndex != r2.HighlightColorIndex)
-                    return "False (Format not same)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -176,7 +176,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -190,7 +190,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -203,11 +203,11 @@ namespace MOS_WORD_LEARN
                 while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Learning WareWolf™"))
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False(Learning WareWolf™)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -221,7 +221,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -234,15 +234,15 @@ namespace MOS_WORD_LEARN
                 while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Rehearse and Video Your Presentation"))
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False (Rehearse and Video Your Presentation)";
+                    return "False";
                 if (!d.Paragraphs[Index + 3].Range.Text.Contains("Summarize Main Points"))
-                    return "False(Cut not copy)";
+                    return "False";
                 if (!d.Paragraphs[Index + 5].Range.Text.Contains("You can easily change the formatting"))
-                    return "False(paste between two paragraph)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -256,7 +256,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -278,7 +278,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -300,7 +300,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -317,7 +317,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -330,13 +330,13 @@ namespace MOS_WORD_LEARN
                 while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Keep it Simple"))
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False (Keep it Simple)";
+                    return "False";
                 if (!d.Paragraphs[Index + 1].Range.Text.Contains("you specify directly."))
-                    return "False(delete first paragraph after the 5th heading)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -350,7 +350,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -367,7 +367,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -381,7 +381,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -395,7 +395,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -413,7 +413,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -423,15 +423,15 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (!d.Paragraphs[6].Range.Text.Contains("Fourth Coffee"))
-                    return "False(paste Fourth Coffee vao cuoi doan 5)";
+                    return "False";
                 if (d.Paragraphs[6].Range.ParagraphFormat.Alignment != WdParagraphAlignment.wdAlignParagraphLeft)
-                    return "False(paste Merge)";
+                    return "False";
                 if (d.Paragraphs[6].Range.Font.Bold != 9999999)
-                    return "False(paste Merge)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -441,11 +441,11 @@ namespace MOS_WORD_LEARN
             try
             {
                 if ((double)d.Paragraphs[1].Range.Font.Size != 11.0)
-                    return "False(Clear formating)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -455,13 +455,13 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Paragraphs[1].Range.Font.Name != "Algerian")
-                    return "False(Algerian)";
+                    return "False";
                 if (d.Paragraphs[1].Range.Font.Underline != WdUnderline.wdUnderlineThick)
-                    return "False(lineThick)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -471,17 +471,17 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Bookmarks.Count != 1)
-                    return "False(add bookmark)";
+                    return "False";
                 object Index1 = (object)1;
                 if (d.Bookmarks[ref Index1].Range.Text != null)
-                    return "False(bookmark cho textBox)";
+                    return "False";
                 object Index2 = (object)1;
                 if (d.Bookmarks[ref Index2].StoryType != WdStoryType.wdTextFrameStory)
-                    return "False()";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -500,7 +500,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -514,13 +514,13 @@ namespace MOS_WORD_LEARN
                 while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains(str))
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False(Special Thanks)";
+                    return "False";
                 if (d.Paragraphs[Index + 1].Range.Text != "\r")
                     return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -531,17 +531,17 @@ namespace MOS_WORD_LEARN
             {
                 object Index = (object)"Rectangle 5";
                 if (d.Shapes[ref Index].TextFrame.TextRange.Text != "\r")
-                    return "False(cut nguyen doan)";
+                    return "False";
                 if (d.Paragraphs[5].Range.ParagraphFormat.Alignment != WdParagraphAlignment.wdAlignParagraphLeft)
-                    return "False(Paste Merge)";
+                    return "False";
                 if (!d.Paragraphs[5].Range.Text.Contains("ABOUT OUR COFFEE"))
-                    return "False(move chu xuong doan 4)";
+                    return "False";
                 if (d.Paragraphs.Count != 8)
-                    return "False(Paste Merge)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -551,11 +551,11 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (!d.Paragraphs[6].Range.Text.Contains("Wilderness Summary©"))
-                    return "False(Wilderness Summary©)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -565,11 +565,11 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (!d.Paragraphs[1].Range.Text.Contains("Barstow™ College"))
-                    return "False(Barstow™ College)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -579,11 +579,11 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (!d.Paragraphs[1].Range.Text.Contains("Barstow College®"))
-                    return "False(Barstow College®)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -593,17 +593,17 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Paragraphs[4].Range.Text.Contains("in the embed code"))
-                    return "False(in the embed code)";
+                    return "False";
                 if (!d.Paragraphs[6].Range.Text.Contains("new look"))
-                    return "False(new look)";
+                    return "False";
                 if (d.Paragraphs[8].Range.Text.Contains("and SmartArt"))
-                    return "False(and SmartArt)";
+                    return "False";
                 if (d.Paragraphs[10].Range.Characters[5].Font.Bold == -1)
-                    return "False(không chấp nhận định dạng)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -622,15 +622,15 @@ namespace MOS_WORD_LEARN
                     }
                 }
                 if (Index1 == 0)
-                    return "False(khồng chỉnh sửa văn bảng)";
+                    return "False";
                 if (d.Paragraphs[Index1].Range.Font.Bold == -1)
-                    return "False(clear format)";
+                    return "False";
                 if (d.Paragraphs[Index1].Range.Font.Italic == -1)
-                    return "False(clear format)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -649,13 +649,13 @@ namespace MOS_WORD_LEARN
                     }
                 }
                 if (Index1 == 0)
-                    return "False(khồng chỉnh sửa văn bảng)";
+                    return "False";
                 if (d.Paragraphs[Index1].Range.Characters[1].Text != "(")
-                    return "False(chèn ký tự code 255)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -672,7 +672,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -689,7 +689,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "False";
         }
@@ -699,11 +699,11 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Comments.Count != 0)
-                    return "False(xóa comment)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -725,19 +725,19 @@ namespace MOS_WORD_LEARN
                         Index2 = Index3;
                 }
                 if (Index1 == 0)
-                    return "False(chấp nhận insert)";
+                    return "False";
                 if (num == 0 || Index2 == 0)
                     return "False";
                 if (!d.Paragraphs[Index1].Range.Text.Contains("powerful new"))
-                    return "False(chấp nhận insert)";
+                    return "False";
                 if (d.Paragraphs[49].Range.Text.Contains("Themes and styles also help keep your"))
-                    return "False(chấp nhận delete)";
+                    return "False";
                 if (d.Paragraphs[Index2].Range.Characters[5].Font.Bold == -1)
-                    return "False(không chấp nhận định dạng)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -762,7 +762,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -772,11 +772,11 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Comments.Count != 1)
-                    return "False(không thêm xóa comment)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -788,11 +788,11 @@ namespace MOS_WORD_LEARN
                 if (d.Sections.Count != 3)
                     return "False";
                 if (d.Sections[2].PageSetup.TextColumns.Count != 2)
-                    return "False(chia 2 cột)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -806,7 +806,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }

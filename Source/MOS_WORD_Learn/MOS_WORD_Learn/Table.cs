@@ -108,7 +108,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -124,7 +124,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -134,13 +134,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Tables.Count != 1)
-          return "False(not insert or delete table)";
-        if (d.Tables[1].Columns.Width.ToString() != "89.3")
-          return "False";
-      }
+                    return "False";
+                if (d.Tables[1].Columns.Width.ToString() != "89.3")
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -158,7 +158,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -185,7 +185,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -208,7 +208,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -231,7 +231,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -254,7 +254,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -270,7 +270,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -288,7 +288,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -304,7 +304,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -314,13 +314,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Tables.Count != 1)
-          return "False(not insert or delete table)";
-        if (d.Tables[1].Borders[WdBorderType.wdBorderBottom].Color.ToString() != "-721354906")
-          return "False(table style)";
-      }
+                    return "False";
+                if (d.Tables[1].Borders[WdBorderType.wdBorderBottom].Color.ToString() != "-721354906")
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -330,13 +330,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Tables.Count != 1)
-          return "False(khong them xoa table)";
-        if (d.Tables[1].Rows[9].Cells.Count != 1)
-          return "False(Merge cac o dong cuoi thanh 1)";
-      }
+                    return "False";
+                if (d.Tables[1].Rows[9].Cells.Count != 1)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -346,13 +346,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Tables.Count != 1)
-          return "False(khong them xoa table)";
+                    return "False";
         if ((double) d.Tables[1].Columns.Width == 9999999.0)
-          return "False(Distribute columns)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -362,17 +362,17 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Paragraphs[7].Range.Tables.Count != 1)
-          return "False(chen table duoi Summary project)";
-        if (d.Paragraphs[7].Range.Tables[1].Columns.Count != 5)
-          return "False(5 cot)";
-        if (d.Paragraphs[7].Range.Tables[1].Rows.Count != 9)
-          return "False(9 dong)";
-        if ((double) d.Paragraphs[7].Range.Tables[1].Columns.Width == 9999999.0)
-          return "False(auto fix window)";
-      }
+                    return "False";
+                if (d.Paragraphs[7].Range.Tables[1].Columns.Count != 5)
+                    return "False";
+                if (d.Paragraphs[7].Range.Tables[1].Rows.Count != 9)
+                    return "False";
+                if ((double) d.Paragraphs[7].Range.Tables[1].Columns.Width == 9999999.0)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -382,11 +382,11 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Tables.Count != 1)
-          return "False(khong them xoa table)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -396,13 +396,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Tables.Count != 1)
-          return "False(khong them xoa table)";
-        if (d.Tables[1].Title != "Species Count")
-          return "False(Species Count)";
-      }
+                    return "False";
+                if (d.Tables[1].Title != "Species Count")
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -412,15 +412,15 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Tables.Count != 1)
-          return "False(khong them xoa table)";
-        if (d.Tables[1].Title != "Species")
-          return "False(Species)";
-        if (d.Tables[1].Descr != "Count of Species")
-          return "False(Count of Species)";
-      }
+                    return "False";
+                if (d.Tables[1].Title != "Species")
+                    return "False";
+                if (d.Tables[1].Descr != "Count of Species")
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -430,13 +430,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Tables.Count != 1)
-          return "False(khong them xoa table)";
-        if (d.Tables[1].Rows.HeadingFormat != 9999999)
-          return "False(Heading repeat)";
-      }
+                    return "False";
+                if (d.Tables[1].Rows.HeadingFormat != 9999999)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -446,13 +446,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Tables.Count != 1)
-          return "False(khong them xoa table)";
-        if (d.Tables[1].Columns[5].Cells.Count != 1)
-          return "False(marge thành 1 ô)";
-      }
+                    return "False";
+                if (d.Tables[1].Columns[5].Cells.Count != 1)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -462,13 +462,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Tables.Count != 1)
-          return "False(khong them xoa table)";
-        if ((double) d.Tables[1].Rows.Height == 9999999.0)
-          return "False(Distribute Rows)";
-      }
+                    return "False";
+                if ((double) d.Tables[1].Rows.Height == 9999999.0)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -478,13 +478,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Tables.Count != 1)
-          return "False(khong them xoa table)";
-        if (!d.Tables[1].Rows[8].Cells[4].Range.Text.Contains("27"))
-          return "False(sort sai)";
-      }
+                    return "False";
+                if (!d.Tables[1].Rows[8].Cells[4].Range.Text.Contains("27"))
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -498,7 +498,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -508,13 +508,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Tables.Count != 1)
-          return "False(khong them xoa table)";
-        if ((double) d.Tables[1].Columns[1].Width > 110.0)
-          return "False(Auto fix content)";
-      }
+                    return "False";
+                if ((double) d.Tables[1].Columns[1].Width > 110.0)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -524,15 +524,15 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Tables.Count != 1)
-          return "False(conver to table)";
-        if (d.Tables[1].Rows.Count != 8)
-          return "False(8 Rows)";
-        if (d.Tables[1].Columns.Count != 4)
-          return "False(4 cols)";
-      }
+                    return "False";
+                if (d.Tables[1].Rows.Count != 8)
+                    return "False";
+                if (d.Tables[1].Columns.Count != 4)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -542,13 +542,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Tables.Count != 1)
-          return "False(không thêm xóa table)";
-        if (d.Tables[1].Rows[1].Cells.Count != 1)
-          return "False(trộn ô dòng đầu)";
-      }
+                    return "False";
+                if (d.Tables[1].Rows[1].Cells.Count != 1)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -558,13 +558,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Tables.Count != 2)
-          return "False(không thêm xóa table)";
-        if (d.Tables[1].Spacing.ToString() != "1.4")
-          return "False(0.02 inch)";
-      }
+                    return "False";
+                if (d.Tables[1].Spacing.ToString() != "1.4")
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -574,15 +574,15 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Tables.Count != 1)
-          return "False(chuyển văn bảng thành table)";
-        if (d.Tables[1].Columns.Count != 2)
-          return "False(conver chứ không phải chèn mới)";
-        if (d.Tables[1].Rows.Count != 5)
-          return "False(Chuyển đổi từ văn bảng thành bản phải đúng nội dung)";
-      }
+                    return "False";
+                if (d.Tables[1].Columns.Count != 2)
+                    return "False";
+                if (d.Tables[1].Rows.Count != 5)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -592,13 +592,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Tables.Count != 2)
-          return "False(không thêm xóa table)";
-        if (d.Tables[1].Columns.Width.ToString() != "158.4")
-          return "False(chỉnh độ rộng mỗi cột 2.2 inch)";
-      }
+                    return "False";
+                if (d.Tables[1].Columns.Width.ToString() != "158.4")
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -608,13 +608,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Tables.Count != 1)
-          return "False(không thêm xóa table)";
-        if (d.Tables[1].Range.Text != "Geologic period \r\aDinosaur\r\a\r\aBooks\r\a1\r\a\r\aHighlighter\r\a2 colors\r\a\r\aMagazines\r\a3\r\a\r\aNotebooks\r\a1\r\a\r\aPaper pads\r\a1 \r\a\r\aPencils\r\a2\r\a\r\aPens\r\a3\r\a\r\aScissors\r\a1 pair\r\a\r\a")
-          return "False(sort)";
-      }
+                    return "False";
+                if (d.Tables[1].Range.Text != "Geologic period \r\aDinosaur\r\a\r\aBooks\r\a1\r\a\r\aHighlighter\r\a2 colors\r\a\r\aMagazines\r\a3\r\a\r\aNotebooks\r\a1\r\a\r\aPaper pads\r\a1 \r\a\r\aPencils\r\a2\r\a\r\aPens\r\a3\r\a\r\aScissors\r\a1 pair\r\a\r\a")
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -624,13 +624,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Tables.Count != 1)
-          return "False(không thêm xóa table)";
-        if (d.Tables[1].Rows[1].Cells.Count != 1)
-          return "False(trọng ô dòng đầu)";
-      }
+                    return "False";
+                if (d.Tables[1].Rows[1].Cells.Count != 1)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -640,13 +640,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Tables.Count != 1)
-          return "False(không thêm xóa table)";
-        if (d.Tables[1].Rows.HeadingFormat != 9999999)
-          return "False(cho tiêu đề lặp lại)";
-      }
+                    return "False";
+                if (d.Tables[1].Rows.HeadingFormat != 9999999)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -656,23 +656,23 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Tables.Count != 1)
-          return "False(chèn 1 table)";
-        if (d.Tables[1].Rows.Count != 6)
-          return "False(6 dòng)";
-        if (d.Tables[1].Columns.Count != 2)
-          return "False(2 cột)";
-        if (!d.Tables[1].Rows[1].Cells[1].Range.Text.ToLower().Contains("grade"))
-          return "False(Grade)";
-        if (!d.Tables[1].Rows[1].Cells[2].Range.Text.ToLower().Contains("score range"))
-          return "False(Score Range)";
-        if (!d.Tables[1].AllowAutoFit)
-          return "False(auto fix conten)";
-        if ((double) d.Tables[1].Columns[1].Width >= (double) d.Tables[1].Columns[2].Width)
-          return "False(auto fix conten)";
-      }
+                    return "False";
+                if (d.Tables[1].Rows.Count != 6)
+                    return "False";
+                if (d.Tables[1].Columns.Count != 2)
+                    return "False";
+                if (!d.Tables[1].Rows[1].Cells[1].Range.Text.ToLower().Contains("grade"))
+                    return "False";
+                if (!d.Tables[1].Rows[1].Cells[2].Range.Text.ToLower().Contains("score range"))
+                    return "False";
+                if (!d.Tables[1].AllowAutoFit)
+                    return "False";
+                if ((double) d.Tables[1].Columns[1].Width >= (double) d.Tables[1].Columns[2].Width)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -682,21 +682,21 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Tables.Count != 1)
-          return "False(chèn 1 table)";
-        if (d.Tables[1].Rows.Count != 6)
-          return "False(6 dòng)";
-        if (d.Tables[1].Columns.Count != 2)
-          return "False(2 cột)";
-        if (!d.Tables[1].Rows[1].Cells[1].Range.Text.ToLower().Contains("grade"))
-          return "False(Grade)";
-        if (!d.Tables[1].Rows[1].Cells[2].Range.Text.ToLower().Contains("score range"))
-          return "False(Score Range)";
-        if (!d.Tables[1].AllowAutoFit)
-          return "False(auto fix conten)";
-      }
+                    return "False";
+                if (d.Tables[1].Rows.Count != 6)
+                    return "False";
+                if (d.Tables[1].Columns.Count != 2)
+                    return "False";
+                if (!d.Tables[1].Rows[1].Cells[1].Range.Text.ToLower().Contains("grade"))
+                    return "False";
+                if (!d.Tables[1].Rows[1].Cells[2].Range.Text.ToLower().Contains("score range"))
+                    return "False";
+                if (!d.Tables[1].AllowAutoFit)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -706,13 +706,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Tables.Count != 1)
-          return "Fasle(không thêm xóa table)";
-        if (d.Tables[1].Rows[1].Cells.Count != 1)
-          return "False(trọng dòng 1 thành 1 ô)";
-      }
+                    return "False";
+                if (d.Tables[1].Rows[1].Cells.Count != 1)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }

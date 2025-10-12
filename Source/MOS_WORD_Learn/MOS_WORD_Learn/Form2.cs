@@ -41,11 +41,29 @@ namespace MOS_WORD_LEARN
         {
             try
             {
-                if(Process.GetProcessesByName("WINWORD").Length > 0)
+                //if(Process.GetProcessesByName("WINWORD").Length > 0)
+                //{
+                //    MessageBox.Show("Vui lòng đóng tất cả các file word trước khi học để tránh mất dữ liệu");
+                //    this.textBoxPass.Focus();
+                //    return;
+                //}
+
+                Process[] wordProcesses = Process.GetProcessesByName("WINWORD");
+
+                if (wordProcesses.Length > 0)
                 {
-                    MessageBox.Show("Vui lòng đóng tất cả các file word trước khi học để tránh mất dữ liệu");
-                    this.textBoxPass.Focus();
-                    return;
+                    foreach (var process in wordProcesses)
+                    {
+                        try
+                        {
+                            process.Kill();
+                            process.WaitForExit();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Không thể tắt Word: " + ex.Message);
+                        }
+                    }
                 }
 
                 if (this.textBoxUser.Text.ToUpper() != "MOS TRAINING")

@@ -64,7 +64,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -78,7 +78,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -88,11 +88,11 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Background.Fill.ForeColor.RGB != 14282722)
-                    return "False (" + (object)d.Background.Fill.ForeColor.RGB + ")";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -109,7 +109,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -125,7 +125,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Insert Banded cover page)";
+                return "False";
             }
             try
             {
@@ -133,11 +133,11 @@ namespace MOS_WORD_LEARN
                 // ISSUE: variable of a compiler-generated type
                 Microsoft.Office.Interop.Word.Shape groupItem = shape.GroupItems[ref Index];
                 if (groupItem.TextFrame.TextRange.Text.Contains("Company address"))
-                    return "False(delete Company address)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(something wrong)";
+                return "False";
             }
             return "True";
         }
@@ -177,11 +177,11 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.DocumentTheme.ThemeFontScheme.MajorFont.Item(MsoFontLanguageIndex.msoThemeLatin).Name != "Candara")
-                    return "False(sai theme font)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -191,13 +191,13 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Sections[1].Borders[WdBorderType.wdBorderTop].LineWidth != WdLineWidth.wdLineWidth300pt)
-                    return "False (do day duong vien)";
+                    return "False";
                 if (d.Sections[1].Borders.Shadow)
-                    return "False (shadow)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -207,14 +207,14 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.DocumentTheme.ThemeColorScheme.Colors(MsoThemeColorSchemeIndex.msoThemeAccent1).RGB != 1250736)
-                    return "False(chon theme Ion )";
+                    return "False";
                 object Index = (object)"Heading 1";
                 if (d.Styles[ref Index].ParagraphFormat.Shading.BackgroundPatternColor.ToString() != "-738131969")
-                    return "False(sai kieu Formating)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -224,14 +224,14 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Sections[1].Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Shapes.Count != 1)
-                    return "False(chen WaterMark)";
+                    return "False";
                 object Index = (object)1;
                 if (d.Sections[1].Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Shapes[ref Index].TextEffect.Text != "DO NOT COPY")
-                    return "False(sai kieu)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -242,11 +242,11 @@ namespace MOS_WORD_LEARN
             {
                 object Index = (object)"Heading 1";
                 if (d.Styles[ref Index].ParagraphFormat.Alignment != WdParagraphAlignment.wdAlignParagraphCenter)
-                    return "False(Centered)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -256,15 +256,15 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Sections[1].Borders[WdBorderType.wdBorderTop].LineWidth != WdLineWidth.wdLineWidth300pt)
-                    return "False (do day duong vien)";
+                    return "False";
                 if (d.Sections[1].Borders.Shadow)
-                    return "False (không shadow)";
+                    return "False";
                 if (d.Sections[1].Borders[WdBorderType.wdBorderTop].Color.ToString() != "-738131969")
-                    return "False(màu)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -275,11 +275,11 @@ namespace MOS_WORD_LEARN
             {
                 object Index = (object)"Heading 1";
                 if (d.Styles[ref Index].Borders[WdBorderType.wdBorderBottom].Color.ToString() != "-721354753")
-                    return "False(sai kiểu)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -291,7 +291,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }

@@ -102,7 +102,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -119,7 +119,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -154,7 +154,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -180,7 +180,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -221,7 +221,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -241,13 +241,13 @@ namespace MOS_WORD_LEARN
           }
         }
         if (paragraph == null)
-          return "False (List edited)";
-        if (!paragraph.Range.ListFormat.ListString.Contains("A"))
+                    return "False";
+                if (!paragraph.Range.ListFormat.ListString.Contains("A"))
           return "False(" + paragraph.Range.ListFormat.ListString + ")";
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -273,7 +273,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -302,7 +302,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -323,15 +323,15 @@ namespace MOS_WORD_LEARN
           }
         }
         if (paragraph == null)
-          return "False (text was edited)";
-        if (paragraph.Range.HighlightColorIndex != WdColorIndex.wdTurquoise || d.Paragraphs[Index + 1].Range.HighlightColorIndex != WdColorIndex.wdTurquoise || d.Paragraphs[Index + 2].Range.HighlightColorIndex != WdColorIndex.wdTurquoise)
-          return "False (Highligh Turquoise)";
-        if (d.Paragraphs[Index + 3].Range.HighlightColorIndex != WdColorIndex.wdTurquoise)
-          return "False (Highligh Turquoise)";
-      }
+                    return "False";
+                if (paragraph.Range.HighlightColorIndex != WdColorIndex.wdTurquoise || d.Paragraphs[Index + 1].Range.HighlightColorIndex != WdColorIndex.wdTurquoise || d.Paragraphs[Index + 2].Range.HighlightColorIndex != WdColorIndex.wdTurquoise)
+                    return "False";
+                if (d.Paragraphs[Index + 3].Range.HighlightColorIndex != WdColorIndex.wdTurquoise)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -355,7 +355,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -386,7 +386,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -403,7 +403,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -416,13 +416,13 @@ namespace MOS_WORD_LEARN
         while (!d.Paragraphs[Index].Range.Text.Contains("On the Insert tab, the galleries include items ") && Index < d.Paragraphs.Count)
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False(Text was modified)";
-        if (d.Paragraphs[Index].Range.Font.Bold != 0)
-          return "Falas(paste only value)";
-      }
+                    return "False";
+                if (d.Paragraphs[Index].Range.Font.Bold != 0)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -435,15 +435,15 @@ namespace MOS_WORD_LEARN
         while (!d.Paragraphs[Index].Range.Text.Contains("Three-String") && Index < d.Paragraphs.Count)
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False(Text was modified)";
-        if (d.Paragraphs[Index + 1].Range.ListFormat.ListLevelNumber != 2)
-          return "Falas(chon level 2)";
-        if (d.Paragraphs[Index + 4].Range.ListFormat.ListLevelNumber != 2)
-          return "Falas(chon level 2)";
-      }
+                    return "False";
+                if (d.Paragraphs[Index + 1].Range.ListFormat.ListLevelNumber != 2)
+                    return "False";
+                if (d.Paragraphs[Index + 4].Range.ListFormat.ListLevelNumber != 2)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -456,15 +456,15 @@ namespace MOS_WORD_LEARN
         while (!d.Paragraphs[Index].Range.Text.Contains("Three-String") && Index < d.Paragraphs.Count)
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False(Text was modified)";
-        if (d.Paragraphs[Index + 1].Range.ListFormat.ListLevelNumber != 2)
-          return "Falas(chon level 2)";
-        if (d.Paragraphs[Index + 4].Range.ListFormat.ListLevelNumber != 2)
-          return "Falas(chon level 2)";
-      }
+                    return "False";
+                if (d.Paragraphs[Index + 1].Range.ListFormat.ListLevelNumber != 2)
+                    return "False";
+                if (d.Paragraphs[Index + 4].Range.ListFormat.ListLevelNumber != 2)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -477,13 +477,13 @@ namespace MOS_WORD_LEARN
         while (!d.Paragraphs[Index].Range.Text.Contains("Mandolin Style") && Index < d.Paragraphs.Count)
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False(Text was modified)";
-        if (d.Paragraphs[Index].Range.ListFormat.ListValue != 11)
-          return "Falas(dung format painter)";
-      }
+                    return "False";
+                if (d.Paragraphs[Index].Range.ListFormat.ListValue != 11)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -496,13 +496,13 @@ namespace MOS_WORD_LEARN
         while (!d.Paragraphs[Index].Range.Text.Contains("Bass") && Index < d.Paragraphs.Count)
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False(Text was modified)";
-        if (d.Paragraphs[Index].Range.ListFormat.ListValue != 5)
-          return "Falas(click chuot phai chon continue q)";
-      }
+                    return "False";
+                if (d.Paragraphs[Index].Range.ListFormat.ListValue != 5)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -515,13 +515,13 @@ namespace MOS_WORD_LEARN
         while (!d.Paragraphs[Index].Range.Text.Contains("Standard") && Index < d.Paragraphs.Count)
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False(Text was modified)";
-        if (d.Paragraphs[Index].Range.ListFormat.ListString != "1)")
-          return "Falas(numbering kieu 1)...)";
-      }
+                    return "False";
+                if (d.Paragraphs[Index].Range.ListFormat.ListString != "1)")
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -534,13 +534,13 @@ namespace MOS_WORD_LEARN
         while (!d.Paragraphs[Index].Range.Text.Contains("Standard") && Index < d.Paragraphs.Count)
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False(Text was modified)";
-        if (d.Paragraphs[Index].Range.ListFormat.ListValue != 500)
-          return "Falas(click chuot phai chon set value)";
-      }
+                    return "False";
+                if (d.Paragraphs[Index].Range.ListFormat.ListValue != 500)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -553,13 +553,13 @@ namespace MOS_WORD_LEARN
         while (!d.Paragraphs[Index].Range.Text.Contains("Thimos1000.wordpress.com") && Index < d.Paragraphs.Count)
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False(Text was modified)";
-        if ((double) d.Paragraphs[Index].Range.ParagraphFormat.LineSpacing != 18.0)
-          return "Falas(Thimos1000.wordpress.com)";
-      }
+                    return "False";
+                if ((double) d.Paragraphs[Index].Range.ParagraphFormat.LineSpacing != 18.0)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -572,13 +572,13 @@ namespace MOS_WORD_LEARN
         while (!d.Paragraphs[Index].Range.Text.Contains("Standard") && Index < d.Paragraphs.Count)
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False(Text was modified)";
-        if (d.Paragraphs[Index].Range.ListFormat.ListType != WdListType.wdListPictureBullet)
-          return "Falas(bullet bang picture)";
-      }
+                    return "False";
+                if (d.Paragraphs[Index].Range.ListFormat.ListType != WdListType.wdListPictureBullet)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -591,13 +591,13 @@ namespace MOS_WORD_LEARN
         while (!d.Paragraphs[Index].Range.Text.Contains("Focus on the text you want") && Index < d.Paragraphs.Count)
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False(không chỉnh sửa văn bản)";
-        if (d.Paragraphs[Index].Range.ListFormat.ListString != "▸")
-          return "Falas(25B8)";
-      }
+                    return "False";
+                if (d.Paragraphs[Index].Range.ListFormat.ListString != "▸")
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -609,12 +609,12 @@ namespace MOS_WORD_LEARN
         for (int Index = 1; Index < d.Paragraphs.Count; ++Index)
         {
           if (d.Paragraphs[Index].Range.ParagraphFormat.LineSpacing.ToString() != "16.8")
-            return "False(1.4)";
-        }
+                        return "False";
+                }
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -627,13 +627,13 @@ namespace MOS_WORD_LEARN
         while (!d.Paragraphs[Index].Range.Text.Contains("The picture fits in your document") && Index < d.Paragraphs.Count)
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False(không chỉnh sửa văn bản)";
-        if (d.Paragraphs[Index].Range.ListFormat.ListString != "5.")
-          return "Falas(chuot phai vào số 1 cột 2 chọn continue)";
-      }
+                    return "False";
+                if (d.Paragraphs[Index].Range.ListFormat.ListString != "5.")
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -646,25 +646,25 @@ namespace MOS_WORD_LEARN
         while (!d.Paragraphs[Index].Range.Text.Contains("Corporate events") && Index < d.Paragraphs.Count)
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False(không sửa nọi dung)";
-        if (d.Paragraphs[Index].Range.ListFormat.ListString != "\uF0B7")
-          return "Falas(bullet)";
-        while (!d.Paragraphs[Index].Range.Text.Contains("Online events") && Index < d.Paragraphs.Count)
+                    return "False";
+                if (d.Paragraphs[Index].Range.ListFormat.ListString != "\uF0B7")
+                    return "False";
+                while (!d.Paragraphs[Index].Range.Text.Contains("Online events") && Index < d.Paragraphs.Count)
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False(không sửa nọi dung)";
-        if (d.Paragraphs[Index].Range.ListFormat.ListString != "\uF0B7")
-          return "Falas(bullet)";
-        while (!d.Paragraphs[Index].Range.Text.Contains("weddings") && Index < d.Paragraphs.Count)
+                    return "False";
+                if (d.Paragraphs[Index].Range.ListFormat.ListString != "\uF0B7")
+                    return "False";
+                while (!d.Paragraphs[Index].Range.Text.Contains("weddings") && Index < d.Paragraphs.Count)
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False(không sửa nọi dung)";
-        if (d.Paragraphs[Index].Range.ListFormat.ListString != "")
-          return "Falas(không bullet weddings)";
-      }
+                    return "False";
+                if (d.Paragraphs[Index].Range.ListFormat.ListString != "")
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -677,13 +677,13 @@ namespace MOS_WORD_LEARN
         while (!d.Paragraphs[Index].Range.Text.Contains("Velociraptor") && Index < d.Paragraphs.Count)
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False(không sửa nọi dung)";
-        if (d.Paragraphs[Index].Range.ListFormat.ListLevelNumber != 3)
-          return "Falas(chuyển Velociraptor level 3)";
-      }
+                    return "False";
+                if (d.Paragraphs[Index].Range.ListFormat.ListLevelNumber != 3)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -696,13 +696,13 @@ namespace MOS_WORD_LEARN
         while (!d.Paragraphs[Index].Range.Text.Contains("margie@margiestravel.com") && Index < d.Paragraphs.Count)
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False(không chỉnh sửa văn bản)";
-        if (d.Paragraphs[Index].Range.ParagraphFormat.LineSpacing.ToString() != "14")
-          return "Falas(exactly 14 pt)";
-      }
+                    return "False";
+                if (d.Paragraphs[Index].Range.ParagraphFormat.LineSpacing.ToString() != "14")
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -715,13 +715,13 @@ namespace MOS_WORD_LEARN
         while (!d.Paragraphs[Index].Range.Text.Contains("Algebra II") && Index < d.Paragraphs.Count)
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False(không chỉnh sửa văn bản)";
-        if (d.Paragraphs[Index].Range.ListFormat.ListString != "111.")
-          return "Falas(111.)";
-      }
+                    return "False";
+                if (d.Paragraphs[Index].Range.ListFormat.ListString != "111.")
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }

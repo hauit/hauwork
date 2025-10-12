@@ -54,7 +54,7 @@ namespace MOS_WORD_LEARN
                 }
 
                 if (index > d.Paragraphs.Count)
-                    return "False (not found text)";
+                    return "False";
 
                 // Lấy style của đoạn văn bản đó
                 Paragraph para = d.Paragraphs[index];
@@ -62,14 +62,14 @@ namespace MOS_WORD_LEARN
                 var style = styleObj as Microsoft.Office.Interop.Word.Style;
 
                 if (style == null)
-                    return "False (style not found)";
+                    return "False";
 
                 if (style.NameLocal != "Intense Emphasis")
-                    return $"False (Style: {style.NameLocal})";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -90,7 +90,7 @@ namespace MOS_WORD_LEARN
                 }
 
                 if (index > d.Paragraphs.Count)
-                    return "False (not found text)";
+                    return "False";
 
                 // Dùng dynamic để truy cập CharacterStyle
                 Paragraph para = d.Paragraphs[index];
@@ -102,7 +102,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -122,12 +122,12 @@ namespace MOS_WORD_LEARN
                 }
 
                 if (index1 > d.Paragraphs.Count)
-                    return "False (not found text: Information)";
+                    return "False";
 
                 var para1 = d.Paragraphs[index1];
                 var style1 = para1.Range.get_Style() as Microsoft.Office.Interop.Word.Style;
                 if (style1 == null || style1.NameLocal != "Heading 1")
-                    return "False (Information)";
+                    return "False";
 
                 // Tìm đoạn chứa "Games Times"
                 int index2 = 1;
@@ -138,16 +138,16 @@ namespace MOS_WORD_LEARN
                 }
 
                 if (index2 > d.Paragraphs.Count)
-                    return "False (not found text: Games Times)";
+                    return "False";
 
                 var para2 = d.Paragraphs[index2];
                 var style2 = para2.Range.get_Style() as Microsoft.Office.Interop.Word.Style;
                 if (style2 == null || style2.NameLocal != "Heading 1")
-                    return "False (Games Times)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -167,12 +167,12 @@ namespace MOS_WORD_LEARN
                 }
 
                 if (index1 > d.Paragraphs.Count)
-                    return "False (not found text: Online)";
+                    return "False";
 
                 var para1 = d.Paragraphs[index1];
                 var style1 = para1.Range.get_Style() as Microsoft.Office.Interop.Word.Style;
                 if (style1 == null || style1.NameLocal != "Heading 2")
-                    return "False (Online)";
+                    return "False";
 
                 int index2 = 1;
 
@@ -184,16 +184,16 @@ namespace MOS_WORD_LEARN
                 }
 
                 if (index2 > d.Paragraphs.Count)
-                    return "False (not found text: In Person)";
+                    return "False";
 
                 var para2 = d.Paragraphs[index2];
                 var style2 = para2.Range.get_Style() as Microsoft.Office.Interop.Word.Style;
                 if (style2 == null || style2.NameLocal != "Heading 2")
-                    return "False (In Person)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -213,17 +213,17 @@ namespace MOS_WORD_LEARN
                     }
                 }
                 if (num == 0)
-                    return "False(không sửa tiêu để Kids love dinosaurs)";
+                    return "False";
                 if (!d.Paragraphs[num + 2].Range.Text.Contains("Save time in Word with"))
-                    return "False(không chỉnh sửa nọi dung vị trí văn bản)";
+                    return "False";
                 if (d.Paragraphs[num + 2].Range.Font.Bold != 0)
-                    return "False(dùng format painter)";
+                    return "False";
                 if (d.Paragraphs[num + 2].Range.Font.TextColor.RGB != -16777216)
-                    return "False(dùng format painter)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -242,7 +242,7 @@ namespace MOS_WORD_LEARN
                 }
 
                 if (index > d.Paragraphs.Count)
-                    return "False (không thay đổi nội dung)";
+                    return "False";
 
                 // Truy cập dynamic để lấy CharacterStyle
                 var para = d.Paragraphs[index];
@@ -250,11 +250,11 @@ namespace MOS_WORD_LEARN
                 var style = rng.CharacterStyle as Microsoft.Office.Interop.Word.Style;
 
                 if (style == null || style.NameLocal != "Intense Emphasis")
-                    return "False (Intense Emphasis)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -275,14 +275,14 @@ namespace MOS_WORD_LEARN
                 }
 
                 if (index > d.Paragraphs.Count)
-                    return "False (không thay đổi nội dung - Genre)";
+                    return "False";
 
                 var para1 = d.Paragraphs[index];
                 dynamic rng1 = para1.Range;
                 var style1 = rng1.CharacterStyle as Microsoft.Office.Interop.Word.Style;
 
                 if (style1 == null || style1.NameLocal != "Subtle Emphasis")
-                    return "False (Subtle Emphasis - Genre)";
+                    return "False";
 
                 // Tìm đoạn chứa "External Parther"
                 while (index <= d.Paragraphs.Count &&
@@ -292,18 +292,18 @@ namespace MOS_WORD_LEARN
                 }
 
                 if (index > d.Paragraphs.Count)
-                    return "False (không thay đổi nội dung - External Parther)";
+                    return "False";
 
                 var para2 = d.Paragraphs[index];
                 dynamic rng2 = para2.Range;
                 var style2 = rng2.CharacterStyle as Microsoft.Office.Interop.Word.Style;
 
                 if (style2 == null || style2.NameLocal != "Subtle Emphasis")
-                    return "False (Subtle Emphasis - External Parther)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -328,14 +328,14 @@ namespace MOS_WORD_LEARN
                 // Lấy style đoạn văn này
                 var paraStyle = d.Paragraphs[index].Range.get_Style() as Microsoft.Office.Interop.Word.Style;
                 if (paraStyle == null)
-                    return "False (No style found)";
+                    return "False";
 
                 if (paraStyle.NameLocal != "Title")
                     return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -364,20 +364,20 @@ namespace MOS_WORD_LEARN
                         ++index;
 
                     if (index > d.Paragraphs.Count)
-                        return $"False (Not found: {text})";
+                        return "False";
 
                     // Kiểm tra style đoạn văn
                     var paraStyle = d.Paragraphs[index].Range.get_Style() as Microsoft.Office.Interop.Word.Style;
                     if (paraStyle == null)
-                        return $"False (No style found for: {text})";
+                        return "False";
 
                     if (paraStyle.NameLocal != "Heading 1")
-                        return $"False ({text})";
+                        return "False";
                 }
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -390,7 +390,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }

@@ -143,11 +143,11 @@ namespace MOS_WORD_LEARN
             break;
           }
         }
-        return paragraph != null ? "False (cut not copy)" : "True";
+        return paragraph != null ? "False" : "True";
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -160,7 +160,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -179,7 +179,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -202,7 +202,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -219,7 +219,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -238,7 +238,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -246,11 +246,11 @@ namespace MOS_WORD_LEARN
     {
       try
       {
-        return Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "*.dotx").Length == 0 ? "False()" : "True";
+        return Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "*.dotx").Length == 0 ? "False" : "True";
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -263,7 +263,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -278,7 +278,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -291,7 +291,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -303,7 +303,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -342,7 +342,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -361,7 +361,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -374,7 +374,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -400,7 +400,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -422,7 +422,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -430,11 +430,11 @@ namespace MOS_WORD_LEARN
     {
       try
       {
-        return !File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "Newsletter.docx")) ? "False(luu file sai thu muc)" : "True";
+        return !File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "Newsletter.docx")) ? "False" : "True";
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -456,7 +456,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -466,12 +466,12 @@ namespace MOS_WORD_LEARN
       {
         string text = d.Sections[1].Footers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range.Text;
         if (d.Sections[1].Footers[WdHeaderFooterIndex.wdHeaderFooterEvenPages].Range.Text.Contains("Warter"))
-          return "False(only old page)";
+          return "False";
         return !text.Contains("Water") ? "False" : "True";
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -488,7 +488,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -500,7 +500,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -522,7 +522,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -542,12 +542,12 @@ namespace MOS_WORD_LEARN
         }
         while (num2 > 0);
         if (num1 <= 3)
-          return "False(HoChiMinh)";
-        return str.IndexOf("Hanoi", 1) > 0 ? "False(HaNoi)" : "True";
+          return "False";
+        return str.IndexOf("Hanoi", 1) > 0 ? "False" : "True";
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -559,7 +559,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -571,7 +571,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -593,7 +593,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -607,7 +607,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -641,7 +641,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -653,7 +653,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -675,7 +675,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -695,7 +695,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -717,7 +717,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -731,18 +731,18 @@ namespace MOS_WORD_LEARN
         for (int Index = 1; Index < d.Paragraphs.Count - 10; ++Index)
         {
           if (d.Paragraphs[Index].Range.Text.Contains("Insert table here"))
-            return "False(xoa chu Insert table here)";
-        }
+                        return "False";
+                }
         if (d.Tables[1].Columns.PreferredWidth.ToString() != "72")
-          return "False(do rong cot)";
-        if (d.Tables[1].Columns.Count != 4)
-          return "False(so cot)";
-        if (d.Tables[1].Rows.Count != 3)
-          return "False(so dong)";
-      }
+                    return "False";
+                if (d.Tables[1].Columns.Count != 4)
+                    return "False";
+                if (d.Tables[1].Rows.Count != 3)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -765,7 +765,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -777,7 +777,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -789,7 +789,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -808,7 +808,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
 
@@ -832,7 +832,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
     }
   }

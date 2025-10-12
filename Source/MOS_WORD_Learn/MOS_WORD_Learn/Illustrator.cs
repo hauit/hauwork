@@ -141,13 +141,13 @@ namespace MOS_WORD_LEARN
         while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Once again,"))
           ++Index;
         if (d.Paragraphs[Index + 1].Range.InlineShapes[1].SmartArt.Layout.Name != "Vertical Bullet List")
-          return "False(" + d.Paragraphs[Index + 1].Range.InlineShapes[1].SmartArt.Layout.Name + ")";
-        if (d.Paragraphs[Index + 1].Range.InlineShapes[1].SmartArt.Nodes[(object) 1].TextFrame2.TextRange.Text != "Frank Miller")
-          return "False(Frank Miller)";
-      }
+                    return "False";
+                if (d.Paragraphs[Index + 1].Range.InlineShapes[1].SmartArt.Nodes[(object) 1].TextFrame2.TextRange.Text != "Frank Miller")
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -157,14 +157,14 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Paragraphs[6].Range.InlineShapes[1].Fill.PictureEffects[1].Type != MsoPictureEffectType.msoEffectBackgroundRemoval)
-          return "False(remove Background)";
-        if (double.Parse(d.Paragraphs[6].Range.InlineShapes[1].Fill.PictureEffects[1].EffectParameters[(object) 1].Value.ToString()) >= 0.1)
-          return "False(do not crop the guitar)";
-      }
+                    return "False";
+                if (double.Parse(d.Paragraphs[6].Range.InlineShapes[1].Fill.PictureEffects[1].EffectParameters[(object) 1].Value.ToString()) >= 0.1)
+                    return "False";
+            }
       catch (Exception ex)
-      {
-        return "False (remove background)";
-      }
+            {
+                return "False";
+            }
       return "True";
     }
 
@@ -174,12 +174,12 @@ namespace MOS_WORD_LEARN
       {
         object Index = (object) "Rectangle 4";
         if (!d.Shapes[ref Index].TextFrame.TextRange.Text.ToLower().Contains("good sounds"))
-          return "False(good sounds)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
-      {
-        return "False (Gird Quote textbox)";
-      }
+            {
+                return "False";
+            }
       return "True";
     }
 
@@ -189,18 +189,18 @@ namespace MOS_WORD_LEARN
       {
         object count1 = (object) d.Shapes.Count;
         if (d.Shapes[ref count1].TextFrame.TextRange.Text.Contains("We Heard you..."))
-          return "Fales(We Heard you...)";
-        object count2 = (object) d.Shapes.Count;
+                    return "False";
+                object count2 = (object) d.Shapes.Count;
         if (d.Shapes[ref count2].TextFrame.TextRange.Font.TextColor.RGB.ToString() != "-16777216")
-          return "False(Gradient Fill-Gray)";
-        object count3 = (object) d.Shapes.Count;
+                    return "False";
+                object count3 = (object) d.Shapes.Count;
         if (d.Shapes[ref count3].Left.ToString() != "-999995")
-          return "False(center align)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
-      {
-        return "False (Convert Text to WordArt)";
-      }
+            {
+                return "False";
+            }
       return "True";
     }
 
@@ -209,12 +209,12 @@ namespace MOS_WORD_LEARN
       try
       {
         if ((double) d.Paragraphs[2].Range.InlineShapes[1].Line.Weight != 15.0)
-          return "False(Matal Frame)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
-      {
-        return "False (Convert Text to WordArt)";
-      }
+            {
+                return "False";
+            }
       return "True";
     }
 
@@ -223,12 +223,12 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Paragraphs[3].Range.Font.TextShadow.Type != MsoShadowType.msoShadow22)
-          return "False(offset Bottom)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
-      {
-        return "False (Apply Text Shadow)";
-      }
+            {
+                return "False";
+            }
       return "True";
     }
 
@@ -237,12 +237,12 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Paragraphs[4].Range.InlineShapes[1].Fill.PictureEffects[1].Type != MsoPictureEffectType.msoEffectPencilGrayscale)
-          return "False(Pencil Graycale)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
-      {
-        return "False (Apply Artistic Effects)";
-      }
+            {
+                return "False";
+            }
       return "True";
     }
 
@@ -252,18 +252,18 @@ namespace MOS_WORD_LEARN
       {
         object count1 = (object) d.Shapes.Count;
         if (!d.Shapes[ref count1].Name.Contains("Sun"))
-          return "False(Sun shape)";
-        object count2 = (object) d.Shapes.Count;
+                    return "False";
+                object count2 = (object) d.Shapes.Count;
         if (d.Shapes[ref count2].Left.ToString() != "-999995")
-          return "False(center)";
-        object count3 = (object) d.Shapes.Count;
+                    return "False";
+                object count3 = (object) d.Shapes.Count;
         if (d.Shapes[ref count3].Top.ToString() != "-999997")
-          return "False(Bottom)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
-      {
-        return "False (Insert sun shape)";
-      }
+            {
+                return "False";
+            }
       return "True";
     }
 
@@ -272,11 +272,11 @@ namespace MOS_WORD_LEARN
       try
       {
         if ((double) d.Paragraphs[3].Range.InlineShapes[1].SmartArt.Nodes[(object) 1].Shapes.ThreeD.BevelTopDepth != 4.0)
-          return "False(SmartArt)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -289,21 +289,21 @@ namespace MOS_WORD_LEARN
         while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Registration Dates"))
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False(Registration Dates)";
-        if (d.Paragraphs[Index - 1].Range.InlineShapes[1].SmartArt.Layout.Name != "Basic Chevron Process")
-          return "False(" + d.Paragraphs[Index - 1].Range.InlineShapes[1].SmartArt.Layout.Name + ")";
-        if (d.Paragraphs[Index - 1].Range.InlineShapes[1].SmartArt.Reverse == MsoTriState.msoTrue)
-          return "False(left to right)";
-        if (d.Paragraphs[Index - 1].Range.InlineShapes[1].SmartArt.Nodes[(object) 1].Shapes.TextFrame2.TextRange.Text != "Register Team")
-          return "False(Register Team)";
-        if (d.Paragraphs[Index - 1].Range.InlineShapes[1].SmartArt.Nodes[(object) 2].Shapes.TextFrame2.TextRange.Text != "Managers Meeting")
-          return "False(Managers Meeting)";
-        if (d.Paragraphs[Index - 1].Range.InlineShapes[1].SmartArt.Nodes[(object) 3].Shapes.TextFrame2.TextRange.Text != "Have Fun!")
-          return "False(Have Fun!)";
-      }
+                    return "False";
+                if (d.Paragraphs[Index - 1].Range.InlineShapes[1].SmartArt.Layout.Name != "Basic Chevron Process")
+                    return "False";
+                if (d.Paragraphs[Index - 1].Range.InlineShapes[1].SmartArt.Reverse == MsoTriState.msoTrue)
+                    return "False";
+                if (d.Paragraphs[Index - 1].Range.InlineShapes[1].SmartArt.Nodes[(object) 1].Shapes.TextFrame2.TextRange.Text != "Register Team")
+                    return "False";
+                if (d.Paragraphs[Index - 1].Range.InlineShapes[1].SmartArt.Nodes[(object) 2].Shapes.TextFrame2.TextRange.Text != "Managers Meeting")
+                    return "False";
+                if (d.Paragraphs[Index - 1].Range.InlineShapes[1].SmartArt.Nodes[(object) 3].Shapes.TextFrame2.TextRange.Text != "Have Fun!")
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -316,16 +316,16 @@ namespace MOS_WORD_LEARN
         while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Once again, we would like to offer special thanks to"))
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False(Text was modified)";
-        string name = d.Paragraphs[Index + 1].Range.InlineShapes[1].SmartArt.Layout.Name;
+                    return "False";
+                string name = d.Paragraphs[Index + 1].Range.InlineShapes[1].SmartArt.Layout.Name;
         if (name != "Vertical Bullet List")
-          return "False(" + name + ")";
-        if (d.Paragraphs[Index + 1].Range.InlineShapes[1].SmartArt.Nodes[(object) 1].TextFrame2.TextRange.Text != "Frank Miller")
-          return "False(Frank Miller)";
-      }
+                    return "False";
+                if (d.Paragraphs[Index + 1].Range.InlineShapes[1].SmartArt.Nodes[(object) 1].TextFrame2.TextRange.Text != "Frank Miller")
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -337,11 +337,11 @@ namespace MOS_WORD_LEARN
         object Index = (object) "Picture 3";
         string str = d.Shapes[ref Index].ThreeD.BevelTopInset.ToString();
         if (str != "12")
-          return "False(" + str + ")";
-      }
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -354,13 +354,13 @@ namespace MOS_WORD_LEARN
         while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Fourth Coffee"))
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False(Text was modified)";
-        if (d.Paragraphs[Index + 1].Range.InlineShapes.Count != 1)
-          return "False(move picture just below the title)";
-      }
+                    return "False";
+                if (d.Paragraphs[Index + 1].Range.InlineShapes.Count != 1)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -371,11 +371,11 @@ namespace MOS_WORD_LEARN
       {
         object Index = (object) "Rectangle 6";
         if (d.Shapes[ref Index].TextFrame.TextRange.Paragraphs[4].Range.InlineShapes.Count != 1)
-          return "False(insert picture into Rectangle 6)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -386,11 +386,11 @@ namespace MOS_WORD_LEARN
       {
         object Index = (object) "Diagram 1";
         if (d.Shapes[ref Index].SmartArt.Nodes[(object) 2].TextFrame2.TextRange.Text != "organically grown")
-          return "False(Use move up or move down)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -400,14 +400,14 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Paragraphs[6].Range.InlineShapes[1].Fill.PictureEffects[1].Type != MsoPictureEffectType.msoEffectBackgroundRemoval)
-          return "False(remove Background)";
-        if (double.Parse(d.Paragraphs[6].Range.InlineShapes[1].Fill.PictureEffects[1].EffectParameters[(object) 1].Value.ToString()) >= 0.1)
-          return "False(do not crop the guitar)";
-      }
+                    return "False";
+                if (double.Parse(d.Paragraphs[6].Range.InlineShapes[1].Fill.PictureEffects[1].EffectParameters[(object) 1].Value.ToString()) >= 0.1)
+                    return "False";
+            }
       catch (Exception ex)
-      {
-        return "False (remove background)";
-      }
+            {
+                return "False";
+            }
       return "True";
     }
 
@@ -417,18 +417,18 @@ namespace MOS_WORD_LEARN
       {
         object Index1 = (object) "Rectangle 4";
         if (!d.Shapes[ref Index1].TextFrame.TextRange.Text.ToLower().Contains("good sounds"))
-          return "False(good sounds)";
-        object Index2 = (object) "Rectangle 4";
+                    return "False";
+                object Index2 = (object) "Rectangle 4";
         if (d.Shapes[ref Index2].Left.ToString() != "-999995")
-          return "False(H)";
-        object Index3 = (object) "Rectangle 4";
+                    return "False";
+                object Index3 = (object) "Rectangle 4";
         if (d.Shapes[ref Index3].Top.ToString() != "-999997")
-          return "False(V)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
-      {
-        return "False (insert textbox)";
-      }
+            {
+                return "False";
+            }
       return "True";
     }
 
@@ -438,18 +438,18 @@ namespace MOS_WORD_LEARN
       {
         object Index1 = (object) "Text Box 3";
         if (!d.Shapes[ref Index1].TextFrame.TextRange.Text.ToLower().Contains("we heard you"))
-          return "False(we heard you)";
-        object Index2 = (object) "Text Box 3";
+                    return "False";
+                object Index2 = (object) "Text Box 3";
         if (d.Shapes[ref Index2].Left.ToString() != "-999995")
-          return "False(H)";
-        object Index3 = (object) "Text Box 3";
+                    return "False";
+                object Index3 = (object) "Text Box 3";
         if (d.Shapes[ref Index3].TextFrame.TextRange.Font.Fill.ForeColor.RGB.ToString() != "6051667")
-          return "False(wordArt type)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
-      {
-        return "False (convert text to wordArt)";
-      }
+            {
+                return "False";
+            }
       return "True";
     }
 
@@ -458,12 +458,12 @@ namespace MOS_WORD_LEARN
       try
       {
         if ((double) d.Paragraphs[2].Range.InlineShapes[1].Line.Weight != 15.0)
-          return "False(Matal Frame)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
-      {
-        return "False (Convert Text to WordArt)";
-      }
+            {
+                return "False";
+            }
       return "True";
     }
 
@@ -473,15 +473,15 @@ namespace MOS_WORD_LEARN
       {
         object Index1 = (object) "Text Box 2";
         if (!d.Shapes[ref Index1].TextFrame.TextRange.Text.ToUpper().Contains("NEW EMPLOYEE TRAINING"))
-          return "False(NEW EMPLOYEE TRAINING)";
-        object Index2 = (object) "Text Box 2";
+                    return "False";
+                object Index2 = (object) "Text Box 2";
         if (d.Shapes[ref Index2].TextFrame.TextRange.Font.Fill.ForeColor.RGB.ToString() != "6051667")
-          return "False(wordArt type)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
-      {
-        return "False (convert text to wordArt)";
-      }
+            {
+                return "False";
+            }
       return "True";
     }
 
@@ -491,18 +491,18 @@ namespace MOS_WORD_LEARN
       {
         object Index1 = (object) "Horizontal Scroll 4";
         if (!d.Shapes[ref Index1].TextFrame.TextRange.Text.ToLower().Contains("class starts at 9:00!"))
-          return "False(Class starts at 9:00!)";
-        object Index2 = (object) "Horizontal Scroll 4";
+                    return "False";
+                object Index2 = (object) "Horizontal Scroll 4";
         if (d.Shapes[ref Index2].Left.ToString() != "-999995")
-          return "False(H)";
-        object Index3 = (object) "Horizontal Scroll 4";
+                    return "False";
+                object Index3 = (object) "Horizontal Scroll 4";
         if (d.Shapes[ref Index3].Top.ToString() != "-999997")
-          return "False(V)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
-      {
-        return "False (insert shape)";
-      }
+            {
+                return "False";
+            }
       return "True";
     }
 
@@ -511,11 +511,11 @@ namespace MOS_WORD_LEARN
       try
       {
         if ((double) d.Paragraphs[3].Range.InlineShapes[1].SmartArt.Nodes[(object) 1].Shapes.ThreeD.BevelTopDepth != 4.0)
-          return "False(SmartArt)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -525,12 +525,12 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Paragraphs[4].Range.InlineShapes[1].Fill.PictureEffects[1].Type != MsoPictureEffectType.msoEffectPencilGrayscale)
-          return "False(Pencil Graycale)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
-      {
-        return "False (Apply Artistic Effects)";
-      }
+            {
+                return "False";
+            }
       return "True";
     }
 
@@ -540,18 +540,18 @@ namespace MOS_WORD_LEARN
       {
         object count1 = (object) d.Shapes.Count;
         if (!d.Shapes[ref count1].Name.Contains("Sun"))
-          return "False(Sun shape)";
-        object count2 = (object) d.Shapes.Count;
+                    return "False";
+                object count2 = (object) d.Shapes.Count;
         if (d.Shapes[ref count2].Left.ToString() != "-999995")
-          return "False(center)";
-        object count3 = (object) d.Shapes.Count;
+                    return "False";
+                object count3 = (object) d.Shapes.Count;
         if (d.Shapes[ref count3].Top.ToString() != "-999997")
-          return "False(Bottom)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
-      {
-        return "False (Insert sun shape)";
-      }
+            {
+                return "False";
+            }
       return "True";
     }
 
@@ -560,18 +560,18 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Shapes.Count != 3)
-          return "False(conver to WordArt)";
-        object count1 = (object) d.Shapes.Count;
+                    return "False";
+                object count1 = (object) d.Shapes.Count;
         if (!d.Shapes[ref count1].TextFrame.TextRange.Text.Contains("Fourth Coffee"))
-          return "False(conver Fourth Coffee)";
-        object count2 = (object) d.Shapes.Count;
+                    return "False";
+                object count2 = (object) d.Shapes.Count;
         if (d.Shapes[ref count2].Left.ToString() != "-999995")
-          return "False(center)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
-      {
-        return "False (conver to WordArt)";
-      }
+            {
+                return "False";
+            }
       return "True";
     }
 
@@ -580,13 +580,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Paragraphs[2].Range.InlineShapes.Count != 1)
-          return "False(di chuyen anh xuong duoi tieu de)";
-        if (d.Paragraphs[2].Range.InlineShapes[1].Title != "")
-          return "False(sai hình)";
-      }
+                    return "False";
+                if (d.Paragraphs[2].Range.InlineShapes[1].Title != "")
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -597,11 +597,11 @@ namespace MOS_WORD_LEARN
       {
         object Index = (object) "Diagram 1";
         if (d.Shapes[ref Index].SmartArt.Nodes[(object) 2].TextFrame2.TextRange.Text != "The best beans")
-          return "False(Use move up or move down)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -611,13 +611,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Paragraphs[5].Range.InlineShapes[1].Borders[WdBorderType.wdBorderTop].Color.ToString() != "-654245889")
-          return "False(color)";
-        if (d.Paragraphs[5].Range.InlineShapes[1].Borders[WdBorderType.wdBorderTop].LineWidth.ToString() != "wdLineWidth300pt")
-          return "False(Width)";
-      }
+                    return "False";
+                if (d.Paragraphs[5].Range.InlineShapes[1].Borders[WdBorderType.wdBorderTop].LineWidth.ToString() != "wdLineWidth300pt")
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -627,12 +627,12 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Paragraphs[5].Range.InlineShapes[1].Fill.PictureEffects[1].Type.ToString() != "msoEffectPhotocopy")
-          return "False(Photocopy)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
-      {
-        return "False (add artistic effect)";
-      }
+            {
+                return "False";
+            }
       return "True";
     }
 
@@ -642,12 +642,12 @@ namespace MOS_WORD_LEARN
       {
         object Index = (object) "Picture 3";
         if ((double) d.Shapes[ref Index].ThreeD.BevelTopDepth != 4.0)
-          return "False(Bevel effect)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
-      {
-        return "False (add effect)";
-      }
+            {
+                return "False";
+            }
       return "True";
     }
 
@@ -656,12 +656,12 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Paragraphs[5].Range.InlineShapes[1].SoftEdge.Radius.ToString() != "8.858268")
-          return "False(Picture style)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
-      {
-        return "False (Something wrong)";
-      }
+            {
+                return "False";
+            }
       return "True";
     }
 
@@ -671,11 +671,11 @@ namespace MOS_WORD_LEARN
       {
         object Index = (object) "Rectangle 6";
         if (d.Shapes[ref Index].TextFrame.TextRange.Paragraphs[4].Range.InlineShapes.Count != 1)
-          return "False(insert picture into Rectangle 6)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -689,7 +689,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -700,14 +700,14 @@ namespace MOS_WORD_LEARN
       {
         object Index1 = (object) "Picture 3";
         if ((double) d.Shapes[ref Index1].Left != -999995.0)
-          return "False(H)";
-        object Index2 = (object) "Picture 3";
+                    return "False";
+                object Index2 = (object) "Picture 3";
         if ((double) d.Shapes[ref Index2].Top != -999995.0)
-          return "False(V)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -719,17 +719,17 @@ namespace MOS_WORD_LEARN
         object count = (object) d.Shapes.Count;
         string name = d.Shapes[ref count].Name;
         if (!name.Contains("5-Point Star"))
-          return "False(chen ngo sao 5 canh)";
-        object Index1 = (object) name;
+                    return "False";
+                object Index1 = (object) name;
         if ((double) d.Shapes[ref Index1].Left != -999995.0)
-          return "False(H)";
-        object Index2 = (object) name;
+                    return "False";
+                object Index2 = (object) name;
         if ((double) d.Shapes[ref Index2].Top != -999997.0)
-          return "False(V)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -1067,7 +1067,7 @@ namespace MOS_WORD_LEARN
       }
       if (num == 0)
         return "False";
-      return d.Paragraphs[num + 1].Range.InlineShapes.Count != 1 ? "False(chèn anh vào đoạn sau tiêu đề Where to find us)" : "True";
+      return d.Paragraphs[num + 1].Range.InlineShapes.Count != 1 ? "False" : "True";
     }
 
     private static string cau55(Application a, _Document d)

@@ -66,12 +66,12 @@ namespace MOS_WORD_LEARN
       {
         // ISSUE: reference to a compiler-generated method
         if (d.Bibliography.Sources[1].get_Field("Year") != "2001")
-          return "False(Year)";
-      }
+                return "False";
+            }
       catch (Exception ex)
-      {
-        return "False(Something wrong)";
-      }
+            {
+                return "False";
+            }
       return "True";
     }
 
@@ -89,7 +89,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -117,7 +117,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -132,7 +132,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False(Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -151,7 +151,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -166,7 +166,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False(Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -186,7 +186,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False(Something wrong)";
+        return "False";
       }
       return "True";
     }
@@ -205,7 +205,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -218,13 +218,13 @@ namespace MOS_WORD_LEARN
         while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Contents"))
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False (Text was edited)";
+            return "False";
         if (d.Paragraphs[Index + 3].Range.Text.Contains("Summary"))
-          return "False (Update entire table)";
+            return "False";
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -234,13 +234,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Footnotes.Count != 1)
-          return "False(add footnote)";
+            return "False";
         if (!d.Footnotes[1].Range.Text.Contains("Free to join"))
-          return "False(Free to join)";
-      }
+            return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -256,7 +256,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -270,7 +270,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -280,13 +280,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Footnotes.Count != 1)
-          return "False(chen foodnode)";
+            return "False";
         if (!d.Footnotes[1].Range.Text.Contains("Includes digital files."))
-          return "False(Includes digital files.)";
-      }
+            return "False";
+    }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -299,13 +299,13 @@ namespace MOS_WORD_LEARN
         while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Description"))
           ++Index;
         if (Index == 0)
-          return "False(Description)";
-        if (!d.Paragraphs[Index + 2].Range.Text.Contains("(Manufacturing1)"))
+                    return "False";
+                if (!d.Paragraphs[Index + 2].Range.Text.Contains("(Manufacturing1)"))
           return "False";
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -324,13 +324,13 @@ namespace MOS_WORD_LEARN
           }
         }
         if (num == 0)
-          return "False(Table of Contents)";
-        if (!d.Paragraphs[num + 2].Range.Text.ToLower().Contains("programs at other universities"))
+                    return "False";
+                if (!d.Paragraphs[num + 2].Range.Text.ToLower().Contains("programs at other universities"))
           return "False";
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }

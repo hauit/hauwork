@@ -225,12 +225,12 @@ namespace MOS_WORD_LEARN
                     }
                 }
                 if (paragraph == null)
-                    return "False(van ban bi sua)";
-                return !paragraph.Range.Text.Contains("Thắng®") ? "False(chen symbol)" : "True";
+                    return "False";
+                return !paragraph.Range.Text.Contains("Thắng®") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False(lỗi không xác định)";
+                return "False";
             }
         }
 
@@ -239,16 +239,16 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Bookmarks.Count != 1)
-                    return "False(add bookmark)";
+                    return "False";
                 object Index1 = (object)1;
                 if (d.Bookmarks[ref Index1].Name != "HCM")
-                    return "False(ten bookmark)";
+                    return "False";
                 object Index2 = (object)1;
-                return !d.Bookmarks[ref Index2].Range.Text.Contains("TP. HCM") ? "False(vi tri bookmark)" : "True";
+                return !d.Bookmarks[ref Index2].Range.Text.Contains("TP. HCM") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -256,11 +256,11 @@ namespace MOS_WORD_LEARN
         {
             try
             {
-                return d.PageSetup.Orientation != WdOrientation.wdOrientLandscape ? "False(huong giay ngang)" : "True";
+                return d.PageSetup.Orientation != WdOrientation.wdOrientLandscape ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -275,12 +275,12 @@ namespace MOS_WORD_LEARN
                         num = Index;
                 }
                 if (num == -1)
-                    return "False(noi dung da bi chinh sua)";
-                return !d.Paragraphs[num + 1].Range.Text.Contains("đà lạt") ? "False(chen noi dung tu file)" : "True";
+                    return "False";
+                return !d.Paragraphs[num + 1].Range.Text.Contains("đà lạt") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -295,14 +295,14 @@ namespace MOS_WORD_LEARN
                         num = Index;
                 }
                 if (num == -1)
-                    return "False(noi dung da bi chinh sua)";
+                    return "False";
                 if (d.Paragraphs[num + 2].Range.ListFormat.ListString != "\uF0A7")
-                    return "False(bullet hinh vuong)";
-                return d.Paragraphs[num + 2].LineSpacing.ToString() != "18" ? "False(khoang cach dong)" : "True";
+                    return "False";
+                return d.Paragraphs[num + 2].LineSpacing.ToString() != "18" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -311,17 +311,17 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Shapes.Count != 1)
-                    return "False(chen anh)";
+                    return "False";
                 object Index1 = (object)1;
                 if (!d.Shapes[ref Index1].Name.Contains("Pic"))
-                    return "False(khong chen cac doi tuong khac anh)";
+                    return "False";
                 object Index2 = (object)1;
                 if (d.Shapes[ref Index2].WrapFormat.Type != WdWrapType.wdWrapSquare)
-                    return "False(Square)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -333,21 +333,21 @@ namespace MOS_WORD_LEARN
                 object Index1 = (object)"Picture 1";
                 float num = d.Shapes[ref Index1].Top;
                 if (num.ToString() != "144")
-                    return "False(V)";
+                    return "False";
                 object Index2 = (object)"Picture 1";
                 num = d.Shapes[ref Index2].Left;
                 if (num.ToString() != "432")
-                    return "False(H)";
+                    return "False";
                 object Index3 = (object)"Picture 1";
                 if (d.Shapes[ref Index3].RelativeHorizontalPosition.ToString() != "wdRelativeHorizontalPositionPage")
-                    return "False(RH)";
+                    return "False";
                 object Index4 = (object)"Picture 1";
                 if (d.Shapes[ref Index4].RelativeVerticalPosition.ToString() != "wdRelativeVerticalPositionPage")
-                    return "False(RV)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -359,13 +359,13 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Tables.Count != 1)
-                    return "False(khong them xoa table)";
+                    return "False";
                 if (d.Tables[1].Title != "Mission")
-                    return "False(Mission)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (add alt text)";
+                return "False";
             }
             return "True";
         }
@@ -375,13 +375,13 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Tables.Count != 1)
-                    return "False(khong them xoa table)";
+                    return "False";
                 if (d.Tables[1].Borders[WdBorderType.wdBorderBottom].Color.ToString() != "-738132122")
-                    return "False()";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -391,13 +391,13 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Tables.Count != 1)
-                    return "False(khong them xoa table)";
+                    return "False";
                 if (d.Tables[1].Columns.Width.ToString() != "226.55")
-                    return "False(phan bo deu cac cot)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -408,14 +408,14 @@ namespace MOS_WORD_LEARN
             {
                 object Index1 = (object)"Picture 2";
                 if (d.Shapes[ref Index1].Left.ToString() != "-999998")
-                    return "False(H)";
+                    return "False";
                 object Index2 = (object)"Picture 2";
                 if (d.Shapes[ref Index2].RelativeHorizontalPosition.ToString() != "wdRelativeHorizontalPositionPage")
-                    return "False(RH)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -425,16 +425,16 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Shapes.Count != 3)
-                    return "False(chien tieu de thanh wordArt)";
+                    return "False";
                 object Index1 = (object)3;
                 if (!d.Shapes[ref Index1].Name.Contains("Text"))
-                    return "False(WordArt)";
+                    return "False";
                 object Index2 = (object)3;
-                return d.Shapes[ref Index2].TextFrame.TextRange.Font.ColorIndex.ToString() != "wdYellow" ? "False(sai kieu)" : "True";
+                return d.Shapes[ref Index2].TextFrame.TextRange.Font.ColorIndex.ToString() != "wdYellow" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -443,12 +443,12 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.InlineShapes[1].SmartArt.AllNodes.Count != 3)
-                    return "False(khong them xoa node)";
-                return d.InlineShapes[1].SmartArt.AllNodes[(object)1].TextFrame2.TextRange.Text != "Coffee" ? "False()" : "True";
+                    return "False";
+                return d.InlineShapes[1].SmartArt.AllNodes[(object)1].TextFrame2.TextRange.Text != "Coffee" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -462,12 +462,12 @@ namespace MOS_WORD_LEARN
                 while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Controlled Observation"))
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False(khong su noi dung file)";
-                return !d.Paragraphs[Index + 2].Range.Text.Contains("24 thg 6, 2020") ? "False(sai file)" : "True";
+                    return "False";
+                return !d.Paragraphs[Index + 2].Range.Text.Contains("24 thg 6, 2020") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (chen noi dung tu file)";
+                return "False";
             }
         }
 
@@ -479,12 +479,12 @@ namespace MOS_WORD_LEARN
                 while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("f you need their natural habitat"))
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False(khong su noi dung file)";
-                return d.Paragraphs[Index + 1].Range.Tables.Count != 1 ? "False(chen table dung vi tri)" : "True";
+                    return "False";
+                return d.Paragraphs[Index + 1].Range.Tables.Count != 1 ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -496,7 +496,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -508,7 +508,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -520,7 +520,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -528,11 +528,11 @@ namespace MOS_WORD_LEARN
         {
             try
             {
-                return !d.Paragraphs[5].Range.Text.Contains("Đông Nai") ? "False(update toan bo muc luc)" : "True";
+                return !d.Paragraphs[5].Range.Text.Contains("Đông Nai") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -541,12 +541,12 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Sections[2].PageSetup.Orientation != WdOrientation.wdOrientLandscape)
-                    return "False (dat con tro sau ngac section chuyen huong giay ngan)";
-                return d.Sections[1].PageSetup.Orientation == WdOrientation.wdOrientLandscape ? "False (khong chuyen section 1 thanh huong giay ngan)" : "True";
+                    return "False";
+                return d.Sections[1].PageSetup.Orientation == WdOrientation.wdOrientLandscape ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -554,11 +554,11 @@ namespace MOS_WORD_LEARN
         {
             try
             {
-                return d.Paragraphs[1].Range.Text != "\r" ? "False(chen trang bia)" : "True";
+                return d.Paragraphs[1].Range.Text != "\r" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -570,7 +570,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -580,16 +580,16 @@ namespace MOS_WORD_LEARN
             {
                 object Index1 = (object)"Rectangle 472";
                 if (d.Shapes[ref Index1].TextFrame.TextRange.Text != "Word\r")
-                    return "False(sub title)";
+                    return "False";
                 object Index2 = (object)"Rectangle 16";
                 string text = d.Shapes[ref Index2].TextFrame.TextRange.Text;
                 if (!text.Contains("MOS2016"))
-                    return "False (title)";
-                return text.Contains("abstract") ? "False(xoa abstract)" : "True";
+                    return "False";
+                return text.Contains("abstract") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -599,11 +599,11 @@ namespace MOS_WORD_LEARN
             {
                 if (!d.Paragraphs[5].Range.Text.Contains("Cooker"))
                     return "False";
-                return d.Paragraphs[5].Range.Font.Bold != 9999999 || d.Paragraphs[5].Alignment != WdParagraphAlignment.wdAlignParagraphLeft ? "False(dan kieu trong dinh dang)" : "True";
+                return d.Paragraphs[5].Range.Font.Bold != 9999999 || d.Paragraphs[5].Alignment != WdParagraphAlignment.wdAlignParagraphLeft ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -619,7 +619,7 @@ namespace MOS_WORD_LEARN
                 }
 
                 if (index > d.Paragraphs.Count)
-                    return "False (Paragraph not found)";
+                    return "False";
 
                 // Lấy Style từ Paragraph.Range
                 var styleObj = d.Paragraphs[index].Range.get_Style();
@@ -627,17 +627,17 @@ namespace MOS_WORD_LEARN
                 if (styleObj is Microsoft.Office.Interop.Word.Style style)
                 {
                     return style.NameLocal != "Intense Reference"
-                        ? "False(" + style.NameLocal + ")"
+                        ? "False"
                         : "True";
                 }
                 else
                 {
-                    return "False (Invalid style object)";
+                    return "False";
                 }
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -648,11 +648,11 @@ namespace MOS_WORD_LEARN
             {
                 if (d.Paragraphs[4].Range.InlineShapes.Count != 1)
                     return "False";
-                return d.Paragraphs[4].Range.InlineShapes[1].Type != WdInlineShapeType.wdInlineShapeSmartArt ? "False (chen SmartArt)" : "True";
+                return d.Paragraphs[4].Range.InlineShapes[1].Type != WdInlineShapeType.wdInlineShapeSmartArt ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -674,11 +674,11 @@ namespace MOS_WORD_LEARN
             {
                 if (d.Paragraphs[6].Range.InlineShapes.Count != 1)
                     return "False";
-                return d.Paragraphs[6].Range.InlineShapes[1].Type != WdInlineShapeType.wdInlineShapeSmartArt ? "False (chen SmartArt)" : "True";
+                return d.Paragraphs[6].Range.InlineShapes[1].Type != WdInlineShapeType.wdInlineShapeSmartArt ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -693,16 +693,16 @@ namespace MOS_WORD_LEARN
                 if (styleObj is Microsoft.Office.Interop.Word.Style charStyle)
                 {
                     string name = charStyle.NameLocal ?? "";
-                    return name != "Intense Emphasis" ? $"False({name})" : "True";
+                    return name != "Intense Emphasis" ? "False" : "True";
                 }
                 else
                 {
-                    return "False (Style is not of type Word.Style)";
+                    return "False";
                 }
             }
             catch (Exception ex)
             {
-                return "False (Exception: " + ex.Message + ")";
+                return "False";
             }
         }
 
@@ -715,7 +715,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -728,7 +728,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -737,12 +737,12 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Tables.Count != 2)
-                    return "False(sao khi chuyen doi phai co 2 table)";
-                return d.Tables[2].Rows.Count != 4 || d.Tables[2].Columns.Count != 3 ? "False(sai du lieu)" : "True";
+                    return "False";
+                return d.Tables[2].Rows.Count != 4 || d.Tables[2].Columns.Count != 3 ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -755,7 +755,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -768,7 +768,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (loi khong xac dinh)";
+                return "False";
             }
         }
 
@@ -780,7 +780,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (loi khong xac dinh)";
+                return "False";
             }
         }
 
@@ -792,7 +792,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (loi khong xac dinh)";
+                return "False";
             }
         }
 
@@ -804,7 +804,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (loi khong xac dinh)";
+                return "False";
             }
         }
 
@@ -814,11 +814,11 @@ namespace MOS_WORD_LEARN
             {
                 if (d.PageSetup.DifferentFirstPageHeaderFooter != -1)
                     return "False(chọn different first page)";
-                return d.Sections[1].Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Shapes.Count != 2 ? "False(chen sai kieu)" : "True";
+                return d.Sections[1].Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Shapes.Count != 2 ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -827,14 +827,14 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Paragraphs[3].Range.InlineShapes.Count != 1)
-                    return "False(chen hinh dung vi tri)";
+                    return "False";
                 if (d.Paragraphs[3].Range.InlineShapes[1].Width.ToString() != "460.8")
-                    return "False(width)";
-                return d.Paragraphs[3].Range.InlineShapes[1].Height.ToString() != "306.7" ? "False(bo khoa ti le dai rong)" : "True";
+                    return "False";
+                return d.Paragraphs[3].Range.InlineShapes[1].Height.ToString() != "306.7" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -842,11 +842,11 @@ namespace MOS_WORD_LEARN
         {
             try
             {
-                return d.Paragraphs[8].Range.Text != "\f" ? "False(chen ngat section dung vi tri)" : "True";
+                return d.Paragraphs[8].Range.Text != "\f" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -855,11 +855,11 @@ namespace MOS_WORD_LEARN
             try
             {
                 object Index = (object)2;
-                return !d.Shapes[ref Index].Name.Contains("7") ? "False(add sai shape)" : "True";
+                return !d.Shapes[ref Index].Name.Contains("7") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -869,11 +869,11 @@ namespace MOS_WORD_LEARN
             {
                 object Index1 = (object)2;
                 object Index2 = (object)"Group 193";
-                return d.Shapes[ref Index2].GroupItems[ref Index1].TextFrame.TextRange.Text.Contains("Company address") ? "False(xoa address)" : "True";
+                return d.Shapes[ref Index2].GroupItems[ref Index1].TextFrame.TextRange.Text.Contains("Company address") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -885,7 +885,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -893,11 +893,11 @@ namespace MOS_WORD_LEARN
         {
             try
             {
-                return d.Paragraphs[12].Range.Characters[5].HighlightColorIndex != WdColorIndex.wdBrightGreen ? "False(sai mau)" : "True";
+                return d.Paragraphs[12].Range.Characters[5].HighlightColorIndex != WdColorIndex.wdBrightGreen ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -906,16 +906,16 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Bookmarks.Count != 1)
-                    return "False(chen bookmark)";
+                    return "False";
                 object Index1 = (object)1;
                 if (d.Bookmarks[ref Index1].Name != "Postscrip")
-                    return "False(ten bookmark Postscrip)";
+                    return "False";
                 object Index2 = (object)1;
-                return !d.Bookmarks[ref Index2].Range.Text.Contains("Cảnh đẹp") ? "False(vi tri bookmark)" : "True";
+                return !d.Bookmarks[ref Index2].Range.Text.Contains("Cảnh đẹp") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -927,7 +927,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -936,11 +936,11 @@ namespace MOS_WORD_LEARN
             try
             {
                 object Index = (object)"Picture 1";
-                return d.Shapes[ref Index].AlternativeText != "Dark cocoa & Dark sweet" ? "False(Dark cocoa & Dark sweet)" : "True";
+                return d.Shapes[ref Index].AlternativeText != "Dark cocoa & Dark sweet" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -952,7 +952,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -964,7 +964,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -972,11 +972,11 @@ namespace MOS_WORD_LEARN
         {
             try
             {
-                return !d.Paragraphs[1].Range.Text.Contains("TP. HCM©") ? "False()" : "True";
+                return !d.Paragraphs[1].Range.Text.Contains("TP. HCM©") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -985,12 +985,12 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (!d.Paragraphs[3].Range.Text.Contains("Vủng Tàu"))
-                    return "False(di chuyen doan 3";
-                return !d.Paragraphs[10].Range.Text.Contains("To make your document") ? "False(di chuyen den doan 10" : "True";
+                    return "False";
+                return !d.Paragraphs[10].Range.Text.Contains("To make your document") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -998,11 +998,11 @@ namespace MOS_WORD_LEARN
         {
             try
             {
-                return d.Endnotes.Count != 1 ? "False(chen end note)" : "True";
+                return d.Endnotes.Count != 1 ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1011,12 +1011,12 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (!d.Paragraphs[10].Range.ListFormat.ListPictureBullet.IsPictureBullet)
-                    return "False(10)";
-                return !d.Paragraphs[10].Range.ListFormat.ListPictureBullet.IsPictureBullet ? "False(13)" : "True";
+                    return "False";
+                return !d.Paragraphs[10].Range.ListFormat.ListPictureBullet.IsPictureBullet ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1028,7 +1028,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1040,7 +1040,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1052,7 +1052,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1061,14 +1061,14 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Tables.Count != 1)
-                    return "False(khong them xoa table)";
+                    return "False";
                 if (d.Tables[1].Title != "Price list")
-                    return "False(Price list)";
-                return d.Tables[1].Descr != "Price list iPhone" ? "False(Price list iPhone)" : "True";
+                    return "False";
+                return d.Tables[1].Descr != "Price list iPhone" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1077,12 +1077,12 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Paragraphs[3].Range.Text.Contains("different galleries"))
-                    return "False(different galleries)";
-                return !d.Paragraphs[3].Range.Text.Contains("samsum") ? "False(samsum)" : "True";
+                    return "False";
+                return !d.Paragraphs[3].Range.Text.Contains("samsum") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1094,7 +1094,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1106,7 +1106,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1118,7 +1118,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1130,7 +1130,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1142,7 +1142,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1154,7 +1154,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1171,7 +1171,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1180,12 +1180,12 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Sections[2].PageSetup.Orientation != WdOrientation.wdOrientLandscape)
-                    return "False(chinh sectoin 2 thanh huong giay ngan)";
-                return d.Sections[1].PageSetup.Orientation == WdOrientation.wdOrientLandscape ? "False(khong chinh sectoin 1 thanh huong giay ngan)" : "True";
+                    return "False";
+                return d.Sections[1].PageSetup.Orientation == WdOrientation.wdOrientLandscape ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1194,11 +1194,11 @@ namespace MOS_WORD_LEARN
             try
             {
                 object Index = (object)"Text Box 2";
-                return !d.Shapes[ref Index].TextFrame.TextRange.Text.Contains("Microsoft Office") ? "False(Microsoft Office)" : "True";
+                return !d.Shapes[ref Index].TextFrame.TextRange.Text.Contains("Microsoft Office") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1207,12 +1207,12 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Tables.Count != 1)
-                    return "False(khong them xoa table)";
-                return d.Tables[1].Rows[5].Cells.Count != 1 ? "False(gop cac o dong cuoi thanh 1)" : "True";
+                    return "False";
+                return d.Tables[1].Rows[5].Cells.Count != 1 ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1221,12 +1221,12 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Tables[1].Title != "Price list")
-                    return "False(Price list)";
-                return !d.Tables[1].Descr.Contains("Price list of Honda scooter in") ? "False(Price list of Honda scooter in)" : "True";
+                    return "False";
+                return !d.Tables[1].Descr.Contains("Price list of Honda scooter in") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1236,19 +1236,19 @@ namespace MOS_WORD_LEARN
             {
                 object Index1 = (object)2;
                 if (!d.Shapes[ref Index1].Name.Contains("8"))
-                    return "False(chen sai shape)";
+                    return "False";
                 object Index2 = (object)2;
                 if (d.Shapes[ref Index2].Width.ToString() != "86.4")
-                    return "False(chinh do rong)";
+                    return "False";
                 object Index3 = (object)2;
                 if (d.Shapes[ref Index3].Height.ToString() != "86.4")
-                    return "False(chinh chieu cao)";
+                    return "False";
                 object Index4 = (object)2;
-                return d.Shapes[ref Index4].Left.ToString() != "-999998" ? "False(chinh vi tri)" : "True";
+                return d.Shapes[ref Index4].Left.ToString() != "-999998" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1257,11 +1257,11 @@ namespace MOS_WORD_LEARN
             try
             {
                 object Index = (object)"5-Point Star 2";
-                return !d.Shapes[ref Index].TextFrame.TextRange.Text.Contains("2 year") ? "False(2 year)" : "True";
+                return !d.Shapes[ref Index].TextFrame.TextRange.Text.Contains("2 year") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1273,7 +1273,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1285,7 +1285,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1298,7 +1298,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1310,7 +1310,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1322,7 +1322,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1330,11 +1330,11 @@ namespace MOS_WORD_LEARN
         {
             try
             {
-                return d.Tables.Count != 1 ? "False(chen table)" : "True";
+                return d.Tables.Count != 1 ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1343,11 +1343,11 @@ namespace MOS_WORD_LEARN
             try
             {
                 object Index = (object)"Rectangle 197";
-                return !d.Sections[1].Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Shapes[ref Index].TextFrame.TextRange.Text.Contains("MENU") ? "False(menu)" : "True";
+                return !d.Sections[1].Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Shapes[ref Index].TextFrame.TextRange.Text.Contains("MENU") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1359,7 +1359,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1367,11 +1367,11 @@ namespace MOS_WORD_LEARN
         {
             try
             {
-                return !d.Paragraphs[d.Paragraphs.Count - 3].Range.Text.Contains("\tKhông khí trong") ? "False()" : "True";
+                return !d.Paragraphs[d.Paragraphs.Count - 3].Range.Text.Contains("\tKhông khí trong") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1383,7 +1383,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1394,11 +1394,11 @@ namespace MOS_WORD_LEARN
                 if (d.Sections[1].Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Shapes.Count != 1)
                     return "False";
                 object Index = (object)1;
-                return !d.Sections[1].Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Shapes[ref Index].Name.Contains("Group 158") ? "False(sai kieu)" : "True";
+                return !d.Sections[1].Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Shapes[ref Index].Name.Contains("Group 158") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1407,12 +1407,12 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Paragraphs[9].Range.InlineShapes.Count != 1)
-                    return "False(chen smartArt)";
-                return d.Paragraphs[9].Range.InlineShapes[1].Type != WdInlineShapeType.wdInlineShapeSmartArt ? "False(SmartArt)" : "True";
+                    return "False";
+                return d.Paragraphs[9].Range.InlineShapes[1].Type != WdInlineShapeType.wdInlineShapeSmartArt ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1424,7 +1424,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1433,12 +1433,12 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Paragraphs[3].Range.InlineShapes[1].SmartArt.QuickStyle.Name != "Intense Effect")
-                    return "False(sai kieu)";
-                return d.Paragraphs[3].Range.InlineShapes[1].SmartArt.Color.Name != "Colorful Range - Accent Colors 4 to 5" ? "False(sai mau)" : "True";
+                    return "False";
+                return d.Paragraphs[3].Range.InlineShapes[1].SmartArt.Color.Name != "Colorful Range - Accent Colors 4 to 5" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1447,12 +1447,12 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Paragraphs[3].Range.Text.Contains("matching"))
-                    return "Fals(matching)";
-                return !d.Paragraphs[3].Range.Text.Contains("nights") ? "False(nights)" : "True";
+                    return "False";
+                return !d.Paragraphs[3].Range.Text.Contains("nights") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1461,12 +1461,12 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.PageSetup.DifferentFirstPageHeaderFooter != -1)
-                    return "False(DifferentFirstPage)";
-                return !d.Sections[1].Footers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range.Text.Contains("[") ? "False(sai kieu)" : "True";
+                    return "False";
+                return !d.Sections[1].Footers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range.Text.Contains("[") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1479,11 +1479,11 @@ namespace MOS_WORD_LEARN
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
                     return "False";
-                return !d.Paragraphs[Index + 1].Range.Text.Contains("Combo detail") ? "False(Combo detail)" : "True";
+                return !d.Paragraphs[Index + 1].Range.Text.Contains("Combo detail") ? "False)" : "True";
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1495,7 +1495,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1507,7 +1507,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1519,7 +1519,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
 
@@ -1531,7 +1531,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (khong sat dinh)";
+                return "False";
             }
         }
     }

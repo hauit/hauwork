@@ -77,7 +77,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -97,7 +97,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -107,19 +107,19 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Hyperlinks.Count == 0)
-          return "False (don't have hyperlink)";
-        if (d.Hyperlinks.Count > 1)
-          return "False (number of hyperlink)";
-        object Index1 = (object) 1;
+                    return "False";
+                if (d.Hyperlinks.Count > 1)
+                    return "False";
+                object Index1 = (object) 1;
         if (!d.Hyperlinks[ref Index1].Address.Contains("http://www.tailspintoys.com"))
-          return "False (http://www.tailspintoys.com)";
-        object Index2 = (object) 1;
+                    return "False";
+                object Index2 = (object) 1;
         if (d.Hyperlinks[ref Index2].TextToDisplay != "tailspintoys.com")
-          return "False (tailspintoys.com)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -129,23 +129,23 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Bookmarks.Count != 1)
-          return "False (Number of bookmark)";
-        object Index1 = (object) 1;
+                    return "False";
+                object Index1 = (object) 1;
         if (d.Bookmarks[ref Index1].Name != "BeEntertaining")
         {
           object Index2 = (object) 1;
-          return "False (name=" + d.Bookmarks[ref Index2].Name + ")";
-        }
+                    return "False";
+                }
         object Index3 = (object) 1;
         if (!d.Bookmarks[ref Index3].Range.Text.Contains("Be Entertaining"))
         {
           object Index4 = (object) 1;
-          return "False (text=" + d.Bookmarks[ref Index4].Range.Text + ")";
-        }
+                    return "False";
+                }
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -155,20 +155,20 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Bookmarks.Count != 1)
-          return "False (Number of bookmark)";
-        object Index1 = (object) 1;
+                    return "False";
+                object Index1 = (object) 1;
         if (d.Bookmarks[ref Index1].Name != "ABC")
         {
           object Index2 = (object) 1;
-          return "False (name=" + d.Bookmarks[ref Index2].Name + ")";
-        }
+                    return "False";
+                }
         object Index3 = (object) 1;
         if (d.Bookmarks[ref Index3].Start != 2605)
-          return "False (vi tri)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -178,19 +178,19 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Hyperlinks.Count == 0)
-          return "False (don't have hyperlink)";
-        if (d.Hyperlinks.Count > 1)
-          return "False (number of hyperlink)";
-        object Index1 = (object) 1;
+                    return "False";
+                if (d.Hyperlinks.Count > 1)
+                    return "False";
+                object Index1 = (object) 1;
         if (!d.Hyperlinks[ref Index1].Address.Contains("thimos1000.wordpress.com"))
-          return "False (address)";
-        object Index2 = (object) 1;
+                    return "False";
+                object Index2 = (object) 1;
         if (d.Hyperlinks[ref Index2].TextToDisplay != "Cultivated")
-          return "False (Cultivated)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -200,19 +200,19 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Hyperlinks.Count == 0)
-          return "False (don't have hyperlink)";
-        if (d.Hyperlinks.Count > 1)
-          return "False (number of hyperlink)";
-        object Index1 = (object) 1;
+                    return "False";
+                if (d.Hyperlinks.Count > 1)
+                    return "False";
+                object Index1 = (object) 1;
         if (!d.Hyperlinks[ref Index1].SubAddress.Contains("Introduction"))
-          return "False (subaddress)";
-        object Index2 = (object) 1;
+                    return "False";
+                object Index2 = (object) 1;
         if (d.Hyperlinks[ref Index2].TextToDisplay != "Home")
-          return "False (Home)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -222,16 +222,16 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Bookmarks.Count == 0)
-          return "False (add bookmark)";
-        if (d.Bookmarks.Count > 1)
-          return "False (chỉ add 1 bookmark thôi)";
-        object Index = (object) 1;
+                    return "False";
+                if (d.Bookmarks.Count > 1)
+                    return "False";
+                object Index = (object) 1;
         if (!d.Bookmarks[ref Index].Name.Contains("Cheating"))
-          return "False (Cheating)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }

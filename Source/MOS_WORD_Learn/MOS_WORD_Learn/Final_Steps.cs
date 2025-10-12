@@ -83,11 +83,11 @@ namespace MOS_WORD_LEARN
             try
             {
                 object Index = (object)"Text Box 2";
-                return d.Shapes[ref Index].TextFrame.TextRange.Text != "Requires committee review\r" ? "False(Requires committee review)" : "True";
+                return d.Shapes[ref Index].TextFrame.TextRange.Text != "Requires committee review\r" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False(something wrong)";
+                return "False";
             }
         }
 
@@ -96,15 +96,15 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (!a.ActiveWindow.View.ShowTabs)
-                    return "False(Tab)";
+                    return "False";
                 if (!a.ActiveWindow.View.ShowSpaces)
-                    return "False(Spaces)";
+                    return "False";
                 if (a.ActiveWindow.View.ShowAll)
-                    return "False(turn off show All)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -118,7 +118,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -128,14 +128,14 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (!d.RemovePersonalInformation)
-                    return "False(RemovePersonal)";
+                    return "False";
                 object Index = (object)"Text Box 5";
                 string text = d.Shapes[ref Index].TextFrame.TextRange.Text;
                 return "True";
             }
             catch (Exception ex)
             {
-                return "False(only RemovePersonal)";
+                return "False";
             }
         }
 
@@ -148,7 +148,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -158,17 +158,17 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (!a.ActiveWindow.View.ShowTabs)
-                    return "False(show Tab)";
+                    return "False";
                 if (a.ActiveWindow.View.ShowSpaces)
-                    return "False(don't show Spaces)";
+                    return "False";
                 if (a.ActiveWindow.View.ShowHiddenText)
-                    return "False(don't show HiddenText)";
+                    return "False";
                 if (a.ActiveWindow.View.ShowAll)
-                    return "False(turn off show All)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -178,11 +178,11 @@ namespace MOS_WORD_LEARN
             try
             {
                 object Index = (object)"Text Box 3";
-                return d.Shapes[ref Index].TextFrame.TextRange.Text != "Draft\r" ? "False(Draft)" : "True";
+                return d.Shapes[ref Index].TextFrame.TextRange.Text != "Draft\r" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False(something wrong)";
+                return "False";
             }
         }
 
@@ -191,11 +191,11 @@ namespace MOS_WORD_LEARN
             try
             {
                 object Index = (object)"Text Box 2";
-                return d.Shapes[ref Index].TextFrame.TextRange.Text != "Requires committee review\r" ? "False(Requires committee review)" : "True";
+                return d.Shapes[ref Index].TextFrame.TextRange.Text != "Requires committee review\r" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False(something wrong)";
+                return "False";
             }
         }
 
@@ -204,15 +204,15 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (!a.ActiveWindow.View.ShowTabs)
-                    return "False(Tab)";
+                    return "False";
                 if (!a.ActiveWindow.View.ShowSpaces)
-                    return "False(Spaces)";
+                    return "False";
                 if (a.ActiveWindow.View.ShowAll)
-                    return "False(turn off show All)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -221,11 +221,11 @@ namespace MOS_WORD_LEARN
         {
             try
             {
-                return !d.RemovePersonalInformation ? "False(RemovePersonal)" : "True";
+                return !d.RemovePersonalInformation ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False(only RemovePersonal)";
+                return "False";
             }
         }
 
@@ -237,7 +237,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False(only RemovePersonal)";
+                return "False";
             }
         }
 
@@ -259,7 +259,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception)
             {
-                return "False(only RemovePersonal)";
+                return "False";
             }
         }
 
@@ -271,17 +271,20 @@ namespace MOS_WORD_LEARN
                 Range content = d.Content;
                 Find findHeading = content.Find;
                 findHeading.Text = "Summarize main points";
-                if (!findHeading.Execute()) return "False(heading not found)";
+                if (!findHeading.Execute())
+                    return "False";
 
                 Range afterHeading = d.Range(content.End, d.Content.End);
                 Paragraph firstPara = afterHeading.Paragraphs.First;
-                if (firstPara == null) return "False(no paragraph found)";
+                if (firstPara == null)
+                    return "False";
 
                 Range paraRange = firstPara.Range;
 
                 Find findWord = paraRange.Find;
                 findWord.Text = "look";
-                if (!findWord.Execute()) return "False(word 'look' not found)";
+                if (!findWord.Execute())
+                    return "False";
 
                 Range wordRange = paraRange.Duplicate;
                 wordRange.Start = paraRange.Start;
@@ -304,11 +307,11 @@ namespace MOS_WORD_LEARN
             {
                 object Index = (object)"ui";
                 if (a.AutoCorrect.Entries[ref Index].Value != "aut")
-                    return "False(aut)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(uil)";
+                return "False";
             }
             return "True";
         }
@@ -325,7 +328,7 @@ namespace MOS_WORD_LEARN
                                               Forward: true,
                                               Wrap: WdFindWrap.wdFindStop);
                 if (!found)
-                    return "False(heading not found)";
+                    return "False";
 
                 Range headingRange = rng.Duplicate; // range chứa heading
 
@@ -365,7 +368,7 @@ namespace MOS_WORD_LEARN
                 }
 
                 if (smartArtShape == null)
-                    return "False(smartart not found)";
+                    return "False";
 
                 // 3) Lấy tất cả nodes vào danh sách để xử lý theo thứ tự
                 var allNodes = smartArtShape.SmartArt.AllNodes;
@@ -374,7 +377,7 @@ namespace MOS_WORD_LEARN
                     nodeList.Add(n);
 
                 if (nodeList.Count == 0)
-                    return "False(no nodes)";
+                    return "False";
 
                 // 4) Lấy text từng node
                 var texts = nodeList
@@ -388,7 +391,7 @@ namespace MOS_WORD_LEARN
                 int idxRework = texts.FindIndex(t => string.Equals(t, "Rework", StringComparison.OrdinalIgnoreCase));
 
                 if (idxRecycle == -1 || idxRework == -1)
-                    return "False(nodes not found)";
+                    return "False";
 
                 // 6) Di chuyển text Recycle để đứng ngay trước Rework
                 string recycleText = texts[idxRecycle];
@@ -419,7 +422,7 @@ namespace MOS_WORD_LEARN
             catch (Exception ex)
             {
                 // trả về thông báo lỗi để debug nếu cần
-                return "False(error: " + ex.Message + ")";
+                return "False";
             }
         }
 
@@ -428,17 +431,17 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (a.ActiveWindow.View.ShowTabs)
-                    return "False(not Tab)";
+                    return "False";
                 if (a.ActiveWindow.View.ShowSpaces)
-                    return "False(not Spaces)";
+                    return "False";
                 if (!a.ActiveWindow.View.ShowHiddenText)
-                    return "False(Hidden text)";
+                    return "False";
                 if (a.ActiveWindow.View.ShowAll)
-                    return "False(turn off show All)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -450,25 +453,25 @@ namespace MOS_WORD_LEARN
                 try
                 {
                     if (a.ActiveWindow.View.ShowTabs)
-                        return "False(not Tab)";
+                        return "False";
                     if (a.ActiveWindow.View.ShowSpaces)
-                        return "False(not Spaces)";
+                        return "False";
                     if (a.ActiveWindow.View.ShowHiddenText)
-                        return "False(not Hidden text)";
+                        return "False";
                     if (!a.ActiveWindow.View.ShowParagraphs)
-                        return "False(paragraph mark)";
+                        return "False";
                     if (a.ActiveWindow.View.ShowAll)
-                        return "False(turn off show All)";
+                        return "False";
                 }
                 catch (Exception ex)
                 {
-                    return "False (Something not finish!)";
+                    return "False";
                 }
                 return "True";
             }
             catch (Exception ex)
             {
-                return "False(Something not finish!)";
+                return "False";
             }
         }
 
@@ -477,19 +480,19 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (!a.ActiveWindow.View.ShowTabs)
-                    return "False(Tab)";
+                    return "False";
                 if (!a.ActiveWindow.View.ShowSpaces)
-                    return "False(Spaces)";
+                    return "False";
                 if (a.ActiveWindow.View.ShowHiddenText)
-                    return "False(not Hidden text)";
+                    return "False";
                 if (a.ActiveWindow.View.ShowParagraphs)
-                    return "False(not paragraph mark)";
+                    return "False";
                 if (a.ActiveWindow.View.ShowAll)
-                    return "False(turn off show All)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -501,11 +504,11 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.CompatibilityMode == 11)
-                    return "False(File==>Convert)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -531,7 +534,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -546,7 +549,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -556,13 +559,13 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.RemovePersonalInformation)
-                    return "False(không xóa PersonalInformation)";
+                    return "False";
                 if (d.Sections[1].Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Shapes.Count != 0)
                     return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -572,11 +575,11 @@ namespace MOS_WORD_LEARN
             try
             {
                 if (d.Name != "Memo.txt")
-                    return "False(luu dang text)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -591,7 +594,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -603,7 +606,7 @@ namespace MOS_WORD_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }

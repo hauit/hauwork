@@ -63,7 +63,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -82,7 +82,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -96,7 +96,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -109,13 +109,13 @@ namespace MOS_WORD_LEARN
         while (d.Paragraphs[Index].Range.Text != "\u000EFour-String\r" && Index < d.Paragraphs.Count)
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False(Column break before 'Four-String')";
-        if (d.Paragraphs[Index].Range.Text != "\u000EFour-String\r")
-          return "False()";
-      }
+                    return "False";
+                if (d.Paragraphs[Index].Range.Text != "\u000EFour-String\r")
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -128,13 +128,13 @@ namespace MOS_WORD_LEARN
         while (d.Paragraphs[Index].Range.Text != "Vegetables\r" && Index < d.Paragraphs.Count)
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False('Vegetables' not found)";
-        if (d.Paragraphs[Index - 1].Range.Text != "\f")
-          return "False(Break section)";
-      }
+                    return "False";
+                if (d.Paragraphs[Index - 1].Range.Text != "\f")
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -148,7 +148,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -158,11 +158,11 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Sections[2].PageSetup.Orientation != WdOrientation.wdOrientLandscape)
-          return "False(Landscape section 2)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -175,13 +175,13 @@ namespace MOS_WORD_LEARN
         while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Tuning"))
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False(Tieu de Tuning khong tim thay)";
-        if (d.Paragraphs[Index - 1].Range.Text != "\f\r")
-          return "False(chen chi ngat trang (pageBreak))";
-      }
+                    return "False";
+                if (d.Paragraphs[Index - 1].Range.Text != "\f\r")
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -194,13 +194,13 @@ namespace MOS_WORD_LEARN
         while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Barstow College"))
           ++Index;
         if (Index >= d.Paragraphs.Count)
-          return "False(Tieu de Barstow College khong tim thay)";
-        if (d.Paragraphs[Index].Range.Text != "Barstow College \vObservation Project\r")
-          return "False(chen chi ngat dong xac tu Observation)";
-      }
+                    return "False";
+                if (d.Paragraphs[Index].Range.Text != "Barstow College \vObservation Project\r")
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -216,7 +216,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -235,7 +235,7 @@ namespace MOS_WORD_LEARN
       }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -245,17 +245,17 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Sections.Count != 3)
-          return "False (number of section)";
-        float leftMargin = d.Sections[1].PageSetup.LeftMargin;
+                    return "False";
+                float leftMargin = d.Sections[1].PageSetup.LeftMargin;
         if (leftMargin.ToString() != "54")
-          return "False(apply kieu trong Build In)";
-        leftMargin = d.Sections[3].PageSetup.LeftMargin;
+                    return "False";
+                leftMargin = d.Sections[3].PageSetup.LeftMargin;
         if (leftMargin.ToString() != "54")
-          return "False(apply cho toan bo cac section)";
-      }
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -265,13 +265,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Sections.Count != 2)
-          return "False (number of section)";
-        if (d.Sections[2].PageSetup.Orientation != WdOrientation.wdOrientLandscape)
-          return "False(chinh huong giay ngan cho section 2)";
-      }
+                    return "False";
+                if (d.Sections[2].PageSetup.Orientation != WdOrientation.wdOrientLandscape)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -281,19 +281,19 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Sections.Count != 1)
-          return "False (number of section)";
-        if ((double) d.Sections[1].PageSetup.TopMargin != 54.0)
-          return "False(lề trên)";
-        if ((double) d.Sections[1].PageSetup.BottomMargin != 54.0)
-          return "False(lề dưới)";
-        if ((double) d.Sections[1].PageSetup.LeftMargin != 36.0)
-          return "False(lề trái)";
-        if ((double) d.Sections[1].PageSetup.RightMargin != 36.0)
-          return "False(lề phải)";
-      }
+                    return "False";
+                if ((double) d.Sections[1].PageSetup.TopMargin != 54.0)
+                    return "False";
+                if ((double) d.Sections[1].PageSetup.BottomMargin != 54.0)
+                    return "False";
+                if ((double) d.Sections[1].PageSetup.LeftMargin != 36.0)
+                    return "False";
+                if ((double) d.Sections[1].PageSetup.RightMargin != 36.0)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -303,17 +303,17 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Sections.Count != 3)
-          return "False (number of section)";
-        if (d.Sections[2].PageSetup.Orientation != WdOrientation.wdOrientLandscape)
-          return "False(section 2 hường giấy ngan)";
-        if (d.Sections[1].PageSetup.Orientation != WdOrientation.wdOrientPortrait)
-          return "False(section 1 hường giấy đứng)";
-        if (d.Sections[3].PageSetup.Orientation != WdOrientation.wdOrientPortrait)
-          return "False(section 3 hường giấy đứng)";
-      }
+                    return "False";
+                if (d.Sections[2].PageSetup.Orientation != WdOrientation.wdOrientLandscape)
+                    return "False";
+                if (d.Sections[1].PageSetup.Orientation != WdOrientation.wdOrientPortrait)
+                    return "False";
+                if (d.Sections[3].PageSetup.Orientation != WdOrientation.wdOrientPortrait)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -323,15 +323,15 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Sections.Count != 3)
-          return "False (number of section)";
-        if (d.Sections[2].PageSetup.TextColumns.Count != 2)
-          return "False(section2 <>2 Column)";
-        if (d.Sections[2].PageSetup.TextColumns.Spacing.ToString() != "21.6")
-          return "False(sai khoảng cách giửa 2 cột)";
-      }
+                    return "False";
+                if (d.Sections[2].PageSetup.TextColumns.Count != 2)
+                    return "False";
+                if (d.Sections[2].PageSetup.TextColumns.Spacing.ToString() != "21.6")
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
@@ -350,14 +350,14 @@ namespace MOS_WORD_LEARN
           }
         }
         if (num == 0)
-          return "False(không tìm thấy Where to find us)";
-        if (d.Paragraphs[num - 1].Range.Text != "\f")
-          return "False(chen ngắt section)";
-      }
+                    return "False";
+                if (d.Paragraphs[num - 1].Range.Text != "\f")
+                    return "False";
+            }
       catch (Exception ex)
-      {
-        return "False (Something not finish!)";
-      }
+            {
+                return "False";
+            }
       return "True";
     }
 
@@ -366,13 +366,13 @@ namespace MOS_WORD_LEARN
       try
       {
         if (d.Sections.Count != 3)
-          return "False";
-        if (d.Sections[2].PageSetup.TextColumns.Count != 2)
-          return "False(chia 2 cột)";
-      }
+                    return "False";
+                if (d.Sections[2].PageSetup.TextColumns.Count != 2)
+                    return "False";
+            }
       catch (Exception ex)
       {
-        return "False (Something not finish!)";
+        return "False";
       }
       return "True";
     }
