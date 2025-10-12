@@ -38,11 +38,29 @@ namespace MOS_EXCEL_LEARN
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
-            if (Process.GetProcessesByName("EXCEL").Length > 0)
+            //if (Process.GetProcessesByName("EXCEL").Length > 0)
+            //{
+            //    MessageBox.Show("Vui lòng đóng tất cả các file excel trước khi học để tránh mất dữ liệu");
+            //    this.textBoxUser.Focus();
+            //    return;
+            //}
+
+            Process[] excelProcesses = Process.GetProcessesByName("EXCEL");
+
+            if (excelProcesses.Length > 0)
             {
-                MessageBox.Show("Vui lòng đóng tất cả các file excel trước khi học để tránh mất dữ liệu");
-                this.textBoxUser.Focus();
-                return;
+                foreach (var process in excelProcesses)
+                {
+                    try
+                    {
+                        process.Kill(); // buộc dừng tiến trình
+                        process.WaitForExit(); // đợi đến khi tiến trình thật sự đóng
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Không thể tắt Excel: " + ex.Message);
+                    }
+                }
             }
 
             if (this.textBoxUser.Text.ToUpper() != "MOS TRAINING")

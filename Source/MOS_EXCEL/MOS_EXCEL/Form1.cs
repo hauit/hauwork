@@ -47,8 +47,8 @@ namespace MOS_EXCEL_LEARN
                 this.load_cau_hoi(this.cau_User);
                 // ISSUE: method pointer
                 // ISSUE: object of a compiler-generated type is created
-                ((Microsoft.Office.Interop.Excel.AppEvents_Event)this.a)
-                .WorkbookBeforeClose += new Microsoft.Office.Interop.Excel.AppEvents_WorkbookBeforeCloseEventHandler(this.a_WorkbookBeforeClose);
+                //((Microsoft.Office.Interop.Excel.AppEvents_Event)this.a)
+                //.WorkbookBeforeClose += new Microsoft.Office.Interop.Excel.AppEvents_WorkbookBeforeCloseEventHandler(this.a_WorkbookBeforeClose);
             }
             catch (Exception ex)
             {
@@ -365,7 +365,7 @@ namespace MOS_EXCEL_LEARN
 
         private void buttonCheck_Click(object sender, EventArgs e)
         {
-            //this.labelKQ.Text = this.CheckResult(this.paramater);
+            this.labelKQ.Text = this.CheckResult(this.paramater);
             if (this.labelKQ.Text == "True")
                 this.Diem[this.cau_User - 1] = 1;
             this.check = false;
@@ -538,7 +538,7 @@ namespace MOS_EXCEL_LEARN
 
         private string Check(enviroment par)
         {
-            MessageBox.Show(par.section.ToString() + " - " + par.quesion.ToString());
+            //MessageBox.Show(par.section.ToString() + " - " + par.quesion.ToString());
 
             string str = "";
             try
