@@ -771,7 +771,7 @@ namespace MOS_WORD_LEARN
         {
             try
             {
-                if (d.Comments.Count != 1)
+                if (d.Comments.Count != 1 || d.Comments[0].Done != true)
                     return "False";
             }
             catch (Exception ex)
