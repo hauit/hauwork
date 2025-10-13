@@ -8,6 +8,7 @@ using Microsoft.CSharp.RuntimeBinder;
 using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -714,17 +715,73 @@ namespace MOS_EXCEL_LEARN
         {
             try
             {
+                //Worksheet ws = (Worksheet)d.Worksheets["Materials"];
+                //if (ws == null)
+                //    return "False";
+
+                //double wA = ((Range)ws.get_Range("A4")).ColumnWidth;
+                //double wB = ((Range)ws.get_Range("B4")).ColumnWidth;
+                //double wN = ((Range)ws.get_Range("N4")).ColumnWidth;
+
+                //if (wA < 34.0 || wA > 35.0) return "False";
+                //if (wB < 14.0 || wB > 15.0) return "False";
+                //if (wN < 6.0 || wN > 8.0) return "False";
+
                 Worksheet ws = (Worksheet)d.Worksheets["Materials"];
                 if (ws == null)
+                    return "False (Không tìm thấy sheet 'Materials')";
+
+                Range rng = ws.Range["A:E"];
+                int n = rng.Columns.Count;
+
+                // lấy độ rộng hiện tại
+                double[] current = new double[n];
+                for (int i = 1; i <= n; i++)
+                    current[i - 1] = ((Range)rng.Columns[i]).ColumnWidth;
+
+                // tạo bản sao tạm
+                Worksheet temp = d.Worksheets.Add();
+                Range tempRange = temp.Range["A1:E100"];
+
+                // copy nội dung và định dạng để tính chính xác độ rộng
+                ws.Range["A1:E100"].Copy();
+                tempRange.PasteSpecial(XlPasteType.xlPasteAll);
+
+                // gọi AutoFit trên sheet tạm
+                tempRange.Columns.AutoFit();
+
+                // lấy độ rộng sau AutoFit
+                double[] autofit = new double[n];
+                for (int i = 1; i <= n; i++)
+                    autofit[i - 1] = ((Range)tempRange.Columns[i]).ColumnWidth;
+
+                // tắt cảnh báo trước khi xóa
+                Application app = d.Application;
+                bool oldAlerts = app.DisplayAlerts;
+                app.DisplayAlerts = false;
+
+                // xóa sheet tạm mà không hiển thị thông báo
+                temp.Delete();
+
+                // bật lại cảnh báo
+                app.DisplayAlerts = oldAlerts;
+
+                // so sánh độ rộng hiện tại với độ rộng AutoFit
+                bool ok = true;
+                for (int i = 0; i < n; i++)
+                {
+                    if (Math.Abs(current[i] - autofit[i]) > 0.2)
+                    {
+                        ok = false;
+                        //return ($"Cột {i + 1}: hiện tại = {current[i]}, AutoFit = {autofit[i]}");
+                        break;
+                    }
+                }
+
+                if (ok)
+                    return "True";
+                else
                     return "False";
-
-                double wA = ((Range)ws.get_Range("A4")).ColumnWidth;
-                double wB = ((Range)ws.get_Range("B4")).ColumnWidth;
-                double wN = ((Range)ws.get_Range("N4")).ColumnWidth;
-
-                if (wA < 34.0 || wA > 35.0) return "False";
-                if (wB < 14.0 || wB > 15.0) return "False";
-                if (wN < 6.0 || wN > 8.0) return "False";
 
             }
             catch (Exception)

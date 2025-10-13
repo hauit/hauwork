@@ -49,6 +49,13 @@ namespace MOS_EXCEL_LEARN
                 // ISSUE: object of a compiler-generated type is created
                 //((Microsoft.Office.Interop.Excel.AppEvents_Event)this.a)
                 //.WorkbookBeforeClose += new Microsoft.Office.Interop.Excel.AppEvents_WorkbookBeforeCloseEventHandler(this.a_WorkbookBeforeClose);
+
+                // Initially show the Excel application
+                this.a.WindowState = Microsoft.Office.Interop.Excel.XlWindowState.xlNormal;
+                this.a.Top = 0.0;
+                this.a.Left = 0.0;
+                this.a.Width = (double)this.screen_width;
+                this.a.Height = (double)(this.screen_height * 3 / 5);
             }
             catch (Exception ex)
             {
