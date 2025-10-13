@@ -275,28 +275,47 @@ namespace MOS_WORD_LEARN
                     return "False";
 
                 Range afterHeading = d.Range(content.End, d.Content.End);
-                Paragraph firstPara = afterHeading.Paragraphs.First;
+                Paragraph firstPara = afterHeading.Paragraphs[1];
                 if (firstPara == null)
                     return "False";
 
-                Range paraRange = firstPara.Range;
+                //for(int i = 1; i <= afterHeading.Paragraphs.Count; i++)
+                //{
+                //    Range paraRange = afterHeading.Paragraphs[i].Range;
+                //    Find findWord = paraRange.Find;
+                //    findWord.Text = "look";
+                //    if (!findWord.Execute())
+                //    {
+                //        continue;
+                //    }
+                //}
+                Range paraRange = afterHeading.Paragraphs[2].Range;
 
                 Find findWord = paraRange.Find;
                 findWord.Text = "look";
                 if (!findWord.Execute())
                     return "False";
 
-                Range wordRange = paraRange.Duplicate;
-                wordRange.Start = paraRange.Start;
-                wordRange.End = paraRange.End;
+                // Nếu tìm thấy từ "look", kiểm tra footnote "resource"
+                bool hasResourceFootnote = false;
+                foreach (Footnote fn in d.Footnotes)
+                {
+                    string fnText = fn.Range?.Text ?? string.Empty;
+                    if (fnText.ToLower().IndexOf("resource") >= 0)
+                    {
+                        hasResourceFootnote = true;
+                        break;
+                    }
+                }
 
-                d.Footnotes.Add(paraRange, Text: "resource");
-
-                return "True";
+                if (hasResourceFootnote)
+                    return "True";
+                else
+                    return "False";
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return "False(error)";
+                return "False";
             }
         }
 
@@ -320,108 +339,39 @@ namespace MOS_WORD_LEARN
         {
             try
             {
-                // 1) Tìm heading "A primer on Improving profits"
-                Range rng = d.Content;
-                bool found = rng.Find.Execute("A primer on Improving profits",
-                                              MatchCase: false,
-                                              MatchWholeWord: true,
-                                              Forward: true,
-                                              Wrap: WdFindWrap.wdFindStop);
-                if (!found)
-                    return "False";
-
-                Range headingRange = rng.Duplicate; // range chứa heading
-
-                // 2) Tìm SmartArt có anchor nằm sau heading (nếu có). Nếu không, fallback sang SmartArt đầu tiên.
-                Shape smartArtShape = null;
-                foreach (Shape s in d.Shapes)
+                int indexRecycle = -1;
+                int indexRework = -1;
+                foreach (Shape shape in d.Shapes)
                 {
-                    try
+                    if (shape.Type != Microsoft.Office.Core.MsoShapeType.msoSmartArt)
                     {
-                        if (s.Type == MsoShapeType.msoSmartArt)
+                        continue;
+                    }
+                    var nodes = shape.SmartArt.AllNodes;
+                    for (int i = 1; i <= nodes.Count; i++)
+                    {
+                        var node = nodes[i];
+                        if (node.TextFrame2.TextRange.Text.Trim().Contains("Recycle"))
                         {
-                            Range anchor = s.Anchor as Range;
-                            if (anchor != null && anchor.Start >= headingRange.End)
-                            {
-                                smartArtShape = s;
-                                break;
-                            }
+                            indexRecycle = i;
+                            continue;
                         }
-                    }
-                    catch
-                    {
-                        // ignore shapes we can't read anchor of
-                    }
-                }
 
-                if (smartArtShape == null)
-                {
-                    // fallback: lấy SmartArt đầu tiên trong document
-                    foreach (Shape s in d.Shapes)
-                    {
-                        if (s.Type == MsoShapeType.msoSmartArt)
+                        if (node.TextFrame2.TextRange.Text.Trim().Contains("Rework"))
                         {
-                            smartArtShape = s;
-                            break;
+                            indexRework = i;
+                            continue;
                         }
                     }
                 }
 
-                if (smartArtShape == null)
-                    return "False";
+                if ((indexRecycle + indexRework) > 0 && (indexRecycle < indexRework))
+                    return "True";
 
-                // 3) Lấy tất cả nodes vào danh sách để xử lý theo thứ tự
-                var allNodes = smartArtShape.SmartArt.AllNodes;
-                var nodeList = new List<Microsoft.Office.Core.SmartArtNode>();
-                foreach (Microsoft.Office.Core.SmartArtNode n in allNodes)
-                    nodeList.Add(n);
-
-                if (nodeList.Count == 0)
-                    return "False";
-
-                // 4) Lấy text từng node
-                var texts = nodeList
-                    .Select(n => (n.TextFrame2 != null && n.TextFrame2.TextRange != null)
-                                 ? (n.TextFrame2.TextRange.Text ?? string.Empty).Trim()
-                                 : string.Empty)
-                    .ToList();
-
-                // 5) Tìm vị trí "Recycle" và "Rework"
-                int idxRecycle = texts.FindIndex(t => string.Equals(t, "Recycle", StringComparison.OrdinalIgnoreCase));
-                int idxRework = texts.FindIndex(t => string.Equals(t, "Rework", StringComparison.OrdinalIgnoreCase));
-
-                if (idxRecycle == -1 || idxRework == -1)
-                    return "False";
-
-                // 6) Di chuyển text Recycle để đứng ngay trước Rework
-                string recycleText = texts[idxRecycle];
-                texts.RemoveAt(idxRecycle);
-
-                // Sau khi remove, nếu recycle ở trước rework ban đầu thì index rework giảm 1
-                int idxReworkAfterRemoval = idxRework;
-                if (idxRecycle < idxRework) idxReworkAfterRemoval = idxRework - 1;
-
-                // chèn recycle trước rework
-                texts.Insert(idxReworkAfterRemoval, recycleText);
-
-                // 7) Gán lại text mới cho các node theo thứ tự nodeList
-                for (int i = 0; i < nodeList.Count && i < texts.Count; i++)
-                {
-                    try
-                    {
-                        nodeList[i].TextFrame2.TextRange.Text = texts[i];
-                    }
-                    catch
-                    {
-                        // tiếp tục nếu một node không gán được
-                    }
-                }
-
-                return "True";
+                return "False";
             }
             catch (Exception ex)
             {
-                // trả về thông báo lỗi để debug nếu cần
                 return "False";
             }
         }
@@ -497,7 +447,22 @@ namespace MOS_WORD_LEARN
             return "True";
         }
 
-        private static string cau19(Application a, _Document d) => "True";
+        private static string cau19(Application a, _Document d)
+        {
+            int counter = 0;
+            foreach (Microsoft.Office.Interop.Word.Table tbl in d.Tables)
+            {
+                bool hasHeader = tbl.Rows.First.HeadingFormat == -1;
+                if (hasHeader)
+                    counter++;
+            }
+            if(counter == 2)
+            {
+                return "True";
+            }
+
+            return "False";
+        }
 
         private static string cau20(Application a, _Document d)
         {

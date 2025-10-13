@@ -153,7 +153,7 @@ namespace MOS_WORD_LEARN.Base
             new ClsQuestion(true,44,122,"https://go.mos360.vn/mosword044","Kiểm tra các vấn đề về khả năng truy cập của tài liệu. Sửa các vấn đề được báo cáo có liên quan đến bảng trong kết quả kiểm tra bằng cách sử dụng hành động đầu tiên được gợi ý. Không sửa các vấn đề báo cáo khác. ","program"),
             new ClsQuestion(true,27,123,"https://go.mos360.vn","Trong thuộc tính của tập tin, thêm \"program\" vào danh mục (Subject)","In the file properties, add \"program\" to the Subject"),
             new ClsQuestion(true,96,124,"https://go.mos360.vn","Trong đoạn văn đầu tiên dưới tiêu đề \"Summarize main points\" chèn chú thích chân trang \"resource\" sau từ \"look\".","In the first paragraph under the heading \"Summarize main points\" insert a footnote \"resource\" after the word \"look.\""),
-            new ClsQuestion(true,58,125,"https://go.mos360.vn","Di chuyển nội dung ô \"Recycle\" lên trên ô \"Rework\" trong SmartArt bên dưới tiêu đề \"A primer on Improving profits\".","Move the content of the \"Recycle\" box above the \"Rework\" box in the SmartArt below the title \"A primer on Improving profits.\""),
+            new ClsQuestion(true,58,125,"https://youtu.be/nfyEHpivLrs?si=bq6Th1vCDDf7x5r6","Di chuyển nội dung ô \"Recycle\" lên trên ô \"Rework\" trong SmartArt bên dưới tiêu đề \"A primer on Improving profits\".","Move the content of the \"Recycle\" box above the \"Rework\" box in the SmartArt below the title \"A primer on Improving profits.\""),
             ////TODO: Below question not yet be implemented, need to comment source code
         };
 

@@ -140,7 +140,7 @@ namespace MOS_WORD_LEARN
       try
       {
         if (!d.Sections[1].Footers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range.Text.Contains("pg. "))
-          return "False(sai kieu)";
+          return "False";
       }
       catch (Exception ex)
       {
@@ -154,7 +154,7 @@ namespace MOS_WORD_LEARN
       try
       {
         if (!d.Sections[1].Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range.Text.Contains("\r\r"))
-          return "False(sai kieu)";
+          return "False";
       }
       catch (Exception ex)
       {
@@ -168,9 +168,9 @@ namespace MOS_WORD_LEARN
       try
       {
         if (!d.Sections[1].Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range.Text.Contains("\r\a [DOCUMENT TITLE]\a\a\r"))
-          return "False(sai kieu)";
+          return "False";
         if (d.Sections[1].PageSetup.DifferentFirstPageHeaderFooter != -1)
-          return "False(DifferentFirstPageHeaderFooter)";
+          return "False";
       }
       catch (Exception ex)
       {
