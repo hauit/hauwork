@@ -279,6 +279,25 @@ namespace MOS_EXCEL_LEARN
             //this.pictureBox1.Image.Dispose();
             foreach (string file in Directory.GetFiles(Path.Combine(System.Windows.Forms.Application.StartupPath, "tam")))
                 File.Delete(file);
+
+            Process[] excelProcesses = Process.GetProcessesByName("EXCEL");
+
+            if (excelProcesses.Length > 0)
+            {
+                foreach (var process in excelProcesses)
+                {
+                    try
+                    {
+                        process.Kill(); // buộc dừng tiến trình
+                        process.WaitForExit(); // đợi đến khi tiến trình thật sự đóng
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Không thể tắt Excel: " + ex.Message);
+                    }
+                }
+            }
+
             this.Close();
         }
 
@@ -492,10 +511,10 @@ namespace MOS_EXCEL_LEARN
             string str3 = "<p>" + DateTime.Now.ToShortDateString() + "," + str2 + "</p>";
             if (num <= 1)
                 return;
-            string str4 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Diem");
+            string str4 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "MOS360");
             if (!Directory.Exists(str4))
                 Directory.CreateDirectory(str4);
-            string path = Path.Combine(str4, "hoc_Excel.html");
+            string path = Path.Combine(str4, "MOS360 TIẾN ĐỘ LUYỆN TẬP - EXCEL.html");
             if (File.Exists(path))
             {
                 TextWriter textWriter = (TextWriter)new StreamWriter(path, true);
@@ -505,7 +524,7 @@ namespace MOS_EXCEL_LEARN
             else
             {
                 TextWriter textWriter = (TextWriter)new StreamWriter(path, true);
-                string str5 = "Website hỗ trợ https://mos360.vn";
+                string str5 = "<h2 style=\"text-align: center;\"><span style=\"color: #ff0000;\"><strong>MOS360 - X&oacute;a tan nỗi lo CHUẨN ĐẦU RA cho sinh vi&ecirc;n.</strong></span></h2>\r\n<p style=\"padding-left: 40px;\">Kh&ocirc;ng cần ho&agrave;n hảo - chỉ cần bắt đầu. Gửi b&agrave;i cho MOS360 để giữ vững phong độ nh&eacute; 🚀</p>\r\n<p style=\"padding-left: 40px;\">Zalo: <a href=\"https://zalo.me/0912888360\" target=\"_blank\" rel=\"noopener\">0912.888.360</a></p>\r\n<p style=\"padding-left: 40px;\">Fanpage: <a href=\"https://www.facebook.com/mos360.vn\" target=\"_blank\">https://www.facebook.com/mos360.vn</a></p>\r\n<p style=\"padding-left: 40px;\">Website: <a href=\"https://mos360.vn\" target=\"_blank\">https://mos360.vn</a></p>\r\n<p style=\"padding-left: 40px;\">Ch&uacute;c bạn học MOS thật vui, l&agrave;m b&agrave;i thật 'phi&ecirc;u' v&agrave; điểm cao v&egrave;o v&egrave;o nh&eacute; 🚀🎯</p>\r\n<p style=\"text-align: center;\"><strong>KẾT QUẢ LUYỆN TẬP EXCEL</strong></p>\r\n<p style=\"padding-left: 40px;\">&nbsp;</p>";
                 textWriter.WriteLine(str5);
                 textWriter.WriteLine(str3);
                 textWriter.Close();
