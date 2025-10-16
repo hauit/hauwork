@@ -15,6 +15,7 @@ using MOS_WORD_LEARN.Base;
 using static System.Net.WebRequestMethods;
 using File = System.IO.File;
 using Point = System.Drawing.Point;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace MOS_WORD_LEARN
 {
@@ -45,13 +46,26 @@ namespace MOS_WORD_LEARN
             this.h = new Help_cu();
             InitializeComponent();
             this.FormClosed += new FormClosedEventHandler(this.Form1_Dup_FormClosed);
-            this.a = (Microsoft.Office.Interop.Word.Application)Activator.CreateInstance(System.Type.GetTypeFromCLSID(new Guid("000209FF-0000-0000-C000-000000000046")));
-            //this.loadTongSoCau();
-            this.load_cau_hoi(this.cau_User);
-            // ISSUE: method pointer
-            // ISSUE: object of a compiler-generated type is created
-            ////TODO: need to check this decode code
-            //new ComAwareEventInfo(typeof(ApplicationEvents4_Event), "DocumentBeforeClose").AddEventHandler((object)this.a, (Delegate)new ApplicationEvents4_DocumentBeforeCloseEventHandler((object)this, (UIntPtr)__methodptr(a_DocumentBeforeClose)));
+            try
+            {
+                this.a = (Microsoft.Office.Interop.Word.Application)Activator.CreateInstance(System.Type.GetTypeFromCLSID(new Guid("000209FF-0000-0000-C000-000000000046")));
+                //this.loadTongSoCau();
+                this.load_cau_hoi(this.cau_User);
+                // ISSUE: method pointer
+                // ISSUE: object of a compiler-generated type is created
+                ////TODO: need to check this decode code
+                //new ComAwareEventInfo(typeof(ApplicationEvents4_Event), "DocumentBeforeClose").AddEventHandler((object)this.a, (Delegate)new ApplicationEvents4_DocumentBeforeCloseEventHandler((object)this, (UIntPtr)__methodptr(a_DocumentBeforeClose)));
+
+                this.a.WindowState = WdWindowState.wdWindowStateNormal;
+                this.a.Top = 0;
+                this.a.Left = 0;
+                // ISSUE: reference to a compiler-generated method
+                this.a.Resize(this.screen_width, this.screen_height * 3 / 5);
+            }
+            catch (Exception ex)
+            {
+                int num = (int)MessageBox.Show(ex.Message);
+            }
         }
 
         private void Form1_Dup_Load(object sender, EventArgs e)
@@ -142,10 +156,10 @@ namespace MOS_WORD_LEARN
             string str3 = "<p>" + DateTime.Now.ToShortDateString() + "," + str2 + "</p>";
             if (num <= 1)
                 return;
-            string str4 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Diem");
+            string str4 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "MOS360");
             if (!Directory.Exists(str4))
                 Directory.CreateDirectory(str4);
-            string path = Path.Combine(str4, "hoc_Word.html");
+            string path = Path.Combine(str4, "MOS360 TIẾN ĐỘ LUYỆN TẬP - WORD.html");
             if (File.Exists(path))
             {
                 TextWriter textWriter = (TextWriter)new StreamWriter(path, true);
@@ -155,7 +169,7 @@ namespace MOS_WORD_LEARN
             else
             {
                 TextWriter textWriter = (TextWriter)new StreamWriter(path, true);
-                string str5 = "Website hỗ trợ https://mos360.vn";
+                string str5 = "<h2 style=\"text-align: center;\"><span style=\"color: #ff0000;\"><strong>MOS360 - X&oacute;a tan nỗi lo CHUẨN ĐẦU RA cho sinh vi&ecirc;n.</strong></span></h2>\r\n<p style=\"padding-left: 40px;\">Kh&ocirc;ng cần ho&agrave;n hảo - chỉ cần bắt đầu. Gửi b&agrave;i cho MOS360 để giữ vững phong độ nh&eacute; 🚀</p>\r\n<p style=\"padding-left: 40px;\">Zalo: <a href=\"https://zalo.me/0912888360\" target=\"_blank\" rel=\"noopener\">0912.888.360</a></p>\r\n<p style=\"padding-left: 40px;\">Fanpage: <a href=\"https://www.facebook.com/mos360.vn\" target=\"_blank\">https://www.facebook.com/mos360.vn</a></p>\r\n<p style=\"padding-left: 40px;\">Website: <a href=\"https://mos360.vn\" target=\"_blank\">https://mos360.vn</a></p>\r\n<p style=\"padding-left: 40px;\">Ch&uacute;c bạn học MOS thật vui, l&agrave;m b&agrave;i thật 'phi&ecirc;u' v&agrave; điểm cao v&egrave;o v&egrave;o nh&eacute; 🚀🎯</p>\r\n<p style=\"text-align: center;\"><strong>KẾT QUẢ LUYỆN TẬP WORD</strong></p>\r\n<p style=\"padding-left: 40px;\">&nbsp;</p>";
                 textWriter.WriteLine(str5);
                 textWriter.WriteLine(str3);
                 textWriter.Close();
@@ -224,6 +238,25 @@ namespace MOS_WORD_LEARN
             //this.pictureBox1.Image.Dispose();
             foreach (string file in Directory.GetFiles(Path.Combine(System.Windows.Forms.Application.StartupPath, "tam")))
                 File.Delete(file);
+
+            Process[] wordProcesses = Process.GetProcessesByName("WINWORD");
+
+            if (wordProcesses.Length > 0)
+            {
+                foreach (var process in wordProcesses)
+                {
+                    try
+                    {
+                        process.Kill();
+                        process.WaitForExit();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Không thể tắt Word: " + ex.Message);
+                    }
+                }
+            }
+
             this.Close();
         }
 
