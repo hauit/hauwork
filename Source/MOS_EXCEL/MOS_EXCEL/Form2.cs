@@ -175,9 +175,9 @@ namespace MOS_EXCEL_LEARN
                 return;
             }
             this.mac = this.GetMotherboardID();
-            if (this.mac.Length < 10)
+            if (this.mac.Length < 2)
             {
-                int num = (int)MessageBox.Show("Tạo randomID bị lỗi");
+                int num = (int)MessageBox.Show("Tạo ID bị lỗi. Vui lòng liên hệ Admin");
                 this.Close();
                 return;
             }
