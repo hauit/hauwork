@@ -31,11 +31,12 @@ namespace MOS_WORD_TEST.WindowsFormsApplication1
             //treeList1.Columns["ProjectIndex"].Visible = true;
             treeList1.PopulateColumns();
             treeList1.Columns[0].Visible = false;
+            treeList1.Columns[1].Caption = "Project";
+            treeList1.Columns[2].Caption = "Question";
+            treeList1.Columns[3].Caption = "Mark Complete";
+            treeList1.Columns[4].Caption = "Mark for Review";
             treeList1.Columns[5].Visible = false;
-            treeList1.Columns[1].Caption = "Tên project";
-            treeList1.Columns[2].Caption = "Câu hỏi";
-            treeList1.Columns[3].Caption = "Xác nhận hoàn thành";
-            treeList1.Columns[4].Caption = "Cần kiểm tra lại";
+            treeList1.Columns[6].Visible = false;
             treeList1.ExpandAll();
         }
 

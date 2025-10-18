@@ -351,7 +351,8 @@ namespace MOS_WORD_TEST
 
         private void LoadProject(int projectIndex)
         {
-            this.labelProject.Text = $@"Project {(projectIndex + 1).ToString()} of {currentExam.ProjectIndex.Count.ToString()} : {currentExam.ProjectIndex[projectIndex].ProjectName}";
+            //this.labelProject.Text = $@"Project {(projectIndex + 1).ToString()} of {currentExam.ProjectIndex.Count.ToString()} : {currentExam.ProjectIndex[projectIndex].ProjectName}";
+            this.labelProject.Text = $@"Project {(projectIndex + 1).ToString()} of {currentExam.ProjectIndex.Count.ToString()}";
 
             this.checkedListBox1.Items.Clear();
             for (int i = 0; i < currentExam.ProjectIndex.Count; i++)
@@ -629,7 +630,8 @@ namespace MOS_WORD_TEST
             {
                 var row1 = dt.NewRow();
                 row1["ProjectIndex"] = currentExam.ProjectIndex[i].ProjectIndex;
-                row1["ProjectName"] = currentExam.ProjectIndex[i].ProjectName;
+                //row1["ProjectName"] = currentExam.ProjectIndex[i].ProjectName;
+                row1["ProjectName"] = $@"Project {i + 1}";
                 string currentParent = $@"{currentExam.ProjectIndex[i].ProjectIndex}_0";
                 row1["QuestionKey"] = currentParent;
                 dt.Rows.Add(row1);
@@ -644,10 +646,10 @@ namespace MOS_WORD_TEST
                     row["ParentKey"] = currentParent;
                     row["QuestionIndex"] = currentExam.ProjectIndex[i].Questions[j].Index;
                     //row["QuestionNumber"] = currentExam.ProjectIndex[i].Questions[j].QuestionNumber;
-                    row["MaskForComplete"] = currentExam.ProjectIndex[i].Questions[j].MaskForComplete == true ? "X" : string.Empty;
-                    row["MaskForReview"] = currentExam.ProjectIndex[i].Questions[j].MaskForReview == true ? "X" : string.Empty;
-                    row["Status"] = currentExam.ProjectIndex[i].Questions[j].Status == true ? "X" : string.Empty;
-                    row["Value"] = currentExam.ProjectIndex[i].Questions[j].Value == true ? "X" : string.Empty;
+                    row["MaskForComplete"] = currentExam.ProjectIndex[i].Questions[j].MaskForComplete == true ? "✔️" : string.Empty;
+                    row["MaskForReview"] = currentExam.ProjectIndex[i].Questions[j].MaskForReview == true ? "✔️" : string.Empty;
+                    row["Status"] = currentExam.ProjectIndex[i].Questions[j].Status == true ? "✔️" : string.Empty;
+                    row["Value"] = currentExam.ProjectIndex[i].Questions[j].Value == true ? "✔️" : string.Empty;
                     dt.Rows.Add(row);
                 }
             }

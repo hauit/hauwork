@@ -60,11 +60,29 @@ namespace MOS_WORD_TEST
         {
             try
             {
-                if (Process.GetProcessesByName("WINWORD").Length > 0)
+                //if (Process.GetProcessesByName("WINWORD").Length > 0)
+                //{
+                //    MessageBox.Show("Vui lòng đóng tất cả các file word trước khi thi để tránh mất dữ liệu");
+                //    this.textBoxUser.Focus();
+                //    return;
+                //}
+
+                Process[] wordProcesses = Process.GetProcessesByName("WINWORD");
+
+                if (wordProcesses.Length > 0)
                 {
-                    MessageBox.Show("Vui lòng đóng tất cả các file word trước khi thi để tránh mất dữ liệu");
-                    this.textBoxUser.Focus();
-                    return;
+                    foreach (var process in wordProcesses)
+                    {
+                        try
+                        {
+                            process.Kill();
+                            process.WaitForExit();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Không thể tắt Word: " + ex.Message);
+                        }
+                    }
                 }
 
                 if (this.textBoxUser.Text == "")
@@ -414,9 +432,9 @@ namespace MOS_WORD_TEST
                 return;
             }
             this.mac = this.GetMotherboardID();
-            if (this.mac.Length < 10)
+            if (this.mac.Length < 2)
             {
-                int num = (int)MessageBox.Show("Tạo randomID bị lỗi");
+                int num = (int)MessageBox.Show("Tạo ID bị lỗi. Vui lòng liên hệ Admin");
                 this.Close();
                 return;
             }
