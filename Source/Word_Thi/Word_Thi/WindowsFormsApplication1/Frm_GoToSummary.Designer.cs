@@ -32,15 +32,10 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnFinish = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -75,54 +70,22 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.gridControl1);
+            this.panel2.Controls.Add(this.treeList1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(606, 420);
             this.panel2.TabIndex = 1;
             // 
-            // gridControl1
+            // treeList1
             // 
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(0, 0);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(606, 420);
-            this.gridControl1.TabIndex = 0;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
-            this.gridColumn2,
-            this.gridColumn3});
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "gridColumn1";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "gridColumn2";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "gridColumn3";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
+            this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeList1.Location = new System.Drawing.Point(0, 0);
+            this.treeList1.Name = "treeList1";
+            this.treeList1.OptionsBehavior.Editable = false;
+            this.treeList1.Size = new System.Drawing.Size(606, 420);
+            this.treeList1.TabIndex = 1;
+            this.treeList1.RowCellClick += new DevExpress.XtraTreeList.RowCellClickEventHandler(this.treeList1_RowCellClick);
             // 
             // Frm_GoToSummary
             // 
@@ -136,8 +99,7 @@
             this.Load += new System.EventHandler(this.Frm_GoToSummary_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -148,10 +110,6 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnFinish;
         private System.Windows.Forms.Panel panel2;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraTreeList.TreeList treeList1;
     }
 }

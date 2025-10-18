@@ -618,24 +618,36 @@ namespace MOS_WORD_TEST
             dt.Columns.Add("ProjectIndex", typeof(int));
             dt.Columns.Add("ProjectName", typeof(string));
             dt.Columns.Add("QuestionIndex", typeof(int));
+            dt.Columns.Add("QuestionKey", typeof(string));
+            dt.Columns.Add("ParentKey", typeof(string));
             //dt.Columns.Add("QuestionNumber", typeof(int));
-            dt.Columns.Add("MaskForComplete", typeof(bool));
-            dt.Columns.Add("MaskForReview", typeof(bool));
-            dt.Columns.Add("Status", typeof(bool));
-            dt.Columns.Add("Value", typeof(bool));
+            dt.Columns.Add("MaskForComplete", typeof(string));
+            dt.Columns.Add("MaskForReview", typeof(string));
+            dt.Columns.Add("Status", typeof(string));
+            dt.Columns.Add("Value", typeof(string));
             for (int i = 0; i < currentExam.ProjectIndex.Count; i++)
             {
+                var row1 = dt.NewRow();
+                row1["ProjectIndex"] = currentExam.ProjectIndex[i].ProjectIndex;
+                row1["ProjectName"] = currentExam.ProjectIndex[i].ProjectName;
+                string currentParent = $@"{currentExam.ProjectIndex[i].ProjectIndex}_0";
+                row1["QuestionKey"] = currentParent;
+                dt.Rows.Add(row1);
+
                 for (int j = 0; j < currentExam.ProjectIndex[i].Questions.Count; j++)
                 {
                     var row = dt.NewRow();
                     row["ProjectIndex"] = currentExam.ProjectIndex[i].ProjectIndex;
-                    row["ProjectName"] = currentExam.ProjectIndex[i].ProjectName;
+                    row["ProjectName"] = string.Empty;//currentExam.ProjectIndex[i].ProjectName;
+                    string questionIndex = $@"{currentExam.ProjectIndex[i].ProjectIndex}_{currentExam.ProjectIndex[i].Questions[j].Index}";
+                    row["QuestionKey"] = questionIndex;
+                    row["ParentKey"] = currentParent;
                     row["QuestionIndex"] = currentExam.ProjectIndex[i].Questions[j].Index;
                     //row["QuestionNumber"] = currentExam.ProjectIndex[i].Questions[j].QuestionNumber;
-                    row["MaskForComplete"] = currentExam.ProjectIndex[i].Questions[j].MaskForComplete;
-                    row["MaskForReview"] = currentExam.ProjectIndex[i].Questions[j].MaskForReview;
-                    row["Status"] = currentExam.ProjectIndex[i].Questions[j].Status;
-                    row["Value"] = currentExam.ProjectIndex[i].Questions[j].Value;
+                    row["MaskForComplete"] = currentExam.ProjectIndex[i].Questions[j].MaskForComplete == true ? "X" : string.Empty;
+                    row["MaskForReview"] = currentExam.ProjectIndex[i].Questions[j].MaskForReview == true ? "X" : string.Empty;
+                    row["Status"] = currentExam.ProjectIndex[i].Questions[j].Status == true ? "X" : string.Empty;
+                    row["Value"] = currentExam.ProjectIndex[i].Questions[j].Value == true ? "X" : string.Empty;
                     dt.Rows.Add(row);
                 }
             }

@@ -22,9 +22,21 @@ namespace MOS_WORD_TEST.WindowsFormsApplication1
 
         private void Frm_GoToSummary_Load(object sender, EventArgs e)
         {
-            gridView1.Columns.Clear();
-            gridControl1.DataSource = DataSource;
-            gridView1.BestFitColumns();
+            //gridView1.Columns.Clear();
+            //gridControl1.DataSource = DataSource;
+            //gridView1.BestFitColumns();
+            treeList1.DataSource = DataSource;
+            treeList1.ParentFieldName = "ParentKey";
+            treeList1.KeyFieldName = "QuestionKey";
+            //treeList1.Columns["ProjectIndex"].Visible = true;
+            treeList1.PopulateColumns();
+            treeList1.Columns[0].Visible = false;
+            treeList1.Columns[5].Visible = false;
+            treeList1.Columns[1].Caption = "Tên project";
+            treeList1.Columns[2].Caption = "Câu hỏi";
+            treeList1.Columns[3].Caption = "Xác nhận hoàn thành";
+            treeList1.Columns[4].Caption = "Cần kiểm tra lại";
+            treeList1.ExpandAll();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -51,12 +63,26 @@ namespace MOS_WORD_TEST.WindowsFormsApplication1
 
         private void gridView1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
-            var a = Convert.ToInt32(gridView1.GetRowCellValue(e.RowHandle, "ProjectIndex"));
+            //var a = Convert.ToInt32(gridView1.GetRowCellValue(e.RowHandle, "ProjectIndex"));
+            //ProjectEventArgs changeData = new ProjectEventArgs();
+            //changeData.ProjectIndex = Convert.ToInt32(gridView1.GetRowCellValue(e.RowHandle, "ProjectIndex"));
+            //changeData.QuestionIndex = Convert.ToInt32(gridView1.GetRowCellValue(e.RowHandle, "QuestionIndex"));
+            //OnChangeAnswer?.Invoke(changeData);
+            //btnClose_Click(null,null);
+        }
+
+        private void treeList1_RowCellClick(object sender, DevExpress.XtraTreeList.RowCellClickEventArgs e)
+        {
+            if (e.Node == null || e.Node.GetValue("QuestionIndex").ToString() == string.Empty)
+                return;
+
+            var projectIndex = Convert.ToInt32(e.Node.GetValue("ProjectIndex"));
             ProjectEventArgs changeData = new ProjectEventArgs();
-            changeData.ProjectIndex = Convert.ToInt32(gridView1.GetRowCellValue(e.RowHandle, "ProjectIndex"));
-            changeData.QuestionIndex = Convert.ToInt32(gridView1.GetRowCellValue(e.RowHandle, "QuestionIndex"));
+            changeData.ProjectIndex = projectIndex;
+            changeData.QuestionIndex = Convert.ToInt32(e.Node.GetValue("QuestionIndex"));
+
             OnChangeAnswer?.Invoke(changeData);
-            btnClose_Click(null,null);
+            btnClose_Click(null, null);
         }
     }
 
