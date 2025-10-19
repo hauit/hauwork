@@ -533,13 +533,21 @@ namespace MOS_WORD_TEST
         private void LoadQuestionContent(object sender, EventArgs e)
         {
             Button lastBT = GetLastQuestionButton();
-            lastBT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
-            lastBT.ForeColor = System.Drawing.Color.White;
-            var btn = sender as System.Windows.Forms.Button;
+            if (lastBT != null)
+            {
+                lastBT.BackColor = Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
+                lastBT.ForeColor = Color.White;
+            }
+            else
+            {
+
+            }
+
+            var btn = sender as Button;
             var question = btn.Tag as Question;
             currentQuestion = question;
-            btn.BackColor = System.Drawing.Color.White;
-            btn.ForeColor = System.Drawing.Color.Black;
+            btn.BackColor = Color.White;
+            btn.ForeColor = Color.Black;
             ClsQuestion questionObj = ClsListQuestion.GetQuestion(question.QuestionNumber);
             richTextTA.Text = Language == "EN" ? questionObj.EngQuestion : questionObj.VnQuestion;
         }
