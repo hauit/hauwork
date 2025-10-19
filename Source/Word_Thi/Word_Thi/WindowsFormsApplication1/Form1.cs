@@ -620,6 +620,7 @@ namespace MOS_WORD_TEST
             dt.Columns.Add("ProjectName", typeof(string));
             dt.Columns.Add("QuestionIndex", typeof(int));
             dt.Columns.Add("QuestionKey", typeof(string));
+            dt.Columns.Add("QuestionContent", typeof(string));
             dt.Columns.Add("ParentKey", typeof(string));
             //dt.Columns.Add("QuestionNumber", typeof(int));
             dt.Columns.Add("MaskForComplete", typeof(string));
@@ -645,6 +646,8 @@ namespace MOS_WORD_TEST
                     row["QuestionKey"] = questionIndex;
                     row["ParentKey"] = currentParent;
                     row["QuestionIndex"] = currentExam.ProjectIndex[i].Questions[j].Index;
+                    int questionNumber = currentExam.ProjectIndex[i].Questions[j].QuestionNumber;
+                    row["QuestionContent"] = Language == "EN" ? ClsListQuestion.GetQuestion(questionNumber).EngQuestion : ClsListQuestion.GetQuestion(questionNumber).VnQuestion;
                     //row["QuestionNumber"] = currentExam.ProjectIndex[i].Questions[j].QuestionNumber;
                     row["MaskForComplete"] = currentExam.ProjectIndex[i].Questions[j].MaskForComplete == true ? "✔️" : string.Empty;
                     row["MaskForReview"] = currentExam.ProjectIndex[i].Questions[j].MaskForReview == true ? "✔️" : string.Empty;

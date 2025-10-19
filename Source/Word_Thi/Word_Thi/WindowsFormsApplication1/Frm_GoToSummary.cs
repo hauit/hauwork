@@ -30,13 +30,23 @@ namespace MOS_WORD_TEST.WindowsFormsApplication1
             treeList1.KeyFieldName = "QuestionKey";
             //treeList1.Columns["ProjectIndex"].Visible = true;
             treeList1.PopulateColumns();
+            treeList1.RowHeight = -1;
+            treeList1.OptionsBehavior.AutoNodeHeight = true;
+            var memo = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
+            memo.WordWrap = true;
+            treeList1.RepositoryItems.Add(memo);
             treeList1.Columns[0].Visible = false;
             treeList1.Columns[1].Caption = "Project";
-            treeList1.Columns[2].Caption = "Question";
-            treeList1.Columns[3].Caption = "Mark Complete";
-            treeList1.Columns[4].Caption = "Mark for Review";
-            treeList1.Columns[5].Visible = false;
+            treeList1.Columns[2].Caption = "Question number";
+            treeList1.Columns[3].Caption = "Question content";
+            treeList1.Columns[3].ColumnEdit = memo;
+            treeList1.Columns[3].Width = 230;
+            treeList1.Columns[3].AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            treeList1.Columns[4].Caption = "Mark Complete";
+            treeList1.Columns[5].Caption = "Mark for Review";
             treeList1.Columns[6].Visible = false;
+            treeList1.Columns[7].Visible = false;
+            //treeList1.BestFitColumns();
             treeList1.ExpandAll();
         }
 
