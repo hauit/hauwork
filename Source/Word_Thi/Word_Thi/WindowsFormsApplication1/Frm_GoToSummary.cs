@@ -76,12 +76,12 @@ namespace MOS_WORD_TEST.WindowsFormsApplication1
             int correctAnswer = 0;
             foreach (DataRow r in DataSource.Rows)
             {
-                bool value = Convert.ToBoolean(r["Status"]);
-                if (value) correctAnswer++;
+                string value = r["Value"].ToString().Trim();
+                if (value == "✔️") correctAnswer++;
             }
 
-            int total = (int)Math.Round((correctAnswer * 28.6),0);
-            if(total > 1000)
+            int total = (int)Math.Round((correctAnswer * 28.6), 0);
+            if (total > 1000)
             {
                 total = 1000;
             }
