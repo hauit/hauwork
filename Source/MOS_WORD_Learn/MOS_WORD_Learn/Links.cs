@@ -182,7 +182,7 @@ namespace MOS_WORD_LEARN
                 if (d.Hyperlinks.Count > 1)
                     return "False";
                 object Index1 = (object) 1;
-        if (!d.Hyperlinks[ref Index1].Address.Contains("thimos1000.wordpress.com"))
+        if (!d.Hyperlinks[ref Index1].Address.Contains("Mos360.vn"))
                     return "False";
                 object Index2 = (object) 1;
         if (d.Hyperlinks[ref Index2].TextToDisplay != "Cultivated")

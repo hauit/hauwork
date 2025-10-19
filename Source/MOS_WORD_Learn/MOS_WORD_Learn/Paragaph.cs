@@ -550,7 +550,7 @@ namespace MOS_WORD_LEARN
             try
             {
                 int Index = 1;
-                while (!d.Paragraphs[Index].Range.Text.Contains("Thimos1000.wordpress.com") && Index < d.Paragraphs.Count)
+                while (!d.Paragraphs[Index].Range.Text.Contains("Mos360.vn") && Index < d.Paragraphs.Count)
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
                     return "False";
