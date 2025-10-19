@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Shape = Microsoft.Office.Interop.Word.Shape;
 
 namespace MOS_WORD_TEST
 {
@@ -150,15 +151,14 @@ namespace MOS_WORD_TEST
 
         private string Cau1(Application a, Document d)
         {
-            //Sec 10 question 1 index 112
             try
             {
-                if (d.Name != "Notes.docx")
-                    return "False(luu lại kiểu template(Notes.docx))";
+                if (!d.Name.StartsWith("Notes."))
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -172,13 +172,13 @@ namespace MOS_WORD_TEST
                 while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Barstow College"))
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False(Tieu de Barstow College khong tim thay)";
+                    return "False";
                 if (d.Paragraphs[Index].Range.Text != "Barstow College \vObservation Project\r")
-                    return "False(chen chi ngat dong xac tu Observation)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -188,14 +188,14 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.DocumentTheme.ThemeColorScheme.Colors(MsoThemeColorSchemeIndex.msoThemeAccent1).RGB != 1250736)
-                    return "False(chon theme Ion )";
+                    return "False";
                 object Index = (object)"Heading 1";
                 if (d.Styles[ref Index].ParagraphFormat.Shading.BackgroundPatternColor.ToString() != "-738131969")
-                    return "False(sai kieu Formating)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -205,11 +205,11 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.DocumentTheme.ThemeFontScheme.MajorFont.Item(MsoFontLanguageIndex.msoThemeLatin).Name != "Candara")
-                    return "False(sai theme font)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -219,17 +219,17 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Sections.Count != 3)
-                    return "False (number of section)";
+                    return "False";
                 if (d.Sections[2].PageSetup.Orientation != WdOrientation.wdOrientLandscape)
-                    return "False(section 2 hường giấy ngan)";
+                    return "False";
                 if (d.Sections[1].PageSetup.Orientation != WdOrientation.wdOrientPortrait)
-                    return "False(section 1 hường giấy đứng)";
+                    return "False";
                 if (d.Sections[3].PageSetup.Orientation != WdOrientation.wdOrientPortrait)
-                    return "False(section 3 hường giấy đứng)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -239,7 +239,7 @@ namespace MOS_WORD_TEST
             try
             {
                 if (!d.Sections[1].Footers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range.Text.Contains("pg. "))
-                    return "False(sai kieu)";
+                    return "False";
             }
             catch (Exception ex)
             {
@@ -253,7 +253,7 @@ namespace MOS_WORD_TEST
             try
             {
                 if (!d.Sections[1].Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range.Text.Contains("\r\r"))
-                    return "False(sai kieu)";
+                    return "False";
             }
             catch (Exception ex)
             {
@@ -273,11 +273,11 @@ namespace MOS_WORD_TEST
                 if (d.Paragraphs[Index + 1].Range.InlineShapes[1].SmartArt.Layout.Name != "Vertical Bullet List")
                     return "False(" + d.Paragraphs[Index + 1].Range.InlineShapes[1].SmartArt.Layout.Name + ")";
                 if (d.Paragraphs[Index + 1].Range.InlineShapes[1].SmartArt.Nodes[(object)1].TextFrame2.TextRange.Text != "Frank Miller")
-                    return "False(Frank Miller)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -287,13 +287,13 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Tables.Count != 1)
-                    return "False(not insert or delete table)";
+                    return "False";
                 if (d.Tables[1].Columns.Width.ToString() != "89.3")
-                    return "False(Distribute column width)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -312,7 +312,7 @@ namespace MOS_WORD_TEST
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -322,19 +322,19 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Hyperlinks.Count == 0)
-                    return "False (don't have hyperlink)";
+                    return "False";
                 if (d.Hyperlinks.Count > 1)
-                    return "False (number of hyperlink)";
+                    return "False";
                 object Index1 = (object)1;
                 if (!d.Hyperlinks[ref Index1].SubAddress.Contains("Introduction"))
-                    return "False (subaddress)";
+                    return "False";
                 object Index2 = (object)1;
                 if (d.Hyperlinks[ref Index2].TextToDisplay != "Home")
-                    return "False (Home)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -347,13 +347,13 @@ namespace MOS_WORD_TEST
                 while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Contents"))
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False (Text was edited)";
+                    return "False";
                 if (d.Paragraphs[Index + 3].Range.Text.Contains("Summary"))
-                    return "False (Update entire table)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -364,11 +364,11 @@ namespace MOS_WORD_TEST
             {
                 // ISSUE: reference to a compiler-generated method
                 if (d.Bibliography.Sources[1].get_Field("Year") != "2001")
-                    return "False(Year)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(Something wrong)";
+                return "False";
             }
             return "True";
         }
@@ -379,11 +379,11 @@ namespace MOS_WORD_TEST
             {
                 object Index = (object)"ui";
                 if (a.AutoCorrect.Entries[ref Index].Value != "aut")
-                    return "False(aut)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(uil)";
+                return "False";
             }
             return "True";
         }
@@ -393,17 +393,17 @@ namespace MOS_WORD_TEST
             try
             {
                 if (a.ActiveWindow.View.ShowTabs)
-                    return "False(not Tab)";
+                    return "False";
                 if (a.ActiveWindow.View.ShowSpaces)
-                    return "False(not Spaces)";
+                    return "False";
                 if (!a.ActiveWindow.View.ShowHiddenText)
-                    return "False(Hidden text)";
+                    return "False";
                 if (a.ActiveWindow.View.ShowAll)
-                    return "False(turn off show All)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -416,13 +416,13 @@ namespace MOS_WORD_TEST
                 while (d.Paragraphs[Index].Range.Text != "Vegetables\r" && Index < d.Paragraphs.Count)
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False('Vegetables' not found)";
+                    return "False";
                 if (d.Paragraphs[Index - 1].Range.Text != "\f")
-                    return "False(Break section)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -432,11 +432,11 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Background.Fill.ForeColor.RGB != 14282722)
-                    return "False (" + (object)d.Background.Fill.ForeColor.RGB + ")";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -466,7 +466,7 @@ namespace MOS_WORD_TEST
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -486,13 +486,13 @@ namespace MOS_WORD_TEST
                     }
                 }
                 if (paragraph == null)
-                    return "False (List edited)";
+                    return "False";
                 if (!paragraph.Range.ListFormat.ListString.Contains("A"))
-                    return "False(" + paragraph.Range.ListFormat.ListString + ")";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -503,11 +503,11 @@ namespace MOS_WORD_TEST
             {
                 object Index = (object)"Picture 4";
                 if (d.Shapes[ref Index].WrapFormat.Type != WdWrapType.wdWrapSquare)
-                    return "False(thay đổi Wraptext cho ảnh thành Square)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
             return "True";
         }
@@ -517,13 +517,13 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Tables.Count != 1)
-                    return "False(không thêm xóa table)";
+                    return "False";
                 if (d.Tables[1].Rows[1].Cells.Count != 1)
-                    return "False(trọng ô dòng đầu)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -548,7 +548,7 @@ namespace MOS_WORD_TEST
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -557,12 +557,12 @@ namespace MOS_WORD_TEST
         {
             try
             {
-                if (d.Comments.Count != 1)
-                    return "False(không thêm xóa comment)";
+                if (d.Comments.Count != 1 || d.Comments[1].Done != true)
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -581,13 +581,13 @@ namespace MOS_WORD_TEST
                     }
                 }
                 if (num == 0)
-                    return "False(Table of Contents)";
+                    return "False";
                 if (!d.Paragraphs[num + 2].Range.Text.ToLower().Contains("programs at other universities"))
                     return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -602,7 +602,7 @@ namespace MOS_WORD_TEST
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -625,7 +625,7 @@ namespace MOS_WORD_TEST
             }
             catch (Exception)
             {
-                return "False(only RemovePersonal)";
+                return "False";
             }
         }
 
@@ -634,11 +634,11 @@ namespace MOS_WORD_TEST
             try
             {
                 if ((double)d.Paragraphs[2].Range.InlineShapes[1].Line.Weight != 15.0)
-                    return "False(Matal Frame)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Convert Text to WordArt)";
+                return "False";
             }
             return "True";
         }
@@ -648,11 +648,11 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Paragraphs[3].Range.Font.TextShadow.Type != MsoShadowType.msoShadow22)
-                    return "False(offset Bottom)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Apply Text Shadow)";
+                return "False";
             }
             return "True";
         }
@@ -671,12 +671,12 @@ namespace MOS_WORD_TEST
                 }
 
                 if (index1 > d.Paragraphs.Count)
-                    return "False (not found text: Information)";
+                    return "False";
 
                 var para1 = d.Paragraphs[index1];
                 var style1 = para1.Range.get_Style() as Microsoft.Office.Interop.Word.Style;
                 if (style1 == null || style1.NameLocal != "Heading 1")
-                    return "False (Information)";
+                    return "False";
 
                 // Tìm đoạn chứa "Games Times"
                 int index2 = 1;
@@ -687,16 +687,16 @@ namespace MOS_WORD_TEST
                 }
 
                 if (index2 > d.Paragraphs.Count)
-                    return "False (not found text: Games Times)";
+                    return "False";
 
                 var para2 = d.Paragraphs[index2];
                 var style2 = para2.Range.get_Style() as Microsoft.Office.Interop.Word.Style;
                 if (style2 == null || style2.NameLocal != "Heading 1")
-                    return "False (Games Times)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -716,12 +716,12 @@ namespace MOS_WORD_TEST
                 }
 
                 if (index1 > d.Paragraphs.Count)
-                    return "False (not found text: Online)";
+                    return "False";
 
                 var para1 = d.Paragraphs[index1];
                 var style1 = para1.Range.get_Style() as Microsoft.Office.Interop.Word.Style;
                 if (style1 == null || style1.NameLocal != "Heading 2")
-                    return "False (Online)";
+                    return "False";
 
                 int index2 = 1;
 
@@ -733,16 +733,16 @@ namespace MOS_WORD_TEST
                 }
 
                 if (index2 > d.Paragraphs.Count)
-                    return "False (not found text: In Person)";
+                    return "False";
 
                 var para2 = d.Paragraphs[index2];
                 var style2 = para2.Range.get_Style() as Microsoft.Office.Interop.Word.Style;
                 if (style2 == null || style2.NameLocal != "Heading 2")
-                    return "False (In Person)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -753,17 +753,17 @@ namespace MOS_WORD_TEST
             try
             {
                 if (!a.ActiveWindow.View.ShowTabs)
-                    return "False(show Tab)";
+                    return "False";
                 if (a.ActiveWindow.View.ShowSpaces)
-                    return "False(don't show Spaces)";
+                    return "False";
                 if (a.ActiveWindow.View.ShowHiddenText)
-                    return "False(don't show HiddenText)";
+                    return "False";
                 if (a.ActiveWindow.View.ShowAll)
-                    return "False(turn off show All)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -777,7 +777,7 @@ namespace MOS_WORD_TEST
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -790,13 +790,13 @@ namespace MOS_WORD_TEST
                 while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Tuning"))
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False(Tieu de Tuning khong tim thay)";
+                    return "False";
                 if (d.Paragraphs[Index - 1].Range.Text != "\f\r")
-                    return "False(chen chi ngat trang (pageBreak))";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -809,13 +809,13 @@ namespace MOS_WORD_TEST
                 while (d.Paragraphs[Index].Range.Text != "\u000EFour-String\r" && Index < d.Paragraphs.Count)
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False(Column break before 'Four-String')";
+                    return "False";
                 if (d.Paragraphs[Index].Range.Text != "\u000EFour-String\r")
-                    return "False()";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -825,17 +825,17 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Sections.Count != 3)
-                    return "False (number of section)";
+                    return "False";
                 float leftMargin = d.Sections[1].PageSetup.LeftMargin;
                 if (leftMargin.ToString() != "54")
-                    return "False(apply kieu trong Build In)";
+                    return "False";
                 leftMargin = d.Sections[3].PageSetup.LeftMargin;
                 if (leftMargin.ToString() != "54")
-                    return "False(apply cho toan bo cac section)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -845,13 +845,13 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Paragraphs[6].Range.InlineShapes[1].Fill.PictureEffects[1].Type != MsoPictureEffectType.msoEffectBackgroundRemoval)
-                    return "False(remove Background)";
+                    return "False";
                 if (double.Parse(d.Paragraphs[6].Range.InlineShapes[1].Fill.PictureEffects[1].EffectParameters[(object)1].Value.ToString()) >= 0.1)
-                    return "False(do not crop the guitar)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (remove background)";
+                return "False";
             }
             return "True";
         }
@@ -861,19 +861,19 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Hyperlinks.Count == 0)
-                    return "False (don't have hyperlink)";
+                    return "False";
                 if (d.Hyperlinks.Count > 1)
-                    return "False (number of hyperlink)";
+                    return "False";
                 object Index1 = (object)1;
                 if (!d.Hyperlinks[ref Index1].Address.Contains("http://www.tailspintoys.com"))
-                    return "False (http://www.tailspintoys.com)";
+                    return "False";
                 object Index2 = (object)1;
                 if (d.Hyperlinks[ref Index2].TextToDisplay != "tailspintoys.com")
-                    return "False (tailspintoys.com)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -883,17 +883,17 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Sections.Count != 3)
-                    return "False (number of section)";
+                    return "False";
                 if (d.Sections[2].PageSetup.Orientation != WdOrientation.wdOrientLandscape)
-                    return "False(section 2 hường giấy ngan)";
+                    return "False";
                 if (d.Sections[1].PageSetup.Orientation != WdOrientation.wdOrientPortrait)
-                    return "False(section 1 hường giấy đứng)";
+                    return "False";
                 if (d.Sections[3].PageSetup.Orientation != WdOrientation.wdOrientPortrait)
-                    return "False(section 3 hường giấy đứng)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -912,13 +912,13 @@ namespace MOS_WORD_TEST
                     }
                 }
                 if (num == 0)
-                    return "False(không tìm thấy tiêu đề Description)";
+                    return "False";
                 if (d.Paragraphs[num + 3].Range.InlineShapes.Count == 0)
-                    return "Fasle(chen Model và chỉnh inline with text)";
+                    return "Fasle";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
             return "True";
         }
@@ -928,13 +928,13 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.InlineShapes.Count != 1)
-                    return "False(không chèn xóa thay đổi layout các đối tượng)";
+                    return "False";
                 if (d.InlineShapes[1].AlternativeText == "")
-                    return "False(AlternativeText)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
             return "True";
         }
@@ -944,13 +944,13 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Tables.Count != 2)
-                    return "False(không thêm xóa table)";
+                    return "False";
                 if (d.Tables[1].Columns.Width.ToString() != "158.4")
-                    return "False(chỉnh độ rộng mỗi cột 2.2 inch)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -963,13 +963,13 @@ namespace MOS_WORD_TEST
                 while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Description"))
                     ++Index;
                 if (Index == 0)
-                    return "False(Description)";
+                    return "False";
                 if (!d.Paragraphs[Index + 2].Range.Text.Contains("(Manufacturing1)"))
                     return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -978,12 +978,25 @@ namespace MOS_WORD_TEST
         {
             try
             {
+                foreach (Microsoft.Office.Interop.Word.Table tbl in d.Tables)
+                {
+                    bool isHeader = tbl.Rows.First.HeadingFormat == -1
+                                    || tbl.Rows.First.Range.Bold == -1
+                                    || tbl.Rows.First.Range.get_Style() is Microsoft.Office.Interop.Word.Style s && s.NameLocal.Contains("Heading");
+
+                    //return isHeader.ToString();
+                    if (isHeader)
+                        return "True";
+
+                    return "False";
+                }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
-            return "True";
+
+            return "False";
         }
 
         private string Cau45(Application a, Document d)
@@ -994,13 +1007,13 @@ namespace MOS_WORD_TEST
                 while (!d.Paragraphs[Index].Range.Text.Contains("On the Insert tab, the galleries include items ") && Index < d.Paragraphs.Count)
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False(Text was modified)";
+                    return "False";
                 if (d.Paragraphs[Index].Range.Font.Bold != 0)
-                    return "Falas(paste only value)";
+                    return "Falas";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1010,11 +1023,11 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Paragraphs[4].Range.InlineShapes[1].Fill.PictureEffects[1].Type != MsoPictureEffectType.msoEffectPencilGrayscale)
-                    return "False(Pencil Graycale)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Apply Artistic Effects)";
+                return "False";
             }
             return "True";
         }
@@ -1033,7 +1046,7 @@ namespace MOS_WORD_TEST
                 Range r1 = FindRange("Contest");
                 Range r2 = FindRange("The Dirty Details");
                 if (r1 == null || r2 == null)
-                    return "False (Cannot find 'Contest' or 'The Dirty Details')";
+                    return "False";
                 var c = r1.Font;
                 var b = r2.Font;
                 if (r1.Font.Name != r2.Font.Name ||
@@ -1043,11 +1056,11 @@ namespace MOS_WORD_TEST
                        r1.Font.Underline != r2.Font.Underline ||
                        r1.Font.Color != r2.Font.Color ||
                        r1.HighlightColorIndex != r2.HighlightColorIndex)
-                    return "False (Format not same)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1066,17 +1079,17 @@ namespace MOS_WORD_TEST
                     }
                 }
                 if (num == 0)
-                    return "False(không sửa tiêu để Kids love dinosaurs)";
+                    return "False";
                 if (!d.Paragraphs[num + 2].Range.Text.Contains("Save time in Word with"))
-                    return "False(không chỉnh sửa nọi dung vị trí văn bản)";
+                    return "False";
                 if (d.Paragraphs[num + 2].Range.Font.Bold != 0)
-                    return "False(dùng format painter)";
+                    return "False";
                 if (d.Paragraphs[num + 2].Range.Font.TextColor.RGB != -16777216)
-                    return "False(dùng format painter)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1089,13 +1102,13 @@ namespace MOS_WORD_TEST
                 while (!d.Paragraphs[Index].Range.Text.Contains("Velociraptor") && Index < d.Paragraphs.Count)
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False(không sửa nọi dung)";
+                    return "False";
                 if (d.Paragraphs[Index].Range.ListFormat.ListLevelNumber != 3)
-                    return "Falas(chuyển Velociraptor level 3)";
+                    return "Falas";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1114,13 +1127,13 @@ namespace MOS_WORD_TEST
                     }
                 }
                 if (num == 0)
-                    return "False(không tìm thấy tiêu đề Favorite dinosaurs)";
+                    return "False";
                 if (d.Paragraphs[num + 3].Range.InlineShapes.Count == 0)
-                    return "Fasle(chen Model và chỉnh inline with text)";
+                    return "Fasle";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
             return "True";
         }
@@ -1131,14 +1144,14 @@ namespace MOS_WORD_TEST
             {
                 object Index1 = (object)"Picture 6";
                 if (d.Shapes[ref Index1].Fill.PictureEffects.Count != 1)
-                    return "False(add hiệu ứng nghệ thuật)";
+                    return "False";
                 object Index2 = (object)"Picture 6";
                 if (d.Shapes[ref Index2].Fill.PictureEffects[1].Type != MsoPictureEffectType.msoEffectPencilSketch)
-                    return "False(PencilSketch)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
             return "True";
         }
@@ -1148,13 +1161,13 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Tables.Count != 1)
-                    return "False(không thêm xóa table)";
+                    return "False";
                 if (d.Tables[1].Range.Text != "Geologic period \r\aDinosaur\r\a\r\aBooks\r\a1\r\a\r\aHighlighter\r\a2 colors\r\a\r\aMagazines\r\a3\r\a\r\aNotebooks\r\a1\r\a\r\aPaper pads\r\a1 \r\a\r\aPencils\r\a2\r\a\r\aPens\r\a3\r\a\r\aScissors\r\a1 pair\r\a\r\a")
-                    return "False(sort)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1169,7 +1182,7 @@ namespace MOS_WORD_TEST
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1179,13 +1192,13 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Sections[1].Borders[WdBorderType.wdBorderTop].LineWidth != WdLineWidth.wdLineWidth300pt)
-                    return "False (do day duong vien)";
+                    return "False";
                 if (d.Sections[1].Borders.Shadow)
-                    return "False (shadow)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1195,14 +1208,14 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Sections[1].Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Shapes.Count != 1)
-                    return "False(insert header)";
+                    return "False";
                 object Index = (object)"Rectangle 197";
                 if (d.Sections[1].Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Shapes[ref Index].TextFrame.TextRange.Text != "[DOCUMENT TITLE]\r")
-                    return "False(Banded header)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Banded header)";
+                return "False";
             }
             return "True";
         }
@@ -1212,11 +1225,11 @@ namespace MOS_WORD_TEST
             try
             {
                 if ((double)d.Paragraphs[3].Range.InlineShapes[1].SmartArt.Nodes[(object)1].Shapes.ThreeD.BevelTopDepth != 4.0)
-                    return "False(SmartArt)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
             return "True";
         }
@@ -1229,11 +1242,11 @@ namespace MOS_WORD_TEST
                 while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Learning WareWolf™"))
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False(Learning WareWolf™)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1242,109 +1255,40 @@ namespace MOS_WORD_TEST
         {
             try
             {
-                // 1) Tìm heading "A primer on Improving profits"
-                Range rng = d.Content;
-                bool found = rng.Find.Execute("A primer on Improving profits",
-                                              MatchCase: false,
-                                              MatchWholeWord: true,
-                                              Forward: true,
-                                              Wrap: WdFindWrap.wdFindStop);
-                if (!found)
-                    return "False(heading not found)";
-
-                Range headingRange = rng.Duplicate; // range chứa heading
-
-                // 2) Tìm SmartArt có anchor nằm sau heading (nếu có). Nếu không, fallback sang SmartArt đầu tiên.
-                Microsoft.Office.Interop.Word.Shape smartArtShape = null;
-                foreach (Microsoft.Office.Interop.Word.Shape s in d.Shapes)
+                int indexRecycle = -1;
+                int indexRework = -1;
+                foreach (Shape shape in d.Shapes)
                 {
-                    try
+                    if (shape.Type != Microsoft.Office.Core.MsoShapeType.msoSmartArt)
                     {
-                        if (s.Type == MsoShapeType.msoSmartArt)
+                        continue;
+                    }
+                    var nodes = shape.SmartArt.AllNodes;
+                    for (int i = 1; i <= nodes.Count; i++)
+                    {
+                        var node = nodes[i];
+                        if (node.TextFrame2.TextRange.Text.Trim().Contains("Recycle"))
                         {
-                            Range anchor = s.Anchor as Range;
-                            if (anchor != null && anchor.Start >= headingRange.End)
-                            {
-                                smartArtShape = s;
-                                break;
-                            }
+                            indexRecycle = i;
+                            continue;
                         }
-                    }
-                    catch
-                    {
-                        // ignore shapes we can't read anchor of
-                    }
-                }
 
-                if (smartArtShape == null)
-                {
-                    // fallback: lấy SmartArt đầu tiên trong document
-                    foreach (Microsoft.Office.Interop.Word.Shape s in d.Shapes)
-                    {
-                        if (s.Type == MsoShapeType.msoSmartArt)
+                        if (node.TextFrame2.TextRange.Text.Trim().Contains("Rework"))
                         {
-                            smartArtShape = s;
-                            break;
+                            indexRework = i;
+                            continue;
                         }
                     }
                 }
 
-                if (smartArtShape == null)
-                    return "False(smartart not found)";
+                if ((indexRecycle + indexRework) > 0 && (indexRecycle < indexRework))
+                    return "True";
 
-                // 3) Lấy tất cả nodes vào danh sách để xử lý theo thứ tự
-                var allNodes = smartArtShape.SmartArt.AllNodes;
-                var nodeList = new List<Microsoft.Office.Core.SmartArtNode>();
-                foreach (Microsoft.Office.Core.SmartArtNode n in allNodes)
-                    nodeList.Add(n);
-
-                if (nodeList.Count == 0)
-                    return "False(no nodes)";
-
-                // 4) Lấy text từng node
-                var texts = nodeList
-                    .Select(n => (n.TextFrame2 != null && n.TextFrame2.TextRange != null)
-                                 ? (n.TextFrame2.TextRange.Text ?? string.Empty).Trim()
-                                 : string.Empty)
-                    .ToList();
-
-                // 5) Tìm vị trí "Recycle" và "Rework"
-                int idxRecycle = texts.FindIndex(t => string.Equals(t, "Recycle", StringComparison.OrdinalIgnoreCase));
-                int idxRework = texts.FindIndex(t => string.Equals(t, "Rework", StringComparison.OrdinalIgnoreCase));
-
-                if (idxRecycle == -1 || idxRework == -1)
-                    return "False(nodes not found)";
-
-                // 6) Di chuyển text Recycle để đứng ngay trước Rework
-                string recycleText = texts[idxRecycle];
-                texts.RemoveAt(idxRecycle);
-
-                // Sau khi remove, nếu recycle ở trước rework ban đầu thì index rework giảm 1
-                int idxReworkAfterRemoval = idxRework;
-                if (idxRecycle < idxRework) idxReworkAfterRemoval = idxRework - 1;
-
-                // chèn recycle trước rework
-                texts.Insert(idxReworkAfterRemoval, recycleText);
-
-                // 7) Gán lại text mới cho các node theo thứ tự nodeList
-                for (int i = 0; i < nodeList.Count && i < texts.Count; i++)
-                {
-                    try
-                    {
-                        nodeList[i].TextFrame2.TextRange.Text = texts[i];
-                    }
-                    catch
-                    {
-                        // tiếp tục nếu một node không gán được
-                    }
-                }
-
-                return "True";
+                return "False";
             }
             catch (Exception ex)
             {
-                // trả về thông báo lỗi để debug nếu cần
-                return "False(error: " + ex.Message + ")";
+                return "False";
             }
         }
 
@@ -1362,7 +1306,7 @@ namespace MOS_WORD_TEST
                 }
 
                 if (index > d.Paragraphs.Count)
-                    return "False (not found text)";
+                    return "False";
 
                 // Dùng dynamic để truy cập CharacterStyle
                 Paragraph para = d.Paragraphs[index];
@@ -1374,7 +1318,7 @@ namespace MOS_WORD_TEST
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -1385,14 +1329,15 @@ namespace MOS_WORD_TEST
             try
             {
                 object Index = (object)"Picture 3";
-                if (d.Shapes[ref Index].WrapFormat.Type != WdWrapType.wdWrapSquare)
-                    return "False(chon Wrap text Square)";
+                if (d.Shapes[ref Index].WrapFormat.Type == WdWrapType.wdWrapSquare &&
+                    d.Shapes[ref Index].WrapFormat.Side == WdWrapSideType.wdWrapLeft)
+                    return "True";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
-            return "True";
+            return "False";
         }
 
         private string Cau61(Application a, Document d)
@@ -1402,11 +1347,11 @@ namespace MOS_WORD_TEST
                 object Index = (object)"Picture 3";
                 string str = d.Shapes[ref Index].ThreeD.BevelTopInset.ToString();
                 if (str != "12")
-                    return "False(" + str + ")";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
             return "True";
         }
@@ -1416,11 +1361,11 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Paragraphs[7].Range.InlineShapes[1].SmartArt.Color.Name != "Transparent Gradient Range - Accent 1")
-                    return "False(Change Colors)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
             return "True";
         }
@@ -1431,11 +1376,11 @@ namespace MOS_WORD_TEST
             {
                 object Index = (object)"Diagram 1";
                 if (d.Shapes[ref Index].SmartArt.Nodes[(object)2].TextFrame2.TextRange.Text != "organically grown")
-                    return "False(Use move up or move down)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
             return "True";
         }
@@ -1445,11 +1390,11 @@ namespace MOS_WORD_TEST
             try
             {
                 if ((double)d.Paragraphs[1].Range.Font.Size != 11.0)
-                    return "False(Clear formating)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1459,13 +1404,13 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Paragraphs[1].Range.Font.Name != "Algerian")
-                    return "False(Algerian)";
+                    return "False";
                 if (d.Paragraphs[1].Range.Font.Underline != WdUnderline.wdUnderlineThick)
-                    return "False(lineThick)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1475,15 +1420,15 @@ namespace MOS_WORD_TEST
             try
             {
                 if (!d.Paragraphs[6].Range.Text.Contains("Fourth Coffee"))
-                    return "False(paste Fourth Coffee vao cuoi doan 5)";
+                    return "False";
                 if (d.Paragraphs[6].Range.ParagraphFormat.Alignment != WdParagraphAlignment.wdAlignParagraphLeft)
-                    return "False(paste Merge)";
+                    return "False";
                 if (d.Paragraphs[6].Range.Font.Bold != 9999999)
-                    return "False(paste Merge)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1496,13 +1441,13 @@ namespace MOS_WORD_TEST
                 while (!d.Paragraphs[Index].Range.Text.Contains("Focus on the text you want") && Index < d.Paragraphs.Count)
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False(không chỉnh sửa văn bản)";
+                    return "False";
                 if (d.Paragraphs[Index].Range.ListFormat.ListString != "▸")
-                    return "Falas(25B8)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1516,7 +1461,7 @@ namespace MOS_WORD_TEST
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1526,17 +1471,17 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Paragraphs[4].Range.Text.Contains("in the embed code"))
-                    return "False(in the embed code)";
+                    return "False";
                 if (!d.Paragraphs[6].Range.Text.Contains("new look"))
-                    return "False(new look)";
+                    return "False";
                 if (d.Paragraphs[8].Range.Text.Contains("and SmartArt"))
-                    return "False(and SmartArt)";
+                    return "False";
                 if (d.Paragraphs[10].Range.Characters[5].Font.Bold == -1)
-                    return "False(không chấp nhận định dạng)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1546,13 +1491,13 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Footnotes.Count != 1)
-                    return "False(add footnote)";
+                    return "False";
                 if (!d.Footnotes[1].Range.Text.Contains("Free to join"))
-                    return "False(Free to join)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1562,15 +1507,15 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Sections.Count != 3)
-                    return "False (number of section)";
+                    return "False";
                 if (d.Sections[2].PageSetup.TextColumns.Count != 2)
-                    return "False(section2 <>2 Column)";
+                    return "False";
                 if (d.Sections[2].PageSetup.TextColumns.Spacing.ToString() != "21.6")
-                    return "False(sai khoảng cách giửa 2 cột)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1583,13 +1528,13 @@ namespace MOS_WORD_TEST
                 while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Barstow College"))
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False(Tieu de Barstow College khong tim thay)";
+                    return "False";
                 if (d.Paragraphs[Index].Range.Text != "Barstow College \vObservation Project\r")
-                    return "False(chen chi ngat dong xac tu Observation)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1608,7 +1553,7 @@ namespace MOS_WORD_TEST
                 }
 
                 if (index > d.Paragraphs.Count)
-                    return "False (không thay đổi nội dung)";
+                    return "False";
 
                 // Truy cập dynamic để lấy CharacterStyle
                 var para = d.Paragraphs[index];
@@ -1616,11 +1561,11 @@ namespace MOS_WORD_TEST
                 var style = rng.CharacterStyle as Microsoft.Office.Interop.Word.Style;
 
                 if (style == null || style.NameLocal != "Intense Emphasis")
-                    return "False (Intense Emphasis)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -1634,13 +1579,13 @@ namespace MOS_WORD_TEST
                 while (!d.Paragraphs[Index].Range.Text.Contains("margie@margiestravel.com") && Index < d.Paragraphs.Count)
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False(không chỉnh sửa văn bản)";
+                    return "False";
                 if (d.Paragraphs[Index].Range.ParagraphFormat.LineSpacing.ToString() != "14")
-                    return "Falas(exactly 14 pt)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1650,11 +1595,11 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.CompatibilityMode == 11)
-                    return "False(File==>Convert)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1664,13 +1609,13 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.RemovePersonalInformation)
-                    return "False(không xóa PersonalInformation)";
+                    return "False";
                 if (d.Sections[1].Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Shapes.Count != 0)
                     return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1680,11 +1625,11 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Name != "Memo.txt")
-                    return "False(luu dang text)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1705,15 +1650,15 @@ namespace MOS_WORD_TEST
                     }
                 }
                 if (paragraph == null)
-                    return "False (text was edited)";
+                    return "False";
                 if (paragraph.Range.HighlightColorIndex != WdColorIndex.wdTurquoise || d.Paragraphs[Index + 1].Range.HighlightColorIndex != WdColorIndex.wdTurquoise || d.Paragraphs[Index + 2].Range.HighlightColorIndex != WdColorIndex.wdTurquoise)
-                    return "False (Highligh Turquoise)";
+                    return "False";
                 if (d.Paragraphs[Index + 3].Range.HighlightColorIndex != WdColorIndex.wdTurquoise)
-                    return "False (Highligh Turquoise)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1723,13 +1668,13 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Tables.Count != 1)
-                    return "False(not insert or delete table)";
+                    return "False";
                 if (d.Tables[1].Borders[WdBorderType.wdBorderBottom].Color.ToString() != "-721354906")
-                    return "False(table style)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1748,13 +1693,13 @@ namespace MOS_WORD_TEST
                     }
                 }
                 if (num == 0)
-                    return "False(không tìm thấy Where to find us)";
+                    return "False";
                 if (d.Paragraphs[num - 1].Range.Text != "\f")
-                    return "False(chen ngắt section)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1766,11 +1711,11 @@ namespace MOS_WORD_TEST
                 if (d.Sections.Count != 3)
                     return "False";
                 if (d.Sections[2].PageSetup.TextColumns.Count != 2)
-                    return "False(chia 2 cột)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1781,11 +1726,11 @@ namespace MOS_WORD_TEST
             {
                 object Index = (object)"Heading 1";
                 if (d.Styles[ref Index].Borders[WdBorderType.wdBorderBottom].Color.ToString() != "-721354753")
-                    return "False(sai kiểu)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1802,8 +1747,8 @@ namespace MOS_WORD_TEST
                 }
             }
             if (num == 0)
-                return "False(không tìm thấy Where to find us)";
-            return d.Paragraphs[num + 1].Range.InlineShapes.Count != 1 ? "False(chèn anh vào đoạn sau tiêu đề Where to find us)" : "True";
+                return "False";
+            return d.Paragraphs[num + 1].Range.InlineShapes.Count != 1 ? "False" : "True";
         }
 
         private string Cau84(Application a, Document d)
@@ -1811,13 +1756,13 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Tables.Count != 1)
-                    return "False(không thêm xóa table)";
+                    return "False";
                 if (d.Tables[1].Rows.HeadingFormat != 9999999)
-                    return "False(cho tiêu đề lặp lại)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1827,9 +1772,9 @@ namespace MOS_WORD_TEST
             try
             {
                 if (!d.Sections[1].Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range.Text.Contains("\r\a [DOCUMENT TITLE]\a\a\r"))
-                    return "False(sai kieu)";
+                    return "False";
                 if (d.Sections[1].PageSetup.DifferentFirstPageHeaderFooter != -1)
-                    return "False(DifferentFirstPageHeaderFooter)";
+                    return "False";
             }
             catch (Exception ex)
             {
@@ -1845,12 +1790,12 @@ namespace MOS_WORD_TEST
                 for (int Index = 1; Index < d.Paragraphs.Count; ++Index)
                 {
                     if (d.Paragraphs[Index].Range.ParagraphFormat.LineSpacing.ToString() != "16.8")
-                        return "False(1.4)";
+                        return "False";
                 }
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1863,13 +1808,13 @@ namespace MOS_WORD_TEST
                 while (!d.Paragraphs[Index].Range.Text.Contains("The picture fits in your document") && Index < d.Paragraphs.Count)
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False(không chỉnh sửa văn bản)";
+                    return "False";
                 if (d.Paragraphs[Index].Range.ListFormat.ListString != "5.")
-                    return "Falas(chuot phai vào số 1 cột 2 chọn continue)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1880,11 +1825,11 @@ namespace MOS_WORD_TEST
             {
                 object Index = (object)"Picture 11";
                 if (d.Shapes[ref Index].WrapFormat.Type != WdWrapType.wdWrapSquare)
-                    return "False(Square)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (đổi Wraptext cho ảnh)";
+                return "False";
             }
             return "True";
         }
@@ -1894,13 +1839,13 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.InlineShapes.Count != 2)
-                    return "False(không thêm xóa đổi layout đối tượng)";
+                    return "False";
                 if ((double)d.InlineShapes[1].SmartArt.Nodes[(object)1].Shapes.ThreeD.BevelTopDepth != 4.0)
-                    return "False(bevel)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
             return "True";
         }
@@ -1919,13 +1864,13 @@ namespace MOS_WORD_TEST
                     }
                 }
                 if (Index1 == 0)
-                    return "False(khồng chỉnh sửa văn bảng)";
+                    return "False";
                 if (d.Paragraphs[Index1].Range.Characters[1].Text != "(")
-                    return "False(chèn ký tự code 255)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1935,11 +1880,11 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Sections[2].PageSetup.Orientation != WdOrientation.wdOrientLandscape)
-                    return "False(Landscape section 2)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -1955,7 +1900,7 @@ namespace MOS_WORD_TEST
             }
             catch (Exception ex)
             {
-                return "False (Insert Banded cover page)";
+                return "False";
             }
             try
             {
@@ -1963,11 +1908,11 @@ namespace MOS_WORD_TEST
                 // ISSUE: variable of a compiler-generated type
                 Microsoft.Office.Interop.Word.Shape groupItem = shape.GroupItems[ref Index];
                 if (groupItem.TextFrame.TextRange.Text.Contains("Company address"))
-                    return "False(delete Company address)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(something wrong)";
+                return "False";
             }
             return "True";
         }
@@ -1986,7 +1931,7 @@ namespace MOS_WORD_TEST
                 }
 
                 if (index > d.Paragraphs.Count)
-                    return "False (not found text)";
+                    return "False";
 
                 // Lấy style của đoạn văn bản đó
                 Paragraph para = d.Paragraphs[index];
@@ -1994,14 +1939,14 @@ namespace MOS_WORD_TEST
                 var style = styleObj as Microsoft.Office.Interop.Word.Style;
 
                 if (style == null)
-                    return "False (style not found)";
+                    return "False";
 
                 if (style.NameLocal != "Intense Emphasis")
-                    return $"False (Style: {style.NameLocal})";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -2015,13 +1960,13 @@ namespace MOS_WORD_TEST
                 while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Keep it Simple"))
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False (Keep it Simple)";
+                    return "False";
                 if (!d.Paragraphs[Index + 1].Range.Text.Contains("you specify directly."))
-                    return "False(delete first paragraph after the 5th heading)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -2034,15 +1979,15 @@ namespace MOS_WORD_TEST
                 while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Rehearse and Video Your Presentation"))
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False (Rehearse and Video Your Presentation)";
+                    return "False";
                 if (!d.Paragraphs[Index + 3].Range.Text.Contains("Summarize Main Points"))
-                    return "False(Cut not copy)";
+                    return "False";
                 if (!d.Paragraphs[Index + 5].Range.Text.Contains("You can easily change the formatting"))
-                    return "False(paste between two paragraph)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -2054,29 +1999,51 @@ namespace MOS_WORD_TEST
                 Range content = d.Content;
                 Find findHeading = content.Find;
                 findHeading.Text = "Summarize main points";
-                if (!findHeading.Execute()) return "False(heading not found)";
+                if (!findHeading.Execute())
+                    return "False";
 
                 Range afterHeading = d.Range(content.End, d.Content.End);
-                Paragraph firstPara = afterHeading.Paragraphs.First;
-                if (firstPara == null) return "False(no paragraph found)";
+                Paragraph firstPara = afterHeading.Paragraphs[1];
+                if (firstPara == null)
+                    return "False";
 
-                Range paraRange = firstPara.Range;
+                //for(int i = 1; i <= afterHeading.Paragraphs.Count; i++)
+                //{
+                //    Range paraRange = afterHeading.Paragraphs[i].Range;
+                //    Find findWord = paraRange.Find;
+                //    findWord.Text = "look";
+                //    if (!findWord.Execute())
+                //    {
+                //        continue;
+                //    }
+                //}
+                Range paraRange = afterHeading.Paragraphs[2].Range;
 
                 Find findWord = paraRange.Find;
                 findWord.Text = "look";
-                if (!findWord.Execute()) return "False(word 'look' not found)";
+                if (!findWord.Execute())
+                    return "False";
 
-                Range wordRange = paraRange.Duplicate;
-                wordRange.Start = paraRange.Start;
-                wordRange.End = paraRange.End;
+                // Nếu tìm thấy từ "look", kiểm tra footnote "resource"
+                bool hasResourceFootnote = false;
+                foreach (Footnote fn in d.Footnotes)
+                {
+                    string fnText = fn.Range?.Text ?? string.Empty;
+                    if (fnText.ToLower().IndexOf("resource") >= 0)
+                    {
+                        hasResourceFootnote = true;
+                        break;
+                    }
+                }
 
-                d.Footnotes.Add(paraRange, Text: "resource");
-
-                return "True";
+                if (hasResourceFootnote)
+                    return "True";
+                else
+                    return "False";
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return "False(error)";
+                return "False";
             }
         }
 
@@ -2086,11 +2053,11 @@ namespace MOS_WORD_TEST
             {
                 object Index = (object)"Heading 1";
                 if (d.Styles[ref Index].ParagraphFormat.Alignment != WdParagraphAlignment.wdAlignParagraphCenter)
-                    return "False(Centered)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -2109,14 +2076,14 @@ namespace MOS_WORD_TEST
                 }
 
                 if (index > d.Paragraphs.Count)
-                    return "False (không thay đổi nội dung - Genre)";
+                    return "False";
 
                 var para1 = d.Paragraphs[index];
                 dynamic rng1 = para1.Range;
                 var style1 = rng1.CharacterStyle as Microsoft.Office.Interop.Word.Style;
 
                 if (style1 == null || style1.NameLocal != "Subtle Emphasis")
-                    return "False (Subtle Emphasis - Genre)";
+                    return "False";
 
                 // Tìm đoạn chứa "External Parther"
                 while (index <= d.Paragraphs.Count &&
@@ -2126,18 +2093,18 @@ namespace MOS_WORD_TEST
                 }
 
                 if (index > d.Paragraphs.Count)
-                    return "False (không thay đổi nội dung - External Parther)";
+                    return "False";
 
                 var para2 = d.Paragraphs[index];
                 dynamic rng2 = para2.Range;
                 var style2 = rng2.CharacterStyle as Microsoft.Office.Interop.Word.Style;
 
                 if (style2 == null || style2.NameLocal != "Subtle Emphasis")
-                    return "False (Subtle Emphasis - External Parther)";
+                    return "False";
             }
             catch (Exception)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
 
             return "True";
@@ -2151,25 +2118,25 @@ namespace MOS_WORD_TEST
                 while (!d.Paragraphs[Index].Range.Text.Contains("Corporate events") && Index < d.Paragraphs.Count)
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False(không sửa nọi dung)";
+                    return "False";
                 if (d.Paragraphs[Index].Range.ListFormat.ListString != "\uF0B7")
-                    return "Falas(bullet)";
+                    return "False";
                 while (!d.Paragraphs[Index].Range.Text.Contains("Online events") && Index < d.Paragraphs.Count)
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False(không sửa nọi dung)";
+                    return "False";
                 if (d.Paragraphs[Index].Range.ListFormat.ListString != "\uF0B7")
-                    return "Falas(bullet)";
+                    return "False";
                 while (!d.Paragraphs[Index].Range.Text.Contains("weddings") && Index < d.Paragraphs.Count)
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False(không sửa nọi dung)";
+                    return "False";
                 if (d.Paragraphs[Index].Range.ListFormat.ListString != "")
-                    return "Falas(không bullet weddings)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -2179,13 +2146,13 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Tables.Count != 1)
-                    return "False(không thêm xóa table)";
+                    return "False";
                 if (d.Tables[1].Rows[1].Cells.Count != 1)
-                    return "False(trộn ô dòng đầu)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -2195,13 +2162,13 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Tables.Count != 1)
-                    return "Fasle(không thêm xóa table)";
+                    return "False";
                 if (d.Tables[1].Rows[1].Cells.Count != 1)
-                    return "False(trọng dòng 1 thành 1 ô)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
             return "True";
         }
@@ -2223,19 +2190,19 @@ namespace MOS_WORD_TEST
                         Index2 = Index3;
                 }
                 if (Index1 == 0)
-                    return "False(chấp nhận insert)";
+                    return "False";
                 if (num == 0 || Index2 == 0)
                     return "False";
                 if (!d.Paragraphs[Index1].Range.Text.Contains("powerful new"))
-                    return "False(chấp nhận insert)";
+                    return "False";
                 if (d.Paragraphs[49].Range.Text.Contains("Themes and styles also help keep your"))
-                    return "False(chấp nhận delete)";
+                    return "False";
                 if (d.Paragraphs[Index2].Range.Characters[5].Font.Bold == -1)
-                    return "False(không chấp nhận định dạng)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -2245,13 +2212,13 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Footnotes.Count != 1)
-                    return "False(chen foodnode)";
+                    return "False";
                 if (!d.Footnotes[1].Range.Text.Contains("Includes digital files."))
-                    return "False(Includes digital files.)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -2264,13 +2231,13 @@ namespace MOS_WORD_TEST
                 while (!d.Paragraphs[Index].Range.Text.Contains("Algebra II") && Index < d.Paragraphs.Count)
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False(không chỉnh sửa văn bản)";
+                    return "False";
                 if (d.Paragraphs[Index].Range.ListFormat.ListString != "111.")
-                    return "Falas(111.)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -2280,20 +2247,20 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Shapes.Count != 2)
-                    return "False(chèn 1 shape và không xóa các đối tượng khác)";
+                    return "False";
                 object Index1 = (object)2;
                 if (!d.Shapes[ref Index1].Name.Contains("Horizontal Scroll"))
-                    return "False(Horizontal Scroll shape)";
+                    return "False";
                 object Index2 = (object)2;
                 if (d.Shapes[ref Index2].TextFrame.TextRange.Text.Trim() != "Remember your calculator!")
-                    return "Fales(Remember your calculator!)";
+                    return "False";
                 object Index3 = (object)2;
                 if (d.Shapes[ref Index3].WrapFormat.Type != WdWrapType.wdWrapSquare)
-                    return "False(Square)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
             return "True";
         }
@@ -2303,14 +2270,14 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Shapes.Count != 1)
-                    return "False(không thêm xóa ảnh)";
+                    return "False";
                 object Index = (object)"Picture 1";
                 if (d.Shapes[ref Index].Line.ForeColor.RGB != 11957550)
-                    return "False(sai màu)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
             return "True";
         }
@@ -2320,11 +2287,11 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.InlineShapes[1].SmartArt.Reverse == MsoTriState.msoTrue)
-                    return "False(Reverse)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
             return "True";
         }
@@ -2334,23 +2301,23 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Tables.Count != 1)
-                    return "False(chèn 1 table)";
+                    return "False";
                 if (d.Tables[1].Rows.Count != 6)
-                    return "False(6 dòng)";
+                    return "False";
                 if (d.Tables[1].Columns.Count != 2)
-                    return "False(2 cột)";
+                    return "False";
                 if (!d.Tables[1].Rows[1].Cells[1].Range.Text.ToLower().Contains("grade"))
-                    return "False(Grade)";
+                    return "False";
                 if (!d.Tables[1].Rows[1].Cells[2].Range.Text.ToLower().Contains("score range"))
-                    return "False(Score Range)";
+                    return "False";
                 if (!d.Tables[1].AllowAutoFit)
-                    return "False(auto fix conten)";
+                    return "False";
                 if ((double)d.Tables[1].Columns[1].Width >= (double)d.Tables[1].Columns[2].Width)
-                    return "False(auto fix conten)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -2360,16 +2327,16 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Bookmarks.Count == 0)
-                    return "False (add bookmark)";
+                    return "False";
                 if (d.Bookmarks.Count > 1)
-                    return "False (chỉ add 1 bookmark thôi)";
+                    return "False";
                 object Index = (object)1;
                 if (!d.Bookmarks[ref Index].Name.Contains("Cheating"))
-                    return "False (Cheating)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -2379,19 +2346,19 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Sections.Count != 1)
-                    return "False (number of section)";
+                    return "False";
                 if ((double)d.Sections[1].PageSetup.TopMargin != 54.0)
-                    return "False(lề trên)";
+                    return "False";
                 if ((double)d.Sections[1].PageSetup.BottomMargin != 54.0)
-                    return "False(lề dưới)";
+                    return "False";
                 if ((double)d.Sections[1].PageSetup.LeftMargin != 36.0)
-                    return "False(lề trái)";
+                    return "False";
                 if ((double)d.Sections[1].PageSetup.RightMargin != 36.0)
-                    return "False(lề phải)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -2401,13 +2368,13 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Tables.Count != 2)
-                    return "False(không thêm xóa table)";
+                    return "False";
                 if (d.Tables[1].Spacing.ToString() != "1.4")
-                    return "False(0.02 inch)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -2426,15 +2393,15 @@ namespace MOS_WORD_TEST
                     }
                 }
                 if (Index1 == 0)
-                    return "False(khồng chỉnh sửa văn bảng)";
+                    return "False";
                 if (d.Paragraphs[Index1].Range.Font.Bold == -1)
-                    return "False(clear format)";
+                    return "False";
                 if (d.Paragraphs[Index1].Range.Font.Italic == -1)
-                    return "False(clear format)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -2450,14 +2417,35 @@ namespace MOS_WORD_TEST
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
 
         private string Cau114(Application a, Document d)
         {
-            return "True";
+            try
+            {
+                int okTables = 0;
+
+                foreach (Microsoft.Office.Interop.Word.Table tbl in d.Tables)
+                {
+                    bool isHeader = tbl.Rows.First.HeadingFormat == -1
+                                    || tbl.Rows.First.Range.Bold == -1
+                                    || tbl.Rows.First.Range.get_Style() is Microsoft.Office.Interop.Word.Style s && s.NameLocal.Contains("Heading");
+
+                    //return isHeader.ToString();
+                    if (isHeader)
+                        okTables++;
+                }
+
+                return okTables > 1 ? "True" : "False";
+            }
+            catch (Exception)
+            {
+                return "False";
+            }
+            //return "False";
         }
 
         private string Cau115(Application a, Document d)
@@ -2468,13 +2456,13 @@ namespace MOS_WORD_TEST
                 while (!d.Paragraphs[Index].Range.Text.Contains("Standard") && Index < d.Paragraphs.Count)
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False(Text was modified)";
+                    return "False";
                 if (d.Paragraphs[Index].Range.ListFormat.ListType != WdListType.wdListPictureBullet)
-                    return "Falas(bullet bang picture)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -2484,16 +2472,16 @@ namespace MOS_WORD_TEST
             try
             {
                 int Index = 1;
-                while (!d.Paragraphs[Index].Range.Text.Contains("Thimos1000.wordpress.com") && Index < d.Paragraphs.Count)
+                while (!d.Paragraphs[Index].Range.Text.Contains("Mos360.vn") && Index < d.Paragraphs.Count)
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False(Text was modified)";
+                    return "False";
                 if ((double)d.Paragraphs[Index].Range.ParagraphFormat.LineSpacing != 18.0)
-                    return "Falas(Thimos1000.wordpress.com)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -2506,13 +2494,13 @@ namespace MOS_WORD_TEST
                 while (!d.Paragraphs[Index].Range.Text.Contains("Mandolin Style") && Index < d.Paragraphs.Count)
                     ++Index;
                 if (Index >= d.Paragraphs.Count)
-                    return "False(Text was modified)";
+                    return "False";
                 if (d.Paragraphs[Index].Range.ListFormat.ListValue != 11)
-                    return "Falas(dung format painter)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -2523,17 +2511,17 @@ namespace MOS_WORD_TEST
             {
                 object count1 = (object)d.Shapes.Count;
                 if (d.Shapes[ref count1].TextFrame.TextRange.Text.Contains("We Heard you..."))
-                    return "Fales(We Heard you...)";
+                    return "False";
                 object count2 = (object)d.Shapes.Count;
                 if (d.Shapes[ref count2].TextFrame.TextRange.Font.TextColor.RGB.ToString() != "-16777216")
-                    return "False(Gradient Fill-Gray)";
+                    return "False";
                 object count3 = (object)d.Shapes.Count;
                 if (d.Shapes[ref count3].Left.ToString() != "-999995")
-                    return "False(center align)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Convert Text to WordArt)";
+                return "False";
             }
             return "True";
         }
@@ -2543,11 +2531,11 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Tables.Count != 9)
-                    return "False(table.count:" + (object)d.Tables.Count + ")";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -2558,11 +2546,11 @@ namespace MOS_WORD_TEST
             {
                 object Index = (object)"Rectangle 4";
                 if (d.Shapes[ref Index].TextFrame.TextRange.Text.Trim() != "ANYTIME ACCOUNT ACCESS")
-                    return "False(ANYTIME ACCOUNT ACCESS)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
             return "True";
         }
@@ -2572,15 +2560,15 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Tables.Count != 1)
-                    return "False(chuyển văn bảng thành table)";
+                    return "False";
                 if (d.Tables[1].Columns.Count != 2)
-                    return "False(conver chứ không phải chèn mới)";
+                    return "False";
                 if (d.Tables[1].Rows.Count != 5)
-                    return "False(Chuyển đổi từ văn bảng thành bản phải đúng nội dung)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -2597,7 +2585,7 @@ namespace MOS_WORD_TEST
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -2614,7 +2602,7 @@ namespace MOS_WORD_TEST
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "False";
         }
@@ -2624,11 +2612,11 @@ namespace MOS_WORD_TEST
             try
             {
                 if (d.Comments.Count != 0)
-                    return "False(xóa comment)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }
@@ -2642,7 +2630,7 @@ namespace MOS_WORD_TEST
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }

@@ -309,8 +309,8 @@ namespace MOS_WORD_TEST
             //this.btnMarkComplete.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width, this.Height - this.btnMarkComplete.Height - y);
             //this.btnMaskReview.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width, this.Height - this.btnMarkComplete.Height - this.btnMaskReview.Height - y - y);
 
-            this.btnMarkComplete.Location = new Point((screen_width / 2) - this.btnMarkComplete.Width, this.Height - this.btnMarkComplete.Height - y);
-            this.btnMaskReview.Location = new Point((screen_width) / 2 + y, this.Height - this.btnMarkComplete.Height - y);
+            this.btnMarkComplete.Location = new Point((screen_width / 2) - 100 - this.btnMarkComplete.Width, this.Height - this.btnMarkComplete.Height - y);
+            this.btnMaskReview.Location = new Point((screen_width / 2), this.Height - this.btnMarkComplete.Height - y);
 
 
 
@@ -1175,7 +1175,7 @@ namespace MOS_WORD_TEST
             //currentQuestion.MaskForComplete = true;
             Button currentBT = GetLastQuestionButton();
 
-            if (currentBT.Text.StartsWith("❓"))
+            if (currentBT.Text.StartsWith("🚩"))
             {
                 currentBT.Text = $@"✔️ {currentQuestion.Index.ToString()}";
                 currentQuestion.MaskForComplete = true;
@@ -1205,7 +1205,7 @@ namespace MOS_WORD_TEST
 
             if (currentBT.Text.StartsWith("✔️"))
             {
-                currentBT.Text = $@"❓ {currentQuestion.Index.ToString()}";
+                currentBT.Text = $@"🚩 {currentQuestion.Index.ToString()}";
                 currentQuestion.MaskForReview = true;
                 currentQuestion.MaskForComplete = false;
             }
@@ -1213,7 +1213,7 @@ namespace MOS_WORD_TEST
             {
                 if (currentBT.Text == currentQuestion.Index.ToString())
                 {
-                    currentBT.Text = $@"❓ {currentQuestion.Index.ToString()}";
+                    currentBT.Text = $@"🚩 {currentQuestion.Index.ToString()}";
                     currentQuestion.MaskForReview = true;
                     currentQuestion.MaskForComplete = false;
                 }
