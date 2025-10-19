@@ -400,6 +400,8 @@ namespace MOS_WORD_LEARN
 
         private string Check(enviroment par)
         {
+            //MessageBox.Show(par.section.ToString() + " - " + par.quesion.ToString());
+
             string str = "";
             try
             {

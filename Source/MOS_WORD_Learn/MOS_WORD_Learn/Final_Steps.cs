@@ -9,6 +9,7 @@ using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Shape = Microsoft.Office.Interop.Word.Shape;
 
 namespace MOS_WORD_LEARN
@@ -449,18 +450,41 @@ namespace MOS_WORD_LEARN
 
         private static string cau19(Application a, _Document d)
         {
-            int counter = 0;
-            foreach (Microsoft.Office.Interop.Word.Table tbl in d.Tables)
-            {
-                bool hasHeader = tbl.Rows.First.HeadingFormat == -1;
-                if (hasHeader)
-                    counter++;
-            }
-            if(counter == 2)
-            {
-                return "True";
-            }
+            //int counter = 0;
+            //foreach (Microsoft.Office.Interop.Word.Table tbl in d.Tables)
+            //{
+            //    bool hasHeader = tbl.Rows.First.HeadingFormat == -1;
+            //    if (hasHeader)
+            //        counter++;
+            //}
+            //if (counter == 2)
+            //{
+            //    return "True";
+            //}
 
+            //return "False";
+
+            try
+            {
+                int okTables = 0;
+
+                foreach (Microsoft.Office.Interop.Word.Table tbl in d.Tables)
+                {
+                    bool isHeader = tbl.Rows.First.HeadingFormat == -1
+                                    || tbl.Rows.First.Range.Bold == -1
+                                    || tbl.Rows.First.Range.get_Style() is Microsoft.Office.Interop.Word.Style s && s.NameLocal.Contains("Heading");
+
+                    //return isHeader.ToString();
+                    if (isHeader)
+                        okTables++;
+                }
+
+                return okTables > 1 ? "True" : "False";
+            }
+            catch (Exception)
+            {
+                return "False";
+            }
             return "False";
         }
 
@@ -496,12 +520,25 @@ namespace MOS_WORD_LEARN
         {
             try
             {
+                foreach (Microsoft.Office.Interop.Word.Table tbl in d.Tables)
+                {
+                    bool isHeader = tbl.Rows.First.HeadingFormat == -1
+                                    || tbl.Rows.First.Range.Bold == -1
+                                    || tbl.Rows.First.Range.get_Style() is Microsoft.Office.Interop.Word.Style s && s.NameLocal.Contains("Heading");
+
+                    //return isHeader.ToString();
+                    if (isHeader)
+                        return "True";
+
+                    return "False";
+                }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return "False";
             }
-            return "True";
+
+            return "False";
         }
 
         private static string cau23(Application a, _Document d)
