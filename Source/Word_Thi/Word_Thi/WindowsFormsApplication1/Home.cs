@@ -152,6 +152,7 @@ namespace MOS_WORD_TEST
         private string pathFileOffice = string.Empty;
         public int ProjectIndex { get; set; }
         public string ProjectName { get; set; }
+        public bool DocumentOpened { get; set; }
         public List<Question> Questions { get; set; }
 
         public string PathFileOfficeMaHoa { get { return pathFileOfficeMaHoa; } set { pathFileOfficeMaHoa = value; } }

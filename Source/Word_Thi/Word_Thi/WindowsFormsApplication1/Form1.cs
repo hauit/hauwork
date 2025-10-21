@@ -20,6 +20,9 @@ namespace MOS_WORD_TEST
 {
     public partial class Form1 : Form
     {
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern bool SetForegroundWindow(IntPtr hWnd);
+
         public static List<Exam> listExam;
         public static Exam currentExam;
         private Project currentProject;
@@ -730,7 +733,6 @@ namespace MOS_WORD_TEST
                 //    MessageBox.Show($@"Poject có question cần review nên không thể submit. Vui lòng kiểm tra câu hỏi và chuyển thành Mask for complete");
                 //    return;
                 //}
-
                 this.ChamDiem();
                 if (currentProject.ProjectIndex == currentExam.ProjectIndex[6].ProjectIndex)
                 {
@@ -763,6 +765,16 @@ namespace MOS_WORD_TEST
                 }
             }
             this.chotat = false;
+        }
+
+        private void TurnOffFile()
+        {
+            object saveChanges = (object)Microsoft.Office.Interop.Word.WdSaveOptions.wdDoNotSaveChanges;
+            object missing = Type.Missing;
+            while (this.a.Documents.Count >= 1)
+            {
+                this.a.Documents[1].Close(ref saveChanges, ref missing, ref missing);
+            }
         }
 
         private void luuDiem(string diem)
@@ -881,11 +893,20 @@ namespace MOS_WORD_TEST
                 this.pathFileOfficeMaHoa = Directory.GetFiles(this.pathFileOfficeMaHoa)[0];
                 currentProject.PathFileOfficeMaHoa = this.pathFileOfficeMaHoa;
             }
-            if(string.IsNullOrEmpty(currentProject.PathFileOffice))
+            else
+            {
+                this.pathFileOfficeMaHoa = currentProject.PathFileOfficeMaHoa;
+            }
+
+            if (string.IsNullOrEmpty(currentProject.PathFileOffice))
             {
                 this.pathFileOffice = Path.Combine(System.Windows.Forms.Application.StartupPath, "Zip\\Tam\\A\\");
                 this.pathFileOffice = Path.Combine(this.pathFileOffice, Path.GetFileName(this.pathFileOfficeMaHoa));
                 currentProject.PathFileOffice = this.pathFileOffice;
+            }
+            else
+            {
+                this.pathFileOffice = currentProject.PathFileOffice;
             }
             //this.pathFileOffice = Path.Combine(System.Windows.Forms.Application.StartupPath, "Zip\\Tam\\A\\");
             //this.pathFileOffice = Path.Combine(this.pathFileOffice, Path.GetFileName(this.pathFileOfficeMaHoa));
@@ -913,7 +934,11 @@ namespace MOS_WORD_TEST
             textReader.Close();
             this.Cau_So = 0;
             //this.checkedListBox1.SelectedIndex = this.Cau_So;
-            Home.DecryptFile(this.pathFileOfficeMaHoa, this.pathFileOffice);
+            if (!currentProject.DocumentOpened)
+            {
+                Home.DecryptFile(this.pathFileOfficeMaHoa, this.pathFileOffice);
+                currentProject.DocumentOpened = true;
+            }
             OpenDocument();
             //for (int index = 0; index < this.CacCauDaCheck.Length; ++index)
             //    this.CacCauDaCheck[index] = false;
@@ -940,6 +965,12 @@ namespace MOS_WORD_TEST
             // ISSUE: reference to a compiler-generated method
             this.d = this.a.Documents.Open(ref pathFileOffice, ref missing1, ref missing2, ref missing3, ref PasswordDocument, ref missing4, ref missing5, ref missing6, ref missing7, ref missing8, ref missing9, ref missing10, ref missing11, ref missing12, ref missing13, ref XMLTransform);
             this.soLanReSet = 0;
+            if (currentProject.DocumentOpened)
+            {
+                this.d.Activate();
+                IntPtr hwnd = (IntPtr)a.ActiveWindow.Hwnd;
+                SetForegroundWindow(hwnd);
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
