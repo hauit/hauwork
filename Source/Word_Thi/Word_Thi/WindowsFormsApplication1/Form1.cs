@@ -283,17 +283,19 @@ namespace MOS_WORD_TEST
             this.buttonExit.Location = new Point(panelButtonWidth - this.buttonExit.Width - rightPadLeft, y);
 
             // HDSD
-            this.buttonxhdh.Location = new Point(panelButtonWidth - this.buttonxhdh.Width - this.buttonExit.Width - rightPadLeft, y);
+            //this.buttonxhdh.Location = new Point(panelButtonWidth - this.buttonxhdh.Width - this.buttonExit.Width - rightPadLeft, y);
 
             // Bố trí lại
-            this.buttonRefresh.Location = new Point(panelButtonWidth - this.buttonRefresh.Width - this.buttonxhdh.Width - this.buttonExit.Width - rightPadLeft, y);
+            //this.buttonRefresh.Location = new Point(panelButtonWidth - this.buttonRefresh.Width - this.buttonxhdh.Width - this.buttonExit.Width - rightPadLeft, y);
 
             // Submit Project
-            this.buttonSubmit.Location = new Point(panelButtonWidth - this.buttonSubmit.Width - this.buttonRefresh.Width - this.buttonxhdh.Width - this.buttonExit.Width - rightPadLeft, y);
+            //this.buttonSubmit.Location = new Point(panelButtonWidth - this.buttonSubmit.Width - this.buttonRefresh.Width - this.buttonxhdh.Width - this.buttonExit.Width - rightPadLeft, y);
+            this.buttonSubmit.Location = new Point(panelButtonWidth - this.buttonSubmit.Width - this.buttonExit.Width - rightPadLeft, y);
 
             // Reset Project
-            this.buttonReset.Location = new Point(panelButtonWidth - this.buttonReset.Width - this.buttonRefresh.Width - this.buttonSubmit.Width - this.buttonxhdh.Width - this.buttonExit.Width - rightPadLeft, y);
-            
+            //this.buttonReset.Location = new Point(panelButtonWidth - this.buttonReset.Width - this.buttonRefresh.Width - this.buttonSubmit.Width - this.buttonxhdh.Width - this.buttonExit.Width - rightPadLeft, y);
+            this.buttonReset.Location = new Point(panelButtonWidth - this.buttonReset.Width - this.buttonSubmit.Width - this.buttonExit.Width - rightPadLeft, y);
+
             // Timer
             //this.label1.Location = new Point(this.checkedListBox1.Width + y, y);
             this.label1.Location = new Point(y, y);
@@ -302,15 +304,21 @@ namespace MOS_WORD_TEST
             //this.buttonCheck.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width, this.Height - this.buttonCheck.Height);
             this.buttonCheck.Location = new Point(this.label1.Width + y, y);
 
+            // HDSD
+            this.buttonxhdh.Location = new Point(this.label1.Width + this.buttonCheck.Width + leftPadRight, y);
+
+            // Bố trí lại
+            this.buttonRefresh.Location = new Point(this.label1.Width + this.buttonCheck.Width + this.buttonxhdh.Width + leftPadRight, y);
+
             // Label Project
-            this.labelProject.Location = new Point( (panelButtonWidth / 2) - this.labelProject.Width, y);
+            this.labelProject.Location = new Point( (panelButtonWidth / 2) - (this.labelProject.Width / 2), y);
 
 
             //this.btnMarkComplete.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width, this.Height - this.btnMarkComplete.Height - y);
             //this.btnMaskReview.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width, this.Height - this.btnMarkComplete.Height - this.btnMaskReview.Height - y - y);
 
             this.btnMarkComplete.Location = new Point((screen_width / 2) - 100 - this.btnMarkComplete.Width, this.Height - this.btnMarkComplete.Height - y);
-            this.btnMaskReview.Location = new Point((screen_width / 2), this.Height - this.btnMarkComplete.Height - y);
+            this.btnMaskReview.Location = new Point((screen_width / 2) + 100, this.Height - this.btnMarkComplete.Height - y);
 
 
 
@@ -375,23 +383,31 @@ namespace MOS_WORD_TEST
             //{
                 AddBackButton();
             //}
-            for (int i = 1; i <= currentProject.Questions.Count; i++)
+
+            int numQuestions = currentProject.Questions.Count;
+
+            int startX = (((this.screen_width / 10) * 8)  - ((numQuestions + 2) * 110)) / 2;
+
+            //MessageBox.Show(startX.ToString());
+
+            for (int i = 1; i <= numQuestions; i++)
             {
                 var btn = new MOS_WORD_TEST.Base.RJButton();
                 // btn.Text = "Project " +  i.ToString() + " of " + currentProject.Questions.Count + ":";
                 string prefix = "";
-                if (currentProject.Questions[i-1].MaskForReview == true)
+
+                if (currentProject.Questions[i - 1].MaskForReview == true)
                 {
-                    prefix += "❓ ";
+                    prefix = "🚩 ";
                 }
 
-                if (currentProject.Questions[i-1].MaskForComplete == true)
+                if (currentProject.Questions[i - 1].MaskForComplete == true)
                 {
-                    prefix = "✓ ";
+                    prefix = "✔️ ";
                 }
 
                 btn.Text = $@"{prefix + i.ToString()}";
-                btn.Location = new Point((i) * 110, 0);
+                btn.Location = new Point(((i) * 110) + startX, 0);
                 //btn.Width = 50;
                 //btn.Height = 32;
                 //btn.BackColor = System.Drawing.Color.DarkBlue;
@@ -557,7 +573,8 @@ namespace MOS_WORD_TEST
 
             Button btnTimDuoc = panelJumpQuestion.Controls
                           .OfType<Button>()
-                          .FirstOrDefault(b => b.Text == questionIndex.ToString());
+                            //.FirstOrDefault(b => b.Text == questionIndex.ToString());
+                            .FirstOrDefault(b => b.Text.EndsWith(questionIndex.ToString()));
             return btnTimDuoc;
         }
 
@@ -658,9 +675,9 @@ namespace MOS_WORD_TEST
                     row["QuestionContent"] = Language == "EN" ? ClsListQuestion.GetQuestion(questionNumber).EngQuestion : ClsListQuestion.GetQuestion(questionNumber).VnQuestion;
                     //row["QuestionNumber"] = currentExam.ProjectIndex[i].Questions[j].QuestionNumber;
                     row["MaskForComplete"] = currentExam.ProjectIndex[i].Questions[j].MaskForComplete == true ? "✔️" : string.Empty;
-                    row["MaskForReview"] = currentExam.ProjectIndex[i].Questions[j].MaskForReview == true ? "✔️" : string.Empty;
+                    row["MaskForReview"] = currentExam.ProjectIndex[i].Questions[j].MaskForReview == true ? "🚩" : string.Empty;
                     row["Status"] = currentExam.ProjectIndex[i].Questions[j].Status == true ? "✔️" : string.Empty;
-                    row["Value"] = currentExam.ProjectIndex[i].Questions[j].Value == true ? "✔️" : string.Empty;
+                    row["Value"] = currentExam.ProjectIndex[i].Questions[j].Value == true ? "True" : "False";
                     dt.Rows.Add(row);
                 }
             }
@@ -705,7 +722,7 @@ namespace MOS_WORD_TEST
 
         private void submit()
         {
-            if (MessageBox.Show("Bạn có chắc nộp bài?", "Cảnh Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+            if (MessageBox.Show("Bạn có chắc chắn Submit Project?", "Cảnh Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
             {
                 //bool reviewQestion = currentProject.Questions.Where(x => x.MaskForReview == true).Any();
                 //if (reviewQestion)

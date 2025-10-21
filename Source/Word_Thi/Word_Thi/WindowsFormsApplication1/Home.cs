@@ -17,6 +17,7 @@ namespace MOS_WORD_TEST
     internal class Home
     {
         public static string thongtin;
+        public static bool isButtonDisabled = false;
 
         public static byte[] Encrypt(byte[] inputArray, string key)
         {

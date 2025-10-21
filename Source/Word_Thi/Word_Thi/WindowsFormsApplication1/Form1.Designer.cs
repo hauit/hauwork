@@ -226,7 +226,7 @@ namespace MOS_WORD_TEST
             this.labelProject.Cursor = System.Windows.Forms.Cursors.Hand;
             this.labelProject.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Bold);
             this.labelProject.ForeColor = System.Drawing.Color.White;
-            this.labelProject.Location = new System.Drawing.Point(245, 176);
+            this.labelProject.Location = new System.Drawing.Point(462, 183);
             this.labelProject.Name = "labelProject";
             this.labelProject.Size = new System.Drawing.Size(125, 23);
             this.labelProject.TabIndex = 33;
@@ -340,7 +340,7 @@ namespace MOS_WORD_TEST
             this.buttonxhdh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonxhdh.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.buttonxhdh.ForeColor = System.Drawing.Color.White;
-            this.buttonxhdh.Location = new System.Drawing.Point(761, 171);
+            this.buttonxhdh.Location = new System.Drawing.Point(237, 172);
             this.buttonxhdh.MinimumSize = new System.Drawing.Size(100, 0);
             this.buttonxhdh.Name = "buttonxhdh";
             this.buttonxhdh.Padding = new System.Windows.Forms.Padding(2);
@@ -364,7 +364,7 @@ namespace MOS_WORD_TEST
             this.buttonRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRefresh.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.buttonRefresh.ForeColor = System.Drawing.Color.White;
-            this.buttonRefresh.Location = new System.Drawing.Point(668, 171);
+            this.buttonRefresh.Location = new System.Drawing.Point(343, 172);
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Padding = new System.Windows.Forms.Padding(2);
             this.buttonRefresh.Size = new System.Drawing.Size(87, 35);
@@ -432,8 +432,8 @@ namespace MOS_WORD_TEST
             // 
             this.buttonExit.AutoSize = true;
             this.buttonExit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
-            this.buttonExit.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(34)))), ((int)(((byte)(91)))));
+            this.buttonExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(3)))), ((int)(((byte)(3)))));
+            this.buttonExit.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(3)))), ((int)(((byte)(3)))));
             this.buttonExit.BorderColor = System.Drawing.Color.White;
             this.buttonExit.BorderRadius = 5;
             this.buttonExit.BorderSize = 2;
@@ -441,12 +441,12 @@ namespace MOS_WORD_TEST
             this.buttonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonExit.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.buttonExit.ForeColor = System.Drawing.Color.White;
-            this.buttonExit.Location = new System.Drawing.Point(867, 171);
+            this.buttonExit.Location = new System.Drawing.Point(949, 171);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Padding = new System.Windows.Forms.Padding(2);
-            this.buttonExit.Size = new System.Drawing.Size(50, 35);
+            this.buttonExit.Size = new System.Drawing.Size(34, 35);
             this.buttonExit.TabIndex = 5;
-            this.buttonExit.Text = "Exit";
+            this.buttonExit.Text = "X";
             this.buttonExit.TextColor = System.Drawing.Color.White;
             this.buttonExit.UseVisualStyleBackColor = false;
             this.buttonExit.Click += new System.EventHandler(this.button4_Click);
@@ -464,7 +464,7 @@ namespace MOS_WORD_TEST
             this.buttonSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSubmit.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.buttonSubmit.ForeColor = System.Drawing.Color.White;
-            this.buttonSubmit.Location = new System.Drawing.Point(535, 171);
+            this.buttonSubmit.Location = new System.Drawing.Point(816, 171);
             this.buttonSubmit.Name = "buttonSubmit";
             this.buttonSubmit.Padding = new System.Windows.Forms.Padding(2);
             this.buttonSubmit.Size = new System.Drawing.Size(127, 35);
@@ -510,7 +510,7 @@ namespace MOS_WORD_TEST
             this.buttonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonReset.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
             this.buttonReset.ForeColor = System.Drawing.Color.White;
-            this.buttonReset.Location = new System.Drawing.Point(402, 171);
+            this.buttonReset.Location = new System.Drawing.Point(683, 171);
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Padding = new System.Windows.Forms.Padding(2);
             this.buttonReset.Size = new System.Drawing.Size(127, 35);
@@ -564,9 +564,9 @@ namespace MOS_WORD_TEST
 
         #endregion
         private CheckedListBox checkedListBox1;
-        private Base.RJButton buttonReset;
+        public Base.RJButton buttonReset;
         private Base.RJButton buttonCheck;
-        private Base.RJButton buttonSubmit;
+        public Base.RJButton buttonSubmit;
         private Base.RJButton buttonExit;
         private Label label1;
         private Timer timer1;
@@ -580,8 +580,8 @@ namespace MOS_WORD_TEST
         private Base.RJButton button1;
         private TextBox textBox2;
         private Base.RJButton buttonHelp;
-        private Base.RJButton buttonRefresh;
-        private Base.RJButton buttonxhdh;
+        public Base.RJButton buttonRefresh;
+        public Base.RJButton buttonxhdh;
         private Base.RJButton buttonShowHide;
         private Base.RJButton button2;
         private ComboBox comboBox1;
@@ -590,8 +590,8 @@ namespace MOS_WORD_TEST
         private Panel panelJumpQuestion;
         private RichTextBox richTextTA;
         private Label labelProject;
-        private RJButton btnMarkComplete;
-        private RJButton btnMaskReview;
+        public RJButton btnMarkComplete;
+        public RJButton btnMaskReview;
         private Panel panelButton;
     }
 }
