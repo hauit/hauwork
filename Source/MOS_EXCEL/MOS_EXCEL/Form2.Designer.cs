@@ -213,6 +213,7 @@ namespace MOS_EXCEL_LEARN
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(0);
             this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(265, 156);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "Nếu bạn chưa có mật khẩu để đăng nhập, vui lòng gửi ID bên dưới cho Admin để được" +

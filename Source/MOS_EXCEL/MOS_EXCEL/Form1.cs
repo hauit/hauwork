@@ -52,6 +52,7 @@ namespace MOS_EXCEL_LEARN
 
                 // Initially show the Excel application
                 this.a.WindowState = Microsoft.Office.Interop.Excel.XlWindowState.xlNormal;
+                System.Threading.Thread.Sleep(200); // cho Office kịp cập nhật
                 this.a.Top = 0.0;
                 this.a.Left = 0.0;
                 this.a.Width = (double)this.screen_width;
