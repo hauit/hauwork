@@ -30,6 +30,7 @@ namespace MOS_WORD_TEST.WindowsFormsApplication1
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_GoToSummary));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnClose = new MOS_WORD_TEST.Base.RJButton();
             this.btnFinish = new MOS_WORD_TEST.Base.RJButton();
@@ -134,6 +135,7 @@ namespace MOS_WORD_TEST.WindowsFormsApplication1
             this.ClientSize = new System.Drawing.Size(806, 684);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Frm_GoToSummary";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
