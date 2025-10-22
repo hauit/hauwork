@@ -123,6 +123,7 @@ namespace MOS_WORD_LEARN
                 this.Copy(Path.Combine(System.Windows.Forms.Application.StartupPath, "data\\Doc"), Environment.GetFolderPath(Environment.SpecialFolder.Personal));
                 this.a.Visible = true;
                 this.a.WindowState = WdWindowState.wdWindowStateNormal;
+                System.Threading.Thread.Sleep(200); // cho Office kịp cập nhật
                 this.a.Top = 0;
                 this.a.Left = -10;
                 // ISSUE: reference to a compiler-generated method
