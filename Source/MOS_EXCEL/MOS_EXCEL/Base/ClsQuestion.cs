@@ -154,7 +154,7 @@ namespace WindowsFormsApplication1.Base
             new ClsQuestion(true,91,106,"https://go.mos360.vn/mosexcel091","Phục hồi lại hình dạng trang tính \"roster\" để hiển thị dòng 7 trên mỗi trang khi in.","Reshape the \"roster\" worksheet to display row 7 on each page when printed."),
             new ClsQuestion(true,35,107,"https://go.mos360.vn/mosexcel035","Sửa đổi cài đặt in để phù hợp với từng trang tính trên 1 trang.","Modify the print settings to fit each sheet on one page."),
             new ClsQuestion(true,77,108,"https://go.mos360.vn/mosexcel077","Trên trang tính \"Q2_Sales\" thiết lập các lề thành \"Narrow\".","On the \"Q2_Sales\" sheet set the margins to \"Narrow\"."),
-            new ClsQuestion(true,36,109,"https://go.mos360.vn/mosexcel036","Cấu hình lại các lề trên và dưới là \"1\", trái và phải là \"1.5\".","Reconfigure the top and bottom margins to \"1\", and the left and right margins to \"1.5\"."),
+            new ClsQuestion(true,36,109,"https://go.mos360.vn/mosexcel036","Cấu hình lại các lề trên và dưới là 1\", trái và phải là 1.5\".","Reconfigure the top and bottom margins to 1\", and the left and right margins to 1.5\"."),
             new ClsQuestion(true,27,110,"https://go.mos360.vn/mosexcel027","Trong phần thuộc tính của tài liệu (document properties), thêm \"Lucerne Publishing\" cho tên công ty (company name),.","In the document properties add \"Lucerne Publishing\" for the company name."),
             ////TODO: Below question not yet be implemented, need to comment source code
         };

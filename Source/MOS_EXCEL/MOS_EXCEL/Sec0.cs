@@ -97,7 +97,7 @@ namespace MOS_EXCEL_LEARN
                 {
                     Range range = worksheet.Range[$"A{row}"];
                     if (range.EntireRow.Hidden == false)
-                        return $"False";
+                        return "False";
                 }
 
                 // Dòng 7: không được ẩn
@@ -130,7 +130,7 @@ namespace MOS_EXCEL_LEARN
                 {
                     Range range = worksheet.Range[$"A{row}"];
                     if (range.EntireRow.Hidden == true)
-                        return $"False";
+                        return "False";
                 }
 
                 return "True";
@@ -487,7 +487,7 @@ namespace MOS_EXCEL_LEARN
                 foreach (Worksheet sheet in wb.Worksheets)
                 {
                     if (sheet.Visible == XlSheetVisibility.xlSheetHidden)
-                        return $"False";
+                        return "False";
                 }
             }
             catch (Exception)
