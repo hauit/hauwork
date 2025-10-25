@@ -91,15 +91,20 @@ namespace MOS_WORD_TEST
                     currentProject.Questions[i].MaskForReview = false;
                 }
 
-                while (this.a.Documents.Count >= 1)
-                {
-                    object SaveChanges = (object)false;
-                    object missing1 = System.Type.Missing;
-                    object missing2 = System.Type.Missing;
-                    object Index = (object)1;
-                    // ISSUE: reference to a compiler-generated method
-                    this.a.Documents[ref Index].Close(ref SaveChanges, ref missing1, ref missing2);
-                }
+                //while (this.a.Documents.Count >= 1)
+                //{
+                //    object SaveChanges = (object)false;
+                //    object missing1 = System.Type.Missing;
+                //    object missing2 = System.Type.Missing;
+                //    object Index = (object)1;
+                //    // ISSUE: reference to a compiler-generated method
+                //    this.a.Documents[ref Index].Close(ref SaveChanges, ref missing1, ref missing2);
+                //}
+                object SaveChanges = (object)false;
+                object missing1 = System.Type.Missing;
+                object missing2 = System.Type.Missing;
+                this.d.Close(ref SaveChanges, ref missing1, ref missing2);
+
                 this.chotat = false;
                 Home.DecryptFile(this.pathFileOfficeMaHoa, this.pathFileOffice);
                 object pathFileOffice = (object)this.pathFileOffice;
