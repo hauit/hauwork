@@ -47,7 +47,8 @@ namespace MOS_WORD_TEST
             int length = (int)binaryReader.BaseStream.Length;
             byte[] inputArray = binaryReader.ReadBytes(length);
             binaryReader.Close();
-            byte[] buffer = Home.Encrypt(inputArray, "4180835854685610rivbgfthd6712096111949160@&^#%$1599429789645140");
+            //byte[] buffer = Home.Encrypt(inputArray, "4180835854685610rivbgfthd6712096111949160@&^#%$1599429789645140");
+            byte[] buffer = Home.Encrypt(inputArray, "123456789012345678901234");
             BinaryWriter binaryWriter = new BinaryWriter((Stream)File.Open(fileNameDest, FileMode.Create));
             binaryWriter.Write(buffer);
             binaryWriter.Close();

@@ -76,62 +76,6 @@ namespace MOS_WORD_TEST
                 this.lsViTri.Add(this.panel2.VerticalScroll.Value);
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (MessageBox.Show("Bạn có muốn reset không? (reset sẽ làm lại từ đầu)", "Cảnh Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) != DialogResult.Yes)
-                    return;
-                this.chotat = true;
-                for(int i = 0; i < currentProject.Questions.Count; i++)
-                {
-                    currentProject.Questions[i].Status = false;
-                    currentProject.Questions[i].Value = false;
-                    currentProject.Questions[i].MaskForComplete = false;
-                    currentProject.Questions[i].MaskForReview = false;
-                }
-
-                //while (this.a.Documents.Count >= 1)
-                //{
-                //    object SaveChanges = (object)false;
-                //    object missing1 = System.Type.Missing;
-                //    object missing2 = System.Type.Missing;
-                //    object Index = (object)1;
-                //    // ISSUE: reference to a compiler-generated method
-                //    this.a.Documents[ref Index].Close(ref SaveChanges, ref missing1, ref missing2);
-                //}
-                object SaveChanges = (object)false;
-                object missing1 = System.Type.Missing;
-                object missing2 = System.Type.Missing;
-                this.d.Close(ref SaveChanges, ref missing1, ref missing2);
-
-                this.chotat = false;
-                Home.DecryptFile(this.pathFileOfficeMaHoa, this.pathFileOffice);
-                object pathFileOffice = (object)this.pathFileOffice;
-                object missing3 = System.Type.Missing;
-                object missing4 = System.Type.Missing;
-                object missing5 = System.Type.Missing;
-                object PasswordDocument = (object)"271565234";
-                object missing6 = System.Type.Missing;
-                object missing7 = System.Type.Missing;
-                object missing8 = System.Type.Missing;
-                object missing9 = System.Type.Missing;
-                object missing10 = System.Type.Missing;
-                object missing11 = System.Type.Missing;
-                object missing12 = System.Type.Missing;
-                object missing13 = System.Type.Missing;
-                object missing14 = System.Type.Missing;
-                object missing15 = System.Type.Missing;
-                object XMLTransform = (object)Missing.Value;
-                // ISSUE: reference to a compiler-generated method
-                this.d = this.a.Documents.Open(ref pathFileOffice, ref missing3, ref missing4, ref missing5, ref PasswordDocument, ref missing6, ref missing7, ref missing8, ref missing9, ref missing10, ref missing11, ref missing12, ref missing13, ref missing14, ref missing15, ref XMLTransform);
-            }
-            catch (Exception ex)
-            {
-                int num = (int)MessageBox.Show("Đống các cửa sổ thông báo của Word trước khi Reset");
-            }
-        }
-
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             //this.Cau_So = this.checkedListBox1.SelectedIndex;
@@ -275,7 +219,7 @@ namespace MOS_WORD_TEST
             this.panelButton.Width = screen_width;
             this.panelButton.Controls.Add(this.label1);
             this.panelButton.Controls.Add(this.buttonCheck);
-            
+
             this.panelButton.Controls.Add(this.labelProject);
 
             this.panelButton.Controls.Add(this.buttonExit);
@@ -319,7 +263,7 @@ namespace MOS_WORD_TEST
             this.buttonRefresh.Location = new Point(this.label1.Width + this.buttonCheck.Width + this.buttonxhdh.Width + leftPadRight, y);
 
             // Label Project
-            this.labelProject.Location = new Point( (panelButtonWidth / 2) - (this.labelProject.Width / 2), y);
+            this.labelProject.Location = new Point((panelButtonWidth / 2) - (this.labelProject.Width / 2), y);
 
 
             //this.btnMarkComplete.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width, this.Height - this.btnMarkComplete.Height - y);
@@ -336,15 +280,15 @@ namespace MOS_WORD_TEST
             this.textBox1.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.comboBox1.Width - this.textBox1.Width, 10000);
             this.button1.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.comboBox1.Width - this.button1.Width, 10000);
             this.textBox2.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.button1.Width - this.comboBox1.Width - this.textBox2.Width, 10000);
-            
-            
+
+
             this.buttonShowHide.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.button1.Width - this.textBox2.Width - this.comboBox1.Width - this.buttonShowHide.Width, 10000);
             this.buttonHelp.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width - this.buttonExit.Width - this.buttonReset.Width - this.label1.Width - this.buttonSave.Width - this.textBox1.Width - this.button1.Width - this.textBox2.Width - this.comboBox1.Width - this.buttonShowHide.Width - this.buttonHelp.Width, 10000);
-            
+
             this.panel4.Location = new Point(this.checkedListBox1.Width + this.panelQuestion.Width, this.Height - this.buttonCheck.Height - this.panel4.Height);
 
-            
-            
+
+
             //this.loadcaucanhoiNew(currentProject.ProjectIndex);
             this.a = (Microsoft.Office.Interop.Word.Application)Activator.CreateInstance(System.Type.GetTypeFromCLSID(new Guid("000209FF-0000-0000-C000-000000000046")));
             this.a.Visible = true;
@@ -389,12 +333,12 @@ namespace MOS_WORD_TEST
             currentProject = currentExam.ProjectIndex[projectIndex];
             //if(currentProject.Questions.Count > 1)
             //{
-                AddBackButton();
+            AddBackButton();
             //}
 
             int numQuestions = currentProject.Questions.Count;
 
-            int startX = (((this.screen_width / 10) * 8)  - ((numQuestions + 2) * 110)) / 2;
+            int startX = (((this.screen_width / 10) * 8) - ((numQuestions + 2) * 110)) / 2;
 
             //MessageBox.Show(startX.ToString());
 
@@ -437,14 +381,14 @@ namespace MOS_WORD_TEST
                 btn.Tag = currentProject.Questions[i - 1];
                 btn.Click += LoadQuestionContent;
                 this.panelJumpQuestion.Controls.Add(btn);
-                if(i == 1)
+                if (i == 1)
                 {
                     LoadQuestionContent(btn, EventArgs.Empty);
                 }
             }
             //if (currentProject.Questions.Count > 1)
             //{
-                AddNextButton();
+            AddNextButton();
             //}
         }
 
@@ -730,7 +674,7 @@ namespace MOS_WORD_TEST
 
         private void submit()
         {
-            if (MessageBox.Show("Bạn có chắc chắn Submit Project?", "Cảnh Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+            if (MessageBox.Show($"Bạn có chắc chắn Submit Project {currentProject.ProjectIndex.ToString()}?", "Cảnh Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
             {
                 //bool reviewQestion = currentProject.Questions.Where(x => x.MaskForReview == true).Any();
                 //if (reviewQestion)
@@ -758,7 +702,7 @@ namespace MOS_WORD_TEST
 
                 this.checkedListBox1.SetItemChecked(currentProject.ProjectIndex - 1, true);
                 int nexproject = currentProject.ProjectIndex + 1;
-                if(nexproject <= currentExam.ProjectIndex.Count)
+                if (nexproject <= currentExam.ProjectIndex.Count)
                 {
                     currentProject = currentExam.ProjectIndex[nexproject - 1];
                     this.checkedListBox1.SelectedIndex = nexproject - 1;
@@ -770,6 +714,73 @@ namespace MOS_WORD_TEST
                 }
             }
             this.chotat = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show($"Bạn có muốn Restart Project {currentProject.ProjectIndex.ToString()} không? (Restart Project sẽ làm lại từ đầu)", "Cảnh Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) != DialogResult.Yes)
+                    return;
+                this.chotat = true;
+                for (int i = 0; i < currentProject.Questions.Count; i++)
+                {
+                    currentProject.Questions[i].Status = false;
+                    currentProject.Questions[i].Value = false;
+                    currentProject.Questions[i].MaskForComplete = false;
+                    currentProject.Questions[i].MaskForReview = false;
+                }
+
+                //Remove all maskreview and markcomplete in buttons
+                foreach (Control control in this.panelJumpQuestion.Controls)
+                {
+                    if (control is Button btn)
+                    {
+                        string btnText = btn.Text;
+                        btnText = btnText.Replace("🚩 ", "").Replace("✔️ ", "");
+                        btn.Text = btnText;
+                    }
+                }
+
+                //while (this.a.Documents.Count >= 1)
+                //{
+                //    object SaveChanges = (object)false;
+                //    object missing1 = System.Type.Missing;
+                //    object missing2 = System.Type.Missing;
+                //    object Index = (object)1;
+                //    // ISSUE: reference to a compiler-generated method
+                //    this.a.Documents[ref Index].Close(ref SaveChanges, ref missing1, ref missing2);
+                //}
+                object SaveChanges = (object)false;
+                object missing1 = System.Type.Missing;
+                object missing2 = System.Type.Missing;
+                this.d.Close(ref SaveChanges, ref missing1, ref missing2);
+
+                this.chotat = false;
+                Home.DecryptFile(this.pathFileOfficeMaHoa, this.pathFileOffice);
+                object pathFileOffice = (object)this.pathFileOffice;
+                object missing3 = System.Type.Missing;
+                object missing4 = System.Type.Missing;
+                object missing5 = System.Type.Missing;
+                object PasswordDocument = (object)"271565234";
+                object missing6 = System.Type.Missing;
+                object missing7 = System.Type.Missing;
+                object missing8 = System.Type.Missing;
+                object missing9 = System.Type.Missing;
+                object missing10 = System.Type.Missing;
+                object missing11 = System.Type.Missing;
+                object missing12 = System.Type.Missing;
+                object missing13 = System.Type.Missing;
+                object missing14 = System.Type.Missing;
+                object missing15 = System.Type.Missing;
+                object XMLTransform = (object)Missing.Value;
+                // ISSUE: reference to a compiler-generated method
+                this.d = this.a.Documents.Open(ref pathFileOffice, ref missing3, ref missing4, ref missing5, ref PasswordDocument, ref missing6, ref missing7, ref missing8, ref missing9, ref missing10, ref missing11, ref missing12, ref missing13, ref missing14, ref missing15, ref XMLTransform);
+            }
+            catch (Exception ex)
+            {
+                int num = (int)MessageBox.Show("Đóng các cửa sổ thông báo của Word trước khi Restart Project");
+            }
         }
 
         private void TurnOffFile()
@@ -885,14 +896,14 @@ namespace MOS_WORD_TEST
             string[] directories = Directory.GetDirectories(Path.Combine(System.Windows.Forms.Application.StartupPath, $@"Zip\\Exam\\Exam{currentExam.ExamIndex}"));
             this.works = directories.Length;
             Array.Sort<string>(directories, (IComparer<string>)StringComparer.InvariantCulture);
-            this.workIndex = Index-1;
+            this.workIndex = Index - 1;
             this.pathWork = directories[this.workIndex];
             this.pathRun = Path.Combine(System.Windows.Forms.Application.StartupPath, "Zip\\Tam");
             //this.ImageFile = Directory.GetFiles(Path.Combine(this.pathWork, "Test"));
             //this.checkedListBox1.Items.Clear();
             //for (int index = 0; index < this.ImageFile.Length; ++index)
             //    this.checkedListBox1.Items.Add((object)(index + 1).ToString());
-            if(string.IsNullOrEmpty(currentProject.PathFileOfficeMaHoa))
+            if (string.IsNullOrEmpty(currentProject.PathFileOfficeMaHoa))
             {
                 this.pathFileOfficeMaHoa = Path.Combine(this.pathWork, "Source\\Main");
                 this.pathFileOfficeMaHoa = Directory.GetFiles(this.pathFileOfficeMaHoa)[0];
@@ -1174,11 +1185,11 @@ namespace MOS_WORD_TEST
         {
             if (MessageBox.Show("Bạn có chắc nộp bài?", "Cảnh Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
             {
-                for(int i = 0; i < currentExam.ProjectIndex.Count; i++)
+                for (int i = 0; i < currentExam.ProjectIndex.Count; i++)
                 {
-                    for(int j = 0; j < currentExam.ProjectIndex[i].Questions.Count; j++)
+                    for (int j = 0; j < currentExam.ProjectIndex[i].Questions.Count; j++)
                     {
-                        if(!currentExam.ProjectIndex[i].Questions[j].Status == true)
+                        if (!currentExam.ProjectIndex[i].Questions[j].Status == true)
                         {
                             int cau = currentExam.ProjectIndex[i].Questions[j].QuestionNumber;
                             currentExam.ProjectIndex[i].Questions[j].Status = true;
@@ -1257,7 +1268,7 @@ namespace MOS_WORD_TEST
                     currentQuestion.MaskForReview = false;
                 }
             }
-        }   
+        }
 
         private void btnMaskReview_Click(object sender, EventArgs e)
         {
