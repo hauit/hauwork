@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{658238B2-902A-45E1-A74E-346DF875BE37}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <AssemblyName>MOS360_WORD_TEST</AssemblyName>
+    <AssemblyName>MOS360_EXCEL_TEST</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <FileAlignment>512</FileAlignment>
@@ -51,7 +51,7 @@
     <RootNamespace>MOS_WORD_TEST</RootNamespace>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Word_Learn.ico</ApplicationIcon>
+    <ApplicationIcon>Excel_Test.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.Desktop.v25.1, Version=25.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -91,34 +91,6 @@
     <Compile Include="WindowsFormsApplication1\Base\RJButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="WindowsFormsApplication1\CheckWork1.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork10.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork11.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork12.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork13.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork14.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork15.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork16.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork17.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork18.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork19.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork2.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork20.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork21.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork22.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork23.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork24.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork25.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork26.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork27.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork28.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork3.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork4.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork5.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork6.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork7.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork8.cs" />
-    <Compile Include="WindowsFormsApplication1\CheckWork9.cs" />
     <Compile Include="WindowsFormsApplication1\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +147,15 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
     <COMReference Include="Microsoft.Office.Interop.Word">
       <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>8</VersionMajor>
@@ -205,7 +186,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="WindowsFormsApplication1\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -218,10 +199,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\w-mos-s.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Word_Learn.ico" />
+    <Content Include="Excel_Test.ico" />
+    <None Include="Resources\e-mos-s.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
