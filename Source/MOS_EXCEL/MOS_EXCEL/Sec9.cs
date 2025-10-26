@@ -39,7 +39,7 @@ namespace MOS_EXCEL_LEARN
         case 9:
           return Sec9.cau3(a, d);
         case 10:
-          return Sec9.cau10(a, d);
+          return Sec9.cau10New(a, d);
         case 11:
           return Sec9.cau11(a, d);
         case 12:
@@ -305,6 +305,100 @@ namespace MOS_EXCEL_LEARN
             }
 
             return "True"; // Subject không có giá trị
+        }
+
+        private static string cau10New(Application a, Workbook d)
+        {
+            try
+            {
+                Worksheet ws = d.Worksheets["New York City"] as Worksheet;
+                if (ws == null)
+                    return "False";
+
+                ChartObjects chartObjects = (ChartObjects)ws.ChartObjects();
+                if (chartObjects.Count == 0)
+                    return "False";
+
+                //bool correct = false;
+
+                Range dataRange = ws.Range["A3"].CurrentRegion; // vùng bảng
+                double tableBottom = dataRange.Top + dataRange.Height;
+
+                // ✅ Phải có 1 biểu đồ
+                if (ws.ChartObjects().Count == 0)
+                    return "False";
+
+                ChartObject chartObj = ws.ChartObjects(1);
+                Chart chart = chartObj.Chart;
+
+                // ✅ Biểu đồ phải là Clustered Column
+                if (chart.ChartType != XlChartType.xlColumnClustered)
+                    return "False";
+
+                // ✅ Kiểm tra Series
+                if (chart.SeriesCollection().Count == 0)
+                    return "False";
+
+                //Series series = chart.SeriesCollection(1);
+
+                //// ✅ X-axis = City (cột B)
+                //Range xRange = series.XValues as Range;
+                //if (xRange.Column != 2)
+                //    return "False (Trục ngang không phải City)";
+
+                //// ✅ Values = Air Miles (cột D)
+                //Range valRange = series.Values as Range;
+                //if (valRange.Column != 4)
+                //    return "False (Dữ liệu không phải Air Miles)";
+
+                // ✅ Biểu đồ phải nằm *dưới bảng*
+                if (chartObj.Top <= tableBottom)
+                    return "False";
+
+                return "True";
+
+                //foreach (ChartObject chObj in chartObjects)
+                //{
+                //    Chart chart = chObj.Chart;
+
+                //    // 1️⃣ Loại biểu đồ phải là Clustered Column
+                //    if (chart.ChartType != XlChartType.xlColumnClustered)
+                //        continue;
+
+                //    Series series = chart.SeriesCollection(1);
+                //    if (series == null)
+                //        continue;
+
+                //    // 2️⃣ Kiểm tra tên Series chứa "Air Miles"
+                //    string sName = series.Name.ToLower();
+                //    if (!sName.Contains("air") || !sName.Contains("mile"))
+                //        continue;
+
+                //    // 3️⃣ Check XValues must come from column B (City)
+                //    string xRange = series.XValues as string;
+                //    if (string.IsNullOrEmpty(xRange))
+                //        continue;
+
+                //    // Ví dụ địa chỉ sẽ kiểu như: ='New York City'!$B$3:$B$17
+                //    if (!xRange.ToUpper().Contains("$B$"))
+                //        continue;
+
+                //    if (chartObjects.Top <= tableBottom)
+                //        return "False (Biểu đồ không nằm dưới bảng)";
+
+
+                //    // ✅ Passed all checks
+                //    correct = true;
+                //    break;
+                //}
+
+                //return correct ? "True" : "False (Biểu đồ chưa đúng dữ liệu)";
+            }
+            catch (Exception ex)
+            {
+                return "False " + ex.ToString();
+            }
+
         }
 
         private static string cau11(Application app, Workbook workbook)

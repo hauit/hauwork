@@ -19,7 +19,7 @@ namespace MOS_EXCEL_LEARN
       12,
       14,
       5,
-      9
+      10
     };
 
     public static int Tong()

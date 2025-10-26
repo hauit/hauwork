@@ -320,7 +320,7 @@ namespace MOS_EXCEL_LEARN
                 this.comboBoxCauNext.Text = "1";
             this.labelKQ.Text = "";
             this.check = true;
-            this.buttonEV.Text = "Tiếng Việt";
+            this.buttonEV.Text = "Tiếng Anh";
             //this.h.refresh(); TODO: uncomment after finish Help form
             this.a.Visible = true;
         }
@@ -346,14 +346,14 @@ namespace MOS_EXCEL_LEARN
 
         private void buttonEV_Click(object sender, EventArgs e)
         {
-            if (this.buttonEV.Text == "Tiếng Việt")
+            if (this.buttonEV.Text == "Tiếng Anh")
             {
-                this.buttonEV.Text = "Tiếng Anh";
+                this.buttonEV.Text = "Tiếng Việt";
                 this.richTextQuestion.Text = this.paramater.DeTiengAnh;
             }
             else
             {
-                this.buttonEV.Text = "Tiếng Việt";
+                this.buttonEV.Text = "Tiếng Anh";
                 this.richTextQuestion.Text = this.paramater.DeTiengViet;
             }
         }
@@ -612,7 +612,8 @@ namespace MOS_EXCEL_LEARN
             }
             catch (Exception ex)
             {
-                int num = (int)MessageBox.Show("Đống tất cả các hộp thoại đang mở trước");
+                //int num = (int)MessageBox.Show("Đóng tất cả các hộp thoại đang mở trước");
+                int num = (int)MessageBox.Show(ex.ToString());
             }
             return str;
         }
