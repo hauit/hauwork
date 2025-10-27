@@ -584,6 +584,10 @@ namespace MOS_WORD_TEST
             //    }
             //}
             //MessageBox.Show(str);
+
+            //Chấm điểm
+            this.ChamDiem();
+
             Frm_GoToSummary frm = new Frm_GoToSummary();
             frm.OnChangeAnswer += Frm_OnChangeAnswer;
             frm.DataSource = this.GetDataSource();
@@ -1044,7 +1048,8 @@ namespace MOS_WORD_TEST
             try
             {
                 IQuestionCheck questionCheck = new QuestionCheck();
-                return questionCheck.CheckAnswer(currentQuestion.QuestionNumber, this.a, this.d);
+                //return questionCheck.CheckAnswer(currentQuestion.QuestionNumber, this.a, this.d);
+                return questionCheck.CheckAnswer(cau, this.a, this.d);
             }
             catch (Exception ex)
             {

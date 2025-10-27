@@ -29,26 +29,19 @@ namespace MOS_WORD_TEST
         {
             Form1.listExam = GetQuestion(System.Windows.Forms.Application.StartupPath + "\\zip\\Exam\\ExamList");
 
-            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\ExamList.json", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\ExamList");
+            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\ExamList.json", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\ExamList");
 
-            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\1.docx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\01");
-            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\2.docx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\02");
-            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\3.docx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\03");
-            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\4.docx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\04");
-            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\5.docx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\05");
-            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\6.docx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\6");
-            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\7.docx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\7");
-            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\8.docx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\08");
-            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\9.docx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\09");
-            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\10.docx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\10");
-            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\11.docx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\11");
-            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\12.docx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\12");
-            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\13.docx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\13");
-            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\14.docx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\14");
-
-
-            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\44.docx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\44");
-            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\50.xlsx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\50");
+            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\1.xlsx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\1");
+            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\2.xlsx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\2");
+            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\3.xlsx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\3");
+            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\4.xlsx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\4");
+            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\5.xlsx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\5");
+            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\6.xlsx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\6");
+            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\7.xlsx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\7");
+            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\8.xlsx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\8");
+            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\9.xlsx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\9");
+            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\10.xlsx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\10");
+            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\11.xlsx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\11");
 
             //return;
 
