@@ -396,7 +396,7 @@ namespace MOS_EXCEL_LEARN
             }
             catch (Exception ex)
             {
-                return "False " + ex.ToString();
+                return "False";
             }
 
         }
