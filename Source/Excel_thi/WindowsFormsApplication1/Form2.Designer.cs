@@ -309,8 +309,8 @@ namespace MOS_WORD_TEST
             // 
             // Form2
             // 
-            this.AccessibleDescription = "MOS360_WORD_TEST";
-            this.AccessibleName = "MOS360_WORD_TEST";
+            this.AccessibleDescription = "MOS360_EXCEL_TEST";
+            this.AccessibleName = "MOS360_EXCEL_TEST";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
