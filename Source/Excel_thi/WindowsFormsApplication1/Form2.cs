@@ -22,6 +22,7 @@ namespace MOS_WORD_TEST
     {
         private DateTime dt;
         private DateTime ngayhethang;
+        private DateTime ngayhethangCurrentDate;
         private string mac;
         private string user;
 
@@ -67,20 +68,20 @@ namespace MOS_WORD_TEST
                 //    return;
                 //}
 
-                Process[] wordProcesses = Process.GetProcessesByName("WINWORD");
+                Process[] excelProcesses = Process.GetProcessesByName("EXCEL");
 
-                if (wordProcesses.Length > 0)
+                if (excelProcesses.Length > 0)
                 {
-                    foreach (var process in wordProcesses)
+                    foreach (var process in excelProcesses)
                     {
                         try
                         {
-                            process.Kill();
-                            process.WaitForExit();
+                            process.Kill(); // buộc dừng tiến trình
+                            process.WaitForExit(); // đợi đến khi tiến trình thật sự đóng
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Không thể tắt Word: " + ex.Message);
+                            MessageBox.Show("Không thể tắt Excel: " + ex.Message);
                         }
                     }
                 }
@@ -478,15 +479,18 @@ namespace MOS_WORD_TEST
             {
                 DateTime.TryParseExact(expire, "yyyyMMdd", null, DateTimeStyles.None, out this.ngayhethang);
             }
+
+            string user = this.textBoxUser.Text.Trim();
+            string pass = ToMD5(user.ToLower() + this.mac + this.ngayhethang.ToString("yyyyMMdd"));
+
             if (this.ngayhethang < this.dt)
             {
                 MessageBox.Show("Phần mềm đã hết hạn");
+                Properties.Settings.Default.PASS = string.Empty;
+                Properties.Settings.Default.DATE = string.Empty;
+                Properties.Settings.Default.Save();
                 return false;
             }
-
-            string user = this.textBoxUser.Text.Trim();
-
-            string pass = ToMD5(user + this.mac + this.ngayhethang.ToString("yyyyMMdd"));
             if (pass.ToLower() == textBoxPass.Text.ToLower() && user.ToLower() == textBoxUser.Text.ToLower())
             {
                 Properties.Settings.Default.PASS = pass.ToLower();
@@ -496,10 +500,22 @@ namespace MOS_WORD_TEST
             }
             else
             {
-                Properties.Settings.Default.DATE = string.Empty;
-                Properties.Settings.Default.Save();
-                MessageBox.Show("Tài khoản và Mật khẩu không đúng. Vui lòng liên hệ Admin để cấp lại");
-                return false;
+                this.ngayhethangCurrentDate = this.dt.AddDays(30.0);
+                string passCurrentDate = ToMD5(user.ToLower() + this.mac + this.ngayhethangCurrentDate.ToString("yyyyMMdd"));
+                if (passCurrentDate.ToLower() == textBoxPass.Text.ToLower())
+                {
+                    Properties.Settings.Default.USER = user.ToLower();
+                    Properties.Settings.Default.PASS = passCurrentDate.ToLower();
+                    Properties.Settings.Default.DATE = int.Parse(this.ngayhethangCurrentDate.ToString("yyyMMdd")).ToString("X");
+                    Properties.Settings.Default.Save();
+                }
+                else
+                {
+                    Properties.Settings.Default.DATE = string.Empty;
+                    Properties.Settings.Default.Save();
+                    MessageBox.Show("Tài khoản và Mật khẩu không đúng. Vui lòng liên hệ Admin để cấp lại");
+                    return false;
+                }
             }
             return true;
         }
