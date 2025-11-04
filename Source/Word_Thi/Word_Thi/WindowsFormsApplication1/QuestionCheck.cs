@@ -927,8 +927,8 @@ namespace MOS_WORD_TEST
         {
             try
             {
-                if (d.InlineShapes.Count != 1)
-                    return "False";
+                //if (d.InlineShapes.Count != 1)
+                //    return "False 1";
                 if (d.InlineShapes[1].AlternativeText == "")
                     return "False";
             }
@@ -1522,14 +1522,29 @@ namespace MOS_WORD_TEST
 
         private string Cau72(Application a, Document d)
         {
+            //try
+            //{
+            //    int Index = 1;
+            //    while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Barstow College"))
+            //        ++Index;
+            //    if (Index >= d.Paragraphs.Count)
+            //        return "False 1";
+            //    if (d.Paragraphs[Index].Range.Text != "Barstow College \vObservation Project\r")
+            //        return "False 2";
+            //}
+            //catch (Exception ex)
+            //{
+            //    return "False" + ex.Message;
+            //}
+            //return "True";
+
             try
             {
-                int Index = 1;
-                while (Index < d.Paragraphs.Count && !d.Paragraphs[Index].Range.Text.Contains("Barstow College"))
-                    ++Index;
-                if (Index >= d.Paragraphs.Count)
+                if (d.Sections[1].Borders[WdBorderType.wdBorderTop].LineWidth != WdLineWidth.wdLineWidth300pt)
                     return "False";
-                if (d.Paragraphs[Index].Range.Text != "Barstow College \vObservation Project\r")
+                if (d.Sections[1].Borders.Shadow)
+                    return "False";
+                if (d.Sections[1].Borders[WdBorderType.wdBorderTop].Color.ToString() != "-738131969")
                     return "False";
             }
             catch (Exception ex)

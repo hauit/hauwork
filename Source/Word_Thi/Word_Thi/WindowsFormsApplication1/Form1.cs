@@ -652,6 +652,7 @@ namespace MOS_WORD_TEST
             //this.SetUp(currentProject.ProjectIndex);
             this.pathFileOffice = currentProject.PathFileOffice;
             this.pathFileOfficeMaHoa = currentProject.PathFileOfficeMaHoa;
+            this.SetUp(currentProject.ProjectIndex);
             OpenDocument();
             LoadProject(currentProject.ProjectIndex - 1);
             loadcaucanhoiNew(currentProject.ProjectIndex - 1);
@@ -837,10 +838,13 @@ namespace MOS_WORD_TEST
                         continue;
                     }
 
-                    if (!currentExam.ProjectIndex[i].Questions[j].Status == true)
-                    {
+                    //if (!currentExam.ProjectIndex[i].Questions[j].Status == true)
+                    //{
                         int cau = currentExam.ProjectIndex[i].Questions[j].QuestionNumber;
-                        currentExam.ProjectIndex[i].Questions[j].Status = true;
+                        //currentExam.ProjectIndex[i].Questions[j].Status = true;
+
+                        //MessageBox.Show($"Checking question number: {cau} -> {this.CheckCauLon(cau).ToString()}");
+
                         if (this.CheckCauLon(cau) == "True")
                         {
                             currentExam.ProjectIndex[i].Questions[j].Value = true;
@@ -851,7 +855,7 @@ namespace MOS_WORD_TEST
                             currentExam.ProjectIndex[i].Questions[j].Value = false;
                             ++this.So_Cau_Sai;
                         }
-                    }
+                    //}
                 }
             }
 
