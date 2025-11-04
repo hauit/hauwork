@@ -23,6 +23,7 @@ namespace MOS_EXCEL_LEARN
     {
         private DateTime dt;
         private DateTime ngayhethang;
+        private DateTime ngayhethangCurrentDate;
         private string mac;
         public Form2()
         {
@@ -95,13 +96,17 @@ namespace MOS_EXCEL_LEARN
             {
                 DateTime.TryParseExact(expire, "yyyyMMdd", null, DateTimeStyles.None, out this.ngayhethang);
             }
+
+            string pass = ToMD5(this.mac + this.ngayhethang.ToString("yyyyMMdd"));
             if (this.ngayhethang < this.dt)
             {
                 MessageBox.Show("Phần mềm đã hết hạn");
+                Properties.Settings.Default.PASS = string.Empty;
+                Properties.Settings.Default.DATE = string.Empty;
+                Properties.Settings.Default.Save();
                 return false;
             }
 
-            string pass = ToMD5(this.mac + this.ngayhethang.ToString("yyyyMMdd"));
             if (pass.ToLower() == textBoxPass.Text.ToLower())
             {
                 Properties.Settings.Default.PASS = pass.ToLower();
@@ -110,10 +115,22 @@ namespace MOS_EXCEL_LEARN
             }
             else
             {
-                Properties.Settings.Default.DATE = string.Empty;
-                Properties.Settings.Default.Save();
-                MessageBox.Show("Mật khẩu không đúng. Vui lòng liên hệ Admin để cấp lại");
-                return false;
+                //
+                this.ngayhethangCurrentDate = this.dt.AddDays(30.0);
+                string passCurrentDate = ToMD5(this.mac + this.ngayhethangCurrentDate.ToString("yyyyMMdd"));
+                if (passCurrentDate.ToLower() == textBoxPass.Text.ToLower())
+                {
+                    Properties.Settings.Default.PASS = passCurrentDate.ToLower();
+                    Properties.Settings.Default.DATE = int.Parse(this.ngayhethangCurrentDate.ToString("yyyMMdd")).ToString("X");
+                    Properties.Settings.Default.Save();
+                }
+                else
+                {
+                    Properties.Settings.Default.DATE = string.Empty;
+                    Properties.Settings.Default.Save();
+                    MessageBox.Show("Mật khẩu không đúng hoặc Phần mềm đã hết hạn. Vui lòng liên hệ Admin để cấp lại");
+                    return false;
+                }
             }
             return true;
         }
