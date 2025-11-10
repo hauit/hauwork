@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using DevExpress.XtraWaitForm;
+using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,8 +46,12 @@ namespace MOS_WORD_TEST
             //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\10.xlsx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\10");
             //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\11.xlsx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\EXCEL\\11");
 
-            //return;
+            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\WORD\\ExamList.json", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\WORD\\ExamList");
+            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\WORD\\75.doc", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\WORD\\75");
 
+
+            //return;
+            CheckNetFramework48();
             InitializeComponent();
             for(int i = 0; i < Form1.listExam.Count; i++)
             {
@@ -551,6 +557,58 @@ namespace MOS_WORD_TEST
         private void btnCancel_Click_1(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private static void CheckNetFramework48()
+        {
+            const int releaseKey48 = 528040; // .NET Framework 4.8
+            int releaseKey = GetFrameworkReleaseKey();
+
+            if (releaseKey < releaseKey48)
+            {
+                DialogResult result = MessageBox.Show(
+                    "Ứng dụng cần .NET Framework 4.8.\nBạn có muốn tải và cài đặt ngay không?",
+                    "Thiếu .NET Framework 4.8",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    //Process.Start(new ProcessStartInfo
+                    //{
+                    //    FileName = "https://go.microsoft.com/fwlink/?linkid=2088631",
+                    //    UseShellExecute = true
+                    //});
+                    Process.Start("https://go.mos360.vn/net48");
+                    //Environment.Exit(0);
+                }
+                else
+                {
+                    //MessageBox.Show("Bạn có thể tự tải và cài đặt .NET Framework 4.8 sau.", "Thông báo");
+                    //close the application
+                    //Environment.Exit(0);
+                }
+
+                Environment.Exit(0);
+            }
+        }
+
+        private static int GetFrameworkReleaseKey()
+        {
+            try
+            {
+                using (RegistryKey ndpKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32)
+                    .OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\"))
+                {
+                    if (ndpKey != null && ndpKey.GetValue("Release") != null)
+                    {
+                        return (int)ndpKey.GetValue("Release");
+                        //return 1;
+                    }
+                }
+            }
+            catch { }
+            return 0;
         }
     }
 }

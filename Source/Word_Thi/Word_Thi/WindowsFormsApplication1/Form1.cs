@@ -293,10 +293,12 @@ namespace MOS_WORD_TEST
             this.a = (Microsoft.Office.Interop.Word.Application)Activator.CreateInstance(System.Type.GetTypeFromCLSID(new Guid("000209FF-0000-0000-C000-000000000046")));
             this.a.Visible = true;
             this.a.WindowState = WdWindowState.wdWindowStateNormal;
+            System.Threading.Thread.Sleep(200); // cho Office kịp cập nhật
             this.a.Top = 0;
             this.a.Left = -10;
-            this.a.Width = width;
-            this.a.Height = num * 3;
+            //this.a.Width = width;
+            //this.a.Height = num * 3;
+            this.a.Resize(this.screen_width, this.screen_height * 3 / 5);
             // ISSUE: method pointer
             // ISSUE: object of a compiler-generated type is created
             ((ApplicationEvents4_Event)this.a).DocumentBeforeClose += this.a_DocumentBeforeClose;
@@ -1139,7 +1141,7 @@ namespace MOS_WORD_TEST
                 this.TopMost = false;
                 try
                 {
-                    Process.Start("https://go.mos360.vn/mostesthdsd");
+                    Process.Start("https://go.mos360.vn/mostestwordhdsd");
                 }
                 catch (Exception ex)
                 {

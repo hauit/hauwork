@@ -543,8 +543,10 @@ namespace MOS_WORD_TEST
                 }
                 if (num1 > 0)
                     return "False";
-                if (num2 != 6)
-                    return "False";
+
+                // Nếu làm câu 25 sẽ xóa 1 cái community -> Lỗi
+                //if (num2 != 6)
+                //    return "False";
             }
             catch (Exception ex)
             {
@@ -928,9 +930,22 @@ namespace MOS_WORD_TEST
             try
             {
                 //if (d.InlineShapes.Count != 1)
-                //    return "False 1";
-                if (d.InlineShapes[1].AlternativeText == "")
-                    return "False";
+                //  return "False";
+                //if (d.InlineShapes[1].AlternativeText == "")
+                //  return "False";
+
+                //Do câu 40 chèn shape vào rồi nên câu 41 phải kiểm tra kỹ hơn
+
+                if (d.InlineShapes.Count == 1)
+                {
+                    if (d.InlineShapes[1].AlternativeText == "")
+                        return "False";
+                }
+                if (d.InlineShapes.Count == 2)
+                {
+                    if (d.InlineShapes[2].AlternativeText == "")
+                        return "False";
+                }
             }
             catch (Exception ex)
             {
@@ -1723,8 +1738,8 @@ namespace MOS_WORD_TEST
         {
             try
             {
-                if (d.Sections.Count != 3)
-                    return "False";
+                //if (d.Sections.Count != 3)
+                //    return "False";
                 if (d.Sections[2].PageSetup.TextColumns.Count != 2)
                     return "False";
             }
@@ -1853,8 +1868,10 @@ namespace MOS_WORD_TEST
         {
             try
             {
-                if (d.InlineShapes.Count != 2)
-                    return "False";
+                // Câu 90 chèn thêm 1 Shapes vào -> lỗi
+                //if (d.InlineShapes.Count != 2)
+                //    return "False";
+
                 if ((double)d.InlineShapes[1].SmartArt.Nodes[(object)1].Shapes.ThreeD.BevelTopDepth != 4.0)
                     return "False";
             }
@@ -2259,24 +2276,97 @@ namespace MOS_WORD_TEST
 
         private string Cau105(Application a, Document d)
         {
+            //try
+            //{
+            //  if (d.Shapes.Count != 2)
+            //    return "False 1";
+            //  object Index1 = (object) 2;
+            //  if (!d.Shapes[ref Index1].Name.Contains("Horizontal Scroll"))
+            //    return "False 2";
+            //  object Index2 = (object) 2;
+            //  if (d.Shapes[ref Index2].TextFrame.TextRange.Text.Trim() != "Remember your calculator!")
+            //    return "Fales 3";
+            //  object Index3 = (object) 2;
+            //  if (d.Shapes[ref Index3].WrapFormat.Type != WdWrapType.wdWrapSquare)
+            //    return "False 4";
+            //}
+            //catch (Exception ex)
+            //{
+            //  return "False" + ex.Message;
+            //}
+            //return "True";
+
             try
             {
-                if (d.Shapes.Count != 2)
+                if (d == null) return "False";
+
+                // Tìm shape có tên chứa "Scroll: Horizontal" (case-insensitive)
+                Microsoft.Office.Interop.Word.Shape target = null;
+                foreach (Microsoft.Office.Interop.Word.Shape s in d.Shapes)
+                {
+                    try
+                    {
+                        if (!string.IsNullOrEmpty(s.Name) &&
+                            s.Name.IndexOf("Scroll: Horizontal", StringComparison.OrdinalIgnoreCase) >= 0)
+                        {
+                            target = s;
+                            break;
+                        }
+                    }
+                    catch { /* ignore shape read errors */ }
+                }
+
+                if (target == null)
                     return "False";
-                object Index1 = (object)2;
-                if (!d.Shapes[ref Index1].Name.Contains("Horizontal Scroll"))
+
+                // 1) Kiểm tra text (trim CR/linefeed/^G)
+                string raw = "";
+                try
+                {
+                    if (target.TextFrame != null && target.TextFrame.HasText != 0)
+                        raw = target.TextFrame.TextRange.Text ?? "";
+                }
+                catch { raw = ""; }
+
+                // loại bỏ các ký tự kết thúc ô / ký tự điều khiển
+                string txt = raw.Replace("\r", "").Replace("\a", "").Replace("\n", "").Trim();
+
+                if (!string.Equals(txt, "Remember your calculator!", StringComparison.Ordinal))
                     return "False";
-                object Index2 = (object)2;
-                if (d.Shapes[ref Index2].TextFrame.TextRange.Text.Trim() != "Remember your calculator!")
+
+                // 2) Kiểm tra wrap = square
+                try
+                {
+                    if (target.WrapFormat == null || target.WrapFormat.Type != Microsoft.Office.Interop.Word.WdWrapType.wdWrapSquare)
+                        return "False";
+                }
+                catch { return "False"; }
+
+                Microsoft.Office.Interop.Word.Shape s2 = d.Shapes[2];
+
+                // 4️⃣ Kiểm tra position “bottom center of page”
+                if (s2.RelativeVerticalPosition != Microsoft.Office.Interop.Word.WdRelativeVerticalPosition.wdRelativeVerticalPositionPage)
                     return "False";
-                object Index3 = (object)2;
-                if (d.Shapes[ref Index3].WrapFormat.Type != WdWrapType.wdWrapSquare)
+
+                if (s2.RelativeHorizontalPosition != Microsoft.Office.Interop.Word.WdRelativeHorizontalPosition.wdRelativeHorizontalPositionPage)
+                    return "False";
+
+                float top = s2.Top;
+                float pageHeight = d.PageSetup.PageHeight;
+
+                //return pageHeight.ToString() + " # " + top.ToString() + " ## " + s2.Height.ToString();
+
+                // Bottom là -999997
+                if (top == -999997)
+                    return "True";
+                else
                     return "False";
             }
             catch (Exception ex)
             {
                 return "False";
             }
+
             return "True";
         }
 
@@ -2284,15 +2374,16 @@ namespace MOS_WORD_TEST
         {
             try
             {
-                if (d.Shapes.Count != 1)
-                    return "False";
+                // Làm đề lúc này sẽ có nhiều shape, không chỉ 1
+                //if (d.Shapes.Count != 1)
+                //    return "False 1";
                 object Index = (object)"Picture 1";
                 if (d.Shapes[ref Index].Line.ForeColor.RGB != 11957550)
-                    return "False";
+                    return "False 2";
             }
             catch (Exception ex)
             {
-                return "False";
+                return "False" + ex.Message;
             }
             return "True";
         }
