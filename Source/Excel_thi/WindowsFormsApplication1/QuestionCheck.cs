@@ -1553,15 +1553,47 @@ namespace MOS_WORD_TEST
         }
         private string Cau100(Application a, Workbook d)
         {
+            //try
+            //{
+            //    Worksheet sheet = d.Worksheets["Historical Sales"];
+
+
+            //    // Kiểm tra xem cửa sổ đang hiển thị có bật chế độ hiện công thức không
+            //    if (!sheet.Application.ActiveWindow.DisplayFormulas)
+            //        return "False";
+            //}
+            //catch (Exception)
+            //{
+            //    return "False";
+            //}
+
+            //return "True";
+
             try
             {
-                Worksheet sheet = d.Worksheets["Historical Sales"];
+                Worksheet wsProducts = (Worksheet)d.Worksheets["Historical Sales"];
+                Worksheet wsCurrent = (Worksheet)a.ActiveSheet;
+
+                // Tắt cập nhật màn hình để không thấy nhấp nháy
+                a.ScreenUpdating = false;
+
+                wsProducts.Activate();
+                Window win = a.ActiveWindow;
+
+                bool isDisplayFormulas = true;
 
                 // Kiểm tra xem cửa sổ đang hiển thị có bật chế độ hiện công thức không
-                if (!sheet.Application.ActiveWindow.DisplayFormulas)
+                if (!wsProducts.Application.ActiveWindow.DisplayFormulas)
+                    isDisplayFormulas = false;
+
+                // Trả lại sheet cũ
+                wsCurrent.Activate();
+                a.ScreenUpdating = true;
+
+                if (!isDisplayFormulas)
                     return "False";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return "False";
             }
