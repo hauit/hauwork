@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,6 +28,7 @@ namespace MOS_EXCEL_LEARN
         private string mac;
         public Form2()
         {
+            CheckNetFramework48();
             InitializeComponent();
             this.textBoxUser.LostFocus += new EventHandler(this.textBoxUser_LostFocus);
             if (!string.IsNullOrEmpty(Properties.Settings.Default.PASS))
@@ -302,6 +304,57 @@ namespace MOS_EXCEL_LEARN
             if (response.StatusCode == HttpStatusCode.OK)
                 dateTime = DateTime.ParseExact(response.Headers["date"], "ddd, dd MMM yyyy HH:mm:ss 'GMT'", (IFormatProvider)CultureInfo.InvariantCulture.DateTimeFormat, DateTimeStyles.AssumeUniversal);
             return dateTime;
+        }
+        private static void CheckNetFramework48()
+        {
+            const int releaseKey48 = 528040; // .NET Framework 4.8
+            int releaseKey = GetFrameworkReleaseKey();
+
+            if (releaseKey < releaseKey48)
+            {
+                DialogResult result = MessageBox.Show(
+                    "Ứng dụng cần .NET Framework 4.8.\nBạn có muốn tải và cài đặt ngay không?",
+                    "Thiếu .NET Framework 4.8",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    //Process.Start(new ProcessStartInfo
+                    //{
+                    //    FileName = "https://go.microsoft.com/fwlink/?linkid=2088631",
+                    //    UseShellExecute = true
+                    //});
+                    Process.Start("https://go.mos360.vn/net48");
+                    //Environment.Exit(0);
+                }
+                else
+                {
+                    //MessageBox.Show("Bạn có thể tự tải và cài đặt .NET Framework 4.8 sau.", "Thông báo");
+                    //close the application
+                    //Environment.Exit(0);
+                }
+
+                Environment.Exit(0);
+            }
+        }
+
+        private static int GetFrameworkReleaseKey()
+        {
+            try
+            {
+                using (RegistryKey ndpKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32)
+                    .OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\"))
+                {
+                    if (ndpKey != null && ndpKey.GetValue("Release") != null)
+                    {
+                        return (int)ndpKey.GetValue("Release");
+                        //return 1;
+                    }
+                }
+            }
+            catch { }
+            return 0;
         }
     }
 }
