@@ -51,7 +51,7 @@ namespace MOS_WORD_TEST
 
 
             //return;
-            CheckNetFramework48();
+            CheckNetFramework();
             InitializeComponent();
             for(int i = 0; i < Form1.listExam.Count; i++)
             {
@@ -559,16 +559,16 @@ namespace MOS_WORD_TEST
             this.Close();
         }
 
-        private static void CheckNetFramework48()
+        private static void CheckNetFramework()
         {
-            const int releaseKey48 = 528040; // .NET Framework 4.8
+            const int releaseKey471 = 461308; // .NET Framework 4.7.1
             int releaseKey = GetFrameworkReleaseKey();
 
-            if (releaseKey < releaseKey48)
+            if (releaseKey < releaseKey471)
             {
                 DialogResult result = MessageBox.Show(
-                    "Ứng dụng cần .NET Framework 4.8.\nBạn có muốn tải và cài đặt ngay không?",
-                    "Thiếu .NET Framework 4.8",
+                    "Ứng dụng cần .NET Framework 4.7.1.\nBạn có muốn tải và cài đặt ngay không?",
+                    "Thiếu .NET Framework 4.7.1",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning);
 

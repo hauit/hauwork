@@ -7,7 +7,7 @@
     <ProjectGuid>{658238B2-902A-45E1-A74E-346DF875BE37}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AssemblyName>MOS360_EXCEL_TEST</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>

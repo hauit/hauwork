@@ -56,7 +56,7 @@ namespace MOS_EXCEL_LEARN
                 this.a.Top = 0.0;
                 this.a.Left = 0.0;
                 this.a.Width = (double)this.screen_width;
-                this.a.Height = (double)(this.screen_height * 3 / 5);
+                this.a.Height = (double)(this.screen_height * 3 / 5) + 3;
             }
             catch (Exception ex)
             {
@@ -130,7 +130,7 @@ namespace MOS_EXCEL_LEARN
                 this.a.Top = 0.0;
                 this.a.Left = 0.0;
                 this.a.Width = (double)this.screen_width;
-                this.a.Height = (double)(this.screen_height * 3 / 5);
+                this.a.Height = (double)(this.screen_height * 3 / 5) + 3;
                 this.TopMost = true;
                 this.currenTime = DateTime.Now;
                 this.setDiem();
@@ -382,7 +382,7 @@ namespace MOS_EXCEL_LEARN
                 this.a.Top = 0.0;
                 this.a.Left = 0.0;
                 this.a.Width = (double)this.screen_width;
-                this.a.Height = (double)(this.screen_height * 3 / 5);
+                this.a.Height = (double)(this.screen_height * 3 / 5) + 3;
             }
             catch (Exception ex)
             {
