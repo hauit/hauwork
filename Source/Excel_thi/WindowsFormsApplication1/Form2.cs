@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,12 +23,14 @@ namespace MOS_WORD_TEST
     {
         private DateTime dt;
         private DateTime ngayhethang;
+        private DateTime ngayhethangCurrentDate;
         private string mac;
         private string user;
 
         public Form2()
         {
             Form1.listExam = GetQuestion(System.Windows.Forms.Application.StartupPath + "\\zip\\Exam\\ExamList");
+            CheckNetFramework48();
             InitializeComponent();
             for(int i = 0; i < Form1.listExam.Count; i++)
             {
@@ -67,20 +70,20 @@ namespace MOS_WORD_TEST
                 //    return;
                 //}
 
-                Process[] wordProcesses = Process.GetProcessesByName("WINWORD");
+                Process[] excelProcesses = Process.GetProcessesByName("EXCEL");
 
-                if (wordProcesses.Length > 0)
+                if (excelProcesses.Length > 0)
                 {
-                    foreach (var process in wordProcesses)
+                    foreach (var process in excelProcesses)
                     {
                         try
                         {
-                            process.Kill();
-                            process.WaitForExit();
+                            process.Kill(); // buộc dừng tiến trình
+                            process.WaitForExit(); // đợi đến khi tiến trình thật sự đóng
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Không thể tắt Word: " + ex.Message);
+                            MessageBox.Show("Không thể tắt Excel: " + ex.Message);
                         }
                     }
                 }
@@ -478,15 +481,18 @@ namespace MOS_WORD_TEST
             {
                 DateTime.TryParseExact(expire, "yyyyMMdd", null, DateTimeStyles.None, out this.ngayhethang);
             }
+
+            string user = this.textBoxUser.Text.Trim();
+            string pass = ToMD5(user.ToLower() + this.mac + this.ngayhethang.ToString("yyyyMMdd"));
+
             if (this.ngayhethang < this.dt)
             {
                 MessageBox.Show("Phần mềm đã hết hạn");
+                Properties.Settings.Default.PASS = string.Empty;
+                Properties.Settings.Default.DATE = string.Empty;
+                Properties.Settings.Default.Save();
                 return false;
             }
-
-            string user = this.textBoxUser.Text.Trim();
-
-            string pass = ToMD5(user + this.mac + this.ngayhethang.ToString("yyyyMMdd"));
             if (pass.ToLower() == textBoxPass.Text.ToLower() && user.ToLower() == textBoxUser.Text.ToLower())
             {
                 Properties.Settings.Default.PASS = pass.ToLower();
@@ -496,10 +502,22 @@ namespace MOS_WORD_TEST
             }
             else
             {
-                Properties.Settings.Default.DATE = string.Empty;
-                Properties.Settings.Default.Save();
-                MessageBox.Show("Tài khoản và Mật khẩu không đúng. Vui lòng liên hệ Admin để cấp lại");
-                return false;
+                this.ngayhethangCurrentDate = this.dt.AddDays(30.0);
+                string passCurrentDate = ToMD5(user.ToLower() + this.mac + this.ngayhethangCurrentDate.ToString("yyyyMMdd"));
+                if (passCurrentDate.ToLower() == textBoxPass.Text.ToLower())
+                {
+                    Properties.Settings.Default.USER = user.ToLower();
+                    Properties.Settings.Default.PASS = passCurrentDate.ToLower();
+                    Properties.Settings.Default.DATE = int.Parse(this.ngayhethangCurrentDate.ToString("yyyMMdd")).ToString("X");
+                    Properties.Settings.Default.Save();
+                }
+                else
+                {
+                    Properties.Settings.Default.DATE = string.Empty;
+                    Properties.Settings.Default.Save();
+                    MessageBox.Show("Tài khoản và Mật khẩu không đúng. Vui lòng liên hệ Admin để cấp lại");
+                    return false;
+                }
             }
             return true;
         }
@@ -518,6 +536,58 @@ namespace MOS_WORD_TEST
         private void btnCancel_Click_1(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private static void CheckNetFramework48()
+        {
+            const int releaseKey48 = 528040; // .NET Framework 4.8
+            int releaseKey = GetFrameworkReleaseKey();
+
+            if (releaseKey < releaseKey48)
+            {
+                DialogResult result = MessageBox.Show(
+                    "Ứng dụng cần .NET Framework 4.8.\nBạn có muốn tải và cài đặt ngay không?",
+                    "Thiếu .NET Framework 4.8",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    //Process.Start(new ProcessStartInfo
+                    //{
+                    //    FileName = "https://go.microsoft.com/fwlink/?linkid=2088631",
+                    //    UseShellExecute = true
+                    //});
+                    Process.Start("https://go.mos360.vn/net48");
+                    //Environment.Exit(0);
+                }
+                else
+                {
+                    //MessageBox.Show("Bạn có thể tự tải và cài đặt .NET Framework 4.8 sau.", "Thông báo");
+                    //close the application
+                    //Environment.Exit(0);
+                }
+
+                Environment.Exit(0);
+            }
+        }
+
+        private static int GetFrameworkReleaseKey()
+        {
+            try
+            {
+                using (RegistryKey ndpKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32)
+                    .OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\"))
+                {
+                    if (ndpKey != null && ndpKey.GetValue("Release") != null)
+                    {
+                        return (int)ndpKey.GetValue("Release");
+                        //return 1;
+                    }
+                }
+            }
+            catch { }
+            return 0;
         }
     }
 }

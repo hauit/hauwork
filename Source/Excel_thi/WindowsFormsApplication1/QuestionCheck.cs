@@ -448,31 +448,64 @@ namespace MOS_WORD_TEST
         }
         private string Cau71(Application a, Workbook d)
         {
+            //try
+            //{
+            //    Worksheet worksheet = (Worksheet)d.Worksheets["Products"];
+
+            //    Range rng = worksheet.Range["A1"];
+
+            //    // Kiểm tra xem đã FreezePanes chưa
+            //    if (!a.ActiveWindow.FreezePanes)
+            //        return "False 1";
+
+            //    //// Kiểm tra con trỏ hiện tại có ở đúng ô A3 không
+            //    //string activeAddress = a.ActiveCell.get_Address(
+            //    //                        Missing.Value,
+            //    //                        Missing.Value,
+            //    //                        XlReferenceStyle.xlA1,
+            //    //                        Missing.Value,
+            //    //                        Missing.Value);
+
+            //    //if (activeAddress != "$A$3")
+            //    //    return "False(để con trỏ ô A3 trước khi FreezePanes)";
+            //}
+            //catch (Exception ex)
+            //{
+            //    return "False" + ex.Message;
+            //}
+
+            //return "True";
+
             try
             {
-                Worksheet worksheet = (Worksheet)d.Worksheets["Products"];
+                Worksheet wsProducts = (Worksheet)d.Worksheets["Products"];
+                Worksheet wsCurrent = (Worksheet)a.ActiveSheet;
 
-                // Kiểm tra xem đã FreezePanes chưa
-                if (!a.ActiveWindow.FreezePanes)
+                // Tắt cập nhật màn hình để không thấy nhấp nháy
+                a.ScreenUpdating = false;
+
+                wsProducts.Activate();
+                Window win = a.ActiveWindow;
+
+                bool isFreeze = win.FreezePanes;
+                int splitRow = win.SplitRow;
+
+                // Trả lại sheet cũ
+                wsCurrent.Activate();
+                a.ScreenUpdating = true;
+
+                if (!isFreeze)
                     return "False";
-
-                //// Kiểm tra con trỏ hiện tại có ở đúng ô A3 không
-                //string activeAddress = a.ActiveCell.get_Address(
-                //                        Missing.Value,
-                //                        Missing.Value,
-                //                        XlReferenceStyle.xlA1,
-                //                        Missing.Value,
-                //                        Missing.Value);
-
-                //if (activeAddress != "$A$3")
-                //    return "False(để con trỏ ô A3 trước khi FreezePanes)";
+                if (splitRow != 2)
+                    return "False";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return "False";
             }
 
             return "True";
+
         }
         private string Cau72(Application a, Workbook d)
         {
@@ -1520,15 +1553,47 @@ namespace MOS_WORD_TEST
         }
         private string Cau100(Application a, Workbook d)
         {
+            //try
+            //{
+            //    Worksheet sheet = d.Worksheets["Historical Sales"];
+
+
+            //    // Kiểm tra xem cửa sổ đang hiển thị có bật chế độ hiện công thức không
+            //    if (!sheet.Application.ActiveWindow.DisplayFormulas)
+            //        return "False";
+            //}
+            //catch (Exception)
+            //{
+            //    return "False";
+            //}
+
+            //return "True";
+
             try
             {
-                Worksheet sheet = d.Worksheets["Historical Sales"];
+                Worksheet wsProducts = (Worksheet)d.Worksheets["Historical Sales"];
+                Worksheet wsCurrent = (Worksheet)a.ActiveSheet;
+
+                // Tắt cập nhật màn hình để không thấy nhấp nháy
+                a.ScreenUpdating = false;
+
+                wsProducts.Activate();
+                Window win = a.ActiveWindow;
+
+                bool isDisplayFormulas = true;
 
                 // Kiểm tra xem cửa sổ đang hiển thị có bật chế độ hiện công thức không
-                if (!sheet.Application.ActiveWindow.DisplayFormulas)
+                if (!wsProducts.Application.ActiveWindow.DisplayFormulas)
+                    isDisplayFormulas = false;
+
+                // Trả lại sheet cũ
+                wsCurrent.Activate();
+                a.ScreenUpdating = true;
+
+                if (!isDisplayFormulas)
                     return "False";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return "False";
             }
@@ -2691,7 +2756,7 @@ namespace MOS_WORD_TEST
             }
 
             // Bước 2: Sheet phải có đúng 2 shape
-            if (worksheet.Shapes.Count != 2)
+            if (worksheet.Shapes.Count != 1)
                 return "False";
 
             Chart chart;
@@ -2699,7 +2764,7 @@ namespace MOS_WORD_TEST
             // Bước 3: Lấy biểu đồ từ shape thứ 2
             try
             {
-                Shape shape = worksheet.Shapes.Item(2);
+                Shape shape = worksheet.Shapes.Item(1);
                 chart = shape.Chart;
             }
             catch
@@ -2734,8 +2799,8 @@ namespace MOS_WORD_TEST
                 return "False";
             }
 
-            if (worksheet.Shapes.Count != 1)
-                return "False";
+            //if (worksheet.Shapes.Count != 1)
+            //    return "False 3" + worksheet.Shapes.Count.ToString();
 
             Chart chart;
             try

@@ -841,26 +841,99 @@ namespace MOS_WORD_LEARN
 
     private static string cau42(Application a, _Document d)
     {
-      try
-      {
-        if (d.Shapes.Count != 2)
-          return "False";
-        object Index1 = (object) 2;
-        if (!d.Shapes[ref Index1].Name.Contains("Horizontal Scroll"))
-          return "False";
-        object Index2 = (object) 2;
-        if (d.Shapes[ref Index2].TextFrame.TextRange.Text.Trim() != "Remember your calculator!")
-          return "Fales";
-        object Index3 = (object) 2;
-        if (d.Shapes[ref Index3].WrapFormat.Type != WdWrapType.wdWrapSquare)
-          return "False";
-      }
-      catch (Exception ex)
-      {
-        return "False";
-      }
-      return "True";
-    }
+            //try
+            //{
+            //  if (d.Shapes.Count != 2)
+            //    return "False 1";
+            //  object Index1 = (object) 2;
+            //  if (!d.Shapes[ref Index1].Name.Contains("Horizontal Scroll"))
+            //    return "False 2";
+            //  object Index2 = (object) 2;
+            //  if (d.Shapes[ref Index2].TextFrame.TextRange.Text.Trim() != "Remember your calculator!")
+            //    return "Fales 3";
+            //  object Index3 = (object) 2;
+            //  if (d.Shapes[ref Index3].WrapFormat.Type != WdWrapType.wdWrapSquare)
+            //    return "False 4";
+            //}
+            //catch (Exception ex)
+            //{
+            //  return "False" + ex.Message;
+            //}
+            //return "True";
+
+            try
+            {
+                if (d == null) return "False";
+
+                // Tìm shape có tên chứa "Scroll: Horizontal" (case-insensitive)
+                Microsoft.Office.Interop.Word.Shape target = null;
+                foreach (Microsoft.Office.Interop.Word.Shape s in d.Shapes)
+                {
+                    try
+                    {
+                        if (!string.IsNullOrEmpty(s.Name) &&
+                            s.Name.IndexOf("Scroll: Horizontal", StringComparison.OrdinalIgnoreCase) >= 0)
+                        {
+                            target = s;
+                            break;
+                        }
+                    }
+                    catch { /* ignore shape read errors */ }
+                }
+
+                if (target == null)
+                    return "False";
+
+                // 1) Kiểm tra text (trim CR/linefeed/^G)
+                string raw = "";
+                try
+                {
+                    if (target.TextFrame != null && target.TextFrame.HasText != 0)
+                        raw = target.TextFrame.TextRange.Text ?? "";
+                }
+                catch { raw = ""; }
+
+                // loại bỏ các ký tự kết thúc ô / ký tự điều khiển
+                string txt = raw.Replace("\r", "").Replace("\a", "").Replace("\n", "").Trim();
+
+                if (!string.Equals(txt, "Remember your calculator!", StringComparison.Ordinal))
+                    return "False";
+
+                // 2) Kiểm tra wrap = square
+                try
+                {
+                    if (target.WrapFormat == null || target.WrapFormat.Type != Microsoft.Office.Interop.Word.WdWrapType.wdWrapSquare)
+                        return "False";
+                }
+                catch { return "False"; }
+
+                Microsoft.Office.Interop.Word.Shape s2 = d.Shapes[2];
+
+                // 4️⃣ Kiểm tra position “bottom center of page”
+                if (s2.RelativeVerticalPosition != Microsoft.Office.Interop.Word.WdRelativeVerticalPosition.wdRelativeVerticalPositionPage)
+                    return "False";
+
+                if (s2.RelativeHorizontalPosition != Microsoft.Office.Interop.Word.WdRelativeHorizontalPosition.wdRelativeHorizontalPositionPage)
+                    return "False";
+
+                float top = s2.Top;
+                float pageHeight = d.PageSetup.PageHeight;
+
+                //return pageHeight.ToString() + " # " + top.ToString() + " ## " + s2.Height.ToString();
+
+                // Bottom là -999997
+                if (top == -999997)
+                    return "True";
+                else
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+
+            return "True";
+        }
 
     private static string cau43(Application a, _Document d)
     {

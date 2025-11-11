@@ -293,11 +293,15 @@ namespace MOS_WORD_TEST
             //this.loadcaucanhoiNew(currentProject.ProjectIndex);
             this.a = (Microsoft.Office.Interop.Excel.Application)Activator.CreateInstance(System.Type.GetTypeFromCLSID(new Guid("00024500-0000-0000-C000-000000000046")));
             this.a.Visible = true;
+            //this.a.WindowState = Microsoft.Office.Interop.Excel.XlWindowState.xlMaximized;
             this.a.WindowState = Microsoft.Office.Interop.Excel.XlWindowState.xlNormal;
-            this.a.Top = 0.0;
-            this.a.Left = -10.0;
-            this.a.Width = (double)width;
-            this.a.Height = (double)num * 3;
+            System.Threading.Thread.Sleep(200); // cho Office kịp cập nhật
+            this.a.Top = 0;
+            this.a.Left = 0;
+            //this.a.Width = (double)width;
+            //this.a.Height = (double)num * 3;
+            this.a.Width = (double)this.screen_width;
+            this.a.Height = (double)(this.screen_height * 3 / 5) + 2;
             // ISSUE: method pointer
             // ISSUE: object of a compiler-generated type is created
             //((ApplicationEvents4_Event)this.a).WorkbookBeforeClose += this.a_WorkbookBeforeClose;
@@ -653,6 +657,7 @@ namespace MOS_WORD_TEST
             //this.SetUp(currentProject.ProjectIndex);
             this.pathFileOffice = currentProject.PathFileOffice;
             this.pathFileOfficeMaHoa = currentProject.PathFileOfficeMaHoa;
+            this.SetUp(currentProject.ProjectIndex);
             OpenDocument();
             LoadProject(currentProject.ProjectIndex - 1);
             loadcaucanhoiNew(currentProject.ProjectIndex - 1);
@@ -781,10 +786,10 @@ namespace MOS_WORD_TEST
                 object XMLTransform = (object)Missing.Value;
                 // ISSUE: reference to a compiler-generated method
                 this.d = this.a.Workbooks.Open(this.pathFileOffice, missing3, missing4, missing5, PasswordDocument, missing6, missing7, missing8, missing9, missing10, missing11, missing12, missing13, missing14, missing15);
-                this.a.Top = 0.0;
-                this.a.Left = -10.0;
+                this.a.Top = 0;
+                this.a.Left = 0;
                 this.a.Width = (double)this.screen_width;
-                this.a.Height = (double)(this.screen_height * 3 / 5);
+                this.a.Height = (double)(this.screen_height * 3 / 5) + 2;
             }
             catch (Exception ex)
             {
@@ -842,10 +847,13 @@ namespace MOS_WORD_TEST
                         continue;
                     }
 
-                    if (!currentExam.ProjectIndex[i].Questions[j].Status == true)
-                    {
+                    //if (!currentExam.ProjectIndex[i].Questions[j].Status == true)
+                    //{
                         int cau = currentExam.ProjectIndex[i].Questions[j].QuestionNumber;
-                        currentExam.ProjectIndex[i].Questions[j].Status = true;
+                        //currentExam.ProjectIndex[i].Questions[j].Status = true;
+
+                        //MessageBox.Show($"Checking question number: {cau} -> {this.CheckCauLon(cau).ToString()}");
+
                         if (this.CheckCauLon(cau) == "True")
                         {
                             currentExam.ProjectIndex[i].Questions[j].Value = true;
@@ -856,7 +864,7 @@ namespace MOS_WORD_TEST
                             currentExam.ProjectIndex[i].Questions[j].Value = false;
                             ++this.So_Cau_Sai;
                         }
-                    }
+                    //}
                 }
             }
 
@@ -989,10 +997,10 @@ namespace MOS_WORD_TEST
             object XMLTransform = (object)Missing.Value;
             // ISSUE: reference to a compiler-generated method
             this.d = this.a.Workbooks.Open(this.pathFileOffice, missing1, missing2, missing3, PasswordDocument, missing4, missing5, missing6, missing7, missing8, missing9, missing10, missing11, missing12, missing13);
-            this.a.Top = 0.0;
-            this.a.Left = -10.0;
+            this.a.Top = 0;
+            this.a.Left = 0;
             this.a.Width = (double)this.screen_width;
-            this.a.Height = (double)(this.screen_height * 3 / 5);
+            this.a.Height = (double)(this.screen_height * 3 / 5) + 2;
             this.soLanReSet = 0;
             if (currentProject.DocumentOpened)
             {
@@ -1125,14 +1133,14 @@ namespace MOS_WORD_TEST
             try
             {
                 this.a.WindowState = Microsoft.Office.Interop.Excel.XlWindowState.xlNormal;
-                this.a.Top = 0.0;
-                this.a.Left = -10.0;
+                this.a.Top = 0;
+                this.a.Left = 0;
                 this.a.Width = (double)this.screen_width;
-                this.a.Height = (double)(this.screen_height * 3 / 5);
+                this.a.Height = (double)(this.screen_height * 3 / 5) + 2;
             }
             catch (Exception ex)
             {
-                int num = (int)MessageBox.Show("Bạn đã tắt MS Word! Tắt chương trình và làm lại");
+                int num = (int)MessageBox.Show("Bạn đã tắt MS Excel! Tắt chương trình và làm lại");
             }
         }
 
@@ -1144,7 +1152,7 @@ namespace MOS_WORD_TEST
                 this.TopMost = false;
                 try
                 {
-                    Process.Start("https://go.mos360.vn/mostesthdsd");
+                    Process.Start("https://go.mos360.vn/mostestexcelhdsd");
                 }
                 catch (Exception ex)
                 {

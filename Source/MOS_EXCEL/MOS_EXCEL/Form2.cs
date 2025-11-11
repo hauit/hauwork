@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,9 +24,11 @@ namespace MOS_EXCEL_LEARN
     {
         private DateTime dt;
         private DateTime ngayhethang;
+        private DateTime ngayhethangCurrentDate;
         private string mac;
         public Form2()
         {
+            CheckNetFramework48();
             InitializeComponent();
             this.textBoxUser.LostFocus += new EventHandler(this.textBoxUser_LostFocus);
             if (!string.IsNullOrEmpty(Properties.Settings.Default.PASS))
@@ -95,13 +98,17 @@ namespace MOS_EXCEL_LEARN
             {
                 DateTime.TryParseExact(expire, "yyyyMMdd", null, DateTimeStyles.None, out this.ngayhethang);
             }
+
+            string pass = ToMD5(this.mac + this.ngayhethang.ToString("yyyyMMdd"));
             if (this.ngayhethang < this.dt)
             {
                 MessageBox.Show("Phần mềm đã hết hạn");
+                Properties.Settings.Default.PASS = string.Empty;
+                Properties.Settings.Default.DATE = string.Empty;
+                Properties.Settings.Default.Save();
                 return false;
             }
 
-            string pass = ToMD5(this.mac + this.ngayhethang.ToString("yyyyMMdd"));
             if (pass.ToLower() == textBoxPass.Text.ToLower())
             {
                 Properties.Settings.Default.PASS = pass.ToLower();
@@ -110,10 +117,22 @@ namespace MOS_EXCEL_LEARN
             }
             else
             {
-                Properties.Settings.Default.DATE = string.Empty;
-                Properties.Settings.Default.Save();
-                MessageBox.Show("Mật khẩu không đúng. Vui lòng liên hệ Admin để cấp lại");
-                return false;
+                //
+                this.ngayhethangCurrentDate = this.dt.AddDays(30.0);
+                string passCurrentDate = ToMD5(this.mac + this.ngayhethangCurrentDate.ToString("yyyyMMdd"));
+                if (passCurrentDate.ToLower() == textBoxPass.Text.ToLower())
+                {
+                    Properties.Settings.Default.PASS = passCurrentDate.ToLower();
+                    Properties.Settings.Default.DATE = int.Parse(this.ngayhethangCurrentDate.ToString("yyyMMdd")).ToString("X");
+                    Properties.Settings.Default.Save();
+                }
+                else
+                {
+                    Properties.Settings.Default.DATE = string.Empty;
+                    Properties.Settings.Default.Save();
+                    MessageBox.Show("Mật khẩu không đúng hoặc Phần mềm đã hết hạn. Vui lòng liên hệ Admin để cấp lại");
+                    return false;
+                }
             }
             return true;
         }
@@ -285,6 +304,57 @@ namespace MOS_EXCEL_LEARN
             if (response.StatusCode == HttpStatusCode.OK)
                 dateTime = DateTime.ParseExact(response.Headers["date"], "ddd, dd MMM yyyy HH:mm:ss 'GMT'", (IFormatProvider)CultureInfo.InvariantCulture.DateTimeFormat, DateTimeStyles.AssumeUniversal);
             return dateTime;
+        }
+        private static void CheckNetFramework48()
+        {
+            const int releaseKey48 = 528040; // .NET Framework 4.8
+            int releaseKey = GetFrameworkReleaseKey();
+
+            if (releaseKey < releaseKey48)
+            {
+                DialogResult result = MessageBox.Show(
+                    "Ứng dụng cần .NET Framework 4.8.\nBạn có muốn tải và cài đặt ngay không?",
+                    "Thiếu .NET Framework 4.8",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    //Process.Start(new ProcessStartInfo
+                    //{
+                    //    FileName = "https://go.microsoft.com/fwlink/?linkid=2088631",
+                    //    UseShellExecute = true
+                    //});
+                    Process.Start("https://go.mos360.vn/net48");
+                    //Environment.Exit(0);
+                }
+                else
+                {
+                    //MessageBox.Show("Bạn có thể tự tải và cài đặt .NET Framework 4.8 sau.", "Thông báo");
+                    //close the application
+                    //Environment.Exit(0);
+                }
+
+                Environment.Exit(0);
+            }
+        }
+
+        private static int GetFrameworkReleaseKey()
+        {
+            try
+            {
+                using (RegistryKey ndpKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32)
+                    .OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\"))
+                {
+                    if (ndpKey != null && ndpKey.GetValue("Release") != null)
+                    {
+                        return (int)ndpKey.GetValue("Release");
+                        //return 1;
+                    }
+                }
+            }
+            catch { }
+            return 0;
         }
     }
 }

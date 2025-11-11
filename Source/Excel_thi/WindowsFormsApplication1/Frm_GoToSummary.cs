@@ -181,8 +181,7 @@ Số câu đúng: {correctAnswer}/35
 
 Điểm thi của bạn là: {total}/1000
 
-Bạn có thể xem lại kết quả thi ở folder MOS360 trên Desktop!
-                                ", "Kết quả thi");
+Bạn có thể xem lại kết quả thi ở folder MOS360 trên Desktop!", "Kết quả thi");
             }
         }
 
