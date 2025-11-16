@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MOS_WORD_TEST.WindowsFormsApplication1
+namespace MOS_EXCEL_TEST.WindowsFormsApplication1
 {
     public partial class Frm_GoToSummary : Form
     {

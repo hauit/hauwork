@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace MOS_WORD_TEST
+namespace MOS_EXCEL_TEST
 {
     public partial class Form5 : Form
     {

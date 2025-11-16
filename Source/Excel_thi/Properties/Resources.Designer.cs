@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MOS_WORD_TEST.Properties {
+namespace MOS_EXCEL_TEST.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace MOS_WORD_TEST.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MOS_WORD_TEST.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MOS_EXCEL_TEST.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -65,7 +65,7 @@ namespace MOS_WORD_TEST.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap e_mos_s {
             get {
-                object obj = ResourceManager.GetObject("e_mos_s", resourceCulture);
+                object obj = ResourceManager.GetObject("e-mos-s", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

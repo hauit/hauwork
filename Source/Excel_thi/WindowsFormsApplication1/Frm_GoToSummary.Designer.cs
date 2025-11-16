@@ -1,6 +1,6 @@
-﻿using MOS_WORD_TEST.Base;
+﻿using MOS_EXCEL_TEST.Base;
 
-namespace MOS_WORD_TEST.WindowsFormsApplication1
+namespace MOS_EXCEL_TEST.WindowsFormsApplication1
 {
     partial class Frm_GoToSummary
     {
@@ -32,8 +32,8 @@ namespace MOS_WORD_TEST.WindowsFormsApplication1
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_GoToSummary));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnClose = new MOS_WORD_TEST.Base.RJButton();
-            this.btnFinish = new MOS_WORD_TEST.Base.RJButton();
+            this.btnClose = new MOS_EXCEL_TEST.Base.RJButton();
+            this.btnFinish = new MOS_EXCEL_TEST.Base.RJButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();

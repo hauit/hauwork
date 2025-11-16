@@ -2,10 +2,10 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using MOS_WORD_TEST.Properties;
-using MOS_WORD_TEST.Base;
+using MOS_EXCEL_TEST.Properties;
+using MOS_EXCEL_TEST.Base;
 
-namespace MOS_WORD_TEST
+namespace MOS_EXCEL_TEST
 {
     partial class Form1
     {
@@ -54,19 +54,19 @@ namespace MOS_WORD_TEST
             this.panelJumpQuestion = new System.Windows.Forms.Panel();
             this.labelProject = new System.Windows.Forms.Label();
             this.panelButton = new System.Windows.Forms.Panel();
-            this.btnMaskReview = new MOS_WORD_TEST.Base.RJButton();
-            this.btnMarkComplete = new MOS_WORD_TEST.Base.RJButton();
-            this.button2 = new MOS_WORD_TEST.Base.RJButton();
-            this.buttonShowHide = new MOS_WORD_TEST.Base.RJButton();
-            this.buttonxhdh = new MOS_WORD_TEST.Base.RJButton();
-            this.buttonRefresh = new MOS_WORD_TEST.Base.RJButton();
-            this.buttonHelp = new MOS_WORD_TEST.Base.RJButton();
-            this.button1 = new MOS_WORD_TEST.Base.RJButton();
-            this.buttonSave = new MOS_WORD_TEST.Base.RJButton();
-            this.buttonExit = new MOS_WORD_TEST.Base.RJButton();
-            this.buttonSubmit = new MOS_WORD_TEST.Base.RJButton();
-            this.buttonCheck = new MOS_WORD_TEST.Base.RJButton();
-            this.buttonReset = new MOS_WORD_TEST.Base.RJButton();
+            this.btnMaskReview = new MOS_EXCEL_TEST.Base.RJButton();
+            this.btnMarkComplete = new MOS_EXCEL_TEST.Base.RJButton();
+            this.button2 = new MOS_EXCEL_TEST.Base.RJButton();
+            this.buttonShowHide = new MOS_EXCEL_TEST.Base.RJButton();
+            this.buttonxhdh = new MOS_EXCEL_TEST.Base.RJButton();
+            this.buttonRefresh = new MOS_EXCEL_TEST.Base.RJButton();
+            this.buttonHelp = new MOS_EXCEL_TEST.Base.RJButton();
+            this.button1 = new MOS_EXCEL_TEST.Base.RJButton();
+            this.buttonSave = new MOS_EXCEL_TEST.Base.RJButton();
+            this.buttonExit = new MOS_EXCEL_TEST.Base.RJButton();
+            this.buttonSubmit = new MOS_EXCEL_TEST.Base.RJButton();
+            this.buttonCheck = new MOS_EXCEL_TEST.Base.RJButton();
+            this.buttonReset = new MOS_EXCEL_TEST.Base.RJButton();
             this.tabControl1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panelQuestion.SuspendLayout();

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Office.Interop.Excel;
-using MOS_WORD_TEST.Base;
-using MOS_WORD_TEST.Properties;
-using MOS_WORD_TEST.WindowsFormsApplication1;
+using MOS_EXCEL_TEST.Base;
+using MOS_EXCEL_TEST.Properties;
+using MOS_EXCEL_TEST.WindowsFormsApplication1;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,7 @@ using System.Windows.Forms;
 using Point = System.Drawing.Point;
 using Button = System.Windows.Forms.Button;
 
-namespace MOS_WORD_TEST
+namespace MOS_EXCEL_TEST
 {
     public partial class Form1 : Form
     {
@@ -349,7 +349,7 @@ namespace MOS_WORD_TEST
 
             for (int i = 1; i <= numQuestions; i++)
             {
-                var btn = new MOS_WORD_TEST.Base.RJButton();
+                var btn = new MOS_EXCEL_TEST.Base.RJButton();
                 // btn.Text = "Project " +  i.ToString() + " of " + currentProject.Questions.Count + ":";
                 string prefix = "";
 
@@ -399,7 +399,7 @@ namespace MOS_WORD_TEST
 
         private void AddNextButton()
         {
-            var btn = new MOS_WORD_TEST.Base.RJButton();
+            var btn = new MOS_EXCEL_TEST.Base.RJButton();
             btn.Text = ">";
             //btn.Location = new Point((currentProject.Questions.Count + 1) * 60, 0);
             btn.Location = new Point(((screen_width / 10) * 8) - 100, 0);
@@ -425,7 +425,7 @@ namespace MOS_WORD_TEST
 
         private void AddBackButton()
         {
-            var btn = new MOS_WORD_TEST.Base.RJButton();
+            var btn = new MOS_EXCEL_TEST.Base.RJButton();
             btn.Text = "<";
             btn.Location = new Point(0, 0);
             //btn.Width = 50;

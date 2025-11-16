@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MOS_WORD_TEST.Base
+namespace MOS_EXCEL_TEST.Base
 {
     public class RJButton : Button
     {

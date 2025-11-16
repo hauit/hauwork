@@ -1,6 +1,6 @@
 ﻿// Decompiled with JetBrains decompiler
-// Type: MOS_WORD_TEST.Home
-// Assembly: MOS_WORD_TEST, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// Type: MOS_EXCEL_TEST.Home
+// Assembly: MOS_EXCEL_TEST, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 // MVID: 59EF86EC-8F2D-419F-A3E8-5D9A0E352B91
 // Assembly location: E:\hau_Work\Git_HauWork\hauwork\WE_19\TEST_WORD_19\Chay File Nay.exe
 
@@ -12,7 +12,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace MOS_WORD_TEST
+namespace MOS_EXCEL_TEST
 {
     internal class Home
     {

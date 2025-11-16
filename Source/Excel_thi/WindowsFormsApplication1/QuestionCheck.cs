@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using mscore = Microsoft.Office.Core;
 
-namespace MOS_WORD_TEST
+namespace MOS_EXCEL_TEST
 {
     public interface IQuestionCheck
     {

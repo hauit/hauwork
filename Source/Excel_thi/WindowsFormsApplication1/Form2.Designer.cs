@@ -10,9 +10,9 @@ using System.Net.Cache;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Windows.Forms;
-using MOS_WORD_TEST.Base;
+using MOS_EXCEL_TEST.Base;
 
-namespace MOS_WORD_TEST
+namespace MOS_EXCEL_TEST
 {
     partial class Form2
     {
@@ -50,13 +50,13 @@ namespace MOS_WORD_TEST
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.radioVN = new System.Windows.Forms.RadioButton();
             this.radioEN = new System.Windows.Forms.RadioButton();
-            this.btnCancel = new MOS_WORD_TEST.Base.RJButton();
+            this.btnCancel = new MOS_EXCEL_TEST.Base.RJButton();
             this.textBoxPass = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxUser = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.buttonOK = new MOS_WORD_TEST.Base.RJButton();
+            this.buttonOK = new MOS_EXCEL_TEST.Base.RJButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
@@ -300,7 +300,7 @@ namespace MOS_WORD_TEST
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::MOS_WORD_TEST.Properties.Resources.e_mos_s;
+            this.pictureBox1.Image = global::MOS_EXCEL_TEST.Properties.Resources.e_mos_s;
             this.pictureBox1.Location = new System.Drawing.Point(44, 20);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(210, 119);
