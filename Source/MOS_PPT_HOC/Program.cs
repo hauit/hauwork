@@ -39,13 +39,13 @@ namespace MOS_PPT_LEARN
 
         private static void run()
         {
-            //Application.Run((Form)new Form1());
-            //return;
+            Application.Run((Form)new Form_New());
+            return;
             Application.Run((Form)new Form2());
             switch (Program.status)
             {
                 case 1:
-                    Application.Run((Form)new Form1());
+                    Application.Run((Form)new Form_New());
                     break;
                 case 2:
                     int num = (int)MessageBox.Show("Phần Mềm Đã Hết Hạn");

@@ -17,8 +17,9 @@ using MOS_PPT_LEARN.Base;
 
 namespace MOS_PPT_LEARN
 {
-    public partial class Form1 : Form
+    public partial class Form_New : Form
     {
+
         private int zoom = 0;
         private bool check = true;
         private int so_cau_dung = 0;
@@ -37,8 +38,8 @@ namespace MOS_PPT_LEARN
         private enviroment paramater;
         private Help h;
         private int[] Diem;
-
-        public Form1()
+        private ClsQuestion questionObj;
+        public Form_New()
         {
             this.h = new Help();
             InitializeComponent();
@@ -231,14 +232,12 @@ namespace MOS_PPT_LEARN
             if (this.buttonEV.Text == "Tiếng Việt")
             {
                 this.buttonEV.Text = "Tiếng Anh";
-                this.pictureBox1.Image.Dispose();
-                this.pictureBox1.Image = Image.FromFile(this.paramater.DeTiengViet);
+                this.richTextQuestion.Text = this.paramater.DeTiengAnh;
             }
             else
             {
                 this.buttonEV.Text = "Tiếng Việt";
-                this.pictureBox1.Image.Dispose();
-                this.pictureBox1.Image = Image.FromFile(this.paramater.DeTiengAnh);
+                this.richTextQuestion.Text = this.paramater.DeTiengViet;
             }
         }
 
@@ -277,26 +276,59 @@ namespace MOS_PPT_LEARN
 
         private void load_cau_hoi(int cau_hoi_so)
         {
-            this.paramater = this.Getparmater(cau_hoi_so);
+            questionObj = ClsListQuestion.GetQuestion(cau_hoi_so);
+            if (!questionObj.Status)
+            {
+                throw new ArgumentException("Câu hỏi chưa sẵn sàng để học");
+            }
+            this.paramater = this.GetparmaterNew(questionObj.CorrectIndex);
+
             this.paramater.Dest_file_Word_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, $"Word\\{this.paramater.section.ToString()}_{this.paramater.quesion.ToString()}.docx");
-            this.paramater.DeTiengAnh = Path.Combine(System.Windows.Forms.Application.StartupPath, $"tam\\{cau_hoi_so.ToString()}E");
-            this.paramater.DeTiengViet = Path.Combine(System.Windows.Forms.Application.StartupPath, $"tam\\{cau_hoi_so.ToString()}V");
+            this.paramater.DeTiengAnh = this.paramater.Source_de_En;
+            this.paramater.DeTiengViet = this.paramater.Source_de_Vn;
             this.paramater.Dest_file_help_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, "tam\\help");
             this.paramater.Dest_file_help_video_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, "tam\\Vhelp");
             Home.DecryptFile(this.paramater.Source_file_word_path, this.paramater.Dest_file_Word_Name.ToString());
-            Home.DecryptFile(this.paramater.Source_de_En, this.paramater.DeTiengAnh);
-            Home.DecryptFile(this.paramater.Source_de_Vn, this.paramater.DeTiengViet);
-            if (File.Exists(this.paramater.Source_file_help_video_path))
-                Home.DecryptFile(this.paramater.Source_file_help_video_path, this.paramater.Dest_file_help_video_Name);
-            this.pictureBox1.Image = Image.FromFile(this.paramater.DeTiengAnh);
-            this.pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            this.pictureBox1.Height = this.pictureBox1.Height * this.Width / this.pictureBox1.Width;
-            this.pictureBox1.Width = this.Width - this.buttonCheck.Width / 2;
-            this.pictureBox1.Refresh();
+            //Home.DecryptFile(this.paramater.Source_de_En, this.paramater.DeTiengAnh);
+            //Home.DecryptFile(this.paramater.Source_de_Vn, this.paramater.DeTiengViet);
+            //if (File.Exists(this.paramater.Source_file_help_video_path))
+            //    Home.DecryptFile(this.paramater.Source_file_help_video_path, this.paramater.Dest_file_help_video_Name);
             // ISSUE: reference to a compiler-generated method
+            this.richTextQuestion.Text = this.paramater.DeTiengViet;
+            if (this.panel1.Width > this.richTextQuestion.Width)
+                this.richTextQuestion.Left = (this.panel1.Width - this.richTextQuestion.Width) / 2;
+            else
+                this.richTextQuestion.Left = 0;
             this.d = this.a.Presentations.Open(this.paramater.Dest_file_Word_Name);
             this.h.refresh();
+        }
+
+        private enviroment GetparmaterNew(int cauUser)
+        {
+            enviroment enviroment = new enviroment();
+            int a = 0;
+            enviroment.quesion = cauUser;
+            for (int index = 0; index < School.Mn.Length; ++index)
+            {
+                a = a + School.Mn[index];
+                if (cauUser <= a)
+                {
+                    enviroment.section = index;
+                    break;
+                }
+                enviroment.quesion = cauUser - a;
+                enviroment.section = index;
+            }
+
+            enviroment.dirPath = Path.Combine(System.Windows.Forms.Application.StartupPath);
+            enviroment.Source_de_En = ClsListQuestion.GetEngQuestion(cauUser);
+            enviroment.Source_de_Vn = ClsListQuestion.GetVNQuestion(cauUser);
+            //enviroment.Source_file_word_path = Path.Combine(enviroment.dirPath, "data\\" + questionObj.MaskIndex.ToString());
+
+            enviroment.dirPath = Path.Combine(System.Windows.Forms.Application.StartupPath, "data\\sec_" + enviroment.section.ToString());
+            enviroment.Source_file_word_path = Path.Combine(enviroment.dirPath, "file\\" + enviroment.quesion.ToString());
+
+            return enviroment;
         }
 
         private enviroment Getparmater(int cauUser)
@@ -424,7 +456,7 @@ namespace MOS_PPT_LEARN
             }
             foreach (string file in Directory.GetFiles(Path.Combine(System.Windows.Forms.Application.StartupPath, "Word")))
                 File.Delete(file);
-            this.pictureBox1.Image.Dispose();
+
             foreach (string file in Directory.GetFiles(Path.Combine(System.Windows.Forms.Application.StartupPath, "tam")))
                 File.Delete(file);
             this.Close();
@@ -444,7 +476,7 @@ namespace MOS_PPT_LEARN
                 this.a.ProtectedViewWindows[1].Close();
             }
             this.chotat = false;
-            this.pictureBox1.Image.Dispose();
+
             foreach (string file in Directory.GetFiles(Path.Combine(System.Windows.Forms.Application.StartupPath, "tam")))
                 File.Delete(file);
             foreach (string file in Directory.GetFiles(Path.Combine(System.Windows.Forms.Application.StartupPath, "Word")))
@@ -487,16 +519,17 @@ namespace MOS_PPT_LEARN
 
         private void buttonHelpVideo_Click(object sender, EventArgs e)
         {
-            string str = Path.Combine(System.Windows.Forms.Application.StartupPath, "zip\\1.mp4");
-            string fileHelpVideoPath = this.paramater.Source_file_help_video_path;
             try
             {
-                Home.DecryptFile(fileHelpVideoPath, str);
-                Process.Start(str);
+                if (!questionObj.Status)
+                {
+                    throw new ArgumentException("Câu hỏi chưa sẵn sàng để học");
+                }
+                Process.Start(questionObj.Url);
             }
             catch (Exception ex)
             {
-                int num = (int)MessageBox.Show("Tắt Video help trước khi mở help mới");
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -550,8 +583,8 @@ namespace MOS_PPT_LEARN
                 this.panel1.Location = new Point(0, this.buttonExit.Height + 10);
                 this.panel1.Width = this.Width;
                 this.panel1.Height = this.Height - this.buttonExit.Height;
-                this.pictureBox1.Location = new Point(0, 0);
-                this.pictureBox1.Width = this.Width - this.buttonEV.Width / 3;
+                //this.pictureBox1.Location = new Point(0, 0);
+                //this.pictureBox1.Width = this.Width - this.buttonEV.Width / 3;
                 //this.richTextQuestion.Location = new Point(0, 0);
                 //this.richTextQuestion.Width = this.Width - this.buttonEV.Width / 3;
                 this.comboBoxCauNext.Text = (this.cau_User + 1).ToString();
@@ -575,5 +608,3 @@ namespace MOS_PPT_LEARN
         }
     }
 }
-
-    

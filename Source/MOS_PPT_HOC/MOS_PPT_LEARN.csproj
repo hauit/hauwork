@@ -57,20 +57,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\ClsBaseObject.cs" />
+    <Compile Include="Base\ClsQuestion.cs" />
+    <Compile Include="Base\ClsSession.cs" />
     <Compile Include="Base\RJButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CheckWord.cs" />
     <Compile Include="enviroment.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form1_Cu.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Form2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +82,12 @@
     </Compile>
     <Compile Include="Form6.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_New.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_New.Designer.cs">
+      <DependentUpon>Form_New.cs</DependentUpon>
     </Compile>
     <Compile Include="Help.cs">
       <SubType>Form</SubType>
@@ -126,9 +126,6 @@
     <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1_Cu.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
@@ -143,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form6.resx">
       <DependentUpon>Form6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_New.resx">
+      <DependentUpon>Form_New.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Help.resx">
       <DependentUpon>Help.cs</DependentUpon>
