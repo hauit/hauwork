@@ -35,6 +35,7 @@ namespace MOS_PPT_LEARN
             this.labelCauHienTai = new System.Windows.Forms.Label();
             this.comboBoxCauNext = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.richTextQuestion = new System.Windows.Forms.RichTextBox();
             this.comboBoxCauDaDanhDau = new System.Windows.Forms.ComboBox();
             this.buttonHelp = new MOS_PPT_LEARN.Base.RJButton();
             this.buttonHelpVideo = new MOS_PPT_LEARN.Base.RJButton();
@@ -48,7 +49,6 @@ namespace MOS_PPT_LEARN
             this.buttonNext = new MOS_PPT_LEARN.Base.RJButton();
             this.buttonExit = new MOS_PPT_LEARN.Base.RJButton();
             this.buttonSummary = new MOS_PPT_LEARN.Base.RJButton();
-            this.richTextQuestion = new System.Windows.Forms.RichTextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -108,6 +108,15 @@ namespace MOS_PPT_LEARN
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(282, 172);
             this.panel1.TabIndex = 15;
+            // 
+            // richTextQuestion
+            // 
+            this.richTextQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextQuestion.Location = new System.Drawing.Point(0, 0);
+            this.richTextQuestion.Name = "richTextQuestion";
+            this.richTextQuestion.Size = new System.Drawing.Size(282, 172);
+            this.richTextQuestion.TabIndex = 0;
+            this.richTextQuestion.Text = "";
             // 
             // comboBoxCauDaDanhDau
             // 
@@ -393,15 +402,6 @@ namespace MOS_PPT_LEARN
             this.buttonSummary.TextColor = System.Drawing.Color.White;
             this.buttonSummary.UseVisualStyleBackColor = false;
             this.buttonSummary.Click += new System.EventHandler(this.buttonSummary_Click);
-            // 
-            // richTextQuestion
-            // 
-            this.richTextQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextQuestion.Location = new System.Drawing.Point(0, 0);
-            this.richTextQuestion.Name = "richTextQuestion";
-            this.richTextQuestion.Size = new System.Drawing.Size(282, 172);
-            this.richTextQuestion.TabIndex = 0;
-            this.richTextQuestion.Text = "";
             // 
             // Form_New
             // 

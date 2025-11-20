@@ -41,7 +41,7 @@ namespace MOS_PPT_LEARN
         private ClsQuestion questionObj;
         public Form_New()
         {
-            this.h = new Help();
+            //this.h = new Help();
             InitializeComponent();
             this.a = (Microsoft.Office.Interop.PowerPoint.Application)Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid("91493441-5A91-11CF-8700-00AA0060263B")));
             this.load_cau_hoi(this.cau_User);
@@ -283,12 +283,14 @@ namespace MOS_PPT_LEARN
             }
             this.paramater = this.GetparmaterNew(questionObj.CorrectIndex);
 
-            this.paramater.Dest_file_Word_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, $"Word\\{this.paramater.section.ToString()}_{this.paramater.quesion.ToString()}.docx");
+            this.paramater.Dest_file_Word_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, $"Word\\{questionObj.MaskIndex.ToString()}.docx");
             this.paramater.DeTiengAnh = this.paramater.Source_de_En;
             this.paramater.DeTiengViet = this.paramater.Source_de_Vn;
-            this.paramater.Dest_file_help_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, "tam\\help");
-            this.paramater.Dest_file_help_video_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, "tam\\Vhelp");
+            //this.paramater.Dest_file_help_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, "tam\\help");
+            //this.paramater.Dest_file_help_video_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, "tam\\Vhelp");
             Home.DecryptFile(this.paramater.Source_file_word_path, this.paramater.Dest_file_Word_Name.ToString());
+            //Home.DecryptFile(this.paramater.Source_file_word_path, $@"{questionObj.MaskIndex.ToString()}.pptx");
+            //File.Copy(this.paramater.Source_file_word_path, $@"{questionObj.MaskIndex.ToString()}",true);
             //Home.DecryptFile(this.paramater.Source_de_En, this.paramater.DeTiengAnh);
             //Home.DecryptFile(this.paramater.Source_de_Vn, this.paramater.DeTiengViet);
             //if (File.Exists(this.paramater.Source_file_help_video_path))
@@ -300,7 +302,7 @@ namespace MOS_PPT_LEARN
             else
                 this.richTextQuestion.Left = 0;
             this.d = this.a.Presentations.Open(this.paramater.Dest_file_Word_Name);
-            this.h.refresh();
+            //this.h.refresh();
         }
 
         private enviroment GetparmaterNew(int cauUser)
@@ -325,8 +327,9 @@ namespace MOS_PPT_LEARN
             enviroment.Source_de_Vn = ClsListQuestion.GetVNQuestion(cauUser);
             //enviroment.Source_file_word_path = Path.Combine(enviroment.dirPath, "data\\" + questionObj.MaskIndex.ToString());
 
-            enviroment.dirPath = Path.Combine(System.Windows.Forms.Application.StartupPath, "data\\sec_" + enviroment.section.ToString());
-            enviroment.Source_file_word_path = Path.Combine(enviroment.dirPath, "file\\" + enviroment.quesion.ToString());
+            //enviroment.dirPath = Path.Combine(System.Windows.Forms.Application.StartupPath, "data\\sec_" + enviroment.section.ToString());
+            //enviroment.Source_file_word_path = Path.Combine(enviroment.dirPath, "file\\" + enviroment.quesion.ToString());
+            enviroment.Source_file_word_path = Path.Combine(enviroment.dirPath, "data\\" + questionObj.MaskIndex.ToString());
 
             return enviroment;
         }
@@ -510,10 +513,12 @@ namespace MOS_PPT_LEARN
 
         private void loadTongSoCau()
         {
+            string a = string.Empty;
             for (int index = 0; index < School.Mn.Length; ++index)
             {
                 string[] files = Directory.GetFiles(Path.Combine(System.Windows.Forms.Application.StartupPath, $"Data\\Sec_{(object)index}\\hinh\\E"));
                 School.Mn[index] = files.Length;
+                a += $"{files.Length.ToString()},";
             }
         }
 
@@ -544,9 +549,9 @@ namespace MOS_PPT_LEARN
             this.loadDanhDau();
             try
             {
-                this.loadTongSoCau();
-                this.tong_so_cau = School.Tong();
-                this.Diem = new int[this.tong_so_cau];
+                //this.loadTongSoCau();
+                this.tong_so_cau = 168;//Tong so cau theo section de tim file
+                this.Diem = new int[127];//Tong so cau de tinh diem
                 int y = 5;
                 int leftPadRight = 5;
                 int rightPadLeft = 5;
