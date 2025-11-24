@@ -43,19 +43,19 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)3].Shapes.Count != 3)
-                    return "False(insert Table)";
+                    return "False";
                 if (((object)a.ActivePresentation.Slides[(object)3].Shapes[(object)3].Type).ToString() != "msoTable")
-                    return "False(Table)";
+                    return "False";
                 int count = a.ActivePresentation.Slides[(object)3].Shapes[(object)3].Table.Columns.Count;
                 if (count.ToString() != "3")
-                    return "False(3 cot)";
+                    return "False";
                 count = a.ActivePresentation.Slides[(object)3].Shapes[(object)3].Table.Rows.Count;
                 if (count.ToString() != "4")
-                    return "False(4 hang)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -69,7 +69,7 @@ namespace MOS_PPT_LEARN
                     ? a.ActivePresentation.Slides[8]
                     : null;
                 if (slide == null)
-                    return "False (slide 8 not found)";
+                    return "False";
 
                 // Get shape "Chart 5"
                 Shape chartShape = null;
@@ -82,29 +82,29 @@ namespace MOS_PPT_LEARN
                     }
                 }
                 if (chartShape == null)
-                    return "False (Chart 5 not found)";
+                    return "False";
 
                 // Check if shape has a Chart
                 if (!chartShape.HasChart.Equals(Microsoft.Office.Core.MsoTriState.msoTrue))
-                    return "False (no chart)";
+                    return "False";
 
                 var chart = chartShape.Chart;
                 if (chart == null)
-                    return "False (chart object missing)";
+                    return "False";
 
                 // Check ChartStyle
                 if (chart.ChartStyle.ToString() != "261")
-                    return "False (style 11)";
+                    return "False";
 
                 // Check ChartColor
                 if (chart.ChartColor.ToString() != "13")
-                    return "False (palette 4)";
+                    return "False";
 
                 return "True";
             }
             catch (Exception)
             {
-                return "False (Something Wrong)";
+                return "False";
             }
         }
 
@@ -113,14 +113,14 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.PrintOptions.NumberOfCopies.ToString() != "4")
-                    return "False(4 copy)";
+                    return "False";
                 if (a.ActivePresentation.PrintOptions.OutputType.ToString() != "ppPrintOutputThreeSlideHandouts")
-                    return "False(3 slide/ 1 page)";
-                return ((object)a.ActivePresentation.PrintOptions.Collate).ToString() != "msoFalse" ? "False(Un Collate)" : "True";
+                    return "False";
+                return ((object)a.ActivePresentation.PrintOptions.Collate).ToString() != "msoFalse" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Somthing Wrong)";
+                return "False";
             }
         }
 
@@ -129,13 +129,13 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (((object)a.ActivePresentation.Slides[(object)6].BackgroundStyle).ToString() != "msoBackgroundStyleNotAPreset")
-                    return "False(slide 6)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)6].Background.Fill.GradientAngle.ToString() != "90")
-                    return "False(default)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(Gradient)";
+                return "False";
             }
             return "True";
         }

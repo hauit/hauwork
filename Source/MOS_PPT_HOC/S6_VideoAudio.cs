@@ -46,17 +46,17 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)4].Shapes.Count != 2)
-                    return "False(khong them xoa cac doi tuong khac)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)4].Shapes[(object)2].Name != "New Advert")
-                    return "False(New Advert)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)4].Shapes[(object)2].Top.ToString() != "143.75")
-                    return "False(H)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)4].Shapes[(object)2].Left.ToString() != "144")
-                    return "False(V)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(Gradient)";
+                return "False";
             }
             return "True";
         }
@@ -66,13 +66,13 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)2].Shapes[(object)"New Advert"].MediaFormat.StartPoint.ToString() != "500")
-                    return "False(StartPoint)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)2].Shapes[(object)"New Advert"].MediaFormat.EndPoint.ToString() != "2500")
-                    return "False(EndPoint)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -82,13 +82,13 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence.Count.ToString() != "1")
-                    return "False(Auto)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[1].Timing.TriggerType.ToString() != "msoAnimTriggerAfterPrevious")
-                    return "False(auto)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (khong xat dinh)";
+                return "False";
             }
             return "True";
         }
@@ -98,13 +98,13 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)3].Shapes[(object)"Powerpoint mos vid"].PictureFormat.CropLeft.ToString() != "487.268")
-                    return "False(left)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)3].Shapes[(object)"Powerpoint mos vid"].PictureFormat.CropRight.ToString() != "-7.277816")
-                    return "False(right)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -114,12 +114,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)1].Shapes[(object)"Sleep Away"].MediaFormat.FadeInDuration != 2000)
-                    return "False (FadeInDuration 2)";
-                return a.ActivePresentation.Slides[(object)1].Shapes[(object)"Sleep Away"].AnimationSettings.PlaySettings.StopAfterSlides != 999 ? "False (Play cross slide)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)1].Shapes[(object)"Sleep Away"].AnimationSettings.PlaySettings.StopAfterSlides != 999 ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (insert Train vedio into placeholder)";
+                return "False";
             }
         }
 
@@ -128,12 +128,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)5].Shapes.Count != 3)
-                    return "False(chèn video)";
-                return a.ActivePresentation.Slides[(object)5].Shapes[(object)3].Name != "Sailing" ? "False (sai vedio)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)5].Shapes[(object)3].Name != "Sailing" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (insert Sailing video)";
+                return "False";
             }
         }
 
@@ -142,12 +142,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)6].Shapes.Count != 3)
-                    return "False(chèn video)";
-                return a.ActivePresentation.Slides[(object)6].Shapes[(object)3].Name != "River" ? "False (sai vedio)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)6].Shapes[(object)3].Name != "River" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (insert Train vedio into placeholder)";
+                return "False";
             }
         }
 

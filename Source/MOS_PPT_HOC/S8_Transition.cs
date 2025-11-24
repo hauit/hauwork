@@ -101,14 +101,14 @@ namespace MOS_PPT_LEARN
                 foreach (Slide slide in a.ActivePresentation.Slides)
                 {
                     if (slide.SlideShowTransition.Duration.ToString() != "3")
-                        return "False(Duration=3)";
+                        return "False";
                     if (slide.SlideShowTransition.SoundEffect.Name != "breeze.wav")
-                        return "False(breeze)";
+                        return "False";
                 }
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -120,12 +120,12 @@ namespace MOS_PPT_LEARN
                 foreach (Slide slide in a.ActivePresentation.Slides)
                 {
                     if (slide.SlideShowTransition.EntryEffect.ToString() != "ppEffectWipeRight")
-                        return "False(Wipe from left)";
+                        return "False";
                 }
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -137,12 +137,12 @@ namespace MOS_PPT_LEARN
                 foreach (Slide slide in a.ActivePresentation.Slides)
                 {
                     if (slide.SlideShowTransition.Duration.ToString() != "3")
-                        return "False(Duration=3)";
+                        return "False";
                 }
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -154,12 +154,12 @@ namespace MOS_PPT_LEARN
                 foreach (Slide slide in a.ActivePresentation.Slides)
                 {
                     if (slide.SlideShowTransition.EntryEffect.ToString() != "ppEffectPushRight")
-                        return "False(form left)";
+                        return "False";
                 }
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -171,12 +171,12 @@ namespace MOS_PPT_LEARN
                 foreach (Slide slide in a.ActivePresentation.Slides)
                 {
                     if (slide.SlideShowTransition.EntryEffect.ToString() != "ppEffectWedge")
-                        return "False(Wedge)";
+                        return "False";
                 }
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -188,12 +188,12 @@ namespace MOS_PPT_LEARN
                 foreach (Slide slide in a.ActivePresentation.Slides)
                 {
                     if (slide.SlideShowTransition.Duration.ToString() != "2")
-                        return "False(Duration=2 for all slide)";
+                        return "False";
                 }
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -205,12 +205,12 @@ namespace MOS_PPT_LEARN
                 foreach (Slide slide in a.ActivePresentation.Slides)
                 {
                     if (slide.SlideShowTransition.EntryEffect.ToString() != "ppEffectRotateRight")
-                        return "False(Rotate form left)";
+                        return "False";
                 }
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }

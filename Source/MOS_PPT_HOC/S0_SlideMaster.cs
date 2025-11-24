@@ -47,24 +47,24 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.SlideMaster.CustomLayouts.Count < 12)
-                    return "False(them 1 layout)";
+                    return "False";
                 for (int Index = 1; Index <= a.ActivePresentation.SlideMaster.CustomLayouts.Count; ++Index)
                 {
                     if (a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Name == "Custom1")
                     {
                         if (a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes.Count.ToString() != "6")
-                            return "False(khong them du hoac thieu placeholder)";
+                            return "False";
                         if (a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes[(object)5].PlaceholderFormat.Type.ToString() != "ppPlaceholderPicture")
-                            return "False(them placeholder truoc)";
-                        return a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes[(object)6].PlaceholderFormat.Type.ToString() != "ppPlaceholderBody" ? "False(them placeholder text sau)" : "True";
+                            return "False";
+                        return a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes[(object)6].PlaceholderFormat.Type.ToString() != "ppPlaceholderBody" ? "False" : "True";
                     }
                 }
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
-            return "False(ten layout)";
+            return "False";
         }
 
         private static string cau2(Application a, Presentation d)
@@ -73,13 +73,13 @@ namespace MOS_PPT_LEARN
             {
                 // ISSUE: reference to a compiler-generated method
                 if (a.ActivePresentation.SlideMaster.Shapes[(object)"Text Placeholder 2"].TextFrame.TextRange.Lines(1, 1).ParagraphFormat.Bullet.Type.ToString() != "ppBulletPicture")
-                    return "False(picture)";
+                    return "False";
                 if (a.ActivePresentation.SlideMaster.Shapes[(object)"Text Placeholder 2"].TextFrame.TextRange.ParagraphFormat.Bullet.Type.ToString() == "ppBulletPicture")
-                    return "False(chi dong dau)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -89,24 +89,24 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.SlideMaster.CustomLayouts.Count < 12)
-                    return "False(them 1 layout)";
+                    return "False";
                 for (int Index = 1; Index <= a.ActivePresentation.SlideMaster.CustomLayouts.Count; ++Index)
                 {
                     if (a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Name == "Trevorslayout")
                     {
                         if (a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes.Count.ToString() != "6")
-                            return "False(khong them du hoac thieu placeholder)";
+                            return "False";
                         if (a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes[(object)5].PlaceholderFormat.Type.ToString() != "ppPlaceholderPicture")
-                            return "False(them placeholder truoc)";
-                        return a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes[(object)6].PlaceholderFormat.Type.ToString() != "ppPlaceholderBody" ? "False(them placeholder text sau)" : "True";
+                            return "False";
+                        return a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes[(object)6].PlaceholderFormat.Type.ToString() != "ppPlaceholderBody" ? "False" : "True";
                     }
                 }
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
-            return "False(ten layout)";
+            return "False";
         }
 
         private static string cau4(Application a, Presentation d)
@@ -115,23 +115,23 @@ namespace MOS_PPT_LEARN
             {
                 string str = "True";
                 if (a.ActivePresentation.HandoutMaster.Shapes.Count != 4)
-                    return "False (khong them xoa shape)";
+                    return "False";
                 try
                 {
                     // ISSUE: variable of a compiler-generated type
                     Microsoft.Office.Interop.PowerPoint.Shape shape = a.ActivePresentation.HandoutMaster.Shapes[(object)3];
                     if (shape.TextFrame.TextRange.Text != "First Copy")
-                        return "False (First Copy o Handout footer)";
+                        return "False";
                 }
                 catch (Exception ex)
                 {
-                    return "False (not picture)";
+                    return "False";
                 }
                 return str;
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
         }
 
@@ -140,17 +140,17 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.SlideMaster.CustomLayouts[(object)3].Shapes.Count.ToString() != "5")
-                    return "False(khong them du hoac thieu placeholder)";
+                    return "False";
                 if (a.ActivePresentation.SlideMaster.CustomLayouts[(object)3].Shapes[(object)5].PlaceholderFormat.Type.ToString() != "ppPlaceholderMediaClip")
-                    return "False(Media)";
+                    return "False";
                 if ((double)a.ActivePresentation.SlideMaster.CustomLayouts[(object)3].Shapes[(object)5].Left != (double)a.ActivePresentation.SlideMaster.CustomLayouts[(object)3].Shapes[(object)1].Left)
-                    return "False(Align Left)";
+                    return "False";
                 if ((double)a.ActivePresentation.SlideMaster.CustomLayouts[(object)3].Shapes[(object)5].Width != (double)a.ActivePresentation.SlideMaster.CustomLayouts[(object)3].Shapes[(object)1].Width)
-                    return "False(Align Right)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -160,23 +160,23 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.SlideMaster.CustomLayouts.Count != 12)
-                    return "False(khong them xoa layout)";
+                    return "False";
                 for (int Index = 1; Index <= a.ActivePresentation.SlideMaster.CustomLayouts.Count; ++Index)
                 {
                     if (a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Name == "Ingredients")
                     {
                         if (a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes.Count.ToString() != "5")
-                            return "False(khong them du hoac thieu placeholder)";
+                            return "False";
                         // ISSUE: reference to a compiler-generated method
-                        return a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes[(object)"Content Placeholder 6"].TextFrame.TextRange.Paragraphs(1, 1).ParagraphFormat.Bullet.Type.ToString() == "ppBulletPicture" ? "True" : "False(Bullet bằng Picture)";
+                        return a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes[(object)"Content Placeholder 6"].TextFrame.TextRange.Paragraphs(1, 1).ParagraphFormat.Bullet.Type.ToString() == "ppBulletPicture" ? "True" : "False";
                     }
                 }
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
-            return "False(tên layout)";
+            return "False";
         }
 
         private static string cau7(Application a, Presentation d)
@@ -184,13 +184,13 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.SlideMaster.CustomLayouts.Count < 12)
-                    return "False(duplicate layout)";
+                    return "False";
                 for (int Index = 1; Index <= a.ActivePresentation.SlideMaster.CustomLayouts.Count; ++Index)
                 {
                     if (a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Name == "Picture with Text")
                     {
                         if (a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes.Count.ToString() != "5")
-                            return "False(sai placeholder hoặc sai Layout)";
+                            return "False";
                         string str = a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes[(object)5].Name + a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes[(object)4].Name;
                         if (str.Contains("Text") && str.Contains("Picture"))
                             return "True";
@@ -199,9 +199,9 @@ namespace MOS_PPT_LEARN
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
-            return "False(tên layout)";
+            return "False";
         }
 
         private static string cau8(Application a, Presentation d)
@@ -210,14 +210,14 @@ namespace MOS_PPT_LEARN
             {
                 string text1 = a.ActivePresentation.HandoutMaster.Shapes[(object)"Header Placeholder 1"].TextFrame.TextRange.Text;
                 if (text1 != "First Up Consultants")
-                    return $"False({text1}: viet sai)";
+                    return "False";
                 string text2 = a.ActivePresentation.HandoutMaster.Shapes[(object)"Footer Placeholder 3"].TextFrame.TextRange.Text;
                 if (text2 != "www.firstupconsultants.com")
-                    return $"False({text2}: viet sai)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something not finish!)";
+                return "False";
             }
             return "True";
         }

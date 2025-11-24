@@ -227,13 +227,13 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)8].Shapes[(object)1].TextFrame.TextRange.Text != "Title Layout")
-                    return "False(slide 8)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)12].Shapes[(object)1].TextFrame.TextRange.Text != "Two Content Layout with SmartArt")
-                    return "False(slide 12)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(reused slide)";
+                return "False";
             }
             return "True";
         }
@@ -257,11 +257,11 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.TemplateName != "Ion Boardroom")
-                    return "False(Ion Boardroom)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -287,11 +287,11 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)3].Shapes[(object)"Diagram 2"].SmartArt.Color.Name != "Colorful Range - Accent Colors 4 to 5")
-                    return "False(color)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -302,48 +302,48 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence.Count != 4)
-                    return "False (ap dung cho noi dung)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[1].DisplayName != "Restaurant ")
-                    return "False (Restaurant)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[1].EffectType.ToString() != "msoAnimEffectWipe")
-                    return "False (1 Wipe)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[1].EffectParameters.Direction != MsoAnimDirection.msoAnimDirectionUp)
-                    return "False (1 from top)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[1].Timing.TriggerType == MsoAnimTriggerType.msoAnimTriggerOnPageClick)
-                    return "False (onclick)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[1].Timing.TriggerDelayTime.ToString() != "0")
-                    return "False (with)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[2].EffectParameters.Direction != MsoAnimDirection.msoAnimDirectionUp)
-                    return "False (2 from top)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[2].Timing.TriggerDelayTime.ToString() != "1")
-                    return "False (2 delpay)";
+                    return "False";
                 str = a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[2].Timing.TriggerType.ToString();
                 if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[2].Timing.TriggerType != MsoAnimTriggerType.msoAnimTriggerAfterPrevious)
-                    return "False (2 After)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[2].EffectType.ToString() != "msoAnimEffectWipe")
-                    return "False (2 Wipe)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[3].EffectParameters.Direction != MsoAnimDirection.msoAnimDirectionUp)
-                    return "False (3 from top)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[3].Timing.TriggerDelayTime.ToString() != "1")
-                    return "False (3 delpay)";
+                    return "False";
                 str = a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[3].Timing.TriggerType.ToString();
                 if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[3].Timing.TriggerType != MsoAnimTriggerType.msoAnimTriggerAfterPrevious)
-                    return "False (3 After)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[3].EffectType.ToString() != "msoAnimEffectWipe")
-                    return "False (3 Wipe)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[3].EffectParameters.Direction != MsoAnimDirection.msoAnimDirectionUp)
-                    return "False (4 from top)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[3].Timing.TriggerDelayTime.ToString() != "1")
-                    return "False (4 delpay)";
+                    return "False";
                 str = a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[3].Timing.TriggerType.ToString();
                 if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[3].Timing.TriggerType != MsoAnimTriggerType.msoAnimTriggerAfterPrevious)
-                    return "False (4 After)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[3].EffectType.ToString() != "msoAnimEffectWipe")
-                    return "False (4 Wipe)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }

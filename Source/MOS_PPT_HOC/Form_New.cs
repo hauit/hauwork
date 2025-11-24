@@ -29,7 +29,7 @@ namespace MOS_PPT_LEARN
         private int screen_width;
         private Microsoft.Office.Interop.PowerPoint.Application a;
         private Presentation d;
-        private int tong_so_cau = School.Tong();
+        private int tong_so_cau = ClsListQuestion.GetQuestionNumber();
         private int cau_User = 1;
         private bool chotat = false;
         public object readOnly = (object)false;
@@ -70,12 +70,14 @@ namespace MOS_PPT_LEARN
         {
             if (this.TopMost)
             {
-                this.buttonHelp.Text = "Về chế độ làm bài";
+                //this.buttonHelp.Text = "Về chế độ làm bài";
+                this.buttonHelp.Text = "Ẩn Taskbar";
                 this.TopMost = false;
             }
             else
             {
-                this.buttonHelp.Text = "Về chế độ thường";
+                //this.buttonHelp.Text = "Về chế độ thường";
+                this.buttonHelp.Text = "Hiện Taskbar";
                 this.TopMost = true;
             }
         }
@@ -110,22 +112,24 @@ namespace MOS_PPT_LEARN
 
         private void buttonVideoHelp_Click(object sender, EventArgs e)
         {
-            if (this.buttonVideoHelp.Text == "Hướng dẫn sử dụng")
+            if (this.buttonVideoHelp.Text == "HDSD")
             {
-                this.buttonVideoHelp.Text = "Về chế độ làm bài";
+                //this.buttonVideoHelp.Text = "Ẩn Taskbar";
+                this.buttonHelp.Text = "Ẩn Taskbar";
                 this.TopMost = false;
                 try
                 {
-                    Process.Start(Path.Combine(System.Windows.Forms.Application.StartupPath, "zip\\hdh.mp4"));
+                    //Process.Start(Path.Combine(System.Windows.Forms.Application.StartupPath, "zip\\hdh.mp4"));
+                    Process.Start("https://go.mos360.vn/mosppthdsd");
                 }
                 catch (Exception ex)
                 {
-                    int num = (int)MessageBox.Show("đổi chương trinh mặt định xem Video khác" + ex.Message);
+                    int num = (int)MessageBox.Show("Vui lòng kết nối mạng để xem Hướng dẫn sử dụng phần mềm " + ex.Message);
                 }
             }
             else
             {
-                this.buttonVideoHelp.Text = "Hướng dẫn sử dụng";
+                this.buttonVideoHelp.Text = "HDSD";
                 this.TopMost = true;
             }
         }
@@ -153,6 +157,8 @@ namespace MOS_PPT_LEARN
 
         private string Check(enviroment par)
         {
+            //MessageBox.Show(par.section.ToString() + " - " + par.quesion.ToString());
+
             string str = "";
             try
             {
@@ -222,21 +228,21 @@ namespace MOS_PPT_LEARN
             }
             catch (Exception ex)
             {
-                int num = (int)MessageBox.Show("Đống tất cả các hộp thoại đang mở trước");
+                int num = (int)MessageBox.Show("Đóng tất cả các hộp thoại đang mở trước");
             }
-            return str;
+            return par.section.ToString() + " - " + par.quesion.ToString() + " __ " + str;
         }
 
         private void buttonEV_Click(object sender, EventArgs e)
         {
-            if (this.buttonEV.Text == "Tiếng Việt")
+            if (this.buttonEV.Text == "Tiếng Anh")
             {
-                this.buttonEV.Text = "Tiếng Anh";
+                this.buttonEV.Text = "Tiếng Việt";
                 this.richTextQuestion.Text = this.paramater.DeTiengAnh;
             }
             else
             {
-                this.buttonEV.Text = "Tiếng Việt";
+                this.buttonEV.Text = "Tiếng Anh";
                 this.richTextQuestion.Text = this.paramater.DeTiengViet;
             }
         }
@@ -253,25 +259,33 @@ namespace MOS_PPT_LEARN
             }
             catch (Exception ex)
             {
-                int num = (int)MessageBox.Show("Bạn đã tắt MS Word! Tắt chương trình và làm lại");
+                int num = (int)MessageBox.Show("Bạn đã tắt MS PPT! Tắt chương trình và làm lại");
             }
         }
 
         private void buttonReset_Click(object sender, EventArgs e)
         {
-            int num1 = 0;
             try
             {
-                this.turnOff();
+                this.labelKQ.Text = "";
+                int num1 = 0;
+                try
+                {
+                    this.turnOff();
+                }
+                catch (Exception ex)
+                {
+                    int num2 = (int)MessageBox.Show("Đóng các hộp thoại trước khi reset");
+                    num1 = 1;
+                }
+                if (num1 == 1)
+                    return;
+                this.load_cau_hoi(this.cau_User);
             }
             catch (Exception ex)
             {
-                int num2 = (int)MessageBox.Show("close các hộp thoại trước khi reset");
-                num1 = 1;
+                MessageBox.Show(ex.Message);
             }
-            if (num1 == 1)
-                return;
-            this.load_cau_hoi(this.cau_User);
         }
 
         private void load_cau_hoi(int cau_hoi_so)
@@ -488,27 +502,32 @@ namespace MOS_PPT_LEARN
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (this.cau_User == this.tong_so_cau)
-            {
-                int num = (int)MessageBox.Show($"Điểm của bạn là:{(this.so_cau_dung * 1000 / this.tong_so_cau).ToString()}, số câu dúng:{this.so_cau_dung.ToString()}, số câu sai:{this.so_cau_sai.ToString()}");
-            }
             try
             {
-                this.turnOff();
+                try
+                {
+                    this.turnOff();
+                }
+                catch (Exception ex)
+                {
+                }
+                this.cau_User = int.Parse(this.comboBoxCauNext.Text.Trim());
+                this.load_cau_hoi(this.cau_User);
+                this.labelCauHienTai.Text = "Câu: " + this.cau_User.ToString();
+                if (this.cau_User < this.tong_so_cau)
+                    this.comboBoxCauNext.Text = (this.cau_User + 1).ToString();
+                else
+                    this.comboBoxCauNext.Text = "1";
+                this.labelKQ.Text = "";
+                this.check = true;
+                this.buttonEV.Text = "Tiếng Việt";
+
+                //this.labelKQ.Text = this.CheckResult(this.paramater);
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
             }
-            this.cau_User = int.Parse(this.comboBoxCauNext.Text.Trim());
-            this.load_cau_hoi(this.cau_User);
-            this.labelCauHienTai.Text = "Câu: " + this.cau_User.ToString();
-            if (this.cau_User < this.tong_so_cau)
-                this.comboBoxCauNext.Text = (this.cau_User + 1).ToString();
-            else
-                this.comboBoxCauNext.Text = "1";
-            this.labelKQ.Text = "";
-            this.check = true;
-            this.buttonEV.Text = "Tiếng Việt";
         }
 
         private void loadTongSoCau()
@@ -550,8 +569,7 @@ namespace MOS_PPT_LEARN
             try
             {
                 //this.loadTongSoCau();
-                this.tong_so_cau = 168;//Tong so cau theo section de tim file
-                this.Diem = new int[127];//Tong so cau de tinh diem
+                this.Diem = new int[this.tong_so_cau];
                 int y = 5;
                 int leftPadRight = 5;
                 int rightPadLeft = 5;

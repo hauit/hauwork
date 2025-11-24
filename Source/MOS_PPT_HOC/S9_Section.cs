@@ -70,18 +70,18 @@ namespace MOS_PPT_LEARN
                         sectionIndex1 = sectionIndex2;
                 }
                 if (sectionIndex1 == -1)
-                    return "False(không có section Structures )";
+                    return "False";
                 // ISSUE: reference to a compiler-generated method
                 int num = a.ActivePresentation.SectionProperties.FirstSlide(sectionIndex1);
                 if (num.ToString() != "3")
-                    return "False(bắt đầu section structures phải ở slide 3)";
+                    return "False";
                 // ISSUE: reference to a compiler-generated method
                 num = a.ActivePresentation.SectionProperties.SlidesCount(sectionIndex1);
-                return num.ToString() != "2" ? "False(structures chỉ có 2 slide)" : "True";
+                return num.ToString() != "2" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something Wrong)";
+                return "False";
             }
         }
 
@@ -90,12 +90,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)2].Shapes.Count <= 1)
-                    return "False(add Section Zoom)";
-                return !a.ActivePresentation.Slides[(object)2].Shapes[(object)2].Name.Contains("Section Zoom") ? "False (add Section Zoom chứ không phải đối tượng khác)" : "True";
+                    return "False";
+                return !a.ActivePresentation.Slides[(object)2].Shapes[(object)2].Name.Contains("Section Zoom") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something Wrong)";
+                return "False";
             }
         }
 
@@ -111,18 +111,18 @@ namespace MOS_PPT_LEARN
                         sectionIndex1 = sectionIndex2;
                 }
                 if (sectionIndex1 == -1)
-                    return "False(không có section Student Clubs )";
+                    return "False";
                 // ISSUE: reference to a compiler-generated method
                 int num = a.ActivePresentation.SectionProperties.FirstSlide(sectionIndex1);
                 if (num.ToString() != "3")
-                    return "False(bắt đầu Student Clubs phải ở slide 3)";
+                    return "False";
                 // ISSUE: reference to a compiler-generated method
                 num = a.ActivePresentation.SectionProperties.SlidesCount(sectionIndex1);
-                return num.ToString() != "5" ? "False(structures chỉ có 5 slide)" : "True";
+                return num.ToString() != "5" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something Wrong)";
+                return "False";
             }
         }
 

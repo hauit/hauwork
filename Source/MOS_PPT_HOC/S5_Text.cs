@@ -80,20 +80,20 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)5].Shapes[(object)3].TextFrame.TextRange.Text != "Company Confidential")
-                    return "False(Company Confidential)";
+                    return "False";
                 if (!a.ActivePresentation.Slides[(object)5].Shapes[(object)3].Name.Contains("Footer Placeholder"))
-                    return "False(chen o footer)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)6].Shapes.Count >= 3)
                 {
                     if (a.ActivePresentation.Slides[(object)6].Shapes[(object)3].TextFrame.TextRange.Text == "Company Confidential")
-                        return "False(chi cho trang 5)";
+                        return "False";
                     if (a.ActivePresentation.Slides[(object)6].Shapes[(object)3].Name.Contains("Footer Placeholder"))
-                        return "False(chi cho trang 5)";
+                        return "False";
                 }
             }
             catch (Exception ex)
             {
-                return "False(them chu vao footer slide 5)";
+                return "False";
             }
             return "True";
         }
@@ -115,14 +115,14 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)3].Hyperlinks.Count != 1)
-                    return "False(add hyperlink tren slide 3)";
+                    return "False";
                 if (!a.ActivePresentation.Slides[(object)3].Hyperlinks[1].Address.Contains("humongousinsurance.com"))
-                    return "False(http://www.humongousinsurance.com)";
-                return a.ActivePresentation.Slides[(object)3].Hyperlinks[1].TextToDisplay != "Click here to view on website" ? "False(text)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)3].Hyperlinks[1].TextToDisplay != "Click here to view on website" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (add cho text khong phai cho shape)";
+                return "False";
             }
         }
 
@@ -131,13 +131,13 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)2].Comments.Count != 1)
-                    return "False(add 1 comment tren slide 2)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)2].Comments[1].Text != "Update")
-                    return "False(Update)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(Gradient)";
+                return "False";
             }
             return "True";
         }
@@ -147,18 +147,18 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (((object)a.ActivePresentation.Slides[(object)3].Shapes[(object)"Content Placeholder 4"].Type).ToString() != "msoPlaceholder")
-                    return "False(table da bi xoa)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)3].Shapes[(object)"Content Placeholder 4"].Table.Rows.Count.ToString() != "6")
-                    return "False(xoa dong 3)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)3].Shapes[(object)"Content Placeholder 4"].Table.Rows[3].Cells[1].Shape.TextFrame.TextRange.Text.Contains("Sinusitis"))
-                    return "False(Sinusitis)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)3].Shapes[(object)"Content Placeholder 4"].Table.Columns.Count.ToString() != "5")
-                    return "False(chen cot)";
-                return !a.ActivePresentation.Slides[(object)3].Shapes[(object)"Content Placeholder 4"].Table.Columns[5].Cells[1].Shape.TextFrame.TextRange.Text.Contains("Percentage Uninsured") ? "False(Percentage Uninsured)" : "True";
+                    return "False";
+                return !a.ActivePresentation.Slides[(object)3].Shapes[(object)"Content Placeholder 4"].Table.Columns[5].Cells[1].Shape.TextFrame.TextRange.Text.Contains("Percentage Uninsured") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something Wrong)";
+                return "False";
             }
         }
 
@@ -167,14 +167,14 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)7].Shapes[(object)"Table 1"].Table.Style.Name != "Medium Style 2 - Accent 1")
-                    return "False(Medium Style 2 - Accent 1)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)7].Shapes[(object)"Table 1"].Table.HorizBanding.ToString() != "False")
-                    return "False(col Banded)";
-                return a.ActivePresentation.Slides[(object)7].Shapes[(object)"Table 1"].Table.VertBanding.ToString() != "True" ? "False(row Banded)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)7].Shapes[(object)"Table 1"].Table.VertBanding.ToString() != "True" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
         }
 
@@ -199,21 +199,21 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)4].Shapes.Count != 2)
-                    return "False (chuyen doi tu noi dung thanh smartArt)";
+                    return "False";
                 try
                 {
                     if (a.ActivePresentation.Slides[(object)4].Shapes[(object)2].SmartArt.Layout.Name != "Vertical Picture Accent List")
-                        return "False(Vertical Picture Accent List)";
+                        return "False";
                 }
                 catch (Exception ex)
                 {
-                    return "False(chuyen doi tu noi dung thanh smartArt)";
+                    return "False";
                 }
                 return "True";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
         }
 
@@ -222,12 +222,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (((object)a.ActivePresentation.Slides[(object)2].Shapes[(object)"TextBox 3"].TextFrame.VerticalAnchor).ToString() != "msoAnchorTop")
-                    return "False (Top)";
-                return ((object)a.ActivePresentation.Slides[(object)2].Shapes[(object)"TextBox 3"].TextFrame2.TextRange.get_Characters().Font.Caps).ToString() != "msoSmallCaps" ? "False(SmallCaps)" : "True";
+                    return "False";
+                return ((object)a.ActivePresentation.Slides[(object)2].Shapes[(object)"TextBox 3"].TextFrame2.TextRange.get_Characters().Font.Caps).ToString() != "msoSmallCaps" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
         }
 
@@ -236,12 +236,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)5].Shapes.Count != 6)
-                    return "False(thêm highlighter)";
-                return !a.ActivePresentation.Slides[(object)5].Shapes[(object)6].Name.Contains("nk") ? "False (thêm ink)" : "True";
+                    return "False";
+                return !a.ActivePresentation.Slides[(object)5].Shapes[(object)6].Name.Contains("nk") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
         }
 
@@ -249,11 +249,11 @@ namespace MOS_PPT_LEARN
         {
             try
             {
-                return a.ActivePresentation.Slides[(object)7].Shapes[(object)2].TextFrame.TextRange.Font.Color.RGB.ToString() != "6968388" ? "False (chọn màu)" : "True";
+                return a.ActivePresentation.Slides[(object)7].Shapes[(object)2].TextFrame.TextRange.Font.Color.RGB.ToString() != "6968388" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
         }
 

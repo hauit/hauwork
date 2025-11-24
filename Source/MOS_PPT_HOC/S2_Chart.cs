@@ -57,31 +57,31 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a?.ActivePresentation == null)
-                    return "False (no active presentation)";
+                    return "False";
 
                 if (a.ActivePresentation.Slides.Count < 7)
-                    return "False (slide 7 not found)";
+                    return "False";
 
                 Slide slide = a.ActivePresentation.Slides[7];
                 if (slide.Shapes.Count != 3)
-                    return "False(add chart)";
+                    return "False";
 
                 Shape shape = slide.Shapes[3];
                 if (((object)shape.Type).ToString() != "msoChart")
-                    return "False(chen chart)";
+                    return "False";
 
                 if (!((object)shape.Chart.ChartType).ToString().Contains("Line"))
-                    return "False(line chart)";
+                    return "False";
 
                 Chart chart = shape.Chart;
                 if (chart == null)
-                    return "False (chart object missing)";
+                    return "False";
 
                 // ChartData.Workbook is an Excel Workbook COM object
                 var rawWorkbook = chart.ChartData?.Workbook;
                 Workbook workbook = rawWorkbook as Workbook;
                 if (workbook == null)
-                    return "False (chart workbook missing)";
+                    return "False";
 
                 Worksheet worksheet = null;
                 try
@@ -94,7 +94,7 @@ namespace MOS_PPT_LEARN
                 }
 
                 if (worksheet == null)
-                    return "False (worksheet missing)";
+                    return "False";
 
                 string ReadRangeText(Worksheet ws, string rangeAddress)
                 {
@@ -114,25 +114,25 @@ namespace MOS_PPT_LEARN
 
                 string a2 = ReadRangeText(worksheet, "A2");
                 if (a2 != "2012")
-                    return "False (Cell A2)";
+                    return "False";
 
                 string b1 = ReadRangeText(worksheet, "B1");
                 if (b1 != "New Customers")
-                    return "False (Cell B1)";
+                    return "False";
 
                 string b2 = ReadRangeText(worksheet, "B2");
                 if (b2 != "1700000")
-                    return "False (Cell B2)";
+                    return "False";
 
                 string b4 = ReadRangeText(worksheet, "B4");
                 if (b4 != "3200000")
-                    return "False (Cell B4)";
+                    return "False";
 
                 return "True";
             }
             catch (Exception)
             {
-                return "False (loi khong xac dinh)";
+                return "False";
             }
         }
 
@@ -141,10 +141,10 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a?.ActivePresentation == null)
-                    return "False (no active presentation)";
+                    return "False";
 
                 if (a.ActivePresentation.Slides.Count < 4)
-                    return "False (slide 4 not found)";
+                    return "False";
 
                 Slide slide = a.ActivePresentation.Slides[4];
 
@@ -160,10 +160,10 @@ namespace MOS_PPT_LEARN
                 }
 
                 if (target == null)
-                    return "False(chart da bi xoa)";
+                    return "False";
 
                 if (((object)target.Type).ToString() != "msoPlaceholder")
-                    return "False(chart da bi xoa)";
+                    return "False";
 
                 Chart chart = null;
                 try
@@ -176,12 +176,12 @@ namespace MOS_PPT_LEARN
                 }
 
                 if (chart == null)
-                    return "False (no chart)";
+                    return "False";
 
                 // If legend is absent, it's a failure for this test
                 var legend = chart.Legend;
                 if (legend == null)
-                    return "False (legend missing)";
+                    return "False";
 
                 // Compare to enum for robustness
                 try
@@ -190,19 +190,19 @@ namespace MOS_PPT_LEARN
                     var posObj = legend.Position;
                     if (posObj is XlLegendPosition pos)
                     {
-                        return pos == XlLegendPosition.xlLegendPositionTop ? "True" : "False(Top)";
+                        return pos == XlLegendPosition.xlLegendPositionTop ? "True" : "False";
                     }
                     // fallback to string compare
-                    return posObj.ToString() == "xlLegendPositionTop" ? "True" : "False(Top)";
+                    return posObj.ToString() == "xlLegendPositionTop" ? "True" : "False";
                 }
                 catch
                 {
-                    return "False(Top)";
+                    return "False";
                 }
             }
             catch (Exception)
             {
-                return "False (them lagend)";
+                return "False";
             }
         }
 
@@ -212,11 +212,11 @@ namespace MOS_PPT_LEARN
             {
                 Slide slide = a.ActivePresentation.Slides[(object)6];
                 Chart chart = slide.Shapes[(object)"Chart 4"].Chart;
-                return ((object)chart.ChartType).ToString() != "xl3DColumnClustered" ? "False(3DColumnClustered)" : "True";
+                return ((object)chart.ChartType).ToString() != "xl3DColumnClustered" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
         }
 
@@ -226,11 +226,11 @@ namespace MOS_PPT_LEARN
             {
                 Slide slide = a.ActivePresentation.Slides[(object)4];
                 Chart chart = slide.Shapes[(object)4].Chart;
-                return chart.ChartType != XlChartType.xl3DColumnClustered ? "False (ChartType)" : "True";
+                return chart.ChartType != XlChartType.xl3DColumnClustered ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (add chart chưa đúng)";
+                return "False";
             }
         }
 
@@ -240,11 +240,11 @@ namespace MOS_PPT_LEARN
             {
                 Slide slide = a.ActivePresentation.Slides[(object)4];
                 Chart chart = slide.Shapes[(object)3].Chart;
-                return chart.ChartType != XlChartType.xlBarClustered ? "False (ChartType)" : "True";
+                return chart.ChartType != XlChartType.xlBarClustered ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
         }
 
@@ -254,11 +254,11 @@ namespace MOS_PPT_LEARN
             {
                 Slide slide = a.ActivePresentation.Slides[(object)5];
                 Chart chart = slide.Shapes[(object)2].Chart;
-                return !chart.DataTable.ShowLegendKey ? "False (LegendKey)" : "True";
+                return !chart.DataTable.ShowLegendKey ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (DataTable)";
+                return "False";
             }
         }
 
@@ -268,11 +268,11 @@ namespace MOS_PPT_LEARN
             {
                 Slide slide = a.ActivePresentation.Slides[(object)6];
                 Chart chart = slide.Shapes[(object)3].Chart;
-                return chart.ChartType != XlChartType.xlLineMarkers ? "False (ChartType)" : "True";
+                return chart.ChartType != XlChartType.xlLineMarkers ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (add chart chưa đúng)";
+                return "False";
             }
         }
 

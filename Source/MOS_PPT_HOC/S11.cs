@@ -143,12 +143,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)3].Shapes[(object)"Table 5"].Table.Rows.Count.ToString() != "8")
-                    return "False(thêm dòng vào table)";
-                return a.ActivePresentation.Slides[(object)3].Shapes[(object)"Table 5"].Table.Rows[8].Cells[1].Shape.TextFrame.TextRange.Text != "Sporting Event" ? "False(nhập đúng nọi dung)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)3].Shapes[(object)"Table 5"].Table.Rows[8].Cells[1].Shape.TextFrame.TextRange.Text != "Sporting Event" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
         }
 
@@ -157,11 +157,11 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.SlideShowSettings.AdvanceMode.ToString() != "ppSlideShowManualAdvance")
-                    return "False(chỉnh slide show advance)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -170,15 +170,29 @@ namespace MOS_PPT_LEARN
         {
             try
             {
-                string address = a.ActivePresentation.Slides[(object)1].Shapes[(object)1].TextFrame.TextRange.ActionSettings[PpMouseActivation.ppMouseClick].Hyperlink.Address;
-                if (!address.Contains("http://www.treyresearch.net"))
-                    return $"False({address})";
+                var slide1 = a.ActivePresentation.Slides[1];
+
+                // PowerPoint lưu hyperlink trong slide.Hyperlinks (danh sách toàn bộ hyperlink trên slide)
+                foreach (Hyperlink link in slide1.Hyperlinks)
+                {
+                    // link.TextToDisplay = text hiển thị (ví dụ: "Trey Research")
+                    // link.Address = URL (ví dụ: "http://www.treyresearch.net")
+                    string displayText = link.TextToDisplay.Trim();
+                    string url = link.Address.Trim();
+
+                    //return displayText.ToString() + " " + url.ToString();
+
+                    if (displayText == "Trey Research" && url.Contains("http://www.treyresearch.net"))
+                    {
+                        return "True";
+                    }
+                }
+                return "False";
             }
-            catch (Exception ex)
+            catch
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
-            return "True";
         }
 
         private static string Cau9(Application a, Presentation d)
@@ -186,15 +200,15 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)1].Shapes.Count > 2)
-                    return "False(không chèn title slide)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)2].Shapes.Count != 3)
-                    return "False(chèn sile number và footer)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)3].Shapes.Count != 5)
-                    return "False(app dụng cho các slide)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -204,11 +218,11 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)8].Shapes[(object)2].TextFrame2.Column.Number != 2)
-                    return "False(chia nội dung slide 8 thành 2 cột)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(không xác định)";
+                return "False";
             }
             return "True";
         }
@@ -218,15 +232,15 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.PrintOptions.NumberOfCopies != 3)
-                    return "Fales(3 copy)";
+                    return "False";
                 if (a.ActivePresentation.PrintOptions.OutputType != PpPrintOutputType.ppPrintOutputNotesPages)
-                    return "Fales(in note pages)";
+                    return "False";
                 if (a.ActivePresentation.PrintOptions.Collate != MsoTriState.msoFalse)
-                    return "Fales(3 copy)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -236,13 +250,13 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)2].Shapes.Count != 2)
-                    return "False(thêm Zoom slide)";
+                    return "False";
                 if (!a.ActivePresentation.Slides[(object)2].Shapes[(object)2].Name.Contains("ummary"))
-                    return "Fales(Summary Zoom slide)";
+                    return "Fales";
             }
             catch (Exception ex)
             {
-                return "False(Lỗi hệ thống)";
+                return "False";
             }
             return "True";
         }
@@ -252,17 +266,17 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)5].Background.Fill.Transparency.ToString() != "0.75")
-                    return "False(Transparency=75)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)5].Background.Fill.Type != MsoFillType.msoFillPicture)
-                    return "False(fill picture)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)4].Background.Fill.Transparency.ToString() == "0.75")
-                    return "False(không apply to all)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)4].Background.Fill.Type == MsoFillType.msoFillPicture)
-                    return "False(không apply to all)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -271,16 +285,29 @@ namespace MOS_PPT_LEARN
         {
             try
             {
-                if (!a.ActivePresentation.Slides[(object)1].Shapes[(object)4].TextFrame.TextRange.ActionSettings[PpMouseActivation.ppMouseClick].Hyperlink.Address.Contains("http://www.firstupconsultants.com"))
-                    return "False(Address)";
-                if (a.ActivePresentation.Slides[(object)1].Shapes[(object)4].TextFrame.TextRange.ActionSettings[PpMouseActivation.ppMouseClick].Hyperlink.TextToDisplay != "Contact Us")
-                    return "False(TextToDisplay)";
+                var slide1 = a.ActivePresentation.Slides[1];
+
+                // PowerPoint lưu hyperlink trong slide.Hyperlinks (danh sách toàn bộ hyperlink trên slide)
+                foreach (Hyperlink link in slide1.Hyperlinks)
+                {
+                    // link.TextToDisplay = text hiển thị (ví dụ: "Contact Us")
+                    // link.Address = URL (ví dụ: "http://www.firstupconsultants.com")
+                    string displayText = link.TextToDisplay.Trim();
+                    string url = link.Address.Trim();
+
+                    //return displayText.ToString() + " " + url.ToString();
+
+                    if (displayText == "Contact Us" && url.Contains("http://www.firstupconsultants.com"))
+                    {
+                        return "True";
+                    }
+                }
+                return "False";
             }
-            catch (Exception ex)
+            catch
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
-            return "True";
         }
 
         private static string Cau15(Application a, Presentation d)
@@ -288,15 +315,15 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.PrintOptions.NumberOfCopies != 5)
-                    return "False(in 5 bảng copy)";
+                    return "False";
                 if (a.ActivePresentation.PrintOptions.OutputType != PpPrintOutputType.ppPrintOutputNotesPages)
-                    return "False(note page)";
+                    return "False";
                 if (a.ActivePresentation.PrintOptions.Collate != MsoTriState.msoFalse)
-                    return "False(không theo bộ)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -306,12 +333,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)1].Shapes.Count != 3)
-                    return "False(thêm thêm zoom slide)";
-                return !a.ActivePresentation.Slides[(object)1].Shapes[(object)3].Name.Contains("oom") ? "False (thêm link zoom slide)" : "True";
+                    return "False";
+                return !a.ActivePresentation.Slides[(object)1].Shapes[(object)3].Name.Contains("oom") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (lỗi hệ thống)";
+                return "False";
             }
         }
 
@@ -320,13 +347,13 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)2].Shapes.Count.ToString() != "4")
-                    return "Fales(chèn footer và số trang)";
+                    return "Fales";
                 if (a.ActivePresentation.Slides[(object)1].Shapes.Count.ToString() != "5")
-                    return "Fales(không chen cho slide tiêu đề)";
+                    return "Fales";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -336,11 +363,11 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)2].Shapes[(object)"Table 5"].Table.Columns.Count.ToString() != "3")
-                    return "False(xóa cột cuối)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }

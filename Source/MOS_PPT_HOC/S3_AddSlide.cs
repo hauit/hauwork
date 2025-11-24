@@ -49,11 +49,11 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)3].Shapes[(object)"Title 1"].TextFrame.TextRange.Text != "Extra")
-                    return "False(chen sai vi tri hoac sai outline)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -63,13 +63,13 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides.Count != 4)
-                    return "False(add slide from outline)";
+                    return "False";
                 if (!a.ActivePresentation.Slides[(object)4].Shapes[(object)1].TextFrame.TextRange.Text.Contains("Certificate"))
-                    return "False(Vanessa)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -79,12 +79,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)3].Shapes.Count != 2)
-                    return "False(chen slide)";
-                return !a.ActivePresentation.Slides[(object)3].Shapes[(object)1].TextFrame.TextRange.Text.Contains("New product") ? "False(sai outline)" : "True";
+                    return "False";
+                return !a.ActivePresentation.Slides[(object)3].Shapes[(object)1].TextFrame.TextRange.Text.Contains("New product") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Wrong position)";
+                return "False";
             }
         }
 
@@ -93,12 +93,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)4].Shapes.Count != 2)
-                    return "False(chen slide)";
-                return !a.ActivePresentation.Slides[(object)4].Shapes[(object)1].TextFrame.TextRange.Text.Contains("New product") ? "False(sai outline)" : "True";
+                    return "False";
+                return !a.ActivePresentation.Slides[(object)4].Shapes[(object)1].TextFrame.TextRange.Text.Contains("New product") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Wrong position)";
+                return "False";
             }
         }
 
@@ -119,12 +119,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides.Count != 4)
-                    return "False(xoa slide)";
-                return a.ActivePresentation.Slides[(object)4].Shapes.Count != 2 || a.ActivePresentation.Slides[(object)4].Shapes[(object)1].TextFrame.TextRange.Text != "Top Sellers: " ? "False(sai slide)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)4].Shapes.Count != 2 || a.ActivePresentation.Slides[(object)4].Shapes[(object)1].TextFrame.TextRange.Text != "Top Sellers: " ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Wrong position)";
+                return "False";
             }
         }
 
@@ -133,12 +133,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)4].Shapes.Count != 2)
-                    return "False(add new slide from outline)";
-                return a.ActivePresentation.Slides[(object)4].Shapes[(object)"Text Placeholder 2"].TextFrame.TextRange.Text != "Home stay\rHouse boat\r…" ? "False(Wrong file)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)4].Shapes[(object)"Text Placeholder 2"].TextFrame.TextRange.Text != "Home stay\rHouse boat\r…" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Wrong position)";
+                return "False";
             }
         }
 
@@ -146,11 +146,11 @@ namespace MOS_PPT_LEARN
         {
             try
             {
-                return a.ActivePresentation.Slides[(object)5].SlideShowTransition.Hidden != MsoTriState.msoTrue ? "False(ân slide 5)" : "True";
+                return a.ActivePresentation.Slides[(object)5].SlideShowTransition.Hidden != MsoTriState.msoTrue ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Wrong position)";
+                return "False";
             }
         }
 
@@ -159,12 +159,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)3].Shapes.Count != 2)
-                    return "False(add new slide from outline)";
-                return a.ActivePresentation.Slides[(object)3].Shapes[(object)"Text Placeholder 2"].TextFrame.TextRange.Text != "Home stay\rHouse boat\r…" ? "False(Wrong file)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)3].Shapes[(object)"Text Placeholder 2"].TextFrame.TextRange.Text != "Home stay\rHouse boat\r…" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Wrong position)";
+                return "False";
             }
         }
 
@@ -173,16 +173,16 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)6].Shapes.Count != 2)
-                    return "False(number of shape)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)6].Shapes[(object)1].TextFrame.TextRange.Text != "Discover Your Campus")
-                    return "False(Sai vi tri slide)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)7].Shapes.Count != 2)
-                    return "False(number of shape)";
-                return a.ActivePresentation.Slides[(object)7].Shapes[(object)1].TextFrame.TextRange.Text != "Display Your Art" ? "False(Sai vi tri slide)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)7].Shapes[(object)1].TextFrame.TextRange.Text != "Display Your Art" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Wrong position)";
+                return "False";
             }
         }
 

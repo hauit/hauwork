@@ -39,8 +39,8 @@ namespace MOS_PPT_LEARN
 
         private static void run()
         {
-            Application.Run((Form)new Form_New());
-            return;
+            //Application.Run((Form)new Form_New());
+            //return;
             Application.Run((Form)new Form2());
             switch (Program.status)
             {

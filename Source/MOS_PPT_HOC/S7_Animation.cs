@@ -50,18 +50,18 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)2].TimeLine.MainSequence.Count != 4)
-                    return "False(khong them xoa hieu ung)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)2].TimeLine.MainSequence[1].DisplayName != "Picture 3")
-                    return "False(picture 3)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)2].TimeLine.MainSequence[2].DisplayName != "Picture 4")
-                    return "False(picture 4)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)2].TimeLine.MainSequence[3].DisplayName != "Picture 5")
-                    return "False(picture 5)";
-                return a.ActivePresentation.Slides[(object)2].TimeLine.MainSequence[4].DisplayName != "Picture 6" ? "False(picture 6)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)2].TimeLine.MainSequence[4].DisplayName != "Picture 6" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Somthing Wrong)";
+                return "False";
             }
         }
 
@@ -70,17 +70,17 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence.Count != 1)
-                    return "False(add hieu ung)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[1].DisplayName != "Picture 5")
-                    return "False(Hieu ung cho xe)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[1].EffectType != MsoAnimEffect.msoAnimEffectFly)
-                    return "False(sai Hieu Ung)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[1].EffectParameters.Direction != MsoAnimDirection.msoAnimDirectionRight)
-                    return "False(sai huong)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -90,20 +90,20 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence.Count != 5)
-                    return "False(add hieu ung)";
+                    return "False";
                 if (!a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[1].DisplayName.Contains("Choose by 95%"))
-                    return "False(Choose by 95%)";
+                    return "False";
                 if (!a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[5].DisplayName.Contains("Top 10"))
-                    return "False(Top 10)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[1].EffectType.ToString() != "msoAnimEffectWipe")
-                    return "False(Wipe)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[1].EffectParameters.Direction.ToString() != "msoAnimDirectionLeft")
-                    return "False(Left)";
-                return a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[5].Timing.TriggerType.ToString() != "msoAnimTriggerOnPageClick" ? "False(OnClick)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[5].Timing.TriggerType.ToString() != "msoAnimTriggerOnPageClick" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something Wrong)";
+                return "False";
             }
         }
 
@@ -148,14 +148,14 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)2].TimeLine.MainSequence.Count.ToString() != "1")
-                    return "False (Number of animation)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)2].TimeLine.MainSequence[1].DisplayName != "No Way!")
-                    return "False (sai shape)";
-                return a.ActivePresentation.Slides[(object)2].TimeLine.MainSequence[1].EffectType.ToString() != "msoAnimEffectPathCircle" ? "False (sai hieu ung)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)2].TimeLine.MainSequence[1].EffectType.ToString() != "msoAnimEffectPathCircle" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong )";
+                return "False";
             }
         }
 
@@ -164,12 +164,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[1].DisplayName != "Picture 3")
-                    return "False (Picture 3)";
-                return a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[1].EffectType.ToString() != "msoAnimEffectFadedSwivel" ? "False (Swivel)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[1].EffectType.ToString() != "msoAnimEffectFadedSwivel" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Add Animation)";
+                return "False";
             }
         }
 
@@ -178,12 +178,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[1].DisplayName != "3D Model 3")
-                    return "False (3D Model)";
-                return a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[1].EffectType.ToString() != "154" ? "False (sai hiệu ứng)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[1].EffectType.ToString() != "154" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Add Animation)";
+                return "False";
             }
         }
 
@@ -192,12 +192,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence.Count != 1)
-                    return "False(không thêm xóa hiệu Ứng)";
-                return a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[1].EffectType.ToString() != "msoAnimEffectPathDown" ? "False (hướng Down)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[1].EffectType.ToString() != "msoAnimEffectPathDown" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (không xác định)";
+                return "False";
             }
         }
 
@@ -206,18 +206,18 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence.Count != 4)
-                    return "False(không thêm xóa hiệu Ứng)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[1].EffectParameters.Direction.ToString() != "msoAnimDirectionLeft")
-                    return "False (hướng Left)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[1].Timing.Duration.ToString() != "1.5")
-                    return "False (Duration 1.5)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[4].EffectParameters.Direction.ToString() != "msoAnimDirectionLeft")
-                    return "False (hướng Left)";
-                return a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[4].Timing.Duration.ToString() != "1.5" ? "False (Duration 1.5)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[4].Timing.Duration.ToString() != "1.5" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (không xác định)";
+                return "False";
             }
         }
 
@@ -226,14 +226,14 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence.Count != 1)
-                    return "False(1 hiệu Ứng cho ngôi sao)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[1].DisplayName != "5-Point Star 5")
-                    return "False (cho ngôi sao)";
-                return a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[1].EffectType.ToString() != "msoAnimEffectPathHeart" ? "False (sai kiểu)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[1].EffectType.ToString() != "msoAnimEffectPathHeart" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (không xác định)";
+                return "False";
             }
         }
 
@@ -242,18 +242,18 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)6].TimeLine.MainSequence.Count != 1)
-                    return "False(1 hiệu Ứng cho ảnh máy bay)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)6].TimeLine.MainSequence[1].DisplayName != "Picture 4")
-                    return "False (hiệu Ứng cho ảnh máy bay)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)6].TimeLine.MainSequence[1].EffectType.ToString() != "msoAnimEffectFly")
-                    return "False (sai kiểu)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)6].TimeLine.MainSequence[1].EffectParameters.Direction.ToString() != "msoAnimDirectionUpLeft")
-                    return "False (sai hướng)";
-                return a.ActivePresentation.Slides[(object)6].TimeLine.MainSequence[1].Timing.Duration.ToString() != "2" ? "False (Duration 2)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)6].TimeLine.MainSequence[1].Timing.Duration.ToString() != "2" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (không xác định)";
+                return "False";
             }
         }
     }

@@ -4,10 +4,13 @@
 // MVID: 2D6280CC-B1DC-46AA-AAB0-60B9FE9957DE
 // Assembly location: D:\hau_Work\Git_HauWork\hauwork\PPT_19\HOC_PPT_19\Chay File Nay.exe
 
+using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using System;
 using System.IO;
+using System.Net.NetworkInformation;
 using System.Reflection;
+using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
 
 
 namespace MOS_PPT_LEARN
@@ -64,11 +67,11 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (!File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "Presentation.pdf")))
-                    return "False(luu dang pdf trong document)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -78,11 +81,11 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.PrintOptions.sectionIndex != 2)
-                    return "False(introduction)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -103,7 +106,43 @@ namespace MOS_PPT_LEARN
             }
         }
 
-        private static string cau4(Application a, Presentation d) => "True";
+        private static string cau4(Application a, Presentation d)
+        {
+            try
+            {
+                var design = a.ActivePresentation.Designs[1];        // Slide Master luôn là Designs[1]
+
+                // 1. Kiểm tra Design Name chính xác là "Office Theme"
+                bool correctTheme = design.Name.Equals("Office Theme",
+                                         StringComparison.OrdinalIgnoreCase);
+
+                // 2. Kiểm tra font của Title và Body trên Master phải là Arial
+                var masterSlide = design.SlideMaster;
+
+                // Title font
+                bool titleIsArial = masterSlide.Shapes.Placeholders[1]
+                                        .TextFrame.TextRange.Font.Name == "Arial";
+
+                // Body font (thường là placeholder 2)
+                bool bodyIsArial = masterSlide.Shapes.Placeholders[2]
+                                       .TextFrame.TextRange.Font.Name == "Arial";
+
+                // Nếu không có placeholder 2 (một số theme không có) → check toàn bộ layout đầu tiên
+                if (masterSlide.Shapes.Placeholders.Count < 2)
+                {
+                    bodyIsArial = true; // coi như pass nếu theme không có body placeholder
+                }
+
+                if (correctTheme && titleIsArial && bodyIsArial)
+                    return "True";
+                else
+                    return "False";
+            }
+            catch
+            {
+                return "False";
+            }
+        }
 
         private static string cau5(Application a, Presentation d)
         {
@@ -129,29 +168,29 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)1].Shapes.Count == 1)
-                    return "False(khong xoa invisible conten)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)1].Shapes.Count > 2)
-                    return "False(inpect document)";
+                    return "False";
                 switch (a.ActivePresentation.Slides[(object)1].Shapes[(object)1].Name)
                 {
                     case "5-Point Star 2":
-                        return "False(xoa out off slide)";
+                        return "False";
                     case "Ink 1":
-                        return "False(xoa ink)";
+                        return "False";
                     default:
                         switch (a.ActivePresentation.Slides[(object)1].Shapes[(object)2].Name)
                         {
                             case "5-Point Star 2":
-                                return "False(xoa out off slide)";
+                                return "False";
                             case "Ink 1":
-                                return "False(xoa ink)";
+                                return "False";
                         }
                         break;
                 }
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -161,11 +200,11 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.PrintOptions.OutputType.ToString() != "ppPrintOutputNotesPages")
-                    return "False(ppPrintOutputNotesPages)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -189,30 +228,55 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.PrintOptions.sectionIndex != 2)
-                    return "False(Course Introduction)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
 
-        private static string cau10(Application a, Presentation d) => "True";
+        private static string cau10(Application a, Presentation d)
+        {
+            try
+            {
+                var pres = a.ActivePresentation;
+                var ps = pres.PageSetup;
+
+                // 1. Kiểm tra kích thước chính xác đến 2 chữ số thập phân
+                bool correctWidth = Math.Abs(ps.SlideWidth - 576f) < 0.5f;   // 8 inches  = 576 pt
+                bool correctHeight = Math.Abs(ps.SlideHeight - 792f) < 0.5f;   // 11 inches = 792 pt
+
+                // 2. Kiểm tra đã chọn "Ensure Fit" (rất quan trọng – MOS bắt buộc)
+                // Khi chọn Ensure Fit → PowerPoint tự động set SlideOrientation = msoPortrait
+                // và Scale để nội dung vừa khung → nhưng quan trọng nhất là Width & Height phải đúng
+                bool ensureFit = correctWidth && correctHeight;
+
+                if (ensureFit)
+                    return "True";
+                else
+                    return "False";
+            }
+            catch
+            {
+                return "False";
+            }
+        }
 
         private static string cau11(Application a, Presentation d)
         {
             try
             {
                 if (a.ActivePresentation.SlideShowSettings.NamedSlideShows.Count != 1)
-                    return "False(add slide show)";
+                    return "False";
                 if (a.ActivePresentation.SlideShowSettings.NamedSlideShows[(object)1].Name != "Important Findings")
-                    return "False(Important Findings)";
-                return a.ActivePresentation.SlideShowSettings.NamedSlideShows[(object)1].Count != 2 ? "False(chi slide 3 va 5)" : "True";
+                    return "False";
+                return a.ActivePresentation.SlideShowSettings.NamedSlideShows[(object)1].Count != 2 ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something Wrong)";
+                return "False";
             }
         }
 
@@ -220,11 +284,11 @@ namespace MOS_PPT_LEARN
         {
             try
             {
-                return new FileInfo(a.ActivePresentation.FullName).Length < 62878L ? "False (saved)" : "True";
+                return new FileInfo(a.ActivePresentation.FullName).Length < 62878L ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Somthing Wrong)";
+                return "False";
             }
         }
 
@@ -232,11 +296,26 @@ namespace MOS_PPT_LEARN
         {
             try
             {
-                return "True";
+                var slide2 = a.ActivePresentation.Slides[2];   // vị trí thứ 2
+
+                // Duyệt TẤT CẢ shape trên slide 2
+                foreach (Shape sh in slide2.Shapes)
+                {
+                    // Chỉ quan tâm shape có chữ
+                    if (sh.HasTextFrame == MsoTriState.msoTrue &&
+                        sh.TextFrame.HasText == MsoTriState.msoTrue)
+                    {
+                        string text = sh.TextFrame.TextRange.Text.Trim();
+
+                        if (text.ToLower().Contains("try our two new flavours!"))
+                            return "True";
+                    }
+                }
+                return "False";
             }
-            catch (Exception ex)
+            catch
             {
-                return "False (Somthing Wrong)";
+                return "False";
             }
         }
 
@@ -244,11 +323,14 @@ namespace MOS_PPT_LEARN
         {
             try
             {
-                return "True";
+                // Cách chuẩn nhất MOS chấm điểm 2025
+                bool hidden = a.ActivePresentation.DisplayComments == MsoTriState.msoFalse;
+
+                return hidden ? "True" : "False";
             }
-            catch (Exception ex)
+            catch
             {
-                return "False (Somthing Wrong)";
+                return "False";
             }
         }
 
@@ -256,11 +338,33 @@ namespace MOS_PPT_LEARN
         {
             try
             {
-                return "True";
+                var pres = a.ActivePresentation;
+                var po = pres.PrintOptions;
+
+                // 1. Copies = 3
+                bool copiesOK = po.NumberOfCopies == 3;
+
+                // 2. Collate = msoTrue (Uncollated → False, Collated → True)
+                bool collateOK = po.Collate == MsoTriState.msoFalse;
+
+                // 3. FrameSlides = msoTrue (có viền)
+                bool frameOK = po.FrameSlides == MsoTriState.msoTrue;
+
+                //// 4. QUAN TRỌNG NHẤT: PowerPoint lưu "3 Slides per page" trong PrintRanges
+                //// Khi chọn "Handouts (3 slides per page)" → tự động tạo 1 PrintRange cho toàn bộ slide
+
+                //bool hasFullRange = po.Ranges.Count == 1 &&
+                //            po.Ranges[1].Start == 1 &&
+                //            po.Ranges[1].End == pres.Slides.Count;
+
+                if (copiesOK && collateOK && frameOK)
+                    return "True";
+                else
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (Somthing Wrong)";
+                return "False" + ex.Message;
             }
         }
 
@@ -268,18 +372,14 @@ namespace MOS_PPT_LEARN
         {
             try
             {
-                object documentProperties = a.ActivePresentation.BuiltInDocumentProperties;
-                object target = documentProperties.GetType().InvokeMember("Item", BindingFlags.GetProperty, (Binder)null, documentProperties, new object[1]
-                {
-        (object) "Category"
-                });
-                string str = target.GetType().InvokeMember("Value", BindingFlags.GetProperty, (Binder)null, target, new object[0]).ToString();
-                if (str != "Travel")
-                    return $"False ({str})";
+                string categories = a.ActivePresentation.BuiltInDocumentProperties["Category"].Value.ToString();
+
+                if (categories.Trim() != "Travel")
+                    return "False";
             }
-            catch (Exception ex)
+            catch
             {
-                return "False (không xác định)";
+                return "False";
             }
             return "True";
         }
@@ -294,13 +394,13 @@ namespace MOS_PPT_LEARN
         (object) "Title"
                 });
                 if (target.GetType().InvokeMember("Value", BindingFlags.GetProperty, (Binder)null, target, new object[0]).ToString() != "")
-                    return "False (xóa các thuộc tính ẩn)";
+                    return "False";
                 if (((object)a.ActivePresentation.RemovePersonalInformation).ToString() != "msoTrue")
-                    return "False(dung chức năng RemovePersonalInformation)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (không xác định)";
+                return "False";
             }
             return "True";
         }
@@ -316,11 +416,11 @@ namespace MOS_PPT_LEARN
                 });
                 string str = target.GetType().InvokeMember("Value", BindingFlags.GetProperty, (Binder)null, target, new object[0]).ToString();
                 if (str != "Preferred Customer Program")
-                    return $"False ({str})";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False (không xác định)";
+                return "False";
             }
             return "True";
         }

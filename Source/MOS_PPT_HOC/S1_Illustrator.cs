@@ -5,7 +5,9 @@
 // Assembly location: D:\hau_Work\Git_HauWork\hauwork\PPT_19\HOC_PPT_19\Chay File Nay.exe
 
 using Microsoft.Office.Interop.PowerPoint;
+using Microsoft.Office.Core;
 using System;
+using Shape = Microsoft.Office.Core.Shape;
 
 
 namespace MOS_PPT_LEARN
@@ -90,13 +92,13 @@ namespace MOS_PPT_LEARN
             {
                 float bevelTopDepth = a.ActivePresentation.Slides[(object)2].Shapes[(object)"Picture 9"].ThreeD.BevelTopDepth;
                 if (bevelTopDepth.ToString() != "6")
-                    return "False(bevel)";
+                    return "False";
                 bevelTopDepth = a.ActivePresentation.Slides[(object)2].Shapes[(object)"Picture 3"].ThreeD.BevelTopDepth;
-                return bevelTopDepth.ToString() != "6" ? "False(bevel)" : "True";
+                return bevelTopDepth.ToString() != "6" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Somthing Wrong)";
+                return "False";
             }
         }
 
@@ -104,11 +106,11 @@ namespace MOS_PPT_LEARN
         {
             try
             {
-                return a.ActivePresentation.Slides[(object)2].Shapes[(object)"Picture 3"].Top.ToString() != "315.8544" ? "False(aglin giua cac doi tuong khong phai voi slide)" : "True";
+                return a.ActivePresentation.Slides[(object)2].Shapes[(object)"Picture 3"].Top.ToString() != "315.8544" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something Wrong)";
+                return "False";
             }
         }
 
@@ -116,11 +118,30 @@ namespace MOS_PPT_LEARN
         {
             try
             {
-                return "True";
+                var slide = a.ActivePresentation.Slides[(object)3];
+                for (int i = 1; i <= slide.Shapes.Count; i++)
+                {
+                    var shape = slide.Shapes[(object)i];
+
+                    // Icon SVG thật sự có Type = msoAutoShape hoặc msoFreeform + có Fill + Line
+                    if (shape.Fill.Type == MsoFillType.msoFillSolid &&
+                        shape.Line.Visible == MsoTriState.msoTrue)
+                    {
+                        //return i.ToString();
+
+                        int fill = shape.Fill.ForeColor.RGB & 0xFFFFFF;
+                        int line = shape.Line.ForeColor.RGB & 0xFFFFFF;
+
+                        if (fill == 12611584 && line == 65535)
+                            return "True";
+                    }
+                }
+
+                return "False";
             }
             catch (Exception ex)
             {
-                return "False (Somthing Wrong)";
+                return "False";
             }
         }
 
@@ -129,17 +150,17 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)4].Shapes.Count != 3)
-                    return "False(khong them xoa doi tuong)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)4].Shapes[(object)3].Name != "TextBox 4")
-                    return "False(TextBox)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)4].Shapes[(object)2].Name != "Picture 6")
-                    return "False(hinh Tay)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)4].Shapes[(object)1].Name != "Picture 3")
-                    return "False(Hinh Gia dinh)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(Gradient)";
+                return "False";
             }
             return "True";
         }
@@ -179,13 +200,13 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (((object)a.ActivePresentation.Slides[(object)5].Shapes[(object)2].Type).ToString() != "msoPlaceholder")
-                    return "False(chen smartArt)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)5].Shapes[(object)2].SmartArt.Layout.Name != "Pyramid List")
-                    return "False(Pyramid List)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -194,11 +215,11 @@ namespace MOS_PPT_LEARN
         {
             try
             {
-                return a.ActivePresentation.Slides[(object)2].Shapes[(object)5].Top.ToString() != "267.12" ? "False(align giua cac doi tuong)" : "True";
+                return a.ActivePresentation.Slides[(object)2].Shapes[(object)5].Top.ToString() != "267.12" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Convert to smartArt)";
+                return "False";
             }
         }
 
@@ -219,12 +240,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)5].Shapes[(object)"Picture 4"].Fill.PictureEffects.Count.ToString() != "1")
-                    return "False(add hieu ung cho anh)";
-                return ((object)a.ActivePresentation.Slides[(object)5].Shapes[(object)"Picture 4"].Fill.PictureEffects[1].Type).ToString() != "msoEffectPastelsSmooth" ? "False(sai hieu ung)" : "True";
+                    return "False";
+                return ((object)a.ActivePresentation.Slides[(object)5].Shapes[(object)"Picture 4"].Fill.PictureEffects[1].Type).ToString() != "msoEffectPastelsSmooth" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
         }
 
@@ -233,12 +254,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)3].Shapes.Count != 11)
-                    return "False(number of shape)";
-                return a.ActivePresentation.Slides[(object)3].Shapes[(object)11].Name != "Oval 11" ? "False(cho noi len cung)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)3].Shapes[(object)11].Name != "Oval 11" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (loi khong xac dinh)";
+                return "False";
             }
         }
 
@@ -247,12 +268,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)1].Shapes.Count != 1)
-                    return "False(number of shape)";
-                return a.ActivePresentation.Slides[(object)1].Shapes[(object)1].TextFrame.TextRange.Font.Color.RGB.ToString() != "16777215" ? "False(wordArt Type)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)1].Shapes[(object)1].TextFrame.TextRange.Font.Color.RGB.ToString() != "16777215" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
         }
 
@@ -273,12 +294,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)3].Shapes.Count != 2)
-                    return "False(Group 3 hinh)";
-                return !a.ActivePresentation.Slides[(object)3].Shapes[(object)2].Name.Contains("Group") ? "False(Group)" : "True";
+                    return "False";
+                return !a.ActivePresentation.Slides[(object)3].Shapes[(object)2].Name.Contains("Group") ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
         }
 
@@ -287,21 +308,21 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)2].Shapes.Count != 3)
-                    return "False(sai số lượng các đối tượng)";
+                    return "False";
                 string name = a.ActivePresentation.Slides[(object)2].Shapes[(object)2].SmartArt.Layout.Name;
                 if (name != "Vertical Curved List")
-                    return $"False({name})";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)2].Shapes[(object)2].SmartArt.Nodes.Count != 2)
-                    return "False(xóa 1 shape)";
+                    return "False";
                 string text1 = a.ActivePresentation.Slides[(object)2].Shapes[(object)2].SmartArt.Nodes[(object)1].TextFrame2.TextRange.Text;
                 if (text1 != "Structures")
-                    return $"False({text1})";
+                    return "False";
                 string text2 = a.ActivePresentation.Slides[(object)2].Shapes[(object)2].SmartArt.Nodes[(object)2].TextFrame2.TextRange.Text;
-                return text2 != "Perennials" ? $"False({text2})" : "True";
+                return text2 != "Perennials" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (chuyen khung noi dung thanh smartArt)";
+                return "False";
             }
         }
 
@@ -310,16 +331,16 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)3].Shapes.Count != 3)
-                    return "False(sai số lượng các đối tượng)";
+                    return "False";
                 if (((object)a.ActivePresentation.Slides[(object)3].Shapes[(object)2].Type).ToString() != "msoPlaceholder")
-                    return "False(chèn sai đối tượng)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)3].Shapes[(object)2].Height.ToString() != "288")
-                    return "False(chiều cao)";
-                return a.ActivePresentation.Slides[(object)3].Shapes[(object)2].Width.ToString() != "134.255" ? "False(3d mode)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)3].Shapes[(object)2].Width.ToString() != "134.255" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
         }
 
@@ -328,12 +349,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)2].Shapes.Count != 3)
-                    return "False(không chỉnh sủa Slide)";
-                return a.ActivePresentation.Slides[(object)2].Shapes[(object)"Content Placeholder 5"].AlternativeText != "ocean" ? "False(ocean)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)2].Shapes[(object)"Content Placeholder 5"].AlternativeText != "ocean" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (chuyen khung noi dung thanh smartArt)";
+                return "False";
             }
         }
 
@@ -342,20 +363,20 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)4].Shapes.Count != 8)
-                    return "False(không chỉnh sủa Slide)";
+                    return "False";
                 if (((object)a.ActivePresentation.Slides[(object)4].Shapes[(object)"Freeform 6"].Shadow.Style).ToString() != "msoShadowStyleInnerShadow")
-                    return "False(leInnerShadown(muổi tên trên))";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)4].Shapes[(object)"Freeform 6"].Shadow.OffsetX.ToString() != "-2.12132" || a.ActivePresentation.Slides[(object)4].Shapes[(object)"Freeform 6"].Shadow.OffsetY.ToString() != "-2.12132")
-                    return "False(khoảng cách là 3(muổi tên trên))";
+                    return "False";
                 if (((object)a.ActivePresentation.Slides[(object)4].Shapes[(object)"Freeform 5"].Shadow.Style).ToString() != "msoShadowStyleInnerShadow")
-                    return "False(leInnerShadown(muổi tên dưới))";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)4].Shapes[(object)"Freeform 5"].Shadow.OffsetX.ToString() != "-2.12132")
-                    return "False(khoảng cách là 3(muổi tên dưới))";
-                return a.ActivePresentation.Slides[(object)4].Shapes[(object)"Freeform 5"].Shadow.OffsetY.ToString() != "-2.12132" ? "False(khoảng cách là 3(muổi tên dươi))" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)4].Shapes[(object)"Freeform 5"].Shadow.OffsetY.ToString() != "-2.12132" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (chưa có hiệu ứng)";
+                return "False";
             }
         }
 
@@ -364,12 +385,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)5].Shapes.Count != 3)
-                    return "False(group ảnh)";
-                return a.ActivePresentation.Slides[(object)5].Shapes[(object)2].Name != "Rectangle 5" ? "False(không thay đỏi Slide)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)5].Shapes[(object)2].Name != "Rectangle 5" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
         }
 
@@ -378,14 +399,14 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)2].Shapes.Count != 5)
-                    return "False(không chỉnh sửa slide)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)2].Shapes[(object)1].Name != "Picture 3")
-                    return "False(smartphone trên đầu)";
-                return a.ActivePresentation.Slides[(object)2].Shapes[(object)5].Name != "Picture 6" ? "False(laptop cuối cùng)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)2].Shapes[(object)5].Name != "Picture 6" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
         }
 
@@ -394,12 +415,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)3].Shapes.Count != 2)
-                    return "False(không chỉnh sửa slide)";
-                return a.ActivePresentation.Slides[(object)3].Shapes[(object)2].SmartArt.Layout.Name != "Basic Block List" ? "False(Basic Block List)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)3].Shapes[(object)2].SmartArt.Layout.Name != "Basic Block List" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
         }
 
@@ -407,11 +428,46 @@ namespace MOS_PPT_LEARN
         {
             try
             {
-                return "True";
+                var slide = a.ActivePresentation.Slides[(object)3];  // slide 3
+                if (slide.Shapes.Count != 4) return "False 1";
+
+                for (int i = 1; i <= slide.Shapes.Count; i++)
+                {
+                    var shape = slide.Shapes[(object)i];
+
+                    if ((int)shape.Type == 29 || shape.Name.Contains("3D Model") || shape.Tags["OBJECTTYPE"] == "3DMODEL")
+                    {
+                        // Tìm thấy 3D Model rồi đây
+
+                        dynamic model = shape.GetType().InvokeMember("Model3D",
+                                    System.Reflection.BindingFlags.GetProperty,
+                                    null, shape, null);
+
+                        // Nếu có Model3D (máy mới)
+                        if (model != null)
+                        {
+                            float rotY = model.RotationY;
+                            float rotX = model.RotationX;
+
+                            // Máy mới 2023–2025: Left = 90
+                            if (Math.Abs(rotY - 90f) < 10f && Math.Abs(rotX) < 10f)
+                                return "True";
+                        }
+                        else
+                        {
+                            // Máy cũ: fallback về ThreeD
+                            float rotY = shape.ThreeD.RotationY;
+                            if (Math.Abs(rotY - 270f) < 10f && Math.Abs(shape.ThreeD.RotationX) < 10f)
+                                return "True";
+                        }
+                    }
+                }
+
+                return "False";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
         }
 
@@ -420,12 +476,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (((object)a.ActivePresentation.Slides[(object)2].Shapes[(object)"Picture 5"].Fill.PictureEffects[1].Type).ToString() != "msoEffectPaintBrush")
-                    return "False(msoEffectPaintBrush)";
-                return a.ActivePresentation.Slides[(object)2].Shapes[(object)"Picture 5"].ThreeD.BevelTopDepth.ToString() != "4" ? "False(sai hiệu ứng hình học)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)2].Shapes[(object)"Picture 5"].ThreeD.BevelTopDepth.ToString() != "4" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (add hiệu ứng)";
+                return "False";
             }
         }
 
@@ -434,12 +490,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)4].Shapes.Count != 2)
-                    return "False(không chỉnh sửa slide)";
-                return a.ActivePresentation.Slides[(object)4].Shapes[(object)2].SmartArt.Layout.Name != "Segmented Cycle" ? "False(sai kiểu)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)4].Shapes[(object)2].SmartArt.Layout.Name != "Segmented Cycle" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Chuyển danh sách thành SmartArt)";
+                return "False";
             }
         }
 
@@ -448,13 +504,13 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)6].Shapes.Count != 8)
-                    return "False(không chỉnh sửa slide)";
+                    return "False";
                 string alternativeText = a.ActivePresentation.Slides[(object)6].Shapes[(object)"Soccer"].AlternativeText;
-                return alternativeText != "Soccer players" ? $"False({alternativeText})" : "True";
+                return alternativeText != "Soccer players" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
         }
 
@@ -463,13 +519,13 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)2].Shapes.Count != 2)
-                    return "False(thêm SmartArt trong Placehonder)";
+                    return "False";
                 string name = a.ActivePresentation.Slides[(object)2].Shapes[(object)2].SmartArt.Layout.Name;
-                return name != "Vertical Box List" ? $"False({name})" : "True";
+                return name != "Vertical Box List" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Chèn SmartArt)";
+                return "False";
             }
         }
 
@@ -477,11 +533,11 @@ namespace MOS_PPT_LEARN
         {
             try
             {
-                return a.ActivePresentation.Slides[(object)5].Shapes.Count != 6 ? "False(chèn 3D object)" : "True";
+                return a.ActivePresentation.Slides[(object)5].Shapes.Count != 6 ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
         }
 
@@ -490,18 +546,18 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)2].Shapes.Count != 5)
-                    return "False(không chỉnh sửa slide)";
+                    return "False";
                 float top1 = a.ActivePresentation.Slides[(object)2].Shapes[(object)"Content Placeholder 5"].Top;
                 float top2 = a.ActivePresentation.Slides[(object)2].Shapes[(object)"Content Placeholder 3"].Top;
                 float left1 = a.ActivePresentation.Slides[(object)2].Shapes[(object)"Content Placeholder 5"].Left;
                 float left2 = a.ActivePresentation.Slides[(object)2].Shapes[(object)"Content Placeholder 3"].Left;
                 if ((double)top1 != (double)top2)
-                    return "False(chưa dùng chức năng align)";
-                return left2.ToString() != "77.16708" || (double)left1 != 486.0 ? "False(không thay đổi vị trí theo phường ngan ảnh)" : "True";
+                    return "False";
+                return left2.ToString() != "77.16708" || (double)left1 != 486.0 ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
         }
 
@@ -510,12 +566,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)1].Shapes.Count != 5)
-                    return "False(không chỉnh sửa slide)";
-                return (double)a.ActivePresentation.Slides[(object)1].Shapes[(object)"Picture 5"].PictureFormat.CropRight < 100.0 ? "False(crop ben phải ảnh cho bằng với slide)" : "True";
+                    return "False";
+                return (double)a.ActivePresentation.Slides[(object)1].Shapes[(object)"Picture 5"].PictureFormat.CropRight < 100.0 ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
         }
 
@@ -523,11 +579,11 @@ namespace MOS_PPT_LEARN
         {
             try
             {
-                return a.ActivePresentation.Slides[(object)5].Shapes.Count != 3 ? "False(không chỉnh sửa slide)" : "True";
+                return a.ActivePresentation.Slides[(object)5].Shapes.Count != 3 ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
         }
 
@@ -536,14 +592,14 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)7].Shapes.Count != 5)
-                    return "False(không sưa Slide)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)7].Shapes[(object)"Cloud 8"].Width.ToString() != "417.6")
-                    return "False(chiêu rộng)";
-                return a.ActivePresentation.Slides[(object)7].Shapes[(object)"Cloud 8"].Height.ToString() != "144" ? "False(chiều cao)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)7].Shapes[(object)"Cloud 8"].Height.ToString() != "144" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something wrong)";
+                return "False";
             }
         }
     }

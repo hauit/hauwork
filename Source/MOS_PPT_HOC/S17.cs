@@ -40,13 +40,13 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)7].Shapes.Count != 2)
-                    return "False(insert chart)";
+                    return "False";
                 if (((object)a.ActivePresentation.Slides[(object)7].Shapes[(object)2].Type).ToString() != "msoChart")
-                    return "False(chart)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(loi khong xac dinh)";
+                return "False";
             }
             return "True";
         }
@@ -56,12 +56,12 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)4].Shapes.Count != 2)
-                    return "False(insert object)";
-                return ((object)a.ActivePresentation.Slides[(object)4].Shapes[(object)2].Type).ToString() != "msoEmbeddedOLEObject" ? "False(Object)" : "True";
+                    return "False";
+                return ((object)a.ActivePresentation.Slides[(object)4].Shapes[(object)2].Type).ToString() != "msoEmbeddedOLEObject" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Something Wrong)";
+                return "False";
             }
         }
 
@@ -70,16 +70,16 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides[(object)2].Shapes.Count != 2)
-                    return "False(khong them xoa shape)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)2].Shapes[(object)"TextBox 4"].Fill.BackColor.RGB.ToString() != "14145397")
-                    return "False(shape style)";
+                    return "False";
                 if (a.ActivePresentation.Slides[(object)2].Shapes[(object)"TextBox 4"].Line.Weight.ToString() != "3")
-                    return "False(duong vien)";
-                return a.ActivePresentation.Slides[(object)2].Shapes[(object)"TextBox 4"].ThreeD.BevelTopDepth.ToString() != "6" ? "False(bevel)" : "True";
+                    return "False";
+                return a.ActivePresentation.Slides[(object)2].Shapes[(object)"TextBox 4"].ThreeD.BevelTopDepth.ToString() != "6" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False (Somthing Wrong)";
+                return "False";
             }
         }
 
@@ -88,13 +88,13 @@ namespace MOS_PPT_LEARN
             try
             {
                 if (a.ActivePresentation.Slides.Count != 10)
-                    return "False(add slide from outline)";
+                    return "False";
                 if (!a.ActivePresentation.Slides[(object)10].Shapes[(object)"Title 1"].TextFrame.TextRange.Text.Contains("New product"))
-                    return "False(sai outline or sai vi tri)";
+                    return "False";
             }
             catch (Exception ex)
             {
-                return "False(Somthing Wrong)";
+                return "False";
             }
             return "True";
         }

@@ -54,7 +54,7 @@ namespace MOS_PPT_LEARN
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox1.Font = new System.Drawing.Font("Calibri", 16F);
             this.richTextBox1.Location = new System.Drawing.Point(66, 39);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
@@ -65,11 +65,11 @@ namespace MOS_PPT_LEARN
             // labelKQ
             // 
             this.labelKQ.AutoSize = true;
-            this.labelKQ.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelKQ.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.labelKQ.Location = new System.Drawing.Point(606, 288);
+            this.labelKQ.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelKQ.ForeColor = System.Drawing.Color.White;
+            this.labelKQ.Location = new System.Drawing.Point(631, 218);
             this.labelKQ.Name = "labelKQ";
-            this.labelKQ.Size = new System.Drawing.Size(0, 21);
+            this.labelKQ.Size = new System.Drawing.Size(0, 27);
             this.labelKQ.TabIndex = 10;
             // 
             // labelCauHienTai
@@ -112,6 +112,7 @@ namespace MOS_PPT_LEARN
             // richTextQuestion
             // 
             this.richTextQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextQuestion.Font = new System.Drawing.Font("Calibri", 20F);
             this.richTextQuestion.Location = new System.Drawing.Point(0, 0);
             this.richTextQuestion.Name = "richTextQuestion";
             this.richTextQuestion.Size = new System.Drawing.Size(282, 172);
@@ -304,9 +305,9 @@ namespace MOS_PPT_LEARN
             this.buttonEV.Location = new System.Drawing.Point(747, 340);
             this.buttonEV.Name = "buttonEV";
             this.buttonEV.Padding = new System.Windows.Forms.Padding(4);
-            this.buttonEV.Size = new System.Drawing.Size(97, 39);
+            this.buttonEV.Size = new System.Drawing.Size(98, 39);
             this.buttonEV.TabIndex = 3;
-            this.buttonEV.Text = "Tiếng Việt";
+            this.buttonEV.Text = "Tiếng Anh";
             this.buttonEV.TextColor = System.Drawing.Color.White;
             this.buttonEV.UseVisualStyleBackColor = false;
             this.buttonEV.Click += new System.EventHandler(this.buttonEV_Click);
