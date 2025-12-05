@@ -70,11 +70,11 @@ namespace MOS_PPT_TEST
                 //    return;
                 //}
 
-                Process[] excelProcesses = Process.GetProcessesByName("EXCEL");
+                Process[] pptProcesses = Process.GetProcessesByName("POWERPNT");
 
-                if (excelProcesses.Length > 0)
+                if (pptProcesses.Length > 0)
                 {
-                    foreach (var process in excelProcesses)
+                    foreach (var process in pptProcesses)
                     {
                         try
                         {
@@ -83,7 +83,7 @@ namespace MOS_PPT_TEST
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Không thể tắt Excel: " + ex.Message);
+                            MessageBox.Show("Không thể tắt PowerPoint: " + ex.Message);
                         }
                     }
                 }
@@ -441,7 +441,7 @@ namespace MOS_PPT_TEST
                 this.Close();
                 return;
             }
-            this.ngayhethang = this.dt.AddDays(30.0);
+            this.ngayhethang = this.dt.AddDays(60.0);
             string randomID = Base64Encode(this.mac + this.dt.ToString("yyyyMMdd"));
             this.richTextBox1.Text = $"Nếu bạn chưa có mật khẩu để đăng nhập, vui lòng gửi ID bên dưới cho Admin để được cấp:\n\n{randomID}\n\nWebsite hỗ trợ: https://mos360.vn";
         }
@@ -502,7 +502,7 @@ namespace MOS_PPT_TEST
             }
             else
             {
-                this.ngayhethangCurrentDate = this.dt.AddDays(30.0);
+                this.ngayhethangCurrentDate = this.dt.AddDays(60.0);
                 string passCurrentDate = ToMD5(user.ToLower() + this.mac + this.ngayhethangCurrentDate.ToString("yyyyMMdd"));
                 if (passCurrentDate.ToLower() == textBoxPass.Text.ToLower())
                 {

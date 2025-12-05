@@ -441,7 +441,7 @@ namespace MOS_EXCEL_TEST
                 this.Close();
                 return;
             }
-            this.ngayhethang = this.dt.AddDays(30.0);
+            this.ngayhethang = this.dt.AddDays(60.0);
             string randomID = Base64Encode(this.mac + this.dt.ToString("yyyyMMdd"));
             this.richTextBox1.Text = $"Nếu bạn chưa có mật khẩu để đăng nhập, vui lòng gửi ID bên dưới cho Admin để được cấp:\n\n{randomID}\n\nWebsite hỗ trợ: https://mos360.vn";
         }
@@ -502,7 +502,7 @@ namespace MOS_EXCEL_TEST
             }
             else
             {
-                this.ngayhethangCurrentDate = this.dt.AddDays(30.0);
+                this.ngayhethangCurrentDate = this.dt.AddDays(60.0);
                 string passCurrentDate = ToMD5(user.ToLower() + this.mac + this.ngayhethangCurrentDate.ToString("yyyyMMdd"));
                 if (passCurrentDate.ToLower() == textBoxPass.Text.ToLower())
                 {

@@ -50,6 +50,8 @@ namespace MOS_WORD_TEST
             //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\WORD\\75.doc", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\WORD\\75");
 
 
+            //Home.EncryptFile(System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\PPT\\1.pptx", System.Windows.Forms.Application.StartupPath + "\\zip\\Enc\\PPT\\1");
+
             //return;
             CheckNetFramework();
             InitializeComponent();
@@ -462,7 +464,7 @@ namespace MOS_WORD_TEST
                 this.Close();
                 return;
             }
-            this.ngayhethang = this.dt.AddDays(30.0);
+            this.ngayhethang = this.dt.AddDays(60.0);
             string randomID = Base64Encode(this.mac + this.dt.ToString("yyyyMMdd"));
             this.richTextBox1.Text = $"Nếu bạn chưa có mật khẩu để đăng nhập, vui lòng gửi ID bên dưới cho Admin để được cấp:\n\n{randomID}\n\nWebsite hỗ trợ: https://mos360.vn";
         }
@@ -523,7 +525,7 @@ namespace MOS_WORD_TEST
             }
             else
             {
-                this.ngayhethangCurrentDate = this.dt.AddDays(30.0);
+                this.ngayhethangCurrentDate = this.dt.AddDays(60.0);
                 string passCurrentDate = ToMD5(user.ToLower() + this.mac + this.ngayhethangCurrentDate.ToString("yyyyMMdd"));
                 if (passCurrentDate.ToLower() == textBoxPass.Text.ToLower())
                 {

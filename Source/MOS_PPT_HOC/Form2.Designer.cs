@@ -34,6 +34,7 @@ namespace MOS_PPT_LEARN
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.textBoxUser = new System.Windows.Forms.TextBox();
             this.textBoxPass = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -43,12 +44,12 @@ namespace MOS_PPT_LEARN
             this.textBoxPassSo = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnCancel = new MOS_PPT_LEARN.Base.RJButton();
+            this.buttonOK = new MOS_PPT_LEARN.Base.RJButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnCancel = new MOS_PPT_LEARN.Base.RJButton();
-            this.buttonOK = new MOS_PPT_LEARN.Base.RJButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -158,6 +159,50 @@ namespace MOS_PPT_LEARN
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Đăng nhập";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.AutoSize = true;
+            this.btnCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(70)))), ((int)(((byte)(37)))));
+            this.btnCancel.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(70)))), ((int)(((byte)(37)))));
+            this.btnCancel.BorderColor = System.Drawing.Color.White;
+            this.btnCancel.BorderRadius = 5;
+            this.btnCancel.BorderSize = 1;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Calibri", 12F);
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(195, 115);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Padding = new System.Windows.Forms.Padding(2);
+            this.btnCancel.Size = new System.Drawing.Size(62, 35);
+            this.btnCancel.TabIndex = 12;
+            this.btnCancel.Text = "Thoát";
+            this.btnCancel.TextColor = System.Drawing.Color.White;
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // buttonOK
+            // 
+            this.buttonOK.AutoSize = true;
+            this.buttonOK.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonOK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(70)))), ((int)(((byte)(37)))));
+            this.buttonOK.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(70)))), ((int)(((byte)(37)))));
+            this.buttonOK.BorderColor = System.Drawing.Color.White;
+            this.buttonOK.BorderRadius = 5;
+            this.buttonOK.BorderSize = 1;
+            this.buttonOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonOK.Font = new System.Drawing.Font("Calibri", 12F);
+            this.buttonOK.ForeColor = System.Drawing.Color.White;
+            this.buttonOK.Location = new System.Drawing.Point(90, 115);
+            this.buttonOK.Name = "buttonOK";
+            this.buttonOK.Padding = new System.Windows.Forms.Padding(2);
+            this.buttonOK.Size = new System.Drawing.Size(95, 35);
+            this.buttonOK.TabIndex = 3;
+            this.buttonOK.Text = "Đăng nhập";
+            this.buttonOK.TextColor = System.Drawing.Color.White;
+            this.buttonOK.UseVisualStyleBackColor = false;
+            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
+            // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
@@ -210,50 +255,6 @@ namespace MOS_PPT_LEARN
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
             // 
-            // btnCancel
-            // 
-            this.btnCancel.AutoSize = true;
-            this.btnCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(70)))), ((int)(((byte)(37)))));
-            this.btnCancel.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(70)))), ((int)(((byte)(37)))));
-            this.btnCancel.BorderColor = System.Drawing.Color.White;
-            this.btnCancel.BorderRadius = 5;
-            this.btnCancel.BorderSize = 1;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("Calibri", 12F);
-            this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(195, 115);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Padding = new System.Windows.Forms.Padding(2);
-            this.btnCancel.Size = new System.Drawing.Size(62, 35);
-            this.btnCancel.TabIndex = 12;
-            this.btnCancel.Text = "Thoát";
-            this.btnCancel.TextColor = System.Drawing.Color.White;
-            this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // buttonOK
-            // 
-            this.buttonOK.AutoSize = true;
-            this.buttonOK.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonOK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(70)))), ((int)(((byte)(37)))));
-            this.buttonOK.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(70)))), ((int)(((byte)(37)))));
-            this.buttonOK.BorderColor = System.Drawing.Color.White;
-            this.buttonOK.BorderRadius = 5;
-            this.buttonOK.BorderSize = 1;
-            this.buttonOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonOK.Font = new System.Drawing.Font("Calibri", 12F);
-            this.buttonOK.ForeColor = System.Drawing.Color.White;
-            this.buttonOK.Location = new System.Drawing.Point(90, 115);
-            this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Padding = new System.Windows.Forms.Padding(2);
-            this.buttonOK.Size = new System.Drawing.Size(95, 35);
-            this.buttonOK.TabIndex = 3;
-            this.buttonOK.Text = "Đăng nhập";
-            this.buttonOK.TextColor = System.Drawing.Color.White;
-            this.buttonOK.UseVisualStyleBackColor = false;
-            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
-            // 
             // Form2
             // 
             this.AccessibleDescription = "MOS360_WORD_LEARN";
@@ -274,6 +275,7 @@ namespace MOS_PPT_LEARN
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Form2_Load);

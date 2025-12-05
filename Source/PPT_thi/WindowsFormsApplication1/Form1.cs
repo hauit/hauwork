@@ -1,4 +1,6 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿using Microsoft.Office.Core;
+//using Microsoft.Office.Interop.Excel;
+using Microsoft.Office.Interop.PowerPoint;
 using MOS_PPT_TEST.Base;
 using MOS_PPT_TEST.Properties;
 using MOS_PPT_TEST.WindowsFormsApplication1;
@@ -36,11 +38,11 @@ namespace MOS_PPT_TEST
         private string pathReset;
         private int works;
         private int workIndex;
-        private Microsoft.Office.Interop.Excel.Application a;
+        private Microsoft.Office.Interop.PowerPoint.Application a;
         private string[] ImageFile;
         private int screen_height;
         private int screen_width;
-        private Workbook d;
+        private ProtectedViewWindow d;
         private DateTime timeStrart;
         private int Cau_So;
         private int next = 0;
@@ -54,6 +56,8 @@ namespace MOS_PPT_TEST
         private bool chotat = false;
         private int currentest = 0;
         public object missing = (object)Missing.Value;
+
+        private string passDocument = "271565234";
         public Form1()
         {
             InitializeComponent();
@@ -61,12 +65,12 @@ namespace MOS_PPT_TEST
             this.getEnviroment();
         }
 
-        private void a_WorkbookBeforeClose(Workbook wb, ref bool Cancel)
-        {
-            if (this.chotat)
-                return;
-            Cancel = true;
-        }
+        //private void a_WorkbookBeforeClose(Workbook wb, ref bool Cancel)
+        //{
+        //    if (this.chotat)
+        //        return;
+        //    Cancel = true;
+        //}
 
         private void textBox1_MouseClick(object sender, MouseEventArgs e)
         {
@@ -291,17 +295,13 @@ namespace MOS_PPT_TEST
 
 
             //this.loadcaucanhoiNew(currentProject.ProjectIndex);
-            this.a = (Microsoft.Office.Interop.Excel.Application)Activator.CreateInstance(System.Type.GetTypeFromCLSID(new Guid("00024500-0000-0000-C000-000000000046")));
-            this.a.Visible = true;
-            //this.a.WindowState = Microsoft.Office.Interop.Excel.XlWindowState.xlMaximized;
-            this.a.WindowState = Microsoft.Office.Interop.Excel.XlWindowState.xlNormal;
-            System.Threading.Thread.Sleep(200); // cho Office kịp cập nhật
-            this.a.Top = 0;
-            this.a.Left = 0;
-            //this.a.Width = (double)width;
-            //this.a.Height = (double)num * 3;
-            this.a.Width = (double)this.screen_width;
-            this.a.Height = (double)(this.screen_height * 3 / 5) + 2;
+            this.a = (Microsoft.Office.Interop.PowerPoint.Application)Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid("91493441-5A91-11CF-8700-00AA0060263B")));
+            this.a.Visible = MsoTriState.msoTrue;
+            this.a.WindowState = PpWindowState.ppWindowNormal;
+            this.a.Top = 0.0f;
+            this.a.Left = -10f;
+            this.a.Width = (float)this.screen_width;
+            this.a.Height = (float)(this.screen_height * 3 / 5);
             // ISSUE: method pointer
             // ISSUE: object of a compiler-generated type is created
             //((ApplicationEvents4_Event)this.a).WorkbookBeforeClose += this.a_WorkbookBeforeClose;
@@ -693,7 +693,7 @@ namespace MOS_PPT_TEST
                 //    return;
                 //}
                 this.ChamDiem();
-                if (currentProject.ProjectIndex == currentExam.ProjectIndex[6].ProjectIndex)
+                if (currentProject.ProjectIndex == currentExam.ProjectIndex[5].ProjectIndex)
                 {
                     button2_Click(null, null);
                     return;
@@ -752,60 +752,45 @@ namespace MOS_PPT_TEST
                     }
                 }
 
-                //while (this.a.Documents.Count >= 1)
+                //while (this.a.Presentations.Count >= 1)
                 //{
-                //    object SaveChanges = (object)false;
-                //    object missing1 = System.Type.Missing;
-                //    object missing2 = System.Type.Missing;
-                //    object Index = (object)1;
                 //    // ISSUE: reference to a compiler-generated method
-                //    this.a.Documents[ref Index].Close(ref SaveChanges, ref missing1, ref missing2);
+                //    this.a.Presentations[(object)currentProject.ProjectIndex].Close();
                 //}
-                object SaveChanges = (object)XlSaveAction.xlDoNotSaveChanges;
-                object missing1 = System.Type.Missing;
-                object missing2 = System.Type.Missing;
-                this.d.Close(SaveChanges, missing1, missing2);
+                //while (this.a.ProtectedViewWindows.Count >= 1)
+                //{
+                //    int Index = (int)currentProject.ProjectIndex;
+                //    // ISSUE: reference to a compiler-generated method
+                //    this.a.ProtectedViewWindows[Index].Close();
+                //}
+
+                this.a.ActivePresentation.Close();
+                //this.a.ProtectedViewWindows[currentProject.ProjectIndex].Close();
+                Home.DecryptFile(this.pathFileOfficeMaHoa, this.pathFileOffice);
+                // ISSUE: reference to a compiler-generated method
+                this.d = this.a.ProtectedViewWindows.Open(this.pathFileOffice, this.passDocument);
+                this.a.Top = 0.0f;
+                this.a.Left = 0.0f;
+                this.a.Width = (float)this.screen_width;
+                this.a.Height = (float)(this.screen_height * 3 / 5) + 2;
 
                 this.chotat = false;
-                Home.DecryptFile(this.pathFileOfficeMaHoa, this.pathFileOffice);
-                object pathFileOffice = (object)this.pathFileOffice;
-                object missing3 = System.Type.Missing;
-                object missing4 = System.Type.Missing;
-                object missing5 = System.Type.Missing;
-                object PasswordDocument = (object)"271565234";
-                object missing6 = System.Type.Missing;
-                object missing7 = System.Type.Missing;
-                object missing8 = System.Type.Missing;
-                object missing9 = System.Type.Missing;
-                object missing10 = System.Type.Missing;
-                object missing11 = System.Type.Missing;
-                object missing12 = System.Type.Missing;
-                object missing13 = System.Type.Missing;
-                object missing14 = System.Type.Missing;
-                object missing15 = System.Type.Missing;
-                object XMLTransform = (object)Missing.Value;
-                // ISSUE: reference to a compiler-generated method
-                this.d = this.a.Workbooks.Open(this.pathFileOffice, missing3, missing4, missing5, PasswordDocument, missing6, missing7, missing8, missing9, missing10, missing11, missing12, missing13, missing14, missing15);
-                this.a.Top = 0;
-                this.a.Left = 0;
-                this.a.Width = (double)this.screen_width;
-                this.a.Height = (double)(this.screen_height * 3 / 5) + 2;
             }
             catch (Exception ex)
             {
-                int num = (int)MessageBox.Show("Đóng các cửa sổ thông báo của Word trước khi Restart Project");
+                int num = (int)MessageBox.Show("Đóng các cửa sổ thông báo của PPT trước khi Restart Project");
             }
         }
 
-        private void TurnOffFile()
-        {
-            object saveChanges = (object)Microsoft.Office.Interop.Word.WdSaveOptions.wdDoNotSaveChanges;
-            object missing = Type.Missing;
-            while (this.a.Workbooks.Count >= 1)
-            {
-                this.a.Workbooks[1].Close(saveChanges, missing, missing);
-            }
-        }
+        //private void TurnOffFile()
+        //{
+        //    object saveChanges = (object)Microsoft.Office.Interop.Word.WdSaveOptions.wdDoNotSaveChanges;
+        //    object missing = Type.Missing;
+        //    while (this.a.Workbooks.Count >= 1)
+        //    {
+        //        this.a.Workbooks[1].Close(saveChanges, missing, missing);
+        //    }
+        //}
 
         private void luuDiem(string diem)
         {
@@ -979,48 +964,34 @@ namespace MOS_PPT_TEST
 
         private void OpenDocument()
         {
-            object pathFileOffice = (object)this.pathFileOffice;
-            object missing1 = System.Type.Missing;
-            object missing2 = System.Type.Missing;
-            object missing3 = System.Type.Missing;
-            object PasswordDocument = (object)"271565234";
-            object missing4 = System.Type.Missing;
-            object missing5 = System.Type.Missing;
-            object missing6 = System.Type.Missing;
-            object missing7 = System.Type.Missing;
-            object missing8 = System.Type.Missing;
-            object missing9 = System.Type.Missing;
-            object missing10 = System.Type.Missing;
-            object missing11 = System.Type.Missing;
-            object missing12 = System.Type.Missing;
-            object missing13 = System.Type.Missing;
-            object XMLTransform = (object)Missing.Value;
+            string pathFileOffice = (string)this.pathFileOffice;
+
             // ISSUE: reference to a compiler-generated method
-            this.d = this.a.Workbooks.Open(this.pathFileOffice, missing1, missing2, missing3, PasswordDocument, missing4, missing5, missing6, missing7, missing8, missing9, missing10, missing11, missing12, missing13);
-            this.a.Top = 0;
-            this.a.Left = 0;
-            this.a.Width = (double)this.screen_width;
-            this.a.Height = (double)(this.screen_height * 3 / 5) + 2;
+            this.d = this.a.ProtectedViewWindows.Open(this.pathFileOffice, this.passDocument);
+            this.a.Top = 0.0f;
+            this.a.Left = -10f;
+            this.a.Width = (float)this.screen_width;
+            this.a.Height = (float)(this.screen_height * 3 / 5);
             this.soLanReSet = 0;
             if (currentProject.DocumentOpened)
             {
                 this.d.Activate();
-                IntPtr hwnd = (IntPtr)a.ActiveWindow.Hwnd;
-                SetForegroundWindow(hwnd);
             }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             this.chotat = true;
-            while (this.a.Workbooks.Count >= 1)
+            while (this.a.Presentations.Count >= 1)
             {
-                object SaveChanges = (object)false;
-                object missing1 = System.Type.Missing;
-                object missing2 = System.Type.Missing;
-                object Index = (object)1;
                 // ISSUE: reference to a compiler-generated method
-                this.a.Workbooks[Index].Close(SaveChanges, missing1, missing2);
+                this.a.Presentations[(object)1].Close();
+            }
+            while (this.a.ProtectedViewWindows.Count >= 1)
+            {
+                int Index = (int)1;
+                // ISSUE: reference to a compiler-generated method
+                this.a.ProtectedViewWindows[Index].Close();
             }
             //object SaveChanges1 = (object)Missing.Value;
             //object OriginalFormat = (object)Missing.Value;
@@ -1040,24 +1011,8 @@ namespace MOS_PPT_TEST
                 File.Delete(file);
             this.ImageFile[this.checkedListBox1.SelectedIndex].Replace(Path.Combine(this.pathWork, "Test"), this.pathRun);
             Home.DecryptFile(this.pathFileOfficeMaHoa, this.pathFileOffice);
-            object pathFileOffice = (object)this.pathFileOffice;
-            object missing1 = System.Type.Missing;
-            object missing2 = System.Type.Missing;
-            object missing3 = System.Type.Missing;
-            object PasswordDocument = (object)"271565234";
-            object missing4 = System.Type.Missing;
-            object missing5 = System.Type.Missing;
-            object missing6 = System.Type.Missing;
-            object missing7 = System.Type.Missing;
-            object missing8 = System.Type.Missing;
-            object missing9 = System.Type.Missing;
-            object missing10 = System.Type.Missing;
-            object missing11 = System.Type.Missing;
-            object missing12 = System.Type.Missing;
-            object missing13 = System.Type.Missing;
-            object XMLTransform = (object)Missing.Value;
             // ISSUE: reference to a compiler-generated method
-            this.d = this.a.Workbooks.Open(this.pathFileOffice, missing1, missing2, missing3, PasswordDocument, missing4, missing5, missing6, missing7, missing8, missing9, missing10, missing11, missing12, missing13);
+            this.d = this.a.ProtectedViewWindows.Open(this.pathFileOffice, this.passDocument);
         }
 
         private string CheckCauLon(int cau)
@@ -1132,11 +1087,11 @@ namespace MOS_PPT_TEST
         {
             try
             {
-                this.a.WindowState = Microsoft.Office.Interop.Excel.XlWindowState.xlNormal;
-                this.a.Top = 0;
-                this.a.Left = 0;
-                this.a.Width = (double)this.screen_width;
-                this.a.Height = (double)(this.screen_height * 3 / 5) + 2;
+                this.a.WindowState = PpWindowState.ppWindowNormal;
+                this.a.Top = 0.0f;
+                this.a.Left = -10f;
+                this.a.Width = (float)this.screen_width;
+                this.a.Height = (float)(this.screen_height * 3 / 5);
             }
             catch (Exception ex)
             {
@@ -1242,14 +1197,16 @@ namespace MOS_PPT_TEST
                 this.checkedListBox1.SelectedIndex = 0;
                 this.pathReset = Path.Combine(this.pathWork, "Source\\Sub\\" + this.Cau_So.ToString());
                 this.chotat = true;
-                while (this.a.Workbooks.Count >= 1)
+                while (this.a.Presentations.Count >= 1)
                 {
-                    object SaveChanges = (object)false;
-                    object missing1 = System.Type.Missing;
-                    object missing2 = System.Type.Missing;
-                    object Index = (object)1;
                     // ISSUE: reference to a compiler-generated method
-                    this.a.Workbooks[Index].Close(SaveChanges, missing1, missing2);
+                    this.a.Presentations[(object)1].Close();
+                }
+                while (this.a.ProtectedViewWindows.Count >= 1)
+                {
+                    int Index = (int)1;
+                    // ISSUE: reference to a compiler-generated method
+                    this.a.ProtectedViewWindows[Index].Close();
                 }
                 this.chotat = false;
                 this.SetUp(pro);

@@ -88,7 +88,7 @@ namespace MOS_PPT_LEARN
             {
                 this.TopMost = false;
                 this.button2.Text = "Tự Làm";
-                Process.Start("https://meet.google.com/uay-ywnp-xzs");
+                //Process.Start("https://meet.google.com/uay-ywnp-xzs");
             }
             else
             {
@@ -230,7 +230,8 @@ namespace MOS_PPT_LEARN
             {
                 int num = (int)MessageBox.Show("Đóng tất cả các hộp thoại đang mở trước");
             }
-            return par.section.ToString() + " - " + par.quesion.ToString() + " __ " + str;
+            //return par.section.ToString() + " - " + par.quesion.ToString() + " __ " + str;
+            return str;
         }
 
         private void buttonEV_Click(object sender, EventArgs e)
@@ -380,16 +381,16 @@ namespace MOS_PPT_LEARN
             {
                 num += this.Diem[index];
                 if (this.Diem[index] == 1)
-                    str1 = $"{str1}{(object)(index + 1)},";
+                    str1 = str1 + (object)(index + 1) + ",";
             }
-            string str2 = $"{(object)num}Câu,{str1}";
-            string str3 = $"<p>{DateTime.Now.ToShortDateString()},{str2}" + "</p>";
+            string str2 = num.ToString() + "Câu," + str1;
+            string str3 = "<p>" + DateTime.Now.ToShortDateString() + "," + str2 + "</p>";
             if (num <= 1)
                 return;
-            string str4 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Diem");
+            string str4 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "MOS360");
             if (!Directory.Exists(str4))
                 Directory.CreateDirectory(str4);
-            string path = Path.Combine(str4, "hoc_PPT.html");
+            string path = Path.Combine(str4, "MOS360 TIẾN ĐỘ LUYỆN TẬP - PPT.html");
             if (File.Exists(path))
             {
                 TextWriter textWriter = (TextWriter)new StreamWriter(path, true);
@@ -399,35 +400,11 @@ namespace MOS_PPT_LEARN
             else
             {
                 TextWriter textWriter = (TextWriter)new StreamWriter(path, true);
-                string str5 = "<P style=\"text-align:center;color:red;font-size:160%\"> Điều Kiện để được thi lại miễn phí là phải học hành chăm chỉ, gửi điểm thường xuyên cho thầy</p><P style=\"text-align:center;\">Khi Có Điểm bạn copy Điểm này gửi cho thầy qua 1 trong các face sau: </p> <P style=\"text-align:center;\">================================================================== </p> <P style=\"text-align:center;\"><a href=\"https://www.facebook.com/tinhoc.hoangkha.17\" target=\"_blank\">1. Minh Quang Vũ </a>  </p><P style=\"text-align:center;\"><a href=\"https://www.facebook.com/truongthinh.19\" target=\"_blank\">2. Trường Thịnh</a>  </p> <P style=\"text-align:center;\"><a href=\"https://www.facebook.com/tinhocmos900\" target=\"_blank\">3. Nguyễn Cữu Đàm</a>  </p><P style=\"text-align:center;\">================================================================== </p> ";
+                string str5 = "<h2 style=\"text-align: center;\"><span style=\"color: #ff0000;\"><strong>MOS360 - X&oacute;a tan nỗi lo CHUẨN ĐẦU RA cho sinh vi&ecirc;n.</strong></span></h2>\r\n<p style=\"padding-left: 40px;\">Kh&ocirc;ng cần ho&agrave;n hảo - chỉ cần bắt đầu. Gửi b&agrave;i cho MOS360 để giữ vững phong độ nh&eacute; 🚀</p>\r\n<p style=\"padding-left: 40px;\">Zalo: <a href=\"https://zalo.me/0912888360\" target=\"_blank\" rel=\"noopener\">0912.888.360</a></p>\r\n<p style=\"padding-left: 40px;\">Fanpage: <a href=\"https://www.facebook.com/mos360.vn\" target=\"_blank\">https://www.facebook.com/mos360.vn</a></p>\r\n<p style=\"padding-left: 40px;\">Website: <a href=\"https://mos360.vn\" target=\"_blank\">https://mos360.vn</a></p>\r\n<p style=\"padding-left: 40px;\">Ch&uacute;c bạn học MOS thật vui, l&agrave;m b&agrave;i thật 'phi&ecirc;u' v&agrave; điểm cao v&egrave;o v&egrave;o nh&eacute; 🚀🎯</p>\r\n<p style=\"text-align: center;\"><strong>KẾT QUẢ LUYỆN TẬP PPT</strong></p>\r\n<p style=\"padding-left: 40px;\">&nbsp;</p>";
                 textWriter.WriteLine(str5);
                 textWriter.WriteLine(str3);
                 textWriter.Close();
             }
-            TextWriter textWriter1 = (TextWriter)new StreamWriter("C:\\MOS\\GOC HO TRO\\ngayhocgannhat", true);
-            TextWriter textWriter2 = textWriter1;
-            object[] objArray1 = new object[5]
-            {
-              (object) DateTime.Now.Day,
-              (object) "|",
-              null,
-              null,
-              null
-            };
-            object[] objArray2 = objArray1;
-            DateTime now = DateTime.Now;
-            // ISSUE: variable of a boxed type
-            ValueType month = (ValueType)now.Month;
-            objArray2[2] = (object)month;
-            objArray1[3] = (object)"|";
-            object[] objArray3 = objArray1;
-            now = DateTime.Now;
-            // ISSUE: variable of a boxed type
-            ValueType year = (ValueType)now.Year;
-            objArray3[4] = (object)year;
-            string str6 = string.Concat(objArray1);
-            textWriter2.WriteLine(str6);
-            textWriter1.Close();
         }
 
         private void LuuDanhDau()

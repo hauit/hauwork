@@ -1,22 +1,33 @@
 ﻿using Microsoft.CSharp.RuntimeBinder;
+using Microsoft.Office.Core;
 using Microsoft.Office.Interop.Excel;
+using Microsoft.Office.Interop.PowerPoint;
+using Application = Microsoft.Office.Interop.PowerPoint.Application;
+using Hyperlink = Microsoft.Office.Interop.PowerPoint.Hyperlink;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.IO;
 using System.Reflection;
+using Binder = System.Reflection.Binder;
 using System.Runtime.CompilerServices;
 using mscore = Microsoft.Office.Core;
+using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
+using XlLegendPosition = Microsoft.Office.Interop.PowerPoint.XlLegendPosition;
+using Chart = Microsoft.Office.Interop.PowerPoint.Chart;
+using XlChartType = Microsoft.Office.Core.XlChartType;
+using Presentation = Microsoft.Office.Interop.PowerPoint.ProtectedViewWindow;
 
 namespace MOS_PPT_TEST
 {
     public interface IQuestionCheck
     {
-        string CheckAnswer(int questionNumber, Application a, Workbook d);
+        string CheckAnswer(int questionNumber, Application a, Presentation d);
     }
     internal class QuestionCheck : IQuestionCheck
     {
-        public string CheckAnswer(int questionNumber, Application a, Workbook d)
+        public string CheckAnswer(int questionNumber, Application a, Presentation d)
         {
             switch (questionNumber)
             {
@@ -131,3436 +142,2335 @@ namespace MOS_PPT_TEST
                 case 109: return Cau109(a, d);
                 case 110: return Cau110(a, d);
                 case 111: return Cau111(a, d);
+                case 112: return Cau112(a, d);
+                case 113: return Cau113(a, d);
+                case 114: return Cau114(a, d);
+                case 115: return Cau115(a, d);
+                case 116: return Cau116(a, d);
+                case 117: return Cau117(a, d);
+                case 118: return Cau118(a, d);
+                case 119: return Cau119(a, d);
+                case 120: return Cau120(a, d);
+                case 121: return Cau121(a, d);
+                case 122: return Cau122(a, d);
+                case 123: return Cau123(a, d);
+                case 124: return Cau124(a, d);
+                case 125: return Cau125(a, d);
+                case 126: return Cau126(a, d);
+                case 127: return Cau127(a, d);
                 default:
                     return "Invalid question number";
             }
         }
 
-        private string Cau1(Application a, Workbook d)
+        private string Cau1(Application a, Presentation d)
         {
             try
             {
-                Worksheet worksheet = (Worksheet)d.Worksheets["Instructional Hours"];
-                double widthB5 = ((Range)worksheet.Range["B5", "B5"]).Width;
-
-                string[] columns = { "C5", "D5", "E5", "F5", "G5" };
-
-                foreach (var cell in columns)
+                if (a.ActivePresentation.Slides[(object)2].Shapes.Count != 3)
+                    return "False";
+                string name = a.ActivePresentation.Slides[(object)2].Shapes[(object)2].SmartArt.Layout.Name;
+                if (name != "Vertical Curved List")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)2].Shapes[(object)2].SmartArt.Nodes.Count != 2)
+                    return "False";
+                string text1 = a.ActivePresentation.Slides[(object)2].Shapes[(object)2].SmartArt.Nodes[(object)1].TextFrame2.TextRange.Text;
+                if (text1 != "Structures")
+                    return "False";
+                string text2 = a.ActivePresentation.Slides[(object)2].Shapes[(object)2].SmartArt.Nodes[(object)2].TextFrame2.TextRange.Text;
+                return text2 != "Perennials" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau2(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)3].Shapes.Count != 3)
+                    return "False";
+                if (((object)a.ActivePresentation.Slides[(object)3].Shapes[(object)2].Type).ToString() != "msoPlaceholder")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)3].Shapes[(object)2].Height.ToString() != "288")
+                    return "False";
+                return a.ActivePresentation.Slides[(object)3].Shapes[(object)2].Width.ToString() != "134.255" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau3(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)5].Shapes.Count != 6)
+                    return "False";
+                return !a.ActivePresentation.Slides[(object)5].Shapes[(object)6].Name.Contains("nk") ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau4(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[1].DisplayName != "Picture 3")
+                    return "False";
+                return a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[1].EffectType.ToString() != "msoAnimEffectFadedSwivel" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau5(Application a, Presentation d)
+        {
+            try
+            {
+                foreach (Slide slide in a.ActivePresentation.Slides)
                 {
-                    double otherWidth = ((Range)worksheet.Range[cell, cell]).Width;
-                    if (otherWidth != widthB5)
+                    if (slide.SlideShowTransition.EntryEffect.ToString() != "ppEffectWipeRight")
                         return "False";
                 }
             }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau9(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Microsoft Word"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-            }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return "False";
             }
             return "True";
         }
-        private string Cau10(Application a, Workbook d)
+        private string Cau6(Application a, Presentation d)
         {
             try
             {
-                Worksheet ws = d.Worksheets["Donor Contact Info"] as Worksheet;
-                if (ws == null)
+                int sectionIndex1 = -1;
+                for (int sectionIndex2 = 1; sectionIndex2 <= a.ActivePresentation.SectionProperties.Count; ++sectionIndex2)
+                {
+                    // ISSUE: reference to a compiler-generated method
+                    if (a.ActivePresentation.SectionProperties.Name(sectionIndex2) == "Structures")
+                        sectionIndex1 = sectionIndex2;
+                }
+                if (sectionIndex1 == -1)
                     return "False";
-
-                string cellI1 = ws.get_Range("I1", "I1").Text?.ToString();
-                if (cellI1 != "Cell Phone")
+                // ISSUE: reference to a compiler-generated method
+                int num = a.ActivePresentation.SectionProperties.FirstSlide(sectionIndex1);
+                if (num.ToString() != "3")
                     return "False";
-
-                string cellH1 = ws.get_Range("H1", "H1").Text?.ToString();
-                if (cellH1 != "Home Phone")
+                // ISSUE: reference to a compiler-generated method
+                num = a.ActivePresentation.SectionProperties.SlidesCount(sectionIndex1);
+                return num.ToString() != "2" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau7(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)2].Shapes.Count != 3)
                     return "False";
+                return a.ActivePresentation.Slides[(object)2].Shapes[(object)"Content Placeholder 5"].AlternativeText != "ocean" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau8(Application a, Presentation d)
+        {
+            try
+            {
+                Slide slide = a.ActivePresentation.Slides[(object)4];
+                Chart chart = slide.Shapes[(object)4].Chart;
+                return chart.ChartType != XlChartType.xl3DColumnClustered ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau9(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)4].Shapes.Count != 2)
+                    return "False";
+                return a.ActivePresentation.Slides[(object)4].Shapes[(object)"Text Placeholder 2"].TextFrame.TextRange.Text != "Home stay\rHouse boat\r…" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau10(Application a, Presentation d)
+        {
+            try
+            {
+                string categories = a.ActivePresentation.BuiltInDocumentProperties["Category"].Value.ToString();
 
-                string cellJ1 = ws.get_Range("J1", "J1").Text?.ToString();
-                if (cellJ1 != "Email")
+                if (categories.Trim() != "Travel")
                     return "False";
             }
             catch
             {
                 return "False";
             }
-
             return "True";
         }
-        private string Cau17(Application a, Workbook d)
+        private string Cau11(Application a, Presentation d)
         {
             try
             {
-                Worksheet worksheet = (Worksheet)d.Worksheets["Last Semester"];
-                Range range = worksheet.Range["A3", "F3"];
-
-                // Nếu WrapText == true => đạt yêu cầu
-                if ((bool)range.WrapText == true)
-                    return "True";
+                if (a.ActivePresentation.Slides[(object)3].Shapes[(object)"Table 5"].Table.Rows.Count.ToString() != "8")
+                    return "False";
+                return a.ActivePresentation.Slides[(object)3].Shapes[(object)"Table 5"].Table.Rows[8].Cells[1].Shape.TextFrame.TextRange.Text != "Sporting Event" ? "False" : "True";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return "False";
             }
+        }
+        private string Cau12(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)1].Shapes.Count != 5)
+                    return "False";
+                return (double)a.ActivePresentation.Slides[(object)1].Shapes[(object)"Picture 5"].PictureFormat.CropRight < 100.0 ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau13(Application a, Presentation d)
+        {
+            try
+            {
+                return a.ActivePresentation.Slides[(object)5].Shapes.Count != 3 ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau14(Application a, Presentation d)
+        {
+            try
+            {
+                Slide slide = a.ActivePresentation.Slides[(object)6];
+                Chart chart = slide.Shapes[(object)3].Chart;
+                return chart.ChartType != XlChartType.xlLineMarkers ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau15(Application a, Presentation d)
+        {
+            try
+            {
+                foreach (Slide slide in a.ActivePresentation.Slides)
+                {
+                    if (slide.SlideShowTransition.EntryEffect.ToString() != "ppEffectRotateRight")
+                        return "False";
+                }
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau16(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)2].Shapes.Count.ToString() != "4")
+                    return "Fales";
+                if (a.ActivePresentation.Slides[(object)1].Shapes.Count.ToString() != "5")
+                    return "Fales";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau17(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)7].Shapes.Count != 5)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)7].Shapes[(object)"Cloud 8"].Width.ToString() != "417.6")
+                    return "False";
+                return a.ActivePresentation.Slides[(object)7].Shapes[(object)"Cloud 8"].Height.ToString() != "144" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau18(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)3].Shapes.Count != 2)
+                    return "False";
+                return a.ActivePresentation.Slides[(object)3].Shapes[(object)"Text Placeholder 2"].TextFrame.TextRange.Text != "Home stay\rHouse boat\r…" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau19(Application a, Presentation d)
+        {
+            try
+            {
+                return a.ActivePresentation.Slides[(object)7].Shapes[(object)2].TextFrame.TextRange.Font.Color.RGB.ToString() != "6968388" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau20(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)6].TimeLine.MainSequence.Count != 1)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)6].TimeLine.MainSequence[1].DisplayName != "Picture 4")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)6].TimeLine.MainSequence[1].EffectType.ToString() != "msoAnimEffectFly")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)6].TimeLine.MainSequence[1].EffectParameters.Direction.ToString() != "msoAnimDirectionUpLeft")
+                    return "False";
+                return a.ActivePresentation.Slides[(object)6].TimeLine.MainSequence[1].Timing.Duration.ToString() != "2" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau21(Application a, Presentation d)
+        {
+            try
+            {
+                object documentProperties = a.ActivePresentation.BuiltInDocumentProperties;
+                object target = documentProperties.GetType().InvokeMember("Item", BindingFlags.GetProperty, (Binder)null, documentProperties, new object[1]
+                {
+(object) "Title"
+                });
+                string str = target.GetType().InvokeMember("Value", BindingFlags.GetProperty, (Binder)null, target, new object[0]).ToString();
+                if (str != "Preferred Customer Program")
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau22(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)2].Shapes[(object)"Table 5"].Table.Columns.Count.ToString() != "3")
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau23(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)2].Shapes.Count != 5)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)2].Shapes[(object)1].Name != "Picture 3")
+                    return "False";
+                return a.ActivePresentation.Slides[(object)2].Shapes[(object)5].Name != "Picture 6" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau24(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)3].Shapes.Count != 2)
+                    return "False";
+                return a.ActivePresentation.Slides[(object)3].Shapes[(object)2].SmartArt.Layout.Name != "Basic Block List" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau25(Application a, Presentation d)
+        {
+            try
+            {
+                Slide slide = a.ActivePresentation.Slides[(object)4];
+                Chart chart = slide.Shapes[(object)3].Chart;
+                return chart.ChartType != XlChartType.xlBarClustered ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau26(Application a, Presentation d)
+        {
+            try
+            {
+                return a.ActivePresentation.Slides[(object)5].SlideShowTransition.Hidden != MsoTriState.msoTrue ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau27(Application a, Presentation d)
+        {
+            try
+            {
+                foreach (Slide slide in a.ActivePresentation.Slides)
+                {
+                    if (slide.SlideShowTransition.Duration.ToString() != "3")
+                        return "False";
+                }
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau28(Application a, Presentation d)
+        {
+            try
+            {
+                var slide1 = a.ActivePresentation.Slides[1];
 
+                // PowerPoint lưu hyperlink trong slide.Hyperlinks (danh sách toàn bộ hyperlink trên slide)
+                foreach (Hyperlink link in slide1.Hyperlinks)
+                {
+                    // link.TextToDisplay = text hiển thị (ví dụ: "Trey Research")
+                    // link.Address = URL (ví dụ: "http://www.treyresearch.net")
+                    string displayText = link.TextToDisplay.Trim();
+                    string url = link.Address.Trim();
+
+                    //return displayText.ToString() + " " + url.ToString();
+
+                    if (displayText == "Trey Research" && url.Contains("http://www.treyresearch.net"))
+                    {
+                        return "True";
+                    }
+                }
+                return "False";
+            }
+            catch
+            {
+                return "False";
+            }
+        }
+        private string Cau29(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)6].Shapes.Count != 8)
+                    return "False";
+                string alternativeText = a.ActivePresentation.Slides[(object)6].Shapes[(object)"Soccer"].AlternativeText;
+                return alternativeText != "Soccer players" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau30(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)2].Shapes.Count != 2)
+                    return "False";
+                string name = a.ActivePresentation.Slides[(object)2].Shapes[(object)2].SmartArt.Layout.Name;
+                return name != "Vertical Box List" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau31(Application a, Presentation d)
+        {
+            try
+            {
+                return a.ActivePresentation.Slides[(object)5].Shapes.Count != 6 ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau32(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence.Count != 4)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[1].EffectParameters.Direction.ToString() != "msoAnimDirectionLeft")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[1].Timing.Duration.ToString() != "1.5")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[4].EffectParameters.Direction.ToString() != "msoAnimDirectionLeft")
+                    return "False";
+                return a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[4].Timing.Duration.ToString() != "1.5" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau33(Application a, Presentation d)
+        {
+            try
+            {
+                foreach (Slide slide in a.ActivePresentation.Slides)
+                {
+                    if (slide.SlideShowTransition.Duration.ToString() != "2")
+                        return "False";
+                }
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau34(Application a, Presentation d)
+        {
+            try
+            {
+                int sectionIndex1 = -1;
+                for (int sectionIndex2 = 1; sectionIndex2 <= a.ActivePresentation.SectionProperties.Count; ++sectionIndex2)
+                {
+                    // ISSUE: reference to a compiler-generated method
+                    if (a.ActivePresentation.SectionProperties.Name(sectionIndex2) == "Student Clubs")
+                        sectionIndex1 = sectionIndex2;
+                }
+                if (sectionIndex1 == -1)
+                    return "False";
+                // ISSUE: reference to a compiler-generated method
+                int num = a.ActivePresentation.SectionProperties.FirstSlide(sectionIndex1);
+                if (num.ToString() != "3")
+                    return "False";
+                // ISSUE: reference to a compiler-generated method
+                num = a.ActivePresentation.SectionProperties.SlidesCount(sectionIndex1);
+                return num.ToString() != "5" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau35(Application a, Presentation d)
+        {
+            try
+            {
+                string text1 = a.ActivePresentation.HandoutMaster.Shapes[(object)"Header Placeholder 1"].TextFrame.TextRange.Text;
+                if (text1 != "First Up Consultants")
+                    return "False";
+                string text2 = a.ActivePresentation.HandoutMaster.Shapes[(object)"Footer Placeholder 3"].TextFrame.TextRange.Text;
+                if (text2 != "www.firstupconsultants.com")
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau36(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)4].Shapes.Count != 2)
+                    return "False";
+                return a.ActivePresentation.Slides[(object)4].Shapes[(object)2].SmartArt.Layout.Name != "Segmented Cycle" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau37(Application a, Presentation d)
+        {
+            try
+            {
+                foreach (Slide slide in a.ActivePresentation.Slides)
+                {
+                    if (slide.SlideShowTransition.EntryEffect.ToString() != "ppEffectWedge")
+                        return "False";
+                }
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau38(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)2].Shapes.Count != 2)
+                    return "False";
+                if (!a.ActivePresentation.Slides[(object)2].Shapes[(object)2].Name.Contains("ummary"))
+                    return "Fales";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau39(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)5].Background.Fill.Transparency.ToString() != "0.75")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)5].Background.Fill.Type != MsoFillType.msoFillPicture)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)4].Background.Fill.Transparency.ToString() == "0.75")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)4].Background.Fill.Type == MsoFillType.msoFillPicture)
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau40(Application a, Presentation d)
+        {
+            try
+            {
+                var slide1 = a.ActivePresentation.Slides[1];
+
+                // PowerPoint lưu hyperlink trong slide.Hyperlinks (danh sách toàn bộ hyperlink trên slide)
+                foreach (Hyperlink link in slide1.Hyperlinks)
+                {
+                    // link.TextToDisplay = text hiển thị (ví dụ: "Contact Us")
+                    // link.Address = URL (ví dụ: "http://www.firstupconsultants.com")
+                    string displayText = link.TextToDisplay.Trim();
+                    string url = link.Address.Trim();
+
+                    //return displayText.ToString() + " " + url.ToString();
+
+                    if (displayText == "Contact Us" && url.Contains("http://www.firstupconsultants.com"))
+                    {
+                        return "True";
+                    }
+                }
+                return "False";
+            }
+            catch
+            {
+                return "False";
+            }
+        }
+        private string Cau41(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.SlideMaster.CustomLayouts.Count < 12)
+                    return "False";
+                for (int Index = 1; Index <= a.ActivePresentation.SlideMaster.CustomLayouts.Count; ++Index)
+                {
+                    if (a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Name == "Picture with Text")
+                    {
+                        if (a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes.Count.ToString() != "5")
+                            return "False";
+                        string str = a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes[(object)5].Name + a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes[(object)4].Name;
+                        if (str.Contains("Text") && str.Contains("Picture"))
+                            return "True";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
             return "False";
         }
-        private string Cau28(Application a, Workbook d)
+        private string Cau42(Application a, Presentation d)
         {
             try
             {
-                Worksheet ws = d.Worksheets["Outdoor toys"] as Worksheet;
-                if (ws == null)
+                if (((object)a.ActivePresentation.Slides[(object)2].Shapes[(object)"Picture 5"].Fill.PictureEffects[1].Type).ToString() != "msoEffectPaintBrush")
                     return "False";
-
-                if (ws.Visible != XlSheetVisibility.xlSheetHidden)
-                    return "False";
+                return a.ActivePresentation.Slides[(object)2].Shapes[(object)"Picture 5"].ThreeD.BevelTopDepth.ToString() != "4" ? "False" : "True";
             }
-            catch
+            catch (Exception ex)
             {
                 return "False";
             }
-
-            return "True";
         }
-        private string Cau29(Application a, Workbook d)
+        private string Cau43(Application a, Presentation d)
         {
             try
             {
-                foreach (Worksheet sheet in d.Worksheets)
+                if (a.ActivePresentation.Slides[(object)6].Shapes.Count != 2)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)6].Shapes[(object)1].TextFrame.TextRange.Text != "Discover Your Campus")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)7].Shapes.Count != 2)
+                    return "False";
+                return a.ActivePresentation.Slides[(object)7].Shapes[(object)1].TextFrame.TextRange.Text != "Display Your Art" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau44(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)5].Shapes.Count != 3)
+                    return "False";
+                return a.ActivePresentation.Slides[(object)5].Shapes[(object)3].Name != "Sailing" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau45(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence.Count != 1)
+                    return "False";
+                return a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[1].EffectType.ToString() != "msoAnimEffectPathDown" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau46(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.PrintOptions.NumberOfCopies != 3)
+                    return "False";
+                if (a.ActivePresentation.PrintOptions.OutputType != PpPrintOutputType.ppPrintOutputNotesPages)
+                    return "False";
+                if (a.ActivePresentation.PrintOptions.Collate != MsoTriState.msoFalse)
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau47(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.SlideMaster.CustomLayouts.Count != 12)
+                    return "False";
+                for (int Index = 1; Index <= a.ActivePresentation.SlideMaster.CustomLayouts.Count; ++Index)
                 {
-                    if (sheet.Visible == XlSheetVisibility.xlSheetHidden)
+                    if (a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Name == "Ingredients")
+                    {
+                        if (a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes.Count.ToString() != "5")
+                            return "False";
+                        // ISSUE: reference to a compiler-generated method
+                        return a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes[(object)"Content Placeholder 6"].TextFrame.TextRange.Paragraphs(1, 1).ParagraphFormat.Bullet.Type.ToString() == "ppBulletPicture" ? "True" : "False";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "False";
+        }
+        private string Cau48(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)4].Shapes.Count != 8)
+                    return "False";
+                if (((object)a.ActivePresentation.Slides[(object)4].Shapes[(object)"Freeform 6"].Shadow.Style).ToString() != "msoShadowStyleInnerShadow")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)4].Shapes[(object)"Freeform 6"].Shadow.OffsetX.ToString() != " - 2.12132" || a.ActivePresentation.Slides[(object)4].Shapes[(object)"Freeform 6"].Shadow.OffsetY.ToString() != " - 2.12132")
+                    return "False";
+                if (((object)a.ActivePresentation.Slides[(object)4].Shapes[(object)"Freeform 5"].Shadow.Style).ToString() != "msoShadowStyleInnerShadow")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)4].Shapes[(object)"Freeform 5"].Shadow.OffsetX.ToString() != " - 2.12132")
+                    return "False";
+                return a.ActivePresentation.Slides[(object)4].Shapes[(object)"Freeform 5"].Shadow.OffsetY.ToString() != " - 2.12132" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau49(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)5].Shapes.Count != 3)
+                    return "False";
+                return a.ActivePresentation.Slides[(object)5].Shapes[(object)2].Name != "Rectangle 5" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau50(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)1].Shapes[(object)"Sleep Away"].MediaFormat.FadeInDuration != 2000)
+                    return "False";
+                return a.ActivePresentation.Slides[(object)1].Shapes[(object)"Sleep Away"].AnimationSettings.PlaySettings.StopAfterSlides != 999 ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau51(Application a, Presentation d)
+        {
+            try
+            {
+                object documentProperties = a.ActivePresentation.BuiltInDocumentProperties;
+                object target = documentProperties.GetType().InvokeMember("Item", BindingFlags.GetProperty, (Binder)null, documentProperties, new object[1]
+                {
+(object) "Title"
+                });
+                if (target.GetType().InvokeMember("Value", BindingFlags.GetProperty, (Binder)null, target, new object[0]).ToString() != "")
+                    return "False";
+                if (((object)a.ActivePresentation.RemovePersonalInformation).ToString() != "msoTrue")
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau52(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.SlideShowSettings.AdvanceMode.ToString() != "ppSlideShowManualAdvance")
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau53(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)2].Shapes.Count != 5)
+                    return "False";
+                float top1 = a.ActivePresentation.Slides[(object)2].Shapes[(object)"Content Placeholder 5"].Top;
+                float top2 = a.ActivePresentation.Slides[(object)2].Shapes[(object)"Content Placeholder 3"].Top;
+                float left1 = a.ActivePresentation.Slides[(object)2].Shapes[(object)"Content Placeholder 5"].Left;
+                float left2 = a.ActivePresentation.Slides[(object)2].Shapes[(object)"Content Placeholder 3"].Left;
+                if ((double)top1 != (double)top2)
+                    return "False";
+                return left2.ToString() != "77.16708" || (double)left1 != 486.0 ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau54(Application a, Presentation d)
+        {
+            try
+            {
+                Slide slide = a.ActivePresentation.Slides[(object)5];
+                Chart chart = slide.Shapes[(object)2].Chart;
+                return !chart.DataTable.ShowLegendKey ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau55(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)6].Shapes.Count != 3)
+                    return "False";
+                return a.ActivePresentation.Slides[(object)6].Shapes[(object)3].Name != "River" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau56(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence.Count != 1)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[1].DisplayName != "5 - Point Star 5")
+                    return "False";
+                return a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[1].EffectType.ToString() != "msoAnimEffectPathHeart" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau57(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.PrintOptions.NumberOfCopies != 5)
+                    return "False";
+                if (a.ActivePresentation.PrintOptions.OutputType != PpPrintOutputType.ppPrintOutputNotesPages)
+                    return "False";
+                if (a.ActivePresentation.PrintOptions.Collate != MsoTriState.msoFalse)
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau58(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)1].Shapes.Count != 3)
+                    return "False";
+                return !a.ActivePresentation.Slides[(object)1].Shapes[(object)3].Name.Contains("oom") ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau59(Application a, Presentation d)
+        {
+            try
+            {
+                var slide = a.ActivePresentation.Slides[(object)3];  // slide 3
+                if (slide.Shapes.Count != 4) return "False 1";
+
+                for (int i = 1; i <= slide.Shapes.Count; i++)
+                {
+                    var shape = slide.Shapes[(object)i];
+
+                    if ((int)shape.Type == 29 || shape.Name.Contains("3D Model") || shape.Tags["OBJECTTYPE"] == "3DMODEL")
+                    {
+                        // Tìm thấy 3D Model rồi đây
+
+                        dynamic model = shape.GetType().InvokeMember("Model3D",
+                                    System.Reflection.BindingFlags.GetProperty,
+                                    null, shape, null);
+
+                        // Nếu có Model3D (máy mới)
+                        if (model != null)
+                        {
+                            float rotY = model.RotationY;
+                            float rotX = model.RotationX;
+
+                            // Máy mới 2023–2025: Left = 90
+                            if (Math.Abs(rotY - 90f) < 10f && Math.Abs(rotX) < 10f)
+                                return "True";
+                        }
+                        else
+                        {
+                            // Máy cũ: fallback về ThreeD
+                            float rotY = shape.ThreeD.RotationY;
+                            if (Math.Abs(rotY - 270f) < 10f && Math.Abs(shape.ThreeD.RotationX) < 10f)
+                                return "True";
+                        }
+                    }
+                }
+
+                return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau60(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[1].DisplayName != "3D Model 3")
+                    return "False";
+                return a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[1].EffectType.ToString() != "154" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau61(Application a, Presentation d)
+        {
+            try
+            {
+                foreach (Slide slide in a.ActivePresentation.Slides)
+                {
+                    if (slide.SlideShowTransition.EntryEffect.ToString() != "ppEffectPushRight")
                         return "False";
                 }
             }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau30(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet ws = d.Worksheets["Outdoor toys"] as Worksheet;
-                if (ws == null)
-                    return "False";
-
-                // Lấy mã màu của tab (Tab.Color có kiểu int)
-                int tabColor = (int)(ws.Tab.Color);
-
-                // So sánh với mã màu mong muốn (12419407)
-                if (tabColor != 12419407)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau31(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet ws = d.Worksheets["Outdoor sports"] as Worksheet;
-                if (ws == null)
-                    return "False";
-
-                if (ws.Index != 3)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau32(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet ws = d.Worksheets["Shareholders Info"] as Worksheet;
-                if (ws == null)
-                    return "False";
-
-                double row2Height = ws.get_Range("A2", "A2").EntireRow.Height;
-
-                if (row2Height != 30)
-                    return "False"; // Hàng 2 không có chiều cao 30
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau48(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Microsoft Word"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-            }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return "False";
             }
             return "True";
         }
-        private string Cau55(Application a, Workbook d)
+        private string Cau62(Application a, Presentation d)
         {
             try
             {
-                //Worksheet ws = (Worksheet)d.Worksheets["Materials"];
-                //if (ws == null)
-                //    return "False";
+                if (a.ActivePresentation.Slides[(object)2].Shapes.Count <= 1)
+                    return "False";
+                return !a.ActivePresentation.Slides[(object)2].Shapes[(object)2].Name.Contains("Section Zoom") ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau63(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)1].Shapes.Count > 2)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)2].Shapes.Count != 3)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)3].Shapes.Count != 5)
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau64(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)8].Shapes[(object)2].TextFrame2.Column.Number != 2)
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau65(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)3].Shapes.Count != 3)
+                    return "False";
+                if (((object)a.ActivePresentation.Slides[(object)3].Shapes[(object)3].Type).ToString() != "msoTable")
+                    return "False";
+                int count = a.ActivePresentation.Slides[(object)3].Shapes[(object)3].Table.Columns.Count;
+                if (count.ToString() != "3")
+                    return "False";
+                count = a.ActivePresentation.Slides[(object)3].Shapes[(object)3].Table.Rows.Count;
+                if (count.ToString() != "4")
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau66(Application a, Presentation d)
+        {
+            try
+            {
+                // Get slide 8
+                var slide = a.ActivePresentation.Slides.Count >= 8
+                    ? a.ActivePresentation.Slides[8]
+                    : null;
+                if (slide == null)
+                    return "False";
 
-                //double wA = ((Range)ws.get_Range("A4")).ColumnWidth;
-                //double wB = ((Range)ws.get_Range("B4")).ColumnWidth;
-                //double wN = ((Range)ws.get_Range("N4")).ColumnWidth;
-
-                //if (wA < 34.0 || wA > 35.0) return "False";
-                //if (wB < 14.0 || wB > 15.0) return "False";
-                //if (wN < 6.0 || wN > 8.0) return "False";
-
-                Worksheet ws = (Worksheet)d.Worksheets["Materials"];
-                if (ws == null)
-                    return "False (Không tìm thấy sheet 'Materials')";
-
-                Range rng = ws.Range["A:E"];
-                int n = rng.Columns.Count;
-
-                // lấy độ rộng hiện tại
-                double[] current = new double[n];
-                for (int i = 1; i <= n; i++)
-                    current[i - 1] = ((Range)rng.Columns[i]).ColumnWidth;
-
-                // tạo bản sao tạm
-                Worksheet temp = d.Worksheets.Add();
-                Range tempRange = temp.Range["A1:E100"];
-
-                // copy nội dung và định dạng để tính chính xác độ rộng
-                ws.Range["A1:E100"].Copy();
-                tempRange.PasteSpecial(XlPasteType.xlPasteAll);
-
-                // gọi AutoFit trên sheet tạm
-                tempRange.Columns.AutoFit();
-
-                // lấy độ rộng sau AutoFit
-                double[] autofit = new double[n];
-                for (int i = 1; i <= n; i++)
-                    autofit[i - 1] = ((Range)tempRange.Columns[i]).ColumnWidth;
-
-                // tắt cảnh báo trước khi xóa
-                Application app = d.Application;
-                bool oldAlerts = app.DisplayAlerts;
-                app.DisplayAlerts = false;
-
-                // xóa sheet tạm mà không hiển thị thông báo
-                temp.Delete();
-
-                // bật lại cảnh báo
-                app.DisplayAlerts = oldAlerts;
-
-                // so sánh độ rộng hiện tại với độ rộng AutoFit
-                bool ok = true;
-                for (int i = 0; i < n; i++)
+                // Get shape "Chart 5"
+                Shape chartShape = null;
+                foreach (Shape s in slide.Shapes)
                 {
-                    if (Math.Abs(current[i] - autofit[i]) > 0.2)
+                    if (s.Name == "Chart 5")
                     {
-                        ok = false;
-                        //return ($"Cột {i + 1}: hiện tại = {current[i]}, AutoFit = {autofit[i]}");
+                        chartShape = s;
+                        break;
+                    }
+                }
+                if (chartShape == null)
+                    return "False";
+
+                // Check if shape has a Chart
+                if (!chartShape.HasChart.Equals(Microsoft.Office.Core.MsoTriState.msoTrue))
+                    return "False";
+
+                var chart = chartShape.Chart;
+                if (chart == null)
+                    return "False";
+
+                // Check ChartStyle
+                if (chart.ChartStyle.ToString() != "261")
+                    return "False";
+
+                // Check ChartColor
+                if (chart.ChartColor.ToString() != "13")
+                    return "False";
+
+                return "True";
+            }
+            catch (Exception)
+            {
+                return "False";
+            }
+        }
+        private string Cau67(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.PrintOptions.NumberOfCopies.ToString() != "4")
+                    return "False";
+                if (a.ActivePresentation.PrintOptions.OutputType.ToString() != "ppPrintOutputThreeSlideHandouts")
+                    return "False";
+                return ((object)a.ActivePresentation.PrintOptions.Collate).ToString() != "msoFalse" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau68(Application a, Presentation d)
+        {
+            try
+            {
+                if (((object)a.ActivePresentation.Slides[(object)6].BackgroundStyle).ToString() != "msoBackgroundStyleNotAPreset")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)6].Background.Fill.GradientAngle.ToString() != "90")
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau69(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)8].Shapes[(object)1].TextFrame.TextRange.Text != "Title Layout")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)12].Shapes[(object)1].TextFrame.TextRange.Text != "Two Content Layout with SmartArt")
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau70(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.TemplateName != "Ion Boardroom")
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau71(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)3].Shapes[(object)"Diagram 2"].SmartArt.Color.Name != "Colorful Range -Accent Colors 4 to 5")
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau72(Application a, Presentation d)
+        {
+            string str = "True";
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence.Count != 4)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[1].DisplayName != "Restaurant ")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[1].EffectType.ToString() != "msoAnimEffectWipe")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[1].EffectParameters.Direction != MsoAnimDirection.msoAnimDirectionUp)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[1].Timing.TriggerType == MsoAnimTriggerType.msoAnimTriggerOnPageClick)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[1].Timing.TriggerDelayTime.ToString() != "0")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[2].EffectParameters.Direction != MsoAnimDirection.msoAnimDirectionUp)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[2].Timing.TriggerDelayTime.ToString() != "1")
+                    return "False";
+                str = a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[2].Timing.TriggerType.ToString();
+                if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[2].Timing.TriggerType != MsoAnimTriggerType.msoAnimTriggerAfterPrevious)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[2].EffectType.ToString() != "msoAnimEffectWipe")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[3].EffectParameters.Direction != MsoAnimDirection.msoAnimDirectionUp)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[3].Timing.TriggerDelayTime.ToString() != "1")
+                    return "False";
+                str = a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[3].Timing.TriggerType.ToString();
+                if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[3].Timing.TriggerType != MsoAnimTriggerType.msoAnimTriggerAfterPrevious)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[3].EffectType.ToString() != "msoAnimEffectWipe")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[3].EffectParameters.Direction != MsoAnimDirection.msoAnimDirectionUp)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[3].Timing.TriggerDelayTime.ToString() != "1")
+                    return "False";
+                str = a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[3].Timing.TriggerType.ToString();
+                if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[3].Timing.TriggerType != MsoAnimTriggerType.msoAnimTriggerAfterPrevious)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)5].TimeLine.MainSequence[3].EffectType.ToString() != "msoAnimEffectWipe")
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau73(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)7].Shapes.Count != 2)
+                    return "False";
+                if (((object)a.ActivePresentation.Slides[(object)7].Shapes[(object)2].Type).ToString() != "msoChart")
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau74(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)4].Shapes.Count != 2)
+                    return "False";
+                return ((object)a.ActivePresentation.Slides[(object)4].Shapes[(object)2].Type).ToString() != "msoEmbeddedOLEObject" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau75(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)2].Shapes.Count != 2)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)2].Shapes[(object)"TextBox 4"].Fill.BackColor.RGB.ToString() != "14145397")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)2].Shapes[(object)"TextBox 4"].Line.Weight.ToString() != "3")
+                    return "False";
+                return a.ActivePresentation.Slides[(object)2].Shapes[(object)"TextBox 4"].ThreeD.BevelTopDepth.ToString() != "6" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau76(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides.Count != 10)
+                    return "False";
+                if (!a.ActivePresentation.Slides[(object)10].Shapes[(object)"Title 1"].TextFrame.TextRange.Text.Contains("New product"))
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau77(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.SlideMaster.CustomLayouts.Count < 12)
+                    return "False";
+                for (int Index = 1; Index <= a.ActivePresentation.SlideMaster.CustomLayouts.Count; ++Index)
+                {
+                    if (a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Name == "Trevorslayout")
+                    {
+                        if (a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes.Count.ToString() != "6")
+                            return "False";
+                        if (a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes[(object)5].PlaceholderFormat.Type.ToString() != "ppPlaceholderPicture")
+                            return "False";
+                        return a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes[(object)6].PlaceholderFormat.Type.ToString() != "ppPlaceholderBody" ? "False" : "True";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "False";
+        }
+        private string Cau78(Application a, Presentation d)
+        {
+            try
+            {
+                string str = "True";
+                if (a.ActivePresentation.HandoutMaster.Shapes.Count != 4)
+                    return "False";
+                try
+                {
+                    // ISSUE: variable of a compiler-generated type
+                    Microsoft.Office.Interop.PowerPoint.Shape shape = a.ActivePresentation.HandoutMaster.Shapes[(object)3];
+                    if (shape.TextFrame.TextRange.Text != "First Copy")
+                        return "False";
+                }
+                catch (Exception ex)
+                {
+                    return "False";
+                }
+                return str;
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau79(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.SlideMaster.CustomLayouts[(object)3].Shapes.Count.ToString() != "5")
+                    return "False";
+                if (a.ActivePresentation.SlideMaster.CustomLayouts[(object)3].Shapes[(object)5].PlaceholderFormat.Type.ToString() != "ppPlaceholderMediaClip")
+                    return "False";
+                if ((double)a.ActivePresentation.SlideMaster.CustomLayouts[(object)3].Shapes[(object)5].Left != (double)a.ActivePresentation.SlideMaster.CustomLayouts[(object)3].Shapes[(object)1].Left)
+                    return "False";
+                if ((double)a.ActivePresentation.SlideMaster.CustomLayouts[(object)3].Shapes[(object)5].Width != (double)a.ActivePresentation.SlideMaster.CustomLayouts[(object)3].Shapes[(object)1].Width)
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau80(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)5].Shapes[(object)"Picture 4"].Fill.PictureEffects.Count.ToString() != "1")
+                    return "False";
+                return ((object)a.ActivePresentation.Slides[(object)5].Shapes[(object)"Picture 4"].Fill.PictureEffects[1].Type).ToString() != "msoEffectPastelsSmooth" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau81(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)3].Shapes.Count != 2)
+                    return "False";
+                return !a.ActivePresentation.Slides[(object)3].Shapes[(object)1].TextFrame.TextRange.Text.Contains("New product") ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau82(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)4].Shapes.Count != 2)
+                    return "False";
+                return !a.ActivePresentation.Slides[(object)4].Shapes[(object)1].TextFrame.TextRange.Text.Contains("New product") ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau83(Application a, Presentation d)
+        {
+            try
+            {
+                return a.ActivePresentation.Slides[(object)2].Shapes[(object)5].Top.ToString() != "267.12" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau84(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.PrintOptions.sectionIndex != 2)
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau85(Application a, Presentation d)
+        {
+            try
+            {
+                var pres = a.ActivePresentation;
+                var ps = pres.PageSetup;
+
+                // 1. Kiểm tra kích thước chính xác đến 2 chữ số thập phân
+                bool correctWidth = Math.Abs(ps.SlideWidth - 576f) < 0.5f;   // 8 inches  = 576 pt
+                bool correctHeight = Math.Abs(ps.SlideHeight - 792f) < 0.5f;   // 11 inches = 792 pt
+
+                // 2. Kiểm tra đã chọn "Ensure Fit" (rất quan trọng – MOS bắt buộc)
+                // Khi chọn Ensure Fit → PowerPoint tự động set SlideOrientation = msoPortrait
+                // và Scale để nội dung vừa khung → nhưng quan trọng nhất là Width & Height phải đúng
+                bool ensureFit = correctWidth && correctHeight;
+
+                if (ensureFit)
+                    return "True";
+                else
+                    return "False";
+            }
+            catch
+            {
+                return "False";
+            }
+        }
+        private string Cau86(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)3].Shapes.Count != 11)
+                    return "False";
+                return a.ActivePresentation.Slides[(object)3].Shapes[(object)11].Name != "Oval 11" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau87(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)1].Shapes.Count != 1)
+                    return "False";
+                return a.ActivePresentation.Slides[(object)1].Shapes[(object)1].TextFrame.TextRange.Font.Color.RGB.ToString() != "16777215" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau88(Application a, Presentation d)
+        {
+            try
+            {
+                var slide2 = a.ActivePresentation.Slides[2];   // vị trí thứ 2
+
+                // Duyệt TẤT CẢ shape trên slide 2
+                foreach (Shape sh in slide2.Shapes)
+                {
+                    // Chỉ quan tâm shape có chữ
+                    if (sh.HasTextFrame == MsoTriState.msoTrue &&
+                        sh.TextFrame.HasText == MsoTriState.msoTrue)
+                    {
+                        string text = sh.TextFrame.TextRange.Text.Trim();
+
+                        if (text.ToLower().Contains("try our two new flavours!"))
+                            return "True";
+                    }
+                }
+                return "False";
+            }
+            catch
+            {
+                return "False";
+            }
+        }
+        private string Cau89(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.SlideMaster.CustomLayouts.Count < 12)
+                    return "False";
+                for (int Index = 1; Index <= a.ActivePresentation.SlideMaster.CustomLayouts.Count; ++Index)
+                {
+                    if (a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Name == "Custom1")
+                    {
+                        if (a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes.Count.ToString() != "6")
+                            return "False";
+                        if (a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes[(object)5].PlaceholderFormat.Type.ToString() != "ppPlaceholderPicture")
+                            return "False";
+                        return a.ActivePresentation.SlideMaster.CustomLayouts[(object)Index].Shapes[(object)6].PlaceholderFormat.Type.ToString() != "ppPlaceholderBody" ? "False" : "True";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "False";
+        }
+        private string Cau90(Application a, Presentation d)
+        {
+            try
+            {
+                return a.ActivePresentation.Slides[(object)2].Shapes[(object)"Picture 3"].Top.ToString() != "315.8544" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau91(Application a, Presentation d)
+        {
+            try
+            {
+                var slide = a.ActivePresentation.Slides[(object)3];
+                for (int i = 1; i <= slide.Shapes.Count; i++)
+                {
+                    var shape = slide.Shapes[(object)i];
+
+                    // Icon SVG thật sự có Type = msoAutoShape hoặc msoFreeform + có Fill + Line
+                    if (shape.Fill.Type == MsoFillType.msoFillSolid &&
+                        shape.Line.Visible == MsoTriState.msoTrue)
+                    {
+                        //return i.ToString();
+
+                        int fill = shape.Fill.ForeColor.RGB & 0xFFFFFF;
+                        int line = shape.Line.ForeColor.RGB & 0xFFFFFF;
+
+                        if (fill == 12611584 && line == 65535)
+                            return "True";
+                    }
+                }
+
+                return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau92(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)2].TimeLine.MainSequence.Count != 4)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)2].TimeLine.MainSequence[1].DisplayName != "Picture 3")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)2].TimeLine.MainSequence[2].DisplayName != "Picture 4")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)2].TimeLine.MainSequence[3].DisplayName != "Picture 5")
+                    return "False";
+                return a.ActivePresentation.Slides[(object)2].TimeLine.MainSequence[4].DisplayName != "Picture 6" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau93(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence.Count != 1)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[1].DisplayName != "Picture 5")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[1].EffectType != MsoAnimEffect.msoAnimEffectFly)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[1].EffectParameters.Direction != MsoAnimDirection.msoAnimDirectionRight)
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau94(Application a, Presentation d)
+        {
+            try
+            {
+                if (!File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "Presentation.pdf")))
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau95(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.PrintOptions.sectionIndex != 2)
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau96(Application a, Presentation d)
+        {
+            try
+            {
+                if (((object)a.ActivePresentation.Slides[(object)5].Shapes[(object)2].Type).ToString() != "msoPlaceholder")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)5].Shapes[(object)2].SmartArt.Layout.Name != "Pyramid List")
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau97(Application a, Presentation d)
+        {
+            try
+            {
+                if (a?.ActivePresentation == null)
+                    return "False";
+
+                if (a.ActivePresentation.Slides.Count < 4)
+                    return "False";
+
+                Slide slide = a.ActivePresentation.Slides[4];
+
+                // find shape by name safely
+                Shape target = null;
+                foreach (Shape s in slide.Shapes)
+                {
+                    if (string.Equals(s.Name, "Content Placeholder 6", StringComparison.OrdinalIgnoreCase))
+                    {
+                        target = s;
                         break;
                     }
                 }
 
-                if (ok)
+                if (target == null)
+                    return "False";
+
+                if (((object)target.Type).ToString() != "msoPlaceholder")
+                    return "False";
+
+                Chart chart = null;
+                try
+                {
+                    chart = target.Chart;
+                }
+                catch
+                {
+                    chart = null;
+                }
+
+                if (chart == null)
+                    return "False";
+
+                // If legend is absent, it's a failure for this test
+                var legend = chart.Legend;
+                if (legend == null)
+                    return "False";
+
+                // Compare to enum for robustness
+                try
+                {
+                    // chart.Legend.Position is an XlLegendPosition enum
+                    var posObj = legend.Position;
+                    if (posObj is XlLegendPosition pos)
+                    {
+                        return pos == XlLegendPosition.xlLegendPositionTop ? "True" : "False";
+                    }
+                    // fallback to string compare
+                    return posObj.ToString() == "xlLegendPositionTop" ? "True" : "False";
+                }
+                catch
+                {
+                    return "False";
+                }
+            }
+            catch (Exception)
+            {
+                return "False";
+            }
+        }
+        private string Cau98(Application a, Presentation d)
+        {
+            try
+            {
+                if (((object)a.ActivePresentation.Slides[(object)3].Shapes[(object)"Content Placeholder 4"].Type).ToString() != "msoPlaceholder")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)3].Shapes[(object)"Content Placeholder 4"].Table.Rows.Count.ToString() != "6")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)3].Shapes[(object)"Content Placeholder 4"].Table.Rows[3].Cells[1].Shape.TextFrame.TextRange.Text.Contains("Sinusitis"))
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)3].Shapes[(object)"Content Placeholder 4"].Table.Columns.Count.ToString() != "5")
+                    return "False";
+                return !a.ActivePresentation.Slides[(object)3].Shapes[(object)"Content Placeholder 4"].Table.Columns[5].Cells[1].Shape.TextFrame.TextRange.Text.Contains("Percentage Uninsured") ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau99(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.PrintOptions.OutputType.ToString() != "ppPrintOutputNotesPages")
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau100(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)4].Shapes.Count != 3)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)4].Shapes[(object)3].Name != "TextBox 4")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)4].Shapes[(object)2].Name != "Picture 6")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)4].Shapes[(object)1].Name != "Picture 3")
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau101(Application a, Presentation d)
+        {
+            try
+            {
+                var design = a.ActivePresentation.Designs[1];        // Slide Master luôn là Designs[1]
+
+                // 1. Kiểm tra Design Name chính xác là "Office Theme"
+                bool correctTheme = design.Name.Equals("Office Theme",
+                                         StringComparison.OrdinalIgnoreCase);
+
+                // 2. Kiểm tra font của Title và Body trên Master phải là Arial
+                var masterSlide = design.SlideMaster;
+
+                // Title font
+                bool titleIsArial = masterSlide.Shapes.Placeholders[1]
+                                        .TextFrame.TextRange.Font.Name == "Arial";
+
+                // Body font (thường là placeholder 2)
+                bool bodyIsArial = masterSlide.Shapes.Placeholders[2]
+                                       .TextFrame.TextRange.Font.Name == "Arial";
+
+                // Nếu không có placeholder 2 (một số theme không có) → check toàn bộ layout đầu tiên
+                if (masterSlide.Shapes.Placeholders.Count < 2)
+                {
+                    bodyIsArial = true; // coi như pass nếu theme không có body placeholder
+                }
+
+                if (correctTheme && titleIsArial && bodyIsArial)
                     return "True";
                 else
                     return "False";
-
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau61(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = (Worksheet)d.Worksheets["New Policies"];
-                Range range = worksheet.Range["A5", "A13"];
-
-                // Kiểm tra canh trái (Left = -4131)
-                if ((int)range.HorizontalAlignment != -4131)
-                    return "False";
-
-                // Kiểm tra thụt đầu dòng là 1
-                if (range.IndentLevel != 1)
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau67(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["October (2)"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-
-                if (worksheet.Index <= 1)
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-            return "True";
-        }
-        private string Cau71(Application a, Workbook d)
-        {
-            //try
-            //{
-            //    Worksheet worksheet = (Worksheet)d.Worksheets["Products"];
-
-            //    Range rng = worksheet.Range["A1"];
-
-            //    // Kiểm tra xem đã FreezePanes chưa
-            //    if (!a.ActiveWindow.FreezePanes)
-            //        return "False 1";
-
-            //    //// Kiểm tra con trỏ hiện tại có ở đúng ô A3 không
-            //    //string activeAddress = a.ActiveCell.get_Address(
-            //    //                        Missing.Value,
-            //    //                        Missing.Value,
-            //    //                        XlReferenceStyle.xlA1,
-            //    //                        Missing.Value,
-            //    //                        Missing.Value);
-
-            //    //if (activeAddress != "$A$3")
-            //    //    return "False(để con trỏ ô A3 trước khi FreezePanes)";
-            //}
-            //catch (Exception ex)
-            //{
-            //    return "False" + ex.Message;
-            //}
-
-            //return "True";
-
-            try
-            {
-                Worksheet wsProducts = (Worksheet)d.Worksheets["Products"];
-                Worksheet wsCurrent = (Worksheet)a.ActiveSheet;
-
-                // Tắt cập nhật màn hình để không thấy nhấp nháy
-                a.ScreenUpdating = false;
-
-                wsProducts.Activate();
-                Window win = a.ActiveWindow;
-
-                bool isFreeze = win.FreezePanes;
-                int splitRow = win.SplitRow;
-
-                // Trả lại sheet cũ
-                wsCurrent.Activate();
-                a.ScreenUpdating = true;
-
-                if (!isFreeze)
-                    return "False";
-                if (splitRow != 2)
-                    return "False";
-            }
-            catch (Exception ex)
-            {
-                return "False";
-            }
-
-            return "True";
-
-        }
-        private string Cau72(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet ws = d.Worksheets["Products"] as Worksheet;
-                if (ws == null)
-                    return "False";
-
-                Range rng = ws.Range["A1"];
-                int align = Convert.ToInt32(rng.HorizontalAlignment);
-
-                if (align != -4131) // -4131 là xlLeft
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau85(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["students"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-
-                string d1Text = worksheet.Range["D1"].Text.ToString();
-                if (!string.IsNullOrEmpty(d1Text))
-                    return "False";
-
-                //string e1Text = worksheet.Range["E1"].Text.ToString();
-                if (d1Text.Trim() == "GPA")
-                    return "False";
-
-                string d30Text = worksheet.Range["D30"].Text.ToString();
-                if (!string.IsNullOrEmpty(d30Text))
-                    return "False";
-                if (d30Text.Trim() == "2")
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau86(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["roster"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-
-                // Duyệt dòng 1 đến 6: phải ẩn
-                for (int row = 1; row <= 6; row++)
-                {
-                    Range range = worksheet.Range[$"A{row}"];
-                    if (range.EntireRow.Hidden == false)
-                        return "False";
-                }
-
-                // Dòng 7: không được ẩn
-                Range row7 = worksheet.Range["A7"];
-                if (row7.EntireRow.Hidden == true)
-                {
-                    // Ý muốn kiểm tra xem dòng 7 PHẢI bị ẩn,
-                    // nhưng hiện tại KHÔNG bị ẩn => sai
-                    return "False";
-                }
-
-                return "True";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-        }
-        private string Cau87(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["roster"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-
-                // Duyệt dòng 1 đến 6, kiểm tra xem có bị ẩn không
-                for (int row = 1; row <= 6; row++)
-                {
-                    Range range = worksheet.Range[$"A{row}"];
-                    if (range.EntireRow.Hidden == true)
-                        return "False";
-                }
-
-                return "True";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-        }
-        private string Cau2(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Substitutes"];
-                object cellValue = worksheet.Range["A1", "A1"].Text;
-
-                string value = cellValue != null ? cellValue.ToString() : "";
-
-                if (value != "Rank")
-                {
-                    return "False";
-                }
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau7(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Customers by Order"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-
-                // Lấy giá trị ô C502
-                Range cellC502 = worksheet.Range["C502"];
-                string valueC502 = cellC502?.Text?.ToString() ?? "";
-
-                if (!string.IsNullOrEmpty(valueC502))
-                    return "False";
-
-                // Lấy giá trị ô B502
-                Range cellB502 = worksheet.Range["B502"];
-                string valueB502 = cellB502?.Text?.ToString() ?? "";
-
-                if (!string.IsNullOrEmpty(valueB502))
-                    return "False";
-
-                return "True";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-        }
-        private string Cau11(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Top Donors"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-
-                // Kiểm tra ô A2 có phải là "Mark Bebbington" hay không
-                string cellA2 = worksheet.Range["A2"].Text?.ToString()?.Trim();
-                if (!string.Equals(cellA2, "Mark Bebbington", StringComparison.OrdinalIgnoreCase))
-                    return "False";
-
-                // Kiểm tra ô C6 có phải là "Platinum" hay không
-                string cellC6 = worksheet.Range["C6"].Text?.ToString()?.Trim();
-                if (!string.Equals(cellC6, "Platinum", StringComparison.OrdinalIgnoreCase))
-                    return "False";
-
-                return "True";
             }
             catch
             {
                 return "False";
             }
         }
-        private string Cau12(Application a, Workbook d)
+        private string Cau102(Application a, Presentation d)
         {
             try
             {
-                Worksheet ws = d.Worksheets["Top Donors"] as Worksheet;
-
-                string a2 = ws.Range["A2"].Text.ToString();
-                if (a2 != "Daniel P. Taylor")
-                    return "False";
-
-                string c2 = ws.Range["C2"].Text.ToString();
-                if (c2 != "Charles Fitzgerald")
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau13(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet ws = d.Worksheets["Donor Contact Info"] as Worksheet;
-
-                string f2 = ws.Range["F2"].Text.ToString();
-                string f3 = ws.Range["F3"].Text.ToString();
-                string h46 = ws.Range["H46"].Text.ToString();
-
-                if (f2 != "64043" || f3 != "64043")
-                    return "False";
-
-                if (h46 != "314-555-64044")
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau14(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Donor List"];
-
-                string c16 = worksheet.Range["C16"].Text?.ToString();
-                if (c16 != "Bronze Count")
-                    return "False";
-
-                string c27 = worksheet.Range["C27"].Text?.ToString();
-                if (c27 != "Silver Count")
-                    return "False";
-
-                string c67 = worksheet.Range["C67"].Text?.ToString();
-                if (c67 != "Platinum Count")
-                    return "False";
-
-                string a67 = worksheet.Range["A67"].Text?.ToString();
-                if (a67 != "28")
-                    return "False";
-
-                if (worksheet.HPageBreaks.Count != 4)
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau15(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Donor List"];
-
-                string cellValue = worksheet.Range["G8", "G8"].Text.ToString();
-
-                // Nếu ô G8 khác rỗng thì trả về "False"
-                if (!string.IsNullOrEmpty(cellValue))
-                {
-                    return "False";
-                }
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau16(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-
-            try
-            {
-                worksheet = d.Worksheets["Demographics"];
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            try
-            {
-                var value = worksheet.Range["C5", "C5"].Value;
-
-                string cellValue = value != null ? value.ToString() : "";
-
-                if (cellValue != "300")
-                {
-                    return "False";
-                }
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau42(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Exchange Rates"];
-                if (worksheet == null)
-                    return "False";
-
-                Range cellRange = worksheet.Range["A7", "D8"];
-                if (cellRange == null)
-                    return "False";
-
-                // Duyệt qua từng ô trong vùng
-                foreach (Range cell in cellRange.Cells)
-                {
-                    object val = cell.Value2;
-
-                    if (val != null && val != DBNull.Value && val.ToString().Trim() != "")
-                    {
-                        // Nếu có ít nhất 1 ô có dữ liệu → sai
-                        return "False";
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau70(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = (Worksheet)d.Worksheets["Top 25"];
-
-                string cellA2 = worksheet.get_Range("A2", "A2").Text.ToString();
-                if (cellA2 != "Rank")
-                    return "False";
-
-                string cellG27 = worksheet.get_Range("G27", "G27").Text.ToString();
-                if (cellG27 != "London")
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau78(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet ws = d.Worksheets["Quote"];
-
-                string e12 = ws.Range["E12", "E12"].Text.ToString();
-                if (e12.Trim() != "Quantity")
-                    return "False";
-
-                string f12 = ws.Range["F12", "F12"].Text.ToString();
-                if (f12.Trim() != "Unit Price")
-                    return "False";
-
-                string f30 = ws.Range["F30", "F30"].Text.ToString();
-                if (f30.Trim() != "Total")
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau79(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet sheet = d.Worksheets["Quote"];
-
-                string e12 = sheet.Range["E12"].Text?.ToString().Trim();
-                if (e12 != "Quantity")
-                    return "False";
-
-                string f12 = sheet.Range["F12"].Text?.ToString();
-                if (f12 != "Unit Price ") // có dấu cách ở cuối
-                    return "False";
-
-                string f30 = sheet.Range["F30"].Text?.ToString().Trim();
-                if (f30 != "Total")
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau92(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Social Media Ads"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-
-                // Lấy giá trị ô A17
-                Range cellA17 = worksheet.Range["A17"];
-                string valueA17 = cellA17?.Text?.ToString()?.Trim() ?? "";
-
-                if (!string.Equals(valueA17, "RANCH", StringComparison.OrdinalIgnoreCase))
-                    return "False";
-
-                return "True";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-        }
-        private string Cau33(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Games"];
-                if (worksheet == null)
-                    return "False";
-
-                //// Nếu cả vùng A12:B18 bị merge lại thì sai
-                //Range mergedRange = worksheet.Range["A12", "B18"];
-                //if ((bool)mergedRange.MergeCells == true)
-                //    return "False(chọn merge across) 1";
-
-                //// Nếu A12:B12 không được merge thì sai
-                //Range topRow = worksheet.Range["A12", "B12"];
-                //if ((bool)topRow.MergeCells != true)
-                //    return "False(chọn merge across)";
-
-                //// Nếu A18:B18 không được merge thì sai
-                //Range bottomRow = worksheet.Range["A18", "B18"];
-                //if ((bool)bottomRow.MergeCells != true)
-                //    return "False(chọn merge across)";
-
-                // Vùng kiểm tra tổng
-                Range fullRange = worksheet.Range["A12", "B18"];
-
-                // Nếu toàn vùng bị merge 1 khối → sai
-                object fullRangeVal = fullRange.MergeCells;
-                if (fullRange.MergeCells != null && fullRangeVal != DBNull.Value && (bool)fullRange.MergeCells)
-                    return "False";
-
-                // Duyệt từng dòng để đảm bảo mỗi hàng được merge across
-                for (int row = 12; row <= 18; row++)
-                {
-                    Range rowRange = worksheet.Range[$"A{row}", $"B{row}"];
-                    object mergeValue = rowRange.MergeCells;
-
-                    if (mergeValue == null || mergeValue == DBNull.Value || (bool)mergeValue == false)
-                        return "False";
-                }
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau43(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Exchange Rates"];
-                if (worksheet == null)
-                    return "False";
-
-                Range range = worksheet.Range["B4", "D8"];
-                string numberFormat = range.NumberFormat as string;
-
-                if (numberFormat != "0.00")
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau56(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Materials"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-
-                Range range = worksheet.get_Range("A1", "N1");
-                if (range == null)
-                    return "False";
-
-                // Kiểm tra MergeCells
-                if (!(range.MergeCells is bool merged) || !merged)
-                    return "False";
-
-                // Kiểm tra canh lề ngang (1 = xlLeft)
-                if (!(range.HorizontalAlignment is int alignment) || alignment != 1)
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau80(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Prices"];
-                Range range = worksheet.Range["A1", "A1"];
-                string styleName = range.Style.Name;
-
-                if (styleName != "Title")
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau105(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Projects"];
-
-                Range a1 = worksheet.Range["A1"];
-                Range a2 = worksheet.Range["A2"];
-
-                // Kiểm tra A1 đã merge chưa
-                if (!(bool)a1.MergeCells)
-                    return "False";
-
-                // Kiểm tra A1 căn giữa (1 == xlCenter)
-                if ((int)a1.HorizontalAlignment != 1)
-                    return "False";
-
-                // Kiểm tra A1 có màu nền là 14408667 không
-                if ((int)(a1.Interior.Color) != 14408667)
-                    return "False";
-
-                // Kiểm tra A2 đã merge chưa
-                if (!(bool)a2.MergeCells)
-                    return "False";
-
-                // Kiểm tra A2 căn giữa
-                if ((int)a2.HorizontalAlignment != 1)
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau18(Application a, Workbook d)
-        {
-            try
-            {
-                if (d.Names.Count != 1)
-                    return "False";
-
-                Name rangeName = d.Names.Item(1);
-                if (rangeName.Name != "Enrollment")
-                    return "False";
-
-                string refersTo = rangeName.RefersToLocal?.ToString() ?? "";
-                if (refersTo != "='Enrollment Summary'!$A$3:$B$7")
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau23(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Non_Fiction"];
-
-                // Kiểm tra công thức ở ô H5
-                string formulaH5 = worksheet.Range["H5"].Formula.ToString();
-                if (formulaH5 != "=F5-G5")
-                    return "False";
-
-                // Kiểm tra công thức ở ô H35
-                string formulaH35 = worksheet.Range["H35"].Formula.ToString();
-                if (formulaH35 != "=F35-G35")
-                    return "False";
-
-                // Kiểm tra định dạng số ở ô H5
-                string numberFormatH5 = worksheet.Range["H5"].NumberFormat.ToString();
-                if (numberFormatH5 != "General")
-                    return "False";
-
-                // Kiểm tra màu nền ô H6
-                string colorH6 = worksheet.Range["H6"].Interior.Color.ToString();
-                if (colorH6 != "16777215") // 16777215 là màu trắng (trong Excel)
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau24(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Non_Fiction"];
-                string formula = worksheet.Range["F37"].Formula.ToString();
-
-                if (!formula.Contains("=AVERAGEIF(D5:D35,\"Lucerne Publishing\",F5:F35)") &&
-                    !formula.Contains("=AVERAGEIF($D$5:$D$35,\"Lucerne Publishing\",$F$5:$F$35)"))
-                {
-                    return "False";
-                }
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau37(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["February"];
-
-                string formulaF5 = worksheet.Range["F5"].Formula?.ToString() ?? "";
-                if (!formulaF5.Contains("=LEFT([@[Policy Number ]],2)"))
-                    return "False";
-
-                string formulaF18 = worksheet.Range["F18"].Formula?.ToString() ?? "";
-                if (!formulaF18.Contains("=LEFT([@[Policy Number ]],2)"))
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau38(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["February"];
-
-                string formulaG5 = worksheet.Range["G5"].Formula?.ToString() ?? "";
-                if (!formulaG5.Contains("=IF([@[Years as Member]]>3,\"Yes\",\"No\")"))
-                    return "False";
-
-                string formulaG18 = worksheet.Range["G18"].Formula?.ToString() ?? "";
-                if (!formulaG18.Contains("=IF([@[Years as Member]]>3,\"Yes\",\"No\")"))
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau44(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet sheet = d.Worksheets["Key Accounts"];
-
-                string formulaC4 = sheet.Range["C4"].Formula.ToString();
-                if (!formulaC4.Contains("=AVERAGE(Table1[@[January]:[April]])"))
-                    return "False";
-
-                string formulaC12 = sheet.Range["C12"].Formula.ToString();
-                if (!formulaC12.Contains("=AVERAGE(Table1[@[January]:[April]])"))
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau45(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet sheet = d.Worksheets["Contact"];
-
-                string formulaC5 = sheet.Range["C5"].Formula.ToString();
-                if (!formulaC5.Contains("=CONCAT([@[First Name]],\"@woodgrovebank.com\")"))
-                    return "False";
-
-                string formulaC19 = sheet.Range["C19"].Formula.ToString();
-                if (!formulaC19.Contains("=CONCAT([@[First Name]],\"@woodgrovebank.com\")"))
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau49(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet sheet = d.Worksheets["Prices"];
-
-                string formulaJ5 = sheet.Range["J5"].Formula.ToString();
-                if (!formulaJ5.Contains("=[@[Unit Price]]*$L$2"))
-                    return "False";
-
-                string formulaJ25 = sheet.Range["J25"].Formula.ToString();
-                if (!formulaJ25.Contains("=[@[Unit Price]]*$L$2"))
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau50(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet sheet = d.Worksheets["London"];
-
-                string formulaE21 = sheet.Range["E21"].Formula.ToString();
-                if (formulaE21 != "=[@[Air Miles]]*0.08")
-                    return "False";
-
-                string formatE21 = sheet.Range["E21"].NumberFormat.ToString();
-                if (formatE21 != "General")
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau51(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet sheet = d.Worksheets["New York City"];
-                string formula = sheet.Range["D23"].Formula.ToString();
-
-                if (!formula.Contains("=MAX(Table1[Air Miles]"))
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau62(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["New Policies"];
-
-                string formulaI5 = worksheet.Range["I5"].Formula?.ToString() ?? "";
-                if (!formulaI5.Contains("=COUNTBLANK(Table1[@[January]:[June]])"))
-                    return "False";
-
-                string formulaI13 = worksheet.Range["I13"].Formula?.ToString() ?? "";
-                if (!formulaI13.Contains("=COUNTBLANK(Table1[@[January]:[June]])"))
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau63(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Contact"];
-
-                string formulaC5 = worksheet.Range["C5"].Formula?.ToString() ?? "";
-                if (!formulaC5.Contains("=CONCAT([@[First Name]],\"@humongousinsurance.com\")"))
-                    return "False";
-
-                string formulaC13 = worksheet.Range["C13"].Formula?.ToString() ?? "";
-                if (!formulaC13.Contains("=CONCAT([@[First Name]],\"@humongousinsurance.com\")"))
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau68(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["October"];
-                string formula = worksheet.Range["E37"].Formula.ToString();
-
-                if (!formula.Contains("=AVERAGEIF(E11:E35,\">300\",E11:E35)") &&
-                    !formula.Contains("=AVERAGEIF($E$11:$E$35,\">300\",$E$11:$E$35)"))
-                {
-                    return "False";
-                }
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau73(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Products"];
-
-                string formulaG3 = worksheet.Range["G3"].Formula?.ToString() ?? "";
-                if (!formulaG3.Contains("=[@[Current Value]]*Increase"))
-                    return "False";
-
-                string formulaG54 = worksheet.Range["G54"].Formula?.ToString() ?? "";
-                if (!formulaG54.Contains("=[@[Current Value]]*Increase"))
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau81(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet sheet = d.Worksheets["Prices"];
-
-                string formulaJ5 = sheet.Range["J5"].Formula.ToString();
-                if (!formulaJ5.Contains("=[@[Unit Price]]*$L$2"))
-                    return "False";
-
-                string formulaJ25 = sheet.Range["J25"].Formula.ToString();
-                if (!formulaJ25.Contains("=[@[Unit Price]]*$L$2"))
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau82(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet sheet = d.Worksheets["Prices"];
-
-                string formulaG5 = sheet.Range["G5"].Formula.ToString();
-                if (!formulaG5.Contains("=IF([@[Inventory Level]]<15%,\"Low\",\"\")"))
-                    return "False";
-
-                string formulaG25 = sheet.Range["G25"].Formula.ToString();
-                if (!formulaG25.Contains("=IF([@[Inventory Level]]<15%,\"Low\",\"\")"))
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau88(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["roster"];
-
-                string formulaC9 = worksheet.Range["C9"].Formula.ToString();
-                if (!formulaC9.Contains("=UPPER(A9)"))
-                    return "False";
-
-                string formulaC66 = worksheet.Range["C66"].Formula.ToString();
-                if (!formulaC66.Contains("=UPPER(A66)"))
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau89(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["roster"];
-
-                string formulaB9 = worksheet.Range["B9"].Formula.ToString();
-                if (!formulaB9.Contains("=LOWER(D9)"))
-                    return "False";
-
-                string formulaB66 = worksheet.Range["B66"].Formula.ToString();
-                if (!formulaB66.Contains("=LOWER(D66)"))
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau90(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["roster"];
-                Range c8 = worksheet.Range["C8"];
-                string formula = c8.Formula.ToString();
-
-                if (formula != "=PROPER(A8)")
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau94(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Projections"];
-
-                string formulaC4 = worksheet.Range["C4"].Formula?.ToString() ?? "";
-                if (!formulaC4.Contains("=[@[Quarter 1]]*Q2_Increase"))
-                    return "False";
-
-                string formulaC11 = worksheet.Range["C11"].Formula?.ToString() ?? "";
-                if (!formulaC11.Contains("=[@[Quarter 1]]*Q2_Increase"))
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau95(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Summary"];
-                string formula = worksheet.Range["B15"].Formula.ToString();
-
-                if (formula != "=MAX(F4:F11)")
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau99(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet sheet = d.Worksheets["Sales"];
-
-                string formulaE2 = sheet.Range["E2"].Formula.ToString();
-                if (!formulaE2.Contains("=UPPER(LEFT([@City],3))"))
-                    return "False";
-
-                string formulaE20 = sheet.Range["E20"].Formula.ToString();
-                if (!formulaE20.Contains("=UPPER(LEFT([@City],3))"))
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau100(Application a, Workbook d)
-        {
-            //try
-            //{
-            //    Worksheet sheet = d.Worksheets["Historical Sales"];
-
-
-            //    // Kiểm tra xem cửa sổ đang hiển thị có bật chế độ hiện công thức không
-            //    if (!sheet.Application.ActiveWindow.DisplayFormulas)
-            //        return "False";
-            //}
-            //catch (Exception)
-            //{
-            //    return "False";
-            //}
-
-            //return "True";
-
-            try
-            {
-                Worksheet wsProducts = (Worksheet)d.Worksheets["Historical Sales"];
-                Worksheet wsCurrent = (Worksheet)a.ActiveSheet;
-
-                // Tắt cập nhật màn hình để không thấy nhấp nháy
-                a.ScreenUpdating = false;
-
-                wsProducts.Activate();
-                Window win = a.ActiveWindow;
-
-                bool isDisplayFormulas = true;
-
-                // Kiểm tra xem cửa sổ đang hiển thị có bật chế độ hiện công thức không
-                if (!wsProducts.Application.ActiveWindow.DisplayFormulas)
-                    isDisplayFormulas = false;
-
-                // Trả lại sheet cũ
-                wsCurrent.Activate();
-                a.ScreenUpdating = true;
-
-                if (!isDisplayFormulas)
-                    return "False";
-            }
-            catch (Exception ex)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau101(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet sheet = d.Worksheets["Authors"];
-
-                string formulaD2 = sheet.Range["D2"].Formula.ToString();
-                if (!formulaD2.Contains("=IF([@[Books Sold]]>10000,500,100)"))
-                    return "False";
-
-                string formulaD37 = sheet.Range["D37"].Formula.ToString();
-                if (!formulaD37.Contains("=IF([@[Books Sold]]>10000,500,100)"))
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau106(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Grade Criteria"];
-                string formulaB28 = worksheet.Range["B28"].Formula?.ToString() ?? "";
-
-                if (!formulaB28.Contains("=SUM(Total1,Total2,Total3)") &&
-                    !formulaB28.Contains("=Total1+Total2+Total3"))
-                {
-                    return "False";
-                }
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau107(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Exams"];
-                string formulaE35 = worksheet.Range["E35"].Formula?.ToString() ?? "";
-
-                if (!formulaE35.Contains("=COUNTBLANK(Table3[Exam 3])"))
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau8(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-
-            // 1. Lấy worksheet "Orders"
-            try
-            {
-                worksheet = d.Worksheets["Orders"];
-            }
-            catch
-            {
-                return "Fales (worksheet)";
-            }
-
-            // 2. Lấy điều kiện định dạng có điều kiện trong vùng G2:G526
-            FormatConditions formatConditions;
-            try
-            {
-                formatConditions = worksheet.Range["G2", "G526"].FormatConditions;
-            }
-            catch
-            {
-                return "False";
-            }
-
-            if (formatConditions.Count != 1)
-                return "False";
-
-            // 3. Kiểm tra xem điều kiện là "AboveAverage"
-            try
-            {
-                var aboveAverage = formatConditions[1] as AboveAverage;
-                if (aboveAverage == null)
-                    return "False";
-
-                if (aboveAverage.AboveBelow != XlAboveBelow.xlAboveAverage)
-                    return "False";
-
-                string fontColor = aboveAverage.Font.Color?.ToString() ?? "";
-
-                // Kiểm tra xem Font.Color có phải là 24832 không
-                if (fontColor != "24832")
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau52(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["London"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-
-                Range range = worksheet.Range["D5", "D21"];
-                FormatConditions formatConditions = range.FormatConditions;
-
-                if (formatConditions == null)
-                    return "False";
-
-                return formatConditions.Count != 0
-                    ? "False"
-                    : "True";
-            }
-            catch
-            {
-                return "False";
-            }
-        }
-        private string Cau74(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Products"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-
-                Range range = worksheet.Range["E3", "E54"];
-                FormatConditions formatConditions = range.FormatConditions;
-
-                if (formatConditions == null)
-                    return "False";
-                if (formatConditions.Count != 1)
-                    return "False";
-
-                IconSetCondition iconSetCondition = formatConditions[1] as IconSetCondition;
-                if (iconSetCondition == null)
-                    return "False";
-
-                IconSet iconSet = iconSetCondition.IconSet;
-                if (iconSet == null)
-                    return "False";
-                if (iconSet.ID != XlIconSet.xl3TrafficLights1)
-                    return "False";
-                if (iconSet.Count != 3)
-                    return "False";
-                if (iconSetCondition.IconCriteria.Count != 3)
-                    return "False";
-
-                if (iconSetCondition.IconCriteria[1].Icon != XlIcon.xlIconRedCircleWithBorder)
-                    return "False";
-                if (iconSetCondition.IconCriteria[2].Icon != XlIcon.xlIconYellowCircle)
-                    return "False";
-                if (iconSetCondition.IconCriteria[3].Icon != XlIcon.xlIconGreenCircle)
-                    return "False";
-
-                if (iconSetCondition.IconCriteria[1].Type != XlConditionValueTypes.xlConditionValuePercent ||
-                    iconSetCondition.IconCriteria[2].Type != XlConditionValueTypes.xlConditionValuePercent ||
-                    iconSetCondition.IconCriteria[3].Type != XlConditionValueTypes.xlConditionValuePercent)
-                    return "False";
-
-                if (iconSetCondition.IconCriteria[1].Operator != 7 ||
-                    iconSetCondition.IconCriteria[2].Operator != 7 ||
-                    iconSetCondition.IconCriteria[3].Operator != 7)
-                    return "False";
-
-                return "True";
-            }
-            catch
-            {
-                return "False";
-            }
-        }
-        private string Cau96(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-            try
-            {
-                worksheet = d.Worksheets["Summary"] as Worksheet;
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            FormatConditions formatConditions;
-            try
-            {
-                formatConditions = worksheet.Range["F4", "F11"].FormatConditions;
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            if (formatConditions.Count != 1)
-                return "False";
-
-            FormatCondition formatCondition;
-            try
-            {
-                formatCondition = formatConditions[1] as FormatCondition;
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            // Sửa lỗi kiểu ở đây
-            if ((int)formatCondition.Type != (int)XlFormatConditionType.xlCellValue)
-                return "False";
-
-            if ((int)formatCondition.Operator != (int)XlFormatConditionOperator.xlGreater)
-                return "False";
-
-            if (formatCondition.Formula1 != "=5000000")
-                return "False";
-
-            object colorValue;
-            try
-            {
-                colorValue = formatCondition.Font.Color.ToString();
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            if (colorValue.ToString() != "22428")
-                return "False";
-
-            return "True";
-        }
-        private string Cau25(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-
-            try
-            {
-                worksheet = d.Worksheets["Fiction"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            try
-            {
-                if (worksheet.Shapes.Count != 1)
-                    return "False";
-
-                Microsoft.Office.Interop.Excel.Shape picture = worksheet.Shapes.Item("picture 1");
-                if (picture == null)
-                    return "False";
-
-                if (picture.Rotation != 0)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau26(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-
-            // Lấy worksheet "Non_Fiction"
-            try
-            {
-                worksheet = d.Worksheets["Non_Fiction"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            try
-            {
-                // Kiểm tra số lượng hình vẽ
-                if (worksheet.Shapes.Count != 1)
-                    return "False";
-
-                var shape = worksheet.Shapes.Item(1);
-
-                // Kiểm tra hiệu ứng hình ảnh
-                if (shape.Fill.PictureEffects.Count != 1)
-                    return "False";
-                if (shape.Fill.PictureEffects[1].Type != mscore.MsoPictureEffectType.msoEffectBackgroundRemoval)
-                    return "False";
-
-                // Kiểm tra Pattern Fill
-                if (shape.Fill.Pattern != mscore.MsoPatternType.msoPattern20Percent)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau39(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-
-            try
-            {
-                worksheet = d.Worksheets["Summary"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            try
-            {
-                if (worksheet.Shapes.Count != 1)
-                    return "False";
-
-                Microsoft.Office.Interop.Excel.Shape shape = worksheet.Shapes.Item(1);
-                if (shape.AlternativeText != "Renewal data")
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau69(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-
-            try
-            {
-                worksheet = d.Worksheets["October"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            try
-            {
-                if (worksheet.Shapes.Count != 2)
-                    return "False";
-
-                var shape = worksheet.Shapes.Item(2);
-                if ((double)shape.Left < 400.0)
-                    return "False";
-                if ((double)shape.Top > 100.0)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau3(Application a, Workbook d)
-        {
-            try
-            {
-                // Truy cập worksheet tên "Classes"
-                Worksheet worksheet = d.Worksheets["Classes"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-
-                // Truy cập vùng A4:F25
-                Range range = worksheet.Range["A4", "F25"];
-
-                // Kiểm tra xem vùng có chứa ListObject (Excel Table) hay không
-                if (range.ListObject == null)
-                    return "True"; // Không có bảng
-                else
-                    return "False"; // Có bảng
-            }
-            catch
-            {
-                return "False";
-            }
-        }
-        private string Cau19(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-
-            // Bước 1: Truy cập trang tính "Revenue"
-            try
-            {
-                worksheet = d.Worksheets["Revenue"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            // Bước 2: Kiểm tra ô A3 có trong một bảng hay không
-            ListObject a3Object;
-            try
-            {
-                Range rangeA3 = worksheet.Range["A3"];
-                a3Object = rangeA3.ListObject;
-                if (a3Object == null)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            // Bước 3: Kiểm tra ô B7 có thuộc bảng, và bảng đó có đúng vùng không
-            ListObject listObject;
-            try
-            {
-                Range rangeB7 = worksheet.Range["B7"];
-                listObject = rangeB7.ListObject;
-                if (listObject == null)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            // Bước 4: Kiểm tra vùng của bảng có phải là $A$3:$B$7 không
-            try
-            {
-                string address = listObject.Range.get_Address(
-                    Missing.Value, Missing.Value,
-                    XlReferenceStyle.xlA1,
-                    Type.Missing, Type.Missing
-                );
-
-                if (address != "$A$3:$B$7")
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            //return listObject.TableStyle.Name.ToString();
-
-            // Bước 5: Kiểm tra kiểu của bảng có phải là "TableStyleLight14"
-            try
-            {
-                if (listObject.TableStyle != null &&
-                    listObject.TableStyle.Name.ToString() != "TableStyleLight14")
-                {
-                    return "False";
-                }
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau20(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-
-            // Bước 1: Truy cập trang tính "Last Semester"
-            try
-            {
-                worksheet = d.Worksheets["Last Semester"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            // Bước 2: Kiểm tra xem ô B6 có thuộc một bảng không
-            try
-            {
-                Range rangeB6 = worksheet.Range["B6"];
-                if (rangeB6.ListObject == null)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            // Bước 3: So sánh nội dung ô B6
-            try
-            {
-                Range rangeB6 = worksheet.Range["B6"];
-                string textB6 = rangeB6.Text.ToString();
-
-                if (textB6 != "Health & Beauty")
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau40(Application a, Workbook d)
-        {
-            Worksheet ws;
-            try
-            {
-                ws = d.Worksheets["March"];
-            }
-            catch
-            {
-                return "False";
-            }
-
-            ListObject tbl;
-            try
-            {
-                tbl = ws.Range["A4"].ListObject;
-            }
-            catch
-            {
-                return "False";
-            }
-
-            try
-            {
-                var filter = tbl.AutoFilter.Filters[6]; // Cột G (vì chỉ số bắt đầu từ 0)
-                string criteria = filter.Criteria1?.ToString();
-                if (criteria != "=MP")
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau46(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["New Accounts"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-
-                try
-                {
-                    var listObject = worksheet.Range["A3"].ListObject;
-                }
-                catch
-                {
-                    return "False";
-                }
-
-                string cellA6 = worksheet.Range["A6"].Text.ToString();
-                if (cellA6 != "Fabrikam, Inc.")
-                    return "False";
-
-                return "True";
-            }
-            catch
-            {
-                return "False";
-            }
-        }
-        private string Cau53(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["New York City"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-
-                string country = worksheet.Range["A7"].Text.ToString();
-                if (country != "China")
-                    return "False";
-
-                string city = worksheet.Range["B7"].Text.ToString();
-                if (city != "Beijing")
-                    return "False";
-
-                return "True";
+                float bevelTopDepth = a.ActivePresentation.Slides[(object)2].Shapes[(object)"Picture 9"].ThreeD.BevelTopDepth;
+                if (bevelTopDepth.ToString() != "6")
+                    return "False";
+                bevelTopDepth = a.ActivePresentation.Slides[(object)2].Shapes[(object)"Picture 3"].ThreeD.BevelTopDepth;
+                return bevelTopDepth.ToString() != "6" ? "False" : "True";
             }
             catch (Exception ex)
             {
                 return "False";
             }
         }
-        private string Cau64(Application a, Workbook d)
+        private string Cau103(Application a, Presentation d)
         {
-            Worksheet ws;
             try
             {
-                ws = d.Worksheets["New Policies"];
+                if (a.ActivePresentation.Slides[(object)3].Shapes[(object)"Title 1"].TextFrame.TextRange.Text != "Extra")
+                    return "False";
             }
-            catch
+            catch (Exception ex)
             {
                 return "False";
             }
-
-            ListObject tbl;
-            try
-            {
-                tbl = ws.Range["A4"].ListObject;
-            }
-            catch
-            {
-                return "False";
-            }
-
-            if (!tbl.ShowTotals)
-                return "False";
-
-            string b14 = ws.Range["B14"].Formula?.ToString();
-            if (b14 != "=SUBTOTAL(109,[January])")
-                return "False";
-
-            string h14 = ws.Range["H14"].Formula?.ToString();
-            if (h14 != "=SUBTOTAL(109,[Total])")
-                return "False";
-
-            string i14 = ws.Range["I14"].Formula?.ToString();
-            if (!string.IsNullOrEmpty(i14))
-                return "False";
-
-            string j14 = ws.Range["J14"].Formula?.ToString();
-            if (!string.IsNullOrEmpty(j14))
-                return "False";
-
             return "True";
         }
-        private string Cau75(Application a, Workbook d)
+        private string Cau104(Application a, Presentation d)
         {
-            Worksheet ws;
             try
             {
-                ws = d.Worksheets["Products"];
-            }
-            catch
-            {
-                return "False";
-            }
-
-            ListObject tbl;
-            try
-            {
-                tbl = ws.Range["A4"].ListObject;
-            }
-            catch
-            {
-                return "False";
-            }
-
-            try
-            {
-                if (tbl.TableStyle.Name != "TableStyleMedium1")
+                // ISSUE: reference to a compiler-generated method
+                if (a.ActivePresentation.SlideMaster.Shapes[(object)"Text Placeholder 2"].TextFrame.TextRange.Lines(1, 1).ParagraphFormat.Bullet.Type.ToString() != "ppBulletPicture")
+                    return "False";
+                if (a.ActivePresentation.SlideMaster.Shapes[(object)"Text Placeholder 2"].TextFrame.TextRange.ParagraphFormat.Bullet.Type.ToString() == "ppBulletPicture")
                     return "False";
             }
-            catch
+            catch (Exception ex)
             {
                 return "False";
             }
-
             return "True";
         }
-        private string Cau83(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-
-            // Bước 1: Truy cập trang tính "Orders"
-            try
-            {
-                worksheet = d.Worksheets["Orders"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            // Bước 2: Lấy bảng bắt đầu từ ô A1
-            ListObject listObject;
-            try
-            {
-                Range range = worksheet.Range["A1"];
-                listObject = range.ListObject;
-                if (listObject == null)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            // Bước 3: Kiểm tra filter trên cột đầu tiên
-            try
-            {
-                if (listObject.AutoFilter == null)
-                    return "False";
-
-                Filter filter = listObject.AutoFilter.Filters[1];
-                if (!filter.On)
-                    return "False";
-
-                string criteria = filter.Criteria1?.ToString();
-                if (criteria != "=Alpine Ski House")
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau97(Application a, Workbook d)
+        private string Cau105(Application a, Presentation d)
         {
             try
             {
-                Worksheet worksheet = d.Worksheets["Region 1"] as Worksheet;
-                if (worksheet == null)
+                if (a.ActivePresentation.Slides[(object)3].Hyperlinks.Count != 1)
                     return "False";
-
-                ListObject listObject = worksheet.Range["A3"]?.ListObject;
-                if (listObject == null)
+                if (!a.ActivePresentation.Slides[(object)3].Hyperlinks[1].Address.Contains("humongousinsurance.com"))
                     return "False";
-
-                var sortFields = listObject.Sort.SortFields;
-                if (sortFields.Count < 2)
-                    return "False";
-
-                var field1 = sortFields[1];
-                var field2 = sortFields[2];
-
-                // Sửa ở đây: truyền đúng kiểu XlReferenceStyle
-                string address1 = field1?.Key?.get_Address(
-                    Type.Missing,
-                    Type.Missing,
-                    Microsoft.Office.Interop.Excel.XlReferenceStyle.xlA1,
-                    Type.Missing,
-                    Type.Missing
-                );
-
-                string address2 = field2?.Key?.get_Address(
-                    Type.Missing,
-                    Type.Missing,
-                    Microsoft.Office.Interop.Excel.XlReferenceStyle.xlA1,
-                    Type.Missing,
-                    Type.Missing
-                );
-
-                if (address1 != "$A$4:$A$11")
-                    return "False";
-                if (field1.Order != XlSortOrder.xlAscending)
-                    return "False";
-
-                if (address2 != "$F$4:$F$11")
-                    return "False";
-                if (field2.Order != XlSortOrder.xlDescending)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau108(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Tasks"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-
-                Range cell = worksheet.get_Range("A3", "A3");
-                if (cell == null)
-                    return "False";
-
-                ListObject listObject = cell.ListObject;
-                if (listObject == null)
-                    return "False";
-
-                if (!listObject.ShowTableStyleRowStripes)
-                    return "False";
-
-                return "True";
+                return a.ActivePresentation.Slides[(object)3].Hyperlinks[1].TextToDisplay != "Click here to view on website" ? "False" : "True";
             }
             catch (Exception ex)
             {
                 return "False";
             }
         }
-        private string Cau109(Application a, Workbook d)
+        private string Cau106(Application a, Presentation d)
         {
             try
             {
-                //Worksheet worksheet = null;
-
-                //// Tìm sheet "Tasks"
-                //foreach (Worksheet ws in d.Worksheets)
-                //{
-                //    if (ws.Name == "Tasks")
-                //    {
-                //        worksheet = ws;
-                //        break;
-                //    }
-                //}
-
-                //if (worksheet == null)
-                //    return "False (trang tính Tasks)";
-
-                Worksheet worksheet = d.Worksheets["Tasks"] as Worksheet;
-                if (worksheet == null)
+                if (a.ActivePresentation.Slides[(object)2].Comments.Count != 1)
                     return "False";
-
-                // Lấy ô A3
-                Range cell = worksheet.Range["A3"];
-                if (cell == null)
+                if (a.ActivePresentation.Slides[(object)2].Comments[1].Text != "Update")
                     return "False";
-
-                // Tìm bảng chứa ô A3
-                ListObject listObject = null;
-                foreach (ListObject lo in worksheet.ListObjects)
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau107(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides.Count != 4)
+                    return "False";
+                if (!a.ActivePresentation.Slides[(object)4].Shapes[(object)1].TextFrame.TextRange.Text.Contains("Certificate"))
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau108(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)2].Shapes[(object)"New Advert"].MediaFormat.StartPoint.ToString() != "500")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)2].Shapes[(object)"New Advert"].MediaFormat.EndPoint.ToString() != "2500")
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau109(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence.Count != 5)
+                    return "False";
+                if (!a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[1].DisplayName.Contains("Choose by 95 % "))
+                    return "False";
+                if (!a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[5].DisplayName.Contains("Top 10"))
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[1].EffectType.ToString() != "msoAnimEffectWipe")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[1].EffectParameters.Direction.ToString() != "msoAnimDirectionLeft")
+                    return "False";
+                return a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[5].Timing.TriggerType.ToString() != "msoAnimTriggerOnPageClick" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau110(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)1].Shapes.Count == 1)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)1].Shapes.Count > 2)
+                    return "False";
+                switch (a.ActivePresentation.Slides[(object)1].Shapes[(object)1].Name)
                 {
-                    Range intersect = worksheet.Application.Intersect(lo.Range, cell);
-                    if (intersect != null)
-                    {
-                        listObject = lo;
+                    case "5 - Point Star 2":
+                        return "False";
+                    case "Ink 1":
+                        return "False";
+                    default:
+                        switch (a.ActivePresentation.Slides[(object)1].Shapes[(object)2].Name)
+                        {
+                            case "5 - Point Star 2":
+                                return "False";
+                            case "Ink 1":
+                                return "False";
+                        }
                         break;
-                    }
                 }
-
-                if (listObject == null)
-                    return "False";
-
-                // Kiểm tra tên bảng
-                if (!string.Equals(listObject.Name, "Tasks", StringComparison.OrdinalIgnoreCase))
-                    return "False";
-
-                return "True";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return "False";
             }
-        }
-        private string Cau4(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-
-            // Bước 1: Tìm sheet "Instructional Hours"
-            try
-            {
-                worksheet = (Worksheet)d.Worksheets["Instructional Hours"];
-            }
-            catch
-            {
-                return "False";
-            }
-
-            // Bước 2: Phải có đúng 1 shape (biểu đồ)
-            if (worksheet.Shapes.Count != 1)
-                return "False";
-
-            // Bước 3: Lấy biểu đồ từ shape
-            Chart chart;
-            try
-            {
-                Shape shape = worksheet.Shapes.Item(1);
-                chart = shape.Chart;
-            }
-            catch
-            {
-                return "False";
-            }
-
-            // Bước 4: Kiểm tra tiêu đề trục tung (Value Axis)
-            try
-            {
-                Axis yAxis = chart.Axes(XlAxisType.xlValue);
-                if (yAxis.AxisTitle.Text != "Hours")
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
             return "True";
         }
-        private string Cau5(Application a, Workbook d)
+        private string Cau111(Application a, Presentation d)
         {
-            Worksheet worksheet;
-
-            // Bước 1: Kiểm tra tồn tại sheet "Graduation"
             try
             {
-                worksheet = (Worksheet)d.Worksheets["Graduation"];
-            }
-            catch
-            {
-                return "False";
-            }
-
-            // Bước 2: Kiểm tra không còn biểu đồ trong sheet "Graduation"
-            if (worksheet.Shapes.Count != 0)
-                return "False";
-
-            // Bước 3: Kiểm tra tổng số worksheet là 5
-            try
-            {
-                if (d.Worksheets.Count != 5)
+                if (a?.ActivePresentation == null)
                     return "False";
 
-                // Bước 4: Kiểm tra tồn tại sheet "Graduation Chart"
-                object chartSheet = d.Sheets["Graduation Chart"];
-                string name = chartSheet.ToString(); // Kiểm tra không lỗi
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau6(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-
-            // Bước 1: Lấy worksheet "Enrollment"
-            try
-            {
-                worksheet = (Worksheet)d.Worksheets["Enrollment"];
-            }
-            catch
-            {
-                return "Fales (Enrollment worksheet not found)";
-            }
-
-            try
-            {
-                Range sparkRange = worksheet.get_Range("G5", "G25");
-                SparklineGroups sparklineGroups = sparkRange.SparklineGroups;
-
-                // Bước 2: Kiểm tra có đúng 1 SparklineGroup
-                if (sparklineGroups.Count != 1)
+                if (a.ActivePresentation.Slides.Count < 7)
                     return "False";
 
-                SparklineGroup group = sparklineGroups[1];
-
-                // Bước 3: Kiểm tra vùng nguồn dữ liệu
-                if (group.SourceData != "D5:F25")
+                Slide slide = a.ActivePresentation.Slides[7];
+                if (slide.Shapes.Count != 3)
                     return "False";
 
-                // Bước 4: Kiểm tra loại Sparkline
-                if (group.Type != XlSparkType.xlSparkColumn)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau21(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-
-            try
-            {
-                worksheet = d.Worksheets["Next Semester"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            if (worksheet.Shapes.Count != 1)
-                return "False";
-
-            Chart chart;
-            try
-            {
-                Shape shape = worksheet.Shapes.Item(1);
-                chart = shape.Chart;
-            }
-            catch
-            {
-                return "False";
-            }
-
-            try
-            {
-                // Kiểm tra loại biểu đồ
-                if (chart.ChartType != XlChartType.xlColumnClustered)
+                Shape shape = slide.Shapes[3];
+                if (((object)shape.Type).ToString() != "msoChart")
                     return "False";
 
-                SeriesCollection seriesCollection = chart.SeriesCollection() as SeriesCollection;
-                if (seriesCollection == null || seriesCollection.Count != 1)
+                if (!((object)shape.Chart.ChartType).ToString().Contains("Line"))
                     return "False";
 
-                Series series = seriesCollection.Item(1);
-                if (series.FormulaR1C1 != "=SERIES('Next Semester'!R3C5,'Next Semester'!R4C1:R21C1,'Next Semester'!R4C5:R21C5,1)")
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau22(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-
-            try
-            {
-                worksheet = d.Worksheets["Enrollment Summary"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            if (worksheet.Shapes.Count != 1)
-                return "False";
-
-            Chart chart;
-            try
-            {
-                Shape shape = worksheet.Shapes.Item(1);
-                chart = shape.Chart;
-            }
-            catch
-            {
-                return "False";
-            }
-
-            try
-            {
-                // Kiểm tra ChartStyle
-                string style = chart.ChartStyle?.ToString();
-                if (style != "268")
+                Chart chart = shape.Chart;
+                if (chart == null)
                     return "False";
 
-                // Kiểm tra ChartColor
-                string color = chart.ChartColor?.ToString();
-                if (color != "19")
+                // ChartData.Workbook is an Excel Workbook COM object
+                var rawWorkbook = chart.ChartData?.Workbook;
+                Workbook workbook = rawWorkbook as Workbook;
+                if (workbook == null)
                     return "False";
-            }
-            catch
-            {
-                return "False";
-            }
 
-            return "True";
-        }
-        private string Cau47(Application a, Workbook d)
-        {
-            string result = "True";
-            Worksheet worksheet;
-
-            // Bước 1: Kiểm tra sheet "New Accounts" tồn tại
-            try
-            {
-                worksheet = (Worksheet)d.Worksheets["New Accounts"];
-            }
-            catch
-            {
-                return "False";
-            }
-
-            // Bước 2: Sheet phải có đúng 1 shape
-            if (worksheet.Shapes.Count != 1)
-                return "False";
-
-            Chart chart;
-
-            // Bước 3: Lấy chart từ shape
-            try
-            {
-                Shape shape = worksheet.Shapes.Item(1);
-                chart = shape.Chart;
-            }
-            catch
-            {
-                return "False";
-            }
-
-            // Bước 4: Kiểm tra PlotBy có vẽ theo dòng không (phải là theo cột)
-            try
-            {
-                if (chart.PlotBy == XlRowCol.xlRows)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return result;
-        }
-        private string Cau54(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-
-            // Bước 1: Kiểm tra có tồn tại sheet "London"
-            try
-            {
-                worksheet = (Worksheet)d.Worksheets["London"];
-            }
-            catch
-            {
-                return "False";
-            }
-
-            // Bước 2: Sheet phải có đúng 2 shape
-            if (worksheet.Shapes.Count != 1)
-                return "False";
-
-            Chart chart;
-
-            // Bước 3: Lấy biểu đồ từ shape thứ 2
-            try
-            {
-                Shape shape = worksheet.Shapes.Item(1);
-                chart = shape.Chart;
-            }
-            catch
-            {
-                return "False";
-            }
-
-            // Bước 4: Kiểm tra DataTable không hiển thị LegendKey
-            try
-            {
-                if (chart.DataTable.ShowLegendKey)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau65(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-            try
-            {
-                worksheet = d.Worksheets["New Policies"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            //if (worksheet.Shapes.Count != 1)
-            //    return "False 3" + worksheet.Shapes.Count.ToString();
-
-            Chart chart;
-            try
-            {
-                chart = worksheet.Shapes.Item(1).Chart;
-            }
-            catch
-            {
-                return "False";
-            }
-
-            try
-            {
-                if (chart.DataTable != null && chart.DataTable.ShowLegendKey)
-                    return "False";
-            }
-            catch
-            {
-                // Có thể biểu đồ không có DataTable → kiểm tra legend thay thế
+                Worksheet worksheet = null;
                 try
                 {
-                    if (chart.Legend == null || chart.Legend.Position != XlLegendPosition.xlLegendPositionBottom)
-                        return "False";
+                    worksheet = workbook.Worksheets[1] as Worksheet;
                 }
                 catch
                 {
-                    return "False";
+                    worksheet = null;
                 }
 
-                return "True";
-            }
-
-            return "False";
-        }
-        private string Cau66(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-            try
-            {
-                worksheet = d.Worksheets["New Policies"] as Worksheet;
                 if (worksheet == null)
                     return "False";
-            }
-            catch
-            {
-                return "False";
-            }
 
-            try
-            {
-                Range sparkRange = worksheet.Range["J5", "J13"];
-                var sparkGroups = sparkRange.SparklineGroups;
-
-                if (sparkGroups.Count != 1)
-                    return "False";
-
-                var sparkGroup = sparkGroups[1];
-
-                if (sparkGroup.SourceData != "B5:G13")
-                    return "False";
-
-                if (sparkGroup.Type != XlSparkType.xlSparkColumnStacked100)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau76(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-            try
-            {
-                worksheet = d.Worksheets["Summary"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            if (worksheet.Shapes.Count != 1)
-                return "False";
-
-            try
-            {
-                Chart chart = worksheet.Shapes.Item(1).Chart;
-
-                string chartColor = chart.ChartColor?.ToString();
-                if (chartColor != "11")
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau84(Application a, Workbook d)
-        {
-            string result = "True";
-            Worksheet worksheet;
-
-            try
-            {
-                worksheet = d.Worksheets["Inventory"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            if (worksheet.Shapes.Count != 1)
-                return "False";
-
-            Chart chart;
-            try
-            {
-                Shape shape = worksheet.Shapes.Item(1);
-                chart = shape.Chart;
-            }
-            catch
-            {
-                return "False";
-            }
-
-            try
-            {
-                if (chart.ChartTitle.Top != 2.0)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            try
-            {
-                Series series = chart.SeriesCollection(1) as Series;
-                if (series == null || !series.HasDataLabels)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return result;
-        }
-        private string Cau98(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-            try
-            {
-                worksheet = d.Worksheets["Comparison"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            if (worksheet.Shapes.Count != 1)
-                return "False";
-
-            try
-            {
-                Chart chart = worksheet.Shapes.Item(1).Chart;
-                if (chart.PlotBy != XlRowCol.xlRows)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau102(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-
-            // Bước 1: Lấy worksheet "Summary"
-            try
-            {
-                worksheet = (Worksheet)d.Worksheets["Summary"];
-            }
-            catch
-            {
-                return "False";
-            }
-
-            // Bước 2: Kiểm tra số shape
-            if (worksheet.Shapes.Count != 1)
-                return "False";
-
-            Chart chart;
-
-            // Bước 3: Lấy chart từ shape
-            try
-            {
-                Shape shape = worksheet.Shapes.Item(1);
-                chart = shape.Chart;
-            }
-            catch
-            {
-                return "False";
-            }
-
-            try
-            {
-                // Bước 4: Kiểm tra loại biểu đồ
-                if (chart.ChartType != XlChartType.xlColumnClustered)
-                    return "False";
-
-                // Bước 5: Lấy series và kiểm tra số lượng
-                SeriesCollection seriesCollection = (SeriesCollection)chart.SeriesCollection(Type.Missing);
-                if (seriesCollection.Count != 2)
-                    return "False";
-
-                // Bước 6: Kiểm tra công thức của series thứ 2
-                string expectedFormula = "=SERIES(Summary!R5C3,Summary!R6C1:R12C1,Summary!R6C3:R12C3,2)";
-                if (seriesCollection.Item(2).FormulaR1C1 != expectedFormula)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau110(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-            try
-            {
-                worksheet = d.Worksheets["Score Distribution"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            if (worksheet.Shapes.Count != 1)
-                return "False";
-
-            Chart chart;
-            try
-            {
-                chart = worksheet.Shapes.Item(1).Chart;
-            }
-            catch
-            {
-                return "False";
-            }
-
-            try
-            {
-                // Kiểm tra nếu có Legend thì sai
-                if (chart.Legend != null)
-                    return "False";
-            }
-            catch
-            {
-                // Nếu có lỗi khi kiểm tra Legend, kiểm tra Series[1] có bật DataLabels không
-                try
-                {
-                    Series series = chart.SeriesCollection(1);
-                    if (!series.HasDataLabels)
-                        return "False";
-                }
-                catch
-                {
-                    return "False";
-                }
-            }
-
-            return "True";
-        }
-        private string Cau34(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-            try
-            {
-                worksheet = d.Worksheets["Materials"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            try
-            {
-                Range cell = worksheet.Range["A6"];
-                Hyperlinks hyperlinks = cell.Hyperlinks;
-
-                if (hyperlinks.Count != 1)
-                    return "False";
-
-                Hyperlink link = hyperlinks[1];
-                if (link.SubAddress != "Categories!A18")
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau57(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-            try
-            {
-                worksheet = d.Worksheets["Materials"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            try
-            {
-                Range cell = worksheet.Range["A6"];
-                Hyperlinks hyperlinks = cell.Hyperlinks;
-
-                if (hyperlinks.Count != 1)
-                    return "False";
-
-                Hyperlink link = hyperlinks[1];
-                if (link.SubAddress != "Categories!A18")
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau58(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-            try
-            {
-                worksheet = d.Worksheets["Materials"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            try
-            {
-                if (worksheet.PageSetup.RightHeader != "Confidential")
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau59(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-
-            try
-            {
-                worksheet = d.Worksheets["Materials"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            try
-            {
-                if (worksheet.PageSetup.CenterFooter != "Page &P of &N")
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau103(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-            try
-            {
-                worksheet = d.Worksheets["Summary"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            try
-            {
-                Range cell = worksheet.Range["A2"];
-                Hyperlinks hyperlinks = cell.Hyperlinks;
-
-                if (hyperlinks.Count != 1)
-                    return "False";
-
-                Hyperlink link = hyperlinks[1];
-
-                if (!link.Address.Contains("www.nodpublishers.com"))
-                    return "False";
-
-                if (link.ScreenTip != "Company Website")
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau27(Application a, Workbook d)
-        {
-            try
-            {
-                var props = d.BuiltinDocumentProperties;
-                var companyProp = props["Company"];
-                string companyName = companyProp.GetType()
-                    .InvokeMember("Value", BindingFlags.GetProperty, null, companyProp, new object[0])
-                    ?.ToString();
-
-                if (companyName != "Lucerne Publishing")
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau35(Application a, Workbook d)
-        {
-            try
-            {
-                foreach (Worksheet ws in d.Worksheets)
+                string ReadRangeText(Worksheet ws, string rangeAddress)
                 {
                     try
                     {
-                        var ps = ws.PageSetup;
-
-                        // Kiểm tra Zoom phải là False
-                        if (ps.Zoom != false)
-                            return "False";
-
-                        // Kiểm tra FitToPagesWide == 1
-                        if (ps.FitToPagesWide != 1)
-                            return "False";
-
-                        // Kiểm tra FitToPagesTall == 1
-                        if (ps.FitToPagesTall != 1)
-                            return "False";
+                        var rng = ws.Range[rangeAddress] as Range;
+                        if (rng == null)
+                            return string.Empty;
+                        var txt = rng.Text;
+                        return txt?.ToString() ?? string.Empty;
                     }
                     catch
                     {
-                        return "False";
+                        return string.Empty;
                     }
                 }
-            }
-            catch
-            {
-                return "False";
-            }
 
-            return "True";
-        }
-        private string Cau36(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Games"] as Worksheet;
-                if (worksheet == null)
-                    return "Fales (ten trang tinh)";
-
-                if (worksheet.PageSetup.TopMargin != 72.0)
-                    return "False";
-                if (worksheet.PageSetup.BottomMargin != 72.0)
-                    return "False";
-                if (worksheet.PageSetup.LeftMargin != 108.0)
-                    return "False";
-                if (worksheet.PageSetup.RightMargin != 108.0)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau41(Application a, Workbook d)
-        {
-            Worksheet worksheet;
-            try
-            {
-                // Truy cập worksheet "January"
-                worksheet = (Worksheet)d.Worksheets["January"];
-            }
-            catch
-            {
-                return "False";
-            }
-
-            try
-            {
-                // Kiểm tra vùng in
-                if (worksheet.PageSetup.PrintArea != "$A$4:$F$20")
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau60(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Materials"] as Worksheet;
-                if (worksheet == null)
+                string a2 = ReadRangeText(worksheet, "A2");
+                if (a2 != "2012")
                     return "False";
 
-                var pageSetup = worksheet.PageSetup;
-
-                //return pageSetup.Orientation.ToString() + XlPageOrientation.xlLandscape.ToString();
-
-                if (pageSetup.Orientation.ToString() != XlPageOrientation.xlLandscape.ToString())
+                string b1 = ReadRangeText(worksheet, "B1");
+                if (b1 != "New Customers")
                     return "False";
 
-                //return pageSetup.FitToPagesWide.ToString() + pageSetup.FitToPagesTall.ToString();
-
-                if (pageSetup.FitToPagesWide != 1)
+                string b2 = ReadRangeText(worksheet, "B2");
+                if (b2 != "1700000")
                     return "False";
 
-                if (pageSetup.FitToPagesTall == true)
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau77(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Q2 Sales"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-
-                if (worksheet.PageSetup.BottomMargin != 54.0 || worksheet.PageSetup.LeftMargin != 18.0)
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau91(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["roster"] as Worksheet;
-                if (worksheet == null)
-                    return "False";
-
-                if (worksheet.PageSetup.PrintTitleRows != "$7:$7")
-                    return "False";
-            }
-            catch (Exception)
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau93(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet worksheet = d.Worksheets["Inbound call"];
-
-                if (worksheet.PageSetup.PrintArea != "$A$1:$C$19")
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-        private string Cau104(Application a, Workbook d)
-        {
-            try
-            {
-                // Lấy danh sách các thuộc tính tài liệu tích hợp sẵn (Built-in)
-                object documentProperties = d.BuiltinDocumentProperties;
-
-                // Lấy thuộc tính "Subject"
-                object subjectProperty = documentProperties.GetType().InvokeMember(
-                    "Item",
-                    BindingFlags.GetProperty,
-                    null,
-                    documentProperties,
-                    new object[] { "Subject" });
-
-                // Lấy giá trị của "Subject"
-                string subjectValue = subjectProperty.GetType().InvokeMember(
-                    "Value",
-                    BindingFlags.GetProperty,
-                    null,
-                    subjectProperty,
-                    new object[0])?.ToString();
-
-                // Nếu Subject có giá trị khác rỗng, trả về False
-                if (!string.IsNullOrEmpty(subjectValue))
-                    return "False";
-            }
-            catch
-            {
-                return "False";
-            }
-
-            return "True";
-        }
-
-        private string Cau111(Application a, Workbook d)
-        {
-            try
-            {
-                Worksheet ws = d.Worksheets["New York City"] as Worksheet;
-                if (ws == null)
-                    return "False";
-
-                ChartObjects chartObjects = (ChartObjects)ws.ChartObjects();
-                if (chartObjects.Count == 0)
-                    return "False";
-
-                //bool correct = false;
-
-                Range dataRange = ws.Range["A3"].CurrentRegion; // vùng bảng
-                double tableBottom = dataRange.Top + dataRange.Height;
-
-                // ✅ Phải có 1 biểu đồ
-                if (ws.ChartObjects().Count == 0)
-                    return "False";
-
-                ChartObject chartObj = ws.ChartObjects(1);
-                Chart chart = chartObj.Chart;
-
-                // ✅ Biểu đồ phải là Clustered Column
-                if (chart.ChartType != XlChartType.xlColumnClustered)
-                    return "False";
-
-                // ✅ Kiểm tra Series
-                if (chart.SeriesCollection().Count == 0)
-                    return "False";
-
-                //Series series = chart.SeriesCollection(1);
-
-                //// ✅ X-axis = City (cột B)
-                //Range xRange = series.XValues as Range;
-                //if (xRange.Column != 2)
-                //    return "False (Trục ngang không phải City)";
-
-                //// ✅ Values = Air Miles (cột D)
-                //Range valRange = series.Values as Range;
-                //if (valRange.Column != 4)
-                //    return "False (Dữ liệu không phải Air Miles)";
-
-                // ✅ Biểu đồ phải nằm *dưới bảng*
-                if (chartObj.Top <= tableBottom)
+                string b4 = ReadRangeText(worksheet, "B4");
+                if (b4 != "3200000")
                     return "False";
 
                 return "True";
-
-                //foreach (ChartObject chObj in chartObjects)
-                //{
-                //    Chart chart = chObj.Chart;
-
-                //    // 1️⃣ Loại biểu đồ phải là Clustered Column
-                //    if (chart.ChartType != XlChartType.xlColumnClustered)
-                //        continue;
-
-                //    Series series = chart.SeriesCollection(1);
-                //    if (series == null)
-                //        continue;
-
-                //    // 2️⃣ Kiểm tra tên Series chứa "Air Miles"
-                //    string sName = series.Name.ToLower();
-                //    if (!sName.Contains("air") || !sName.Contains("mile"))
-                //        continue;
-
-                //    // 3️⃣ Check XValues must come from column B (City)
-                //    string xRange = series.XValues as string;
-                //    if (string.IsNullOrEmpty(xRange))
-                //        continue;
-
-                //    // Ví dụ địa chỉ sẽ kiểu như: ='New York City'!$B$3:$B$17
-                //    if (!xRange.ToUpper().Contains("$B$"))
-                //        continue;
-
-                //    if (chartObjects.Top <= tableBottom)
-                //        return "False (Biểu đồ không nằm dưới bảng)";
-
-
-                //    // ✅ Passed all checks
-                //    correct = true;
-                //    break;
-                //}
-
-                //return correct ? "True" : "False (Biểu đồ chưa đúng dữ liệu)";
+            }
+            catch (Exception)
+            {
+                return "False";
+            }
+        }
+        private string Cau112(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)5].Shapes[(object)3].TextFrame.TextRange.Text != "Company Confidential")
+                    return "False";
+                if (!a.ActivePresentation.Slides[(object)5].Shapes[(object)3].Name.Contains("Footer Placeholder"))
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)6].Shapes.Count >= 3)
+                {
+                    if (a.ActivePresentation.Slides[(object)6].Shapes[(object)3].TextFrame.TextRange.Text == "Company Confidential")
+                        return "False";
+                    if (a.ActivePresentation.Slides[(object)6].Shapes[(object)3].Name.Contains("Footer Placeholder"))
+                        return "False";
+                }
             }
             catch (Exception ex)
             {
                 return "False";
             }
+            return "True";
+        }
+        private string Cau113(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)4].Shapes.Count != 2)
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)4].Shapes[(object)2].Name != "New Advert")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)4].Shapes[(object)2].Top.ToString() != "143.75")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)4].Shapes[(object)2].Left.ToString() != "144")
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau114(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)4].Shapes.Count != 2)
+                    return "False";
+                try
+                {
+                    if (a.ActivePresentation.Slides[(object)4].Shapes[(object)2].SmartArt.Layout.Name != "Vertical Picture Accent List")
+                        return "False";
+                }
+                catch (Exception ex)
+                {
+                    return "False";
+                }
+                return "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau115(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence.Count.ToString() != "1")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[1].Timing.TriggerType.ToString() != "msoAnimTriggerAfterPrevious")
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau116(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)3].Shapes[(object)"Powerpoint mos vid"].PictureFormat.CropLeft.ToString() != "487.268")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)3].Shapes[(object)"Powerpoint mos vid"].PictureFormat.CropRight.ToString() != " - 7.277816")
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau117(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)2].TimeLine.MainSequence.Count.ToString() != "1")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)2].TimeLine.MainSequence[1].DisplayName != "No Way!")
+                    return "False";
+                return a.ActivePresentation.Slides[(object)2].TimeLine.MainSequence[1].EffectType.ToString() != "msoAnimEffectPathCircle" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau118(Application a, Presentation d)
+        {
+            try
+            {
+                foreach (Slide slide in a.ActivePresentation.Slides)
+                {
+                    if (slide.SlideShowTransition.Duration.ToString() != "3")
+                        return "False";
+                    if (slide.SlideShowTransition.SoundEffect.Name != "breeze.wav")
+                        return "False";
+                }
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+            return "True";
+        }
+        private string Cau119(Application a, Presentation d)
+        {
+            try
+            {
+                Slide slide = a.ActivePresentation.Slides[(object)6];
+                Chart chart = slide.Shapes[(object)"Chart 4"].Chart;
+                return ((object)chart.ChartType).ToString() != "xl3DColumnClustered" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau120(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)7].Shapes[(object)"Table 1"].Table.Style.Name != "Medium Style 2 - Accent 1")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)7].Shapes[(object)"Table 1"].Table.HorizBanding.ToString() != "False")
+                    return "False";
+                return a.ActivePresentation.Slides[(object)7].Shapes[(object)"Table 1"].Table.VertBanding.ToString() != "True" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau121(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.SlideShowSettings.NamedSlideShows.Count != 1)
+                    return "False";
+                if (a.ActivePresentation.SlideShowSettings.NamedSlideShows[(object)1].Name != "Important Findings")
+                    return "False";
+                return a.ActivePresentation.SlideShowSettings.NamedSlideShows[(object)1].Count != 2 ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau122(Application a, Presentation d)
+        {
+            try
+            {
+                return new FileInfo(a.ActivePresentation.FullName).Length < 62878L ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau123(Application a, Presentation d)
+        {
+            try
+            {
+                // Cách chuẩn nhất MOS chấm điểm 2025
+                bool hidden = a.ActivePresentation.DisplayComments == MsoTriState.msoFalse;
 
+                return hidden ? "True" : "False";
+            }
+            catch
+            {
+                return "False";
+            }
+        }
+        private string Cau124(Application a, Presentation d)
+        {
+            try
+            {
+                var pres = a.ActivePresentation;
+                var po = pres.PrintOptions;
+
+                // 1. Copies = 3
+                bool copiesOK = po.NumberOfCopies == 3;
+
+                // 2. Collate = msoTrue (Uncollated → False, Collated → True)
+                bool collateOK = po.Collate == MsoTriState.msoFalse;
+
+                // 3. FrameSlides = msoTrue (có viền)
+                bool frameOK = po.FrameSlides == MsoTriState.msoTrue;
+
+                //// 4. QUAN TRỌNG NHẤT: PowerPoint lưu "3 Slides per page" trong PrintRanges
+                //// Khi chọn "Handouts (3 slides per page)" → tự động tạo 1 PrintRange cho toàn bộ slide
+
+                //bool hasFullRange = po.Ranges.Count == 1 &&
+                //            po.Ranges[1].Start == 1 &&
+                //            po.Ranges[1].End == pres.Slides.Count;
+
+                if (copiesOK && collateOK && frameOK)
+                    return "True";
+                else
+                    return "False";
+            }
+            catch (Exception ex)
+            {
+                return "False" + ex.Message;
+            }
+        }
+        private string Cau125(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)3].Shapes.Count != 2)
+                    return "False";
+                return !a.ActivePresentation.Slides[(object)3].Shapes[(object)2].Name.Contains("Group") ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau126(Application a, Presentation d)
+        {
+            try
+            {
+                if (a.ActivePresentation.Slides.Count != 4)
+                    return "False";
+                return a.ActivePresentation.Slides[(object)4].Shapes.Count != 2 || a.ActivePresentation.Slides[(object)4].Shapes[(object)1].TextFrame.TextRange.Text != "Top Sellers: " ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+        private string Cau127(Application a, Presentation d)
+        {
+            try
+            {
+                if (((object)a.ActivePresentation.Slides[(object)2].Shapes[(object)"TextBox 3"].TextFrame.VerticalAnchor).ToString() != "msoAnchorTop")
+                    return "False";
+                return ((object)a.ActivePresentation.Slides[(object)2].Shapes[(object)"TextBox 3"].TextFrame2.TextRange.get_Characters().Font.Caps).ToString() != "msoSmallCaps" ? "False" : "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
         }
     }
 }

@@ -553,7 +553,7 @@ namespace MOS_PPT_TEST
             this.Controls.Add(this.checkedListBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "MOS360_EXCEL_TEST";
+            this.Text = "MOS360_PPT_TEST";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
