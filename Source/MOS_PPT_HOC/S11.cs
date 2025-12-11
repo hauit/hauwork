@@ -197,20 +197,58 @@ namespace MOS_PPT_LEARN
 
         private static string Cau9(Application a, Presentation d)
         {
+            //try
+            //{
+            //    if (a.ActivePresentation.Slides[(object)1].Shapes.Count > 2)
+            //        return "False";
+            //    if (a.ActivePresentation.Slides[(object)2].Shapes.Count != 3)
+            //        return "False";
+            //    if (a.ActivePresentation.Slides[(object)3].Shapes.Count != 5)
+            //        return "False";
+            //}
+            //catch (Exception ex)
+            //{
+            //    return "False";
+            //}
+            //return "True";
+
             try
             {
-                if (a.ActivePresentation.Slides[(object)1].Shapes.Count > 2)
-                    return "False";
-                if (a.ActivePresentation.Slides[(object)2].Shapes.Count != 3)
-                    return "False";
-                if (a.ActivePresentation.Slides[(object)3].Shapes.Count != 5)
-                    return "False";
+                var pres = a.ActivePresentation;
+                var master = pres.SlideMaster;
+
+                // 1. Kiểm tra Footer trên Slide Master
+                var footer = master.HeadersFooters.Footer;
+                bool footerTextCorrect = footer.Text.Trim().Equals("www.adventure-works.com",
+                                                                  StringComparison.OrdinalIgnoreCase);
+
+                bool slideNumberVisible = master.HeadersFooters.SlideNumber.Visible == MsoTriState.msoTrue;
+                bool footerVisible = footer.Visible == MsoTriState.msoTrue;
+
+                // 2. Kiểm tra Title Slide (slide 1) KHÔNG có footer và số slide
+                var titleSlide = pres.Slides[1];
+                bool titleSlideNoFooter = titleSlide.HeadersFooters.Footer.Visible == MsoTriState.msoFalse;
+                bool titleSlideNoSlideNumber = titleSlide.HeadersFooters.SlideNumber.Visible == MsoTriState.msoFalse;
+
+                // 3. Kiểm tra 1 slide bất kỳ (ví dụ slide 2) phải CÓ footer + số slide
+                var slide2 = pres.Slides[2];
+                bool slide2HasFooter = slide2.HeadersFooters.Footer.Visible == MsoTriState.msoTrue &&
+                                            slide2.HeadersFooters.Footer.Text.Contains("adventure-works.com");
+                bool slide2HasSlideNumber = slide2.HeadersFooters.SlideNumber.Visible == MsoTriState.msoTrue;
+
+                return (footerTextCorrect &&
+                        slideNumberVisible &&
+                        footerVisible &&
+                        titleSlideNoFooter &&
+                        titleSlideNoSlideNumber &&
+                        slide2HasFooter &&
+                        slide2HasSlideNumber) ? "True" : "False";
             }
-            catch (Exception ex)
+            catch
             {
                 return "False";
             }
-            return "True";
+
         }
 
         private static string Cau10(Application a, Presentation d)

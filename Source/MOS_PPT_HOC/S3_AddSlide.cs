@@ -134,7 +134,7 @@ namespace MOS_PPT_LEARN
             {
                 if (a.ActivePresentation.Slides[(object)4].Shapes.Count != 2)
                     return "False";
-                return a.ActivePresentation.Slides[(object)4].Shapes[(object)"Text Placeholder 2"].TextFrame.TextRange.Text != "Home stay\rHouse boat\r…" ? "False" : "True";
+                return a.ActivePresentation.Slides[(object)4].Shapes[(object)"Text Placeholder 2"].TextFrame.TextRange.Text != "Admin\rFlowers\r…" ? "False" : "True";
             }
             catch (Exception ex)
             {

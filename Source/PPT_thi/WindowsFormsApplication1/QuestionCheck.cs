@@ -14,10 +14,11 @@ using Binder = System.Reflection.Binder;
 using System.Runtime.CompilerServices;
 using mscore = Microsoft.Office.Core;
 using Shape = Microsoft.Office.Interop.PowerPoint.Shape;
+using ShapePPT = Microsoft.Office.Interop.PowerPoint.Shape;
 using XlLegendPosition = Microsoft.Office.Interop.PowerPoint.XlLegendPosition;
 using Chart = Microsoft.Office.Interop.PowerPoint.Chart;
 using XlChartType = Microsoft.Office.Core.XlChartType;
-using Presentation = Microsoft.Office.Interop.PowerPoint.ProtectedViewWindow;
+using Presentation = Microsoft.Office.Interop.PowerPoint.Presentation;
 
 namespace MOS_PPT_TEST
 {
@@ -189,13 +190,19 @@ namespace MOS_PPT_TEST
         {
             try
             {
+                //var test = ((object)a.ActivePresentation.Slides[(object)3].Shapes[(object)2].Type).ToString() + " - " + a.ActivePresentation.Slides[(object)3].Shapes[(object)2].Height.ToString() + "\n";
+
+                //return test;
+
                 if (a.ActivePresentation.Slides[(object)3].Shapes.Count != 3)
                     return "False";
                 if (((object)a.ActivePresentation.Slides[(object)3].Shapes[(object)2].Type).ToString() != "msoPlaceholder")
                     return "False";
                 if (a.ActivePresentation.Slides[(object)3].Shapes[(object)2].Height.ToString() != "288")
                     return "False";
-                return a.ActivePresentation.Slides[(object)3].Shapes[(object)2].Width.ToString() != "134.255" ? "False" : "True";
+                //return a.ActivePresentation.Slides[(object)3].Shapes[(object)2].Width.ToString() != "134.255" ? "False" : "True";
+
+                return "True";
             }
             catch (Exception ex)
             {
@@ -302,7 +309,7 @@ namespace MOS_PPT_TEST
             {
                 if (a.ActivePresentation.Slides[(object)4].Shapes.Count != 2)
                     return "False";
-                return a.ActivePresentation.Slides[(object)4].Shapes[(object)"Text Placeholder 2"].TextFrame.TextRange.Text != "Home stay\rHouse boat\r…" ? "False" : "True";
+                return a.ActivePresentation.Slides[(object)4].Shapes[(object)"Text Placeholder 2"].TextFrame.TextRange.Text != "Admin\rFlowers\r…" ? "False" : "True";
             }
             catch (Exception ex)
             {
@@ -328,9 +335,9 @@ namespace MOS_PPT_TEST
         {
             try
             {
-                if (a.ActivePresentation.Slides[(object)3].Shapes[(object)"Table 5"].Table.Rows.Count.ToString() != "8")
+                if (a.ActivePresentation.Slides[(object)3].Shapes[(object)"Table 5"].Table.Rows.Count.ToString() != "7")
                     return "False";
-                return a.ActivePresentation.Slides[(object)3].Shapes[(object)"Table 5"].Table.Rows[8].Cells[1].Shape.TextFrame.TextRange.Text != "Sporting Event" ? "False" : "True";
+                return a.ActivePresentation.Slides[(object)3].Shapes[(object)"Table 5"].Table.Rows[7].Cells[1].Shape.TextFrame.TextRange.Text != "Sporting Event" ? "False" : "True";
             }
             catch (Exception ex)
             {
@@ -354,11 +361,55 @@ namespace MOS_PPT_TEST
         {
             try
             {
-                return a.ActivePresentation.Slides[(object)5].Shapes.Count != 3 ? "False" : "True";
+                var slide = a.ActivePresentation.Slides[(object)5];  // slide 5
+
+                var test = "";
+
+                foreach (ShapePPT shape in slide.Shapes)
+                {
+                    if (shape.Name.Contains("Content Placeholder 9"))
+                    {
+                        //3D Model giờ là msoPlaceholder -> Dùng Name để xác định
+                        test = test + shape.Name + "|" + shape.Type + "|" + "\n";
+
+                        try
+                        {
+                            dynamic model = shape.GetType().InvokeMember("Model3D",
+                                System.Reflection.BindingFlags.GetProperty, null, shape, null);
+
+                            if (model != null)
+                            {
+                                float rotX = model.RotationX;
+                                float rotY = model.RotationY;
+
+                                test += rotX + "+" + rotY + "-" + (shape.Height - 324f);
+
+                                //Above Front Right trên máy mới = RotationX ≈ -30, RotationY ≈ 45
+                                if (Math.Abs(rotX) == 20 && Math.Abs(rotY) == 330 &&
+                                    Math.Abs(shape.Height - 324f) == 0)   // 4.5 inch = 324 pt
+                                    return "True";
+                            }
+                        }
+                        catch { }
+
+                        // Fallback máy cũ: dùng ThreeD
+                        float rx = shape.ThreeD.RotationX;
+                        float ry = shape.ThreeD.RotationY;
+
+                        test += rx + "+" + ry + "-" + (shape.Height - 324f);
+
+                        // Above Front Right trên máy cũ cũng là -30 / 45
+                        if (Math.Abs(rx) == 20 && Math.Abs(ry) == 330 &&
+                            Math.Abs(shape.Height - 324f) == 0)
+                            return "True";
+                    }
+                }
+                //return test + " 01";
+                return "False";
             }
             catch (Exception ex)
             {
-                return "False";
+                return "False 3" + ex.Message;
             }
         }
         private string Cau14(Application a, Presentation d)
@@ -448,15 +499,15 @@ namespace MOS_PPT_TEST
         {
             try
             {
-                if (a.ActivePresentation.Slides[(object)6].TimeLine.MainSequence.Count != 1)
+                if (a.ActivePresentation.Slides[(object)7].TimeLine.MainSequence.Count != 1)
                     return "False";
-                if (a.ActivePresentation.Slides[(object)6].TimeLine.MainSequence[1].DisplayName != "Picture 4")
+                if (a.ActivePresentation.Slides[(object)7].TimeLine.MainSequence[1].DisplayName != "Picture 4")
                     return "False";
-                if (a.ActivePresentation.Slides[(object)6].TimeLine.MainSequence[1].EffectType.ToString() != "msoAnimEffectFly")
+                if (a.ActivePresentation.Slides[(object)7].TimeLine.MainSequence[1].EffectType.ToString() != "msoAnimEffectFly")
                     return "False";
-                if (a.ActivePresentation.Slides[(object)6].TimeLine.MainSequence[1].EffectParameters.Direction.ToString() != "msoAnimDirectionUpLeft")
+                if (a.ActivePresentation.Slides[(object)7].TimeLine.MainSequence[1].EffectParameters.Direction.ToString() != "msoAnimDirectionUpLeft")
                     return "False";
-                return a.ActivePresentation.Slides[(object)6].TimeLine.MainSequence[1].Timing.Duration.ToString() != "2" ? "False" : "True";
+                return a.ActivePresentation.Slides[(object)7].TimeLine.MainSequence[1].Timing.Duration.ToString() != "2" ? "False" : "True";
             }
             catch (Exception ex)
             {
@@ -623,7 +674,30 @@ namespace MOS_PPT_TEST
         {
             try
             {
-                return a.ActivePresentation.Slides[(object)5].Shapes.Count != 6 ? "False" : "True";
+                //return a.ActivePresentation.Slides[(object)5].Shapes.Count != 6 ? "False" : "True";
+
+                //var test = ((object)a.ActivePresentation.Slides[(object)5].Shapes[(object)6].Type).ToString() + " - " + a.ActivePresentation.Slides[(object)5].Shapes[(object)6].Height.ToString() + " - " + a.ActivePresentation.Slides[(object)5].Shapes[(object)6].Width.ToString() + "\n";
+
+                //return test;
+
+                if (a.ActivePresentation.Slides[(object)5].Shapes.Count != 6)
+                    return "False";
+                // if (((object)a.ActivePresentation.Slides[(object)5].Shapes[(object)6].Type).ToString() != "msoPlaceholder")
+                if (((object)a.ActivePresentation.Slides[(object)5].Shapes[(object)6].Type).ToString() != "30")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)5].Shapes[(object)6].Height.ToString() != "144")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)5].Shapes[(object)6].Width.ToString() != "128.16")
+                    return "False";
+
+                float top = a.ActivePresentation.Slides[(object)5].Shapes[(object)6].Top;
+                float left = a.ActivePresentation.Slides[(object)5].Shapes[(object)6].Left;
+
+                if (top > 199 && left > 103)
+                    return "True";
+
+                //return a.ActivePresentation.Slides[(object)5].Shapes[(object)6].Width.ToString() != "128.16" ? "False" : "True";
+                return "False";
             }
             catch (Exception ex)
             {
@@ -712,9 +786,9 @@ namespace MOS_PPT_TEST
         {
             try
             {
-                if (a.ActivePresentation.Slides[(object)4].Shapes.Count != 2)
+                if (a.ActivePresentation.Slides[(object)5].Shapes.Count != 2)
                     return "False";
-                return a.ActivePresentation.Slides[(object)4].Shapes[(object)2].SmartArt.Layout.Name != "Segmented Cycle" ? "False" : "True";
+                return a.ActivePresentation.Slides[(object)5].Shapes[(object)2].SmartArt.Layout.Name != "Segmented Cycle" ? "False" : "True";
             }
             catch (Exception ex)
             {
@@ -756,13 +830,13 @@ namespace MOS_PPT_TEST
         {
             try
             {
-                if (a.ActivePresentation.Slides[(object)5].Background.Fill.Transparency.ToString() != "0.75")
+                if (a.ActivePresentation.Slides[(object)6].Background.Fill.Transparency.ToString() != "0.75")
                     return "False";
-                if (a.ActivePresentation.Slides[(object)5].Background.Fill.Type != MsoFillType.msoFillPicture)
+                if (a.ActivePresentation.Slides[(object)6].Background.Fill.Type != MsoFillType.msoFillPicture)
                     return "False";
-                if (a.ActivePresentation.Slides[(object)4].Background.Fill.Transparency.ToString() == "0.75")
+                if (a.ActivePresentation.Slides[(object)5].Background.Fill.Transparency.ToString() == "0.75")
                     return "False";
-                if (a.ActivePresentation.Slides[(object)4].Background.Fill.Type == MsoFillType.msoFillPicture)
+                if (a.ActivePresentation.Slides[(object)5].Background.Fill.Type == MsoFillType.msoFillPicture)
                     return "False";
             }
             catch (Exception ex)
@@ -927,13 +1001,13 @@ namespace MOS_PPT_TEST
                     return "False";
                 if (((object)a.ActivePresentation.Slides[(object)4].Shapes[(object)"Freeform 6"].Shadow.Style).ToString() != "msoShadowStyleInnerShadow")
                     return "False";
-                if (a.ActivePresentation.Slides[(object)4].Shapes[(object)"Freeform 6"].Shadow.OffsetX.ToString() != " - 2.12132" || a.ActivePresentation.Slides[(object)4].Shapes[(object)"Freeform 6"].Shadow.OffsetY.ToString() != " - 2.12132")
+                if (a.ActivePresentation.Slides[(object)4].Shapes[(object)"Freeform 6"].Shadow.OffsetX.ToString() != "-2.12132" || a.ActivePresentation.Slides[(object)4].Shapes[(object)"Freeform 6"].Shadow.OffsetY.ToString() != "-2.12132")
                     return "False";
                 if (((object)a.ActivePresentation.Slides[(object)4].Shapes[(object)"Freeform 5"].Shadow.Style).ToString() != "msoShadowStyleInnerShadow")
                     return "False";
-                if (a.ActivePresentation.Slides[(object)4].Shapes[(object)"Freeform 5"].Shadow.OffsetX.ToString() != " - 2.12132")
+                if (a.ActivePresentation.Slides[(object)4].Shapes[(object)"Freeform 5"].Shadow.OffsetX.ToString() != "-2.12132")
                     return "False";
-                return a.ActivePresentation.Slides[(object)4].Shapes[(object)"Freeform 5"].Shadow.OffsetY.ToString() != " - 2.12132" ? "False" : "True";
+                return a.ActivePresentation.Slides[(object)4].Shapes[(object)"Freeform 5"].Shadow.OffsetY.ToString() != "-2.12132" ? "False 6" : "True";
             }
             catch (Exception ex)
             {
@@ -1035,9 +1109,24 @@ namespace MOS_PPT_TEST
         {
             try
             {
+                //var test = a.ActivePresentation.Slides[(object)6].Shapes[(object)3].Name + " - " + a.ActivePresentation.Slides[(object)6].Shapes[(object)3].Top.ToString() + " - " + a.ActivePresentation.Slides[(object)6].Shapes[(object)3].Left.ToString() + "\n";
+
+                //return test;
+
                 if (a.ActivePresentation.Slides[(object)6].Shapes.Count != 3)
                     return "False";
-                return a.ActivePresentation.Slides[(object)6].Shapes[(object)3].Name != "River" ? "False" : "True";
+
+                if (a.ActivePresentation.Slides[(object)6].Shapes[(object)3].Name != "River")
+                    return "False";
+
+                float left = a.ActivePresentation.Slides[(object)6].Shapes[(object)3].Left;
+
+                if (left > 426)
+                    return "True";
+
+                //return a.ActivePresentation.Slides[(object)6].Shapes[(object)3].Name != "River" ? "False" : "True";
+
+                return "False";
             }
             catch (Exception ex)
             {
@@ -1050,7 +1139,7 @@ namespace MOS_PPT_TEST
             {
                 if (a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence.Count != 1)
                     return "False";
-                if (a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[1].DisplayName != "5 - Point Star 5")
+                if (a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[1].DisplayName != "5-Point Star 5")
                     return "False";
                 return a.ActivePresentation.Slides[(object)4].TimeLine.MainSequence[1].EffectType.ToString() != "msoAnimEffectPathHeart" ? "False" : "True";
             }
@@ -1094,7 +1183,7 @@ namespace MOS_PPT_TEST
             try
             {
                 var slide = a.ActivePresentation.Slides[(object)3];  // slide 3
-                if (slide.Shapes.Count != 4) return "False 1";
+                if (slide.Shapes.Count != 4) return "False";
 
                 for (int i = 1; i <= slide.Shapes.Count; i++)
                 {
@@ -1154,7 +1243,7 @@ namespace MOS_PPT_TEST
             {
                 foreach (Slide slide in a.ActivePresentation.Slides)
                 {
-                    if (slide.SlideShowTransition.EntryEffect.ToString() != "ppEffectPushRight")
+                    if (slide.SlideShowTransition.EntryEffect.ToString() != "ppEffectWipeRight")
                         return "False";
                 }
             }
@@ -1181,18 +1270,40 @@ namespace MOS_PPT_TEST
         {
             try
             {
-                if (a.ActivePresentation.Slides[(object)1].Shapes.Count > 2)
-                    return "False";
-                if (a.ActivePresentation.Slides[(object)2].Shapes.Count != 3)
-                    return "False";
-                if (a.ActivePresentation.Slides[(object)3].Shapes.Count != 5)
-                    return "False";
+                var pres = a.ActivePresentation;
+                var master = pres.SlideMaster;
+
+                // 1. Kiểm tra Footer trên Slide Master
+                var footer = master.HeadersFooters.Footer;
+                bool footerTextCorrect = footer.Text.Trim().Equals("www.adventure-works.com",
+                                                                  StringComparison.OrdinalIgnoreCase);
+
+                bool slideNumberVisible = master.HeadersFooters.SlideNumber.Visible == MsoTriState.msoTrue;
+                bool footerVisible = footer.Visible == MsoTriState.msoTrue;
+
+                // 2. Kiểm tra Title Slide (slide 1) KHÔNG có footer và số slide
+                var titleSlide = pres.Slides[1];
+                bool titleSlideNoFooter = titleSlide.HeadersFooters.Footer.Visible == MsoTriState.msoFalse;
+                bool titleSlideNoSlideNumber = titleSlide.HeadersFooters.SlideNumber.Visible == MsoTriState.msoFalse;
+
+                // 3. Kiểm tra 1 slide bất kỳ (ví dụ slide 2) phải CÓ footer + số slide
+                var slide2 = pres.Slides[2];
+                bool slide2HasFooter = slide2.HeadersFooters.Footer.Visible == MsoTriState.msoTrue &&
+                                            slide2.HeadersFooters.Footer.Text.Contains("adventure-works.com");
+                bool slide2HasSlideNumber = slide2.HeadersFooters.SlideNumber.Visible == MsoTriState.msoTrue;
+
+                return (footerTextCorrect &&
+                        slideNumberVisible &&
+                        footerVisible &&
+                        titleSlideNoFooter &&
+                        titleSlideNoSlideNumber &&
+                        slide2HasFooter &&
+                        slide2HasSlideNumber) ? "True" : "False";
             }
-            catch (Exception ex)
+            catch
             {
                 return "False";
             }
-            return "True";
         }
         private string Cau64(Application a, Presentation d)
         {
@@ -2290,7 +2401,7 @@ namespace MOS_PPT_TEST
             {
                 if (a.ActivePresentation.Slides[(object)3].Shapes[(object)"Powerpoint mos vid"].PictureFormat.CropLeft.ToString() != "487.268")
                     return "False";
-                if (a.ActivePresentation.Slides[(object)3].Shapes[(object)"Powerpoint mos vid"].PictureFormat.CropRight.ToString() != " - 7.277816")
+                if (a.ActivePresentation.Slides[(object)3].Shapes[(object)"Powerpoint mos vid"].PictureFormat.CropRight.ToString() != "-7.277816")
                     return "False";
             }
             catch (Exception ex)

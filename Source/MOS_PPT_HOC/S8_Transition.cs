@@ -153,7 +153,10 @@ namespace MOS_PPT_LEARN
             {
                 foreach (Slide slide in a.ActivePresentation.Slides)
                 {
-                    if (slide.SlideShowTransition.EntryEffect.ToString() != "ppEffectPushRight")
+
+                    //return slide.SlideShowTransition.EntryEffect.ToString();
+
+                    if (slide.SlideShowTransition.EntryEffect.ToString() != "ppEffectWipeRight")
                         return "False";
                 }
             }

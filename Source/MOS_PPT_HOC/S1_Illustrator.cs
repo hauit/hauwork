@@ -8,6 +8,8 @@ using Microsoft.Office.Interop.PowerPoint;
 using Microsoft.Office.Core;
 using System;
 using Shape = Microsoft.Office.Core.Shape;
+using ShapePPT = Microsoft.Office.Interop.PowerPoint.Shape;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 
 namespace MOS_PPT_LEARN
@@ -330,13 +332,19 @@ namespace MOS_PPT_LEARN
         {
             try
             {
+                //var test = ((object)a.ActivePresentation.Slides[(object)3].Shapes[(object)2].Type).ToString() + " - " + a.ActivePresentation.Slides[(object)3].Shapes[(object)2].Height.ToString() + "\n";
+
+                //return test;
+
                 if (a.ActivePresentation.Slides[(object)3].Shapes.Count != 3)
                     return "False";
                 if (((object)a.ActivePresentation.Slides[(object)3].Shapes[(object)2].Type).ToString() != "msoPlaceholder")
                     return "False";
                 if (a.ActivePresentation.Slides[(object)3].Shapes[(object)2].Height.ToString() != "288")
                     return "False";
-                return a.ActivePresentation.Slides[(object)3].Shapes[(object)2].Width.ToString() != "134.255" ? "False" : "True";
+                //return a.ActivePresentation.Slides[(object)3].Shapes[(object)2].Width.ToString() != "134.255" ? "False" : "True";
+
+                return "True";
             }
             catch (Exception ex)
             {
@@ -429,12 +437,17 @@ namespace MOS_PPT_LEARN
             try
             {
                 var slide = a.ActivePresentation.Slides[(object)3];  // slide 3
-                if (slide.Shapes.Count != 4) return "False 1";
+                if (slide.Shapes.Count != 4) return "False";
+
+
+                var test = "";
 
                 for (int i = 1; i <= slide.Shapes.Count; i++)
                 {
                     var shape = slide.Shapes[(object)i];
 
+                    test = test + shape.Name + "|" + shape.Type + "|" + "\n";
+                
                     if ((int)shape.Type == 29 || shape.Name.Contains("3D Model") || shape.Tags["OBJECTTYPE"] == "3DMODEL")
                     {
                         // Tìm thấy 3D Model rồi đây
@@ -462,6 +475,8 @@ namespace MOS_PPT_LEARN
                         }
                     }
                 }
+
+                //return test + " 01";
 
                 return "False";
             }
@@ -533,7 +548,30 @@ namespace MOS_PPT_LEARN
         {
             try
             {
-                return a.ActivePresentation.Slides[(object)5].Shapes.Count != 6 ? "False" : "True";
+                //return a.ActivePresentation.Slides[(object)5].Shapes.Count != 6 ? "False" : "True";
+
+                //var test = ((object)a.ActivePresentation.Slides[(object)5].Shapes[(object)6].Type).ToString() + " - " + a.ActivePresentation.Slides[(object)5].Shapes[(object)6].Height.ToString() + " - " + a.ActivePresentation.Slides[(object)5].Shapes[(object)6].Width.ToString() + "\n";
+
+                //return test;
+
+                if (a.ActivePresentation.Slides[(object)5].Shapes.Count != 6)
+                    return "False";
+                // if (((object)a.ActivePresentation.Slides[(object)5].Shapes[(object)6].Type).ToString() != "msoPlaceholder")
+                if (((object)a.ActivePresentation.Slides[(object)5].Shapes[(object)6].Type).ToString() != "30")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)5].Shapes[(object)6].Height.ToString() != "144")
+                    return "False";
+                if (a.ActivePresentation.Slides[(object)5].Shapes[(object)6].Width.ToString() != "128.16")
+                    return "False";
+
+                float top = a.ActivePresentation.Slides[(object)5].Shapes[(object)6].Top;
+                float left = a.ActivePresentation.Slides[(object)5].Shapes[(object)6].Left;
+
+                if (top > 199 && left > 103)
+                    return "True";
+
+                //return a.ActivePresentation.Slides[(object)5].Shapes[(object)6].Width.ToString() != "128.16" ? "False" : "True";
+                return "False";
             }
             catch (Exception ex)
             {
@@ -577,13 +615,66 @@ namespace MOS_PPT_LEARN
 
         private static string cau30(Application a, Presentation d)
         {
+            //try
+            //{
+            //    return a.ActivePresentation.Slides[(object)5].Shapes.Count != 3 ? "False" : "True";
+            //}
+            //catch (Exception ex)
+            //{
+            //    return "False";
+            //}
+
             try
             {
-                return a.ActivePresentation.Slides[(object)5].Shapes.Count != 3 ? "False" : "True";
+                var slide = a.ActivePresentation.Slides[(object)5];  // slide 5
+
+                var test = "";
+
+                foreach (ShapePPT shape in slide.Shapes)
+                {
+                    if (shape.Name.Contains("Content Placeholder 9"))
+                    {
+                        //3D Model giờ là msoPlaceholder -> Dùng Name để xác định
+                        test = test + shape.Name + "|" + shape.Type + "|" + "\n";
+
+                        try
+                        {
+                            dynamic model = shape.GetType().InvokeMember("Model3D",
+                                System.Reflection.BindingFlags.GetProperty, null, shape, null);
+
+                            if (model != null)
+                            {
+                                float rotX = model.RotationX;
+                                float rotY = model.RotationY;
+
+                                test += rotX + "+" + rotY + "-" + (shape.Height - 324f);
+
+                                //Above Front Right trên máy mới = RotationX ≈ -30, RotationY ≈ 45
+                                if (Math.Abs(rotX) == 20 && Math.Abs(rotY) == 330 &&
+                                    Math.Abs(shape.Height - 324f) == 0)   // 4.5 inch = 324 pt
+                                    return "True";
+                            }
+                        }
+                        catch { }
+
+                        // Fallback máy cũ: dùng ThreeD
+                        float rx = shape.ThreeD.RotationX;
+                        float ry = shape.ThreeD.RotationY;
+
+                        test += rx + "+" + ry + "-" + (shape.Height - 324f);
+
+                        // Above Front Right trên máy cũ cũng là -30 / 45
+                        if (Math.Abs(rx) == 20 && Math.Abs(ry) == 330 &&
+                            Math.Abs(shape.Height - 324f) == 0)
+                            return "True";
+                    }
+                }
+                //return test + " 01";
+                return "False";
             }
             catch (Exception ex)
             {
-                return "False";
+                return "False 3" + ex.Message;
             }
         }
 

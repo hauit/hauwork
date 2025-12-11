@@ -45,6 +45,10 @@ namespace MOS_PPT_LEARN
         {
             try
             {
+                //var test = a.ActivePresentation.Slides[(object)4].Shapes[(object)2].Name + " - " + a.ActivePresentation.Slides[(object)4].Shapes[(object)2].Top.ToString() + " - " + a.ActivePresentation.Slides[(object)4].Shapes[(object)2].Left.ToString() + "\n";
+
+                //return test;
+
                 if (a.ActivePresentation.Slides[(object)4].Shapes.Count != 2)
                     return "False";
                 if (a.ActivePresentation.Slides[(object)4].Shapes[(object)2].Name != "New Advert")
@@ -141,9 +145,24 @@ namespace MOS_PPT_LEARN
         {
             try
             {
+                //var test = a.ActivePresentation.Slides[(object)6].Shapes[(object)3].Name + " - " + a.ActivePresentation.Slides[(object)6].Shapes[(object)3].Top.ToString() + " - " + a.ActivePresentation.Slides[(object)6].Shapes[(object)3].Left.ToString() + "\n";
+
+                //return test;
+
                 if (a.ActivePresentation.Slides[(object)6].Shapes.Count != 3)
                     return "False";
-                return a.ActivePresentation.Slides[(object)6].Shapes[(object)3].Name != "River" ? "False" : "True";
+
+                if (a.ActivePresentation.Slides[(object)6].Shapes[(object)3].Name != "River")
+                    return "False";
+
+                float left = a.ActivePresentation.Slides[(object)6].Shapes[(object)3].Left;
+
+                if (left > 426)
+                    return "True";
+
+                //return a.ActivePresentation.Slides[(object)6].Shapes[(object)3].Name != "River" ? "False" : "True";
+
+                return "False";
             }
             catch (Exception ex)
             {

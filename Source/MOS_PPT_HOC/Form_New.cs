@@ -246,6 +246,22 @@ namespace MOS_PPT_LEARN
                 this.buttonEV.Text = "Tiếng Anh";
                 this.richTextQuestion.Text = this.paramater.DeTiengViet;
             }
+
+            int startindex = 0;
+            string word = ":???";
+            while (startindex < richTextQuestion.TextLength)
+            {
+                int wordstartIndex = richTextQuestion.Find(word, startindex, RichTextBoxFinds.None);
+                if (wordstartIndex != -1)
+                {
+                    richTextQuestion.SelectionStart = wordstartIndex;
+                    richTextQuestion.SelectionLength = word.Length;
+                    richTextQuestion.SelectionBackColor = Color.Yellow;
+                }
+                else
+                    break;
+                startindex += wordstartIndex + word.Length;
+            }
         }
 
         private void buttonRefresh_Click(object sender, EventArgs e)
@@ -298,7 +314,7 @@ namespace MOS_PPT_LEARN
             }
             this.paramater = this.GetparmaterNew(questionObj.CorrectIndex);
 
-            this.paramater.Dest_file_Word_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, $"Word\\{questionObj.MaskIndex.ToString()}.docx");
+            this.paramater.Dest_file_Word_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, $"Word\\{questionObj.MaskIndex.ToString()}.pptx");
             this.paramater.DeTiengAnh = this.paramater.Source_de_En;
             this.paramater.DeTiengViet = this.paramater.Source_de_Vn;
             //this.paramater.Dest_file_help_Name = Path.Combine(System.Windows.Forms.Application.StartupPath, "tam\\help");
@@ -312,6 +328,23 @@ namespace MOS_PPT_LEARN
             //    Home.DecryptFile(this.paramater.Source_file_help_video_path, this.paramater.Dest_file_help_video_Name);
             // ISSUE: reference to a compiler-generated method
             this.richTextQuestion.Text = this.paramater.DeTiengViet;
+
+            int startindex = 0;
+            string word = ":???";
+            while (startindex < richTextQuestion.TextLength)
+            {
+                int wordstartIndex = richTextQuestion.Find(word, startindex, RichTextBoxFinds.None);
+                if (wordstartIndex != -1)
+                {
+                    richTextQuestion.SelectionStart = wordstartIndex;
+                    richTextQuestion.SelectionLength = word.Length;
+                    richTextQuestion.SelectionBackColor = Color.Yellow;
+                }
+                else
+                    break;
+                startindex += wordstartIndex + word.Length;
+            }
+
             if (this.panel1.Width > this.richTextQuestion.Width)
                 this.richTextQuestion.Left = (this.panel1.Width - this.richTextQuestion.Width) / 2;
             else

@@ -42,7 +42,7 @@ namespace MOS_PPT_TEST
         private string[] ImageFile;
         private int screen_height;
         private int screen_width;
-        private ProtectedViewWindow d;
+        private Presentation d;
         private DateTime timeStrart;
         private int Cau_So;
         private int next = 0;
@@ -177,7 +177,7 @@ namespace MOS_PPT_TEST
         {
             this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
-            this.TopMost = true;
+            this.TopMost = false;
             int num = this.Height / 5;
             int width = this.Width;
             int y = 5;
@@ -658,7 +658,7 @@ namespace MOS_PPT_TEST
             this.pathFileOffice = currentProject.PathFileOffice;
             this.pathFileOfficeMaHoa = currentProject.PathFileOfficeMaHoa;
             this.SetUp(currentProject.ProjectIndex);
-            OpenDocument();
+            //OpenDocument();
             LoadProject(currentProject.ProjectIndex - 1);
             loadcaucanhoiNew(currentProject.ProjectIndex - 1);
             ChangeCurrentBT();
@@ -723,6 +723,9 @@ namespace MOS_PPT_TEST
                     int num = (int)MessageBox.Show("Hết bài rồi bạn nhé");
                 }
             }
+
+            //this.TurnOffFile();
+
             this.chotat = false;
         }
 
@@ -768,11 +771,13 @@ namespace MOS_PPT_TEST
                 //this.a.ProtectedViewWindows[currentProject.ProjectIndex].Close();
                 Home.DecryptFile(this.pathFileOfficeMaHoa, this.pathFileOffice);
                 // ISSUE: reference to a compiler-generated method
-                this.d = this.a.ProtectedViewWindows.Open(this.pathFileOffice, this.passDocument);
+                this.d = this.a.Presentations.Open(this.pathFileOffice);
                 this.a.Top = 0.0f;
                 this.a.Left = 0.0f;
                 this.a.Width = (float)this.screen_width;
                 this.a.Height = (float)(this.screen_height * 3 / 5) + 2;
+
+                //this.TurnOffFile();
 
                 this.chotat = false;
             }
@@ -782,15 +787,21 @@ namespace MOS_PPT_TEST
             }
         }
 
-        //private void TurnOffFile()
-        //{
-        //    object saveChanges = (object)Microsoft.Office.Interop.Word.WdSaveOptions.wdDoNotSaveChanges;
-        //    object missing = Type.Missing;
-        //    while (this.a.Workbooks.Count >= 1)
-        //    {
-        //        this.a.Workbooks[1].Close(saveChanges, missing, missing);
-        //    }
-        //}
+        private void TurnOffFile()
+        {
+            this.chotat = true;
+            while (this.a.Windows.Count >= 1)
+            {
+                // ISSUE: reference to a compiler-generated method
+                this.a.Windows[1].Close();
+            }
+            while (this.a.ProtectedViewWindows.Count >= 1)
+            {
+                // ISSUE: reference to a compiler-generated method
+                this.a.ProtectedViewWindows[1].Close();
+            }
+            this.chotat = false;
+        }
 
         private void luuDiem(string diem)
         {
@@ -962,21 +973,83 @@ namespace MOS_PPT_TEST
             //    this.CacCauDaCheck[index] = false;
         }
 
+        private Presentation GetOrOpenPresentation(string filePath)
+        {
+            filePath = System.IO.Path.GetFullPath(filePath); // chuẩn hóa đường dẫn
+
+            // 1. Duyệt hết các Presentation đang mở trong PowerPoint hiện tại
+            foreach (Presentation pres in this.a.Presentations)
+            {
+                try
+                {
+                    // So sánh đường dẫn đầy đủ (không phân biệt hoa thường)
+                    if (string.Equals(pres.FullName, filePath, StringComparison.OrdinalIgnoreCase))
+                    {
+                        // Đã mở rồi → trả về luôn cái đang có
+                        return pres;
+                    }
+                }
+                catch
+                {
+                    // Một số file tạm hoặc bị lỗi có thể ném exception khi đọc FullName → bỏ qua
+                }
+            }
+
+            // 2. Chưa mở → mở mới (dùng cách chống duplicate như lần trước)
+            Presentation newPres = this.a.Presentations.Open(
+                filePath,
+                ReadOnly: MsoTriState.msoFalse
+            );
+
+            // Đảm bảo chỉ còn 1 cửa sổ của file này thôi (phòng trường hợp vẫn bị duplicate)
+            //foreach (DocumentWindow win in this.a.Windows)
+            //{
+            //    if (win.Presentation != null &&
+            //        string.Equals(win.Presentation.FullName, filePath, StringComparison.OrdinalIgnoreCase) &&
+            //        win != newPres.Windows[1])
+            //    {
+            //        win.Close();
+            //    }
+            //}
+
+            return newPres;
+        }
+
         private void OpenDocument()
         {
             string pathFileOffice = (string)this.pathFileOffice;
 
+            //MessageBox.Show($"Opening file: {pathFileOffice}");
+
             // ISSUE: reference to a compiler-generated method
-            this.d = this.a.ProtectedViewWindows.Open(this.pathFileOffice, this.passDocument);
+            //this.d = this.a.Presentations.Open(
+            //        this.pathFileOffice,
+            //        ReadOnly: MsoTriState.msoFalse
+            //    );
+
+            this.d = GetOrOpenPresentation(this.pathFileOffice);
+            if (this.d.Windows.Count > 0)
+            {
+                this.d.Windows[1].Activate();
+                this.a.Activate();
+            }
+
+            //this.a.Visible = MsoTriState.msoTrue;  // bắt đầu cho hiện
+            //this.a.WindowState = PpWindowState.ppWindowMinimized; // thu nhỏ tạm
+            //this.a.WindowState = PpWindowState.ppWindowNormal;     // trả lại normal để áp dụng size
+
             this.a.Top = 0.0f;
             this.a.Left = -10f;
             this.a.Width = (float)this.screen_width;
             this.a.Height = (float)(this.screen_height * 3 / 5);
             this.soLanReSet = 0;
-            if (currentProject.DocumentOpened)
-            {
-                this.d.Activate();
-            }
+            //this.a.Activate();
+            //if (currentProject.DocumentOpened)
+            //{
+            //    this.a.Activate();
+            //    IntPtr hwnd = (IntPtr)a.ActiveWindow.HWND;
+            //    SetForegroundWindow(hwnd);
+            //}
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -1012,7 +1085,7 @@ namespace MOS_PPT_TEST
             this.ImageFile[this.checkedListBox1.SelectedIndex].Replace(Path.Combine(this.pathWork, "Test"), this.pathRun);
             Home.DecryptFile(this.pathFileOfficeMaHoa, this.pathFileOffice);
             // ISSUE: reference to a compiler-generated method
-            this.d = this.a.ProtectedViewWindows.Open(this.pathFileOffice, this.passDocument);
+            this.d = this.a.Presentations.Open(this.pathFileOffice);
         }
 
         private string CheckCauLon(int cau)
@@ -1095,7 +1168,7 @@ namespace MOS_PPT_TEST
             }
             catch (Exception ex)
             {
-                int num = (int)MessageBox.Show("Bạn đã tắt MS Excel! Tắt chương trình và làm lại");
+                int num = (int)MessageBox.Show("Bạn đã tắt MS PPT! Tắt chương trình và làm lại");
             }
         }
 
@@ -1107,7 +1180,7 @@ namespace MOS_PPT_TEST
                 this.TopMost = false;
                 try
                 {
-                    Process.Start("https://go.mos360.vn/mostestexcelhdsd");
+                    Process.Start("https://go.mos360.vn/mostestppthdsd");
                 }
                 catch (Exception ex)
                 {
