@@ -1,10 +1,3 @@
-H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\obj\Debug\PPT_Test.csproj.AssemblyReference.cache
-H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\obj\Debug\PPT_Test.csproj.ResolveComReference.cache
-H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\obj\Debug\MOS_PPT_TEST.Form1.resources
-H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\obj\Debug\MOS_PPT_TEST.Form2.resources
-H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\obj\Debug\MOS_PPT_TEST.WindowsFormsApplication1.Frm_GoToSummary.resources
-H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\obj\Debug\PPT_Test.csproj.GenerateResource.cache
-H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\obj\Debug\PPT_Test.csproj.CoreCompileInputs.cache
 H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\bin\Debug\MOS360_PPT_TEST.exe.config
 H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\bin\Debug\MOS360_PPT_TEST.exe
 H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\bin\Debug\MOS360_PPT_TEST.pdb
@@ -42,7 +35,14 @@ H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\bin\Debug\DevExpress.Spa
 H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\bin\Debug\DevExpress.XtraBars.v25.1.xml
 H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\bin\Debug\DevExpress.RichEdit.v25.1.Core.xml
 H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\bin\Debug\DevExpress.Office.v25.1.Core.xml
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\obj\Debug\PPT_Test.csproj.AssemblyReference.cache
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\obj\Debug\PPT_Test.csproj.ResolveComReference.cache
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\obj\Debug\MOS_PPT_TEST.Properties.Resources.resources
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\obj\Debug\MOS_PPT_TEST.Form1.resources
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\obj\Debug\MOS_PPT_TEST.Form2.resources
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\obj\Debug\MOS_PPT_TEST.WindowsFormsApplication1.Frm_GoToSummary.resources
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\obj\Debug\PPT_Test.csproj.GenerateResource.cache
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\obj\Debug\PPT_Test.csproj.CoreCompileInputs.cache
 H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\obj\Debug\PPT_Test.csproj.Up2Date
 H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\obj\Debug\MOS360_PPT_TEST.exe
 H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\obj\Debug\MOS360_PPT_TEST.pdb
-H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\PPT_thi\obj\Debug\MOS_PPT_TEST.Properties.Resources.resources

@@ -1,36 +1,17 @@
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\Chay File Nay\bin\Debug\MOS_PPT_LEARN.exe.config
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\Chay File Nay\bin\Debug\MOS_PPT_LEARN.exe
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\Chay File Nay\bin\Debug\MOS_PPT_LEARN.pdb
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\Chay File Nay\bin\Debug\stdole.dll
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\Chay File Nay\obj\Debug\MOS_PPT_LEARN.csproj.AssemblyReference.cache
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\Chay File Nay\obj\Debug\MOS_PPT_LEARN.Form1_Cu.resources
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\Chay File Nay\obj\Debug\MOS_PPT_LEARN.Form2.resources
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\Chay File Nay\obj\Debug\MOS_PPT_LEARN.Form3.resources
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\Chay File Nay\obj\Debug\MOS_PPT_LEARN.Form4.resources
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\Chay File Nay\obj\Debug\MOS_PPT_LEARN.Form5.resources
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\Chay File Nay\obj\Debug\MOS_PPT_LEARN.Form6.resources
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\Chay File Nay\obj\Debug\MOS_PPT_LEARN.Help.resources
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\Chay File Nay\obj\Debug\MOS_PPT_LEARN.Properties.Resources.resources
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\Chay File Nay\obj\Debug\MOS_PPT_LEARN.csproj.GenerateResource.cache
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\Chay File Nay\obj\Debug\MOS_PPT_LEARN.csproj.CoreCompileInputs.cache
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\Chay File Nay\obj\Debug\MOS_PPT_.9A93903D.Up2Date
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\Chay File Nay\obj\Debug\MOS_PPT_LEARN.exe
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\Chay File Nay\obj\Debug\MOS_PPT_LEARN.pdb
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\bin\Debug\MOS_PPT_LEARN.exe.config
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\bin\Debug\MOS_PPT_LEARN.exe
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\bin\Debug\MOS_PPT_LEARN.pdb
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\bin\Debug\stdole.dll
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.csproj.AssemblyReference.cache
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.Form2.resources
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.Form3.resources
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.Form4.resources
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.Form5.resources
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.Form6.resources
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.Help.resources
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.Properties.Resources.resources
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.csproj.GenerateResource.cache
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.csproj.CoreCompileInputs.cache
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_.9A93903D.Up2Date
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.exe
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.pdb
-D:\hau_Work\Git_HauWork\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.Form_New.resources
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\MOS_PPT_HOC\bin\Debug\MOS_PPT_LEARN.exe.config
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\MOS_PPT_HOC\bin\Debug\MOS_PPT_LEARN.exe
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\MOS_PPT_HOC\bin\Debug\MOS_PPT_LEARN.pdb
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.csproj.AssemblyReference.cache
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.csproj.ResolveComReference.cache
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.Form2.resources
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.Form3.resources
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.Form4.resources
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.Form5.resources
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.Form6.resources
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.Form_New.resources
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.Help.resources
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.Properties.Resources.resources
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.csproj.GenerateResource.cache
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.csproj.CoreCompileInputs.cache
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.exe
+H:\Pareto\Khach hang\24. mos\MOS\hauwork\Source\MOS_PPT_HOC\obj\Debug\MOS_PPT_LEARN.pdb
