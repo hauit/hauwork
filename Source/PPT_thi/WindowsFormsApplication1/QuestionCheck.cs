@@ -19,6 +19,7 @@ using XlLegendPosition = Microsoft.Office.Interop.PowerPoint.XlLegendPosition;
 using Chart = Microsoft.Office.Interop.PowerPoint.Chart;
 using XlChartType = Microsoft.Office.Core.XlChartType;
 using Presentation = Microsoft.Office.Interop.PowerPoint.Presentation;
+using System.Diagnostics.Eventing.Reader;
 
 namespace MOS_PPT_TEST
 {
@@ -292,11 +293,22 @@ namespace MOS_PPT_TEST
         }
         private string Cau8(Application a, Presentation d)
         {
+            int num = a.ActivePresentation.Slides.Count;
+
             try
             {
-                Slide slide = a.ActivePresentation.Slides[(object)4];
-                Chart chart = slide.Shapes[(object)4].Chart;
-                return chart.ChartType != XlChartType.xl3DColumnClustered ? "False" : "True";
+                if (num > 6)
+                {
+                    Slide slide = a.ActivePresentation.Slides[(object)5];
+                    Chart chart = slide.Shapes[(object)5].Chart;
+                    return chart.ChartType != XlChartType.xl3DColumnClustered ? "False" : "True";
+                }
+                else
+                {
+                    Slide slide = a.ActivePresentation.Slides[(object)4];
+                    Chart chart = slide.Shapes[(object)4].Chart;
+                    return chart.ChartType != XlChartType.xl3DColumnClustered ? "False" : "True";
+                }    
             }
             catch (Exception ex)
             {
@@ -456,20 +468,63 @@ namespace MOS_PPT_TEST
             }
             return "True";
         }
-        private string Cau17(Application a, Presentation d)
+
+        private string Cau17_19(Application a, Presentation d)
         {
+            string re = "False";
+
             try
             {
                 if (a.ActivePresentation.Slides[(object)7].Shapes.Count != 5)
-                    return "False";
+                    re = "False";
                 if (a.ActivePresentation.Slides[(object)7].Shapes[(object)"Cloud 8"].Width.ToString() != "417.6")
-                    return "False";
-                return a.ActivePresentation.Slides[(object)7].Shapes[(object)"Cloud 8"].Height.ToString() != "144" ? "False" : "True";
+                    re = "False";
+                re = a.ActivePresentation.Slides[(object)7].Shapes[(object)"Cloud 8"].Height.ToString() != "144" ? "False" : "True";
+
+                re = a.ActivePresentation.Slides[(object)7].Shapes[(object)2].TextFrame.TextRange.Font.Color.RGB.ToString() != "6968388" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False";
+                re = "False";
             }
+
+            return re;
+        }
+
+        private string Cau17(Application a, Presentation d)
+        {
+            string re = "False";
+            int num = a.ActivePresentation.Slides.Count;
+
+            try
+            {
+                if (num > 7)
+                {
+                    if (a.ActivePresentation.Slides[(object)8].Shapes.Count != 5)
+                        re = "False";
+                    if (a.ActivePresentation.Slides[(object)8].Shapes[(object)"Cloud 8"].Width.ToString() != "417.6")
+                        re = "False";
+                    re = a.ActivePresentation.Slides[(object)8].Shapes[(object)"Cloud 8"].Height.ToString() != "144" ? "False" : "True";
+                }
+                else
+                {
+                    if (a.ActivePresentation.Slides[(object)7].Shapes.Count != 5)
+                        re = "False";
+                    if (a.ActivePresentation.Slides[(object)7].Shapes[(object)"Cloud 8"].Width.ToString() != "417.6")
+                        re = "False";
+                    re = a.ActivePresentation.Slides[(object)7].Shapes[(object)"Cloud 8"].Height.ToString() != "144" ? "False" : "True";
+                }
+                
+
+                //if (re == "False")
+                //    re = this.Cau17_19(a, d);
+            }
+            catch (Exception ex)
+            {
+                re = "False";
+            }
+
+            return re;
         }
         private string Cau18(Application a, Presentation d)
         {
@@ -486,28 +541,59 @@ namespace MOS_PPT_TEST
         }
         private string Cau19(Application a, Presentation d)
         {
+            string re = "False";
+            int num = a.ActivePresentation.Slides.Count;
+
             try
             {
-                return a.ActivePresentation.Slides[(object)7].Shapes[(object)2].TextFrame.TextRange.Font.Color.RGB.ToString() != "6968388" ? "False" : "True";
+                if (num > 7)
+                {
+                    re = a.ActivePresentation.Slides[(object)8].Shapes[(object)2].TextFrame.TextRange.Font.Color.RGB.ToString() != "6968388" ? "False" : "True";
+                }
+                else
+                {
+                    re = a.ActivePresentation.Slides[(object)7].Shapes[(object)2].TextFrame.TextRange.Font.Color.RGB.ToString() != "6968388" ? "False" : "True";
+                }    
+                //if (re == "False")
+                //    re = this.Cau17_19(a, d);
             }
             catch (Exception ex)
             {
-                return "False";
+                re = "False";
             }
+
+            return re;
         }
         private string Cau20(Application a, Presentation d)
         {
+            int num = a.ActivePresentation.Slides.Count;
+
             try
             {
-                if (a.ActivePresentation.Slides[(object)7].TimeLine.MainSequence.Count != 1)
-                    return "False";
-                if (a.ActivePresentation.Slides[(object)7].TimeLine.MainSequence[1].DisplayName != "Picture 4")
-                    return "False";
-                if (a.ActivePresentation.Slides[(object)7].TimeLine.MainSequence[1].EffectType.ToString() != "msoAnimEffectFly")
-                    return "False";
-                if (a.ActivePresentation.Slides[(object)7].TimeLine.MainSequence[1].EffectParameters.Direction.ToString() != "msoAnimDirectionUpLeft")
-                    return "False";
-                return a.ActivePresentation.Slides[(object)7].TimeLine.MainSequence[1].Timing.Duration.ToString() != "2" ? "False" : "True";
+                if (num > 7)
+                {
+                    if (a.ActivePresentation.Slides[(object)7].TimeLine.MainSequence.Count != 1)
+                        return "False";
+                    if (a.ActivePresentation.Slides[(object)7].TimeLine.MainSequence[1].DisplayName != "Picture 4")
+                        return "False";
+                    if (a.ActivePresentation.Slides[(object)7].TimeLine.MainSequence[1].EffectType.ToString() != "msoAnimEffectFly")
+                        return "False";
+                    if (a.ActivePresentation.Slides[(object)7].TimeLine.MainSequence[1].EffectParameters.Direction.ToString() != "msoAnimDirectionUpLeft")
+                        return "False";
+                    return a.ActivePresentation.Slides[(object)7].TimeLine.MainSequence[1].Timing.Duration.ToString() != "2" ? "False" : "True";
+                }
+                else
+                {
+                    if (a.ActivePresentation.Slides[(object)6].TimeLine.MainSequence.Count != 1)
+                        return "False";
+                    if (a.ActivePresentation.Slides[(object)6].TimeLine.MainSequence[1].DisplayName != "Picture 4")
+                        return "False";
+                    if (a.ActivePresentation.Slides[(object)6].TimeLine.MainSequence[1].EffectType.ToString() != "msoAnimEffectFly")
+                        return "False";
+                    if (a.ActivePresentation.Slides[(object)6].TimeLine.MainSequence[1].EffectParameters.Direction.ToString() != "msoAnimDirectionUpLeft")
+                        return "False";
+                    return a.ActivePresentation.Slides[(object)6].TimeLine.MainSequence[1].Timing.Duration.ToString() != "2" ? "False" : "True";
+                }    
             }
             catch (Exception ex)
             {
@@ -828,16 +914,32 @@ namespace MOS_PPT_TEST
         }
         private string Cau39(Application a, Presentation d)
         {
+            int num = a.ActivePresentation.Slides.Count;
+
             try
             {
-                if (a.ActivePresentation.Slides[(object)6].Background.Fill.Transparency.ToString() != "0.75")
-                    return "False";
-                if (a.ActivePresentation.Slides[(object)6].Background.Fill.Type != MsoFillType.msoFillPicture)
-                    return "False";
-                if (a.ActivePresentation.Slides[(object)5].Background.Fill.Transparency.ToString() == "0.75")
-                    return "False";
-                if (a.ActivePresentation.Slides[(object)5].Background.Fill.Type == MsoFillType.msoFillPicture)
-                    return "False";
+                if (num > 5)
+                {
+                    if (a.ActivePresentation.Slides[(object)6].Background.Fill.Transparency.ToString() != "0.75")
+                        return "False";
+                    if (a.ActivePresentation.Slides[(object)6].Background.Fill.Type != MsoFillType.msoFillPicture)
+                        return "False";
+                    if (a.ActivePresentation.Slides[(object)5].Background.Fill.Transparency.ToString() == "0.75")
+                        return "False";
+                    if (a.ActivePresentation.Slides[(object)5].Background.Fill.Type == MsoFillType.msoFillPicture)
+                        return "False";
+                }
+                else
+                {
+                    if (a.ActivePresentation.Slides[(object)5].Background.Fill.Transparency.ToString() != "0.75")
+                        return "False";
+                    if (a.ActivePresentation.Slides[(object)5].Background.Fill.Type != MsoFillType.msoFillPicture)
+                        return "False";
+                    if (a.ActivePresentation.Slides[(object)4].Background.Fill.Transparency.ToString() == "0.75")
+                        return "False";
+                    if (a.ActivePresentation.Slides[(object)4].Background.Fill.Type == MsoFillType.msoFillPicture)
+                        return "False";
+                }
             }
             catch (Exception ex)
             {
@@ -1178,12 +1280,16 @@ namespace MOS_PPT_TEST
                 return "False";
             }
         }
-        private string Cau59(Application a, Presentation d)
+
+        private string Cau59_60(Application a, Presentation d)
         {
+
+            string re = "False"; 
+
             try
             {
                 var slide = a.ActivePresentation.Slides[(object)3];  // slide 3
-                if (slide.Shapes.Count != 4) return "False";
+                if (slide.Shapes.Count != 4) re = "False";
 
                 for (int i = 1; i <= slide.Shapes.Count; i++)
                 {
@@ -1205,37 +1311,104 @@ namespace MOS_PPT_TEST
 
                             // Máy mới 2023–2025: Left = 90
                             if (Math.Abs(rotY - 90f) < 10f && Math.Abs(rotX) < 10f)
-                                return "True";
+                                re = "True";
                         }
                         else
                         {
                             // Máy cũ: fallback về ThreeD
                             float rotY = shape.ThreeD.RotationY;
                             if (Math.Abs(rotY - 270f) < 10f && Math.Abs(shape.ThreeD.RotationX) < 10f)
-                                return "True";
+                                re = "True";
                         }
                     }
                 }
 
-                return "False";
+
+                if (a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[1].DisplayName != "3D Model 3")
+                    re = "False";
+                re = a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[1].EffectType.ToString() != "154" ? "False" : "True";
             }
             catch (Exception ex)
             {
-                return "False";
+                re = "False";
             }
+
+            return re;
+        }
+
+        private string Cau59(Application a, Presentation d)
+        {
+
+            string re = "False";
+
+            try
+            {
+                var slide = a.ActivePresentation.Slides[(object)3];  // slide 3
+                if (slide.Shapes.Count != 4) re = "False";
+
+                for (int i = 1; i <= slide.Shapes.Count; i++)
+                {
+                    var shape = slide.Shapes[(object)i];
+
+                    if ((int)shape.Type == 29 || shape.Name.Contains("3D Model") || shape.Tags["OBJECTTYPE"] == "3DMODEL")
+                    {
+                        // Tìm thấy 3D Model rồi đây
+
+                        dynamic model = shape.GetType().InvokeMember("Model3D",
+                                    System.Reflection.BindingFlags.GetProperty,
+                                    null, shape, null);
+
+                        // Nếu có Model3D (máy mới)
+                        if (model != null)
+                        {
+                            float rotY = model.RotationY;
+                            float rotX = model.RotationX;
+
+                            // Máy mới 2023–2025: Left = 90
+                            if (Math.Abs(rotY - 90f) < 10f && Math.Abs(rotX) < 10f)
+                                re = "True";
+                        }
+                        else
+                        {
+                            // Máy cũ: fallback về ThreeD
+                            float rotY = shape.ThreeD.RotationY;
+                            if (Math.Abs(rotY - 270f) < 10f && Math.Abs(shape.ThreeD.RotationX) < 10f)
+                                re = "True";
+                        }
+                    }
+                }
+
+                if (re == "False")
+                    re = this.Cau59_60(a, d);
+
+                //return "False";
+            }
+            catch (Exception ex)
+            {
+                re = "False";
+            }
+
+            return re;
         }
         private string Cau60(Application a, Presentation d)
         {
+            string re = "False";
+
             try
             {
                 if (a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[1].DisplayName != "3D Model 3")
-                    return "False";
-                return a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[1].EffectType.ToString() != "154" ? "False" : "True";
+                    re = "False";
+                re = a.ActivePresentation.Slides[(object)3].TimeLine.MainSequence[1].EffectType.ToString() != "154" ? "False" : "True";
+
+                if (re == "False")
+                    re = this.Cau59_60(a, d);
             }
             catch (Exception ex)
             {
-                return "False";
+                re = "False";
             }
+
+            return re;
         }
         private string Cau61(Application a, Presentation d)
         {
@@ -1253,23 +1426,20 @@ namespace MOS_PPT_TEST
             }
             return "True";
         }
-        private string Cau62(Application a, Presentation d)
+
+        private string Cau62_63(Application a, Presentation d)
         {
+
+            string re = "False";
+
             try
             {
                 if (a.ActivePresentation.Slides[(object)2].Shapes.Count <= 1)
-                    return "False";
-                return !a.ActivePresentation.Slides[(object)2].Shapes[(object)2].Name.Contains("Section Zoom") ? "False" : "True";
-            }
-            catch (Exception ex)
-            {
-                return "False";
-            }
-        }
-        private string Cau63(Application a, Presentation d)
-        {
-            try
-            {
+                    re = "False";
+
+                if (!a.ActivePresentation.Slides[(object)2].Shapes[(object)2].Name.Contains("Section Zoom"))
+                    re = "False";
+
                 var pres = a.ActivePresentation;
                 var master = pres.SlideMaster;
 
@@ -1292,7 +1462,7 @@ namespace MOS_PPT_TEST
                                             slide2.HeadersFooters.Footer.Text.Contains("adventure-works.com");
                 bool slide2HasSlideNumber = slide2.HeadersFooters.SlideNumber.Visible == MsoTriState.msoTrue;
 
-                return (footerTextCorrect &&
+                re = (footerTextCorrect &&
                         slideNumberVisible &&
                         footerVisible &&
                         titleSlideNoFooter &&
@@ -1300,10 +1470,94 @@ namespace MOS_PPT_TEST
                         slide2HasFooter &&
                         slide2HasSlideNumber) ? "True" : "False";
             }
+            catch (Exception ex)
+            {
+                re = "False";
+            }
+
+            return re;
+        }
+
+
+        private string Cau62(Application a, Presentation d)
+        {
+            string re = "False";
+
+            try
+            {
+                if (a.ActivePresentation.Slides[(object)2].Shapes.Count <= 1)
+                    re = "False";
+
+                if (a.ActivePresentation.Slides[(object)2].Shapes.Count > 5)
+                    re = !a.ActivePresentation.Slides[(object)2].Shapes[(object)4].Name.Contains("Section Zoom") ? "False" : "True";
+                else
+                    re = !a.ActivePresentation.Slides[(object)2].Shapes[(object)2].Name.Contains("Section Zoom") ? "False" : "True";
+
+                //if (a.ActivePresentation.Slides[(object)2].Shapes[(object)2].Name.Contains("Section Zoom"))
+                //    re = "True";
+                //else
+                //    re = this.Cau62_63(a, d);
+            }
+            catch (Exception ex)
+            {
+                re = "False";
+            }
+
+            return re;
+        }
+        private string Cau63(Application a, Presentation d)
+        {
+            string re = "False";
+
+            try
+            {
+                var pres = a.ActivePresentation;
+                var master = pres.SlideMaster;
+
+                // 1. Kiểm tra Footer trên Slide Master
+                var footer = master.HeadersFooters.Footer;
+                bool footerTextCorrect = footer.Text.Trim().Equals("www.advanture-works.com",
+                                                                  StringComparison.OrdinalIgnoreCase);
+
+                bool slideNumberVisible = master.HeadersFooters.SlideNumber.Visible == MsoTriState.msoTrue;
+                bool footerVisible = footer.Visible == MsoTriState.msoTrue;
+
+                // 2. Kiểm tra Title Slide (slide 1) KHÔNG có footer và số slide
+                var titleSlide = pres.Slides[1];
+                bool titleSlideNoFooter = titleSlide.HeadersFooters.Footer.Visible == MsoTriState.msoFalse;
+                bool titleSlideNoSlideNumber = titleSlide.HeadersFooters.SlideNumber.Visible == MsoTriState.msoFalse;
+
+                // 3. Kiểm tra 1 slide bất kỳ (ví dụ slide 2) phải CÓ footer + số slide
+                var slide2 = pres.Slides[2];
+                bool slide2HasFooter = slide2.HeadersFooters.Footer.Visible == MsoTriState.msoTrue &&
+                                            slide2.HeadersFooters.Footer.Text.Contains("advanture-works.com");
+                bool slide2HasSlideNumber = slide2.HeadersFooters.SlideNumber.Visible == MsoTriState.msoTrue;
+
+                re = (footerTextCorrect &&
+                        slideNumberVisible &&
+                        footerVisible &&
+                        titleSlideNoFooter &&
+                        titleSlideNoSlideNumber &&
+                        slide2HasFooter &&
+                        slide2HasSlideNumber) ? "True" : "False";
+
+                //if (footerTextCorrect &&
+                //        slideNumberVisible &&
+                //        footerVisible &&
+                //        titleSlideNoFooter &&
+                //        titleSlideNoSlideNumber &&
+                //        slide2HasFooter &&
+                //        slide2HasSlideNumber)
+                //    re = "True";
+                //else
+                //    re = this.Cau62_63(a, d);
+            }
             catch
             {
-                return "False";
+                re = "False";
             }
+
+            return re;
         }
         private string Cau64(Application a, Presentation d)
         {

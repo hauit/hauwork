@@ -248,7 +248,7 @@ namespace MOS_PPT_LEARN
             }
 
             int startindex = 0;
-            string word = ":???";
+            string word = "  ???  ";
             while (startindex < richTextQuestion.TextLength)
             {
                 int wordstartIndex = richTextQuestion.Find(word, startindex, RichTextBoxFinds.None);
@@ -330,7 +330,7 @@ namespace MOS_PPT_LEARN
             this.richTextQuestion.Text = this.paramater.DeTiengViet;
 
             int startindex = 0;
-            string word = ":???";
+            string word = "  ???  ";
             while (startindex < richTextQuestion.TextLength)
             {
                 int wordstartIndex = richTextQuestion.Find(word, startindex, RichTextBoxFinds.None);

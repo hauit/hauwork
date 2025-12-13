@@ -177,7 +177,7 @@ namespace MOS_PPT_TEST
         {
             this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
-            this.TopMost = false;
+            this.TopMost = true;
             int num = this.Height / 5;
             int width = this.Width;
             int y = 5;

@@ -109,7 +109,6 @@ namespace MOS_PPT_TEST.WindowsFormsApplication1
                 btnFinish.Enabled = false;
                 btnFinish.BackgroundColor = Color.Gray;
                 Home.isButtonDisabled = true;
-                treeList1.Columns[7].Visible = true;
 
                 Form1 frm1 = Application.OpenForms["Form1"] as Form1;
                 if (frm1 != null)
@@ -127,6 +126,8 @@ namespace MOS_PPT_TEST.WindowsFormsApplication1
                     frm1.btnMaskReview.Enabled = false;
                     frm1.btnMaskReview.BackColor = Color.Gray;
                 }
+
+                treeList1.Columns[7].Visible = true;
 
                 int correctAnswer = 0;
                 string str1 = "";

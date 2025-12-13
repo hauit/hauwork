@@ -219,7 +219,7 @@ namespace MOS_PPT_LEARN
 
                 // 1. Kiểm tra Footer trên Slide Master
                 var footer = master.HeadersFooters.Footer;
-                bool footerTextCorrect = footer.Text.Trim().Equals("www.adventure-works.com",
+                bool footerTextCorrect = footer.Text.Trim().Equals("www.advanture-works.com",
                                                                   StringComparison.OrdinalIgnoreCase);
 
                 bool slideNumberVisible = master.HeadersFooters.SlideNumber.Visible == MsoTriState.msoTrue;
@@ -233,7 +233,7 @@ namespace MOS_PPT_LEARN
                 // 3. Kiểm tra 1 slide bất kỳ (ví dụ slide 2) phải CÓ footer + số slide
                 var slide2 = pres.Slides[2];
                 bool slide2HasFooter = slide2.HeadersFooters.Footer.Visible == MsoTriState.msoTrue &&
-                                            slide2.HeadersFooters.Footer.Text.Contains("adventure-works.com");
+                                            slide2.HeadersFooters.Footer.Text.Contains("advanture-works.com");
                 bool slide2HasSlideNumber = slide2.HeadersFooters.SlideNumber.Visible == MsoTriState.msoTrue;
 
                 return (footerTextCorrect &&
